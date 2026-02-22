@@ -1,106 +1,180 @@
-# New Nx Repository
+# artsgoz-monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Nx monorepo for the artsgoz project, containing the public-facing frontend and the backoffice admin application.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Tech Stack
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-## Finish your Nx platform setup
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript 5.9
+- **Styling:** Tailwind CSS 3.4
+- **Monorepo:** Nx 22.5
+- **Package Manager:** pnpm
+- **Testing:** Jest 30 + Playwright
+- **Linting:** ESLint 9 + Prettier
+- **Commit Convention:** Conventional Commits (enforced via commitlint + husky)
 
-🚀 [Finish setting up your workspace](https://cloud.nx.app/connect/KLiER87L7O) to get faster builds with remote caching, distributed task execution, and self-healing CI. [Learn more about Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud).
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
-
-## Run tasks
-
-To build the library use:
-
-```sh
-npx nx build pkg1
-```
-
-To run any task with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
+## Project Structure
 
 ```
-npx nx release
+artsgoz-monorepo/
+├── apps/
+│   ├── artsgoz-frontend/        # Public-facing Next.js app
+│   ├── artsgoz-frontend-e2e/    # E2E tests for frontend (Playwright)
+│   ├── artsgoz-backoffice/      # Admin backoffice Next.js app
+│   └── artsgoz-backoffice-e2e/  # E2E tests for backoffice (Playwright)
+├── packages/                    # Shared libraries
+├── nx.json                      # Nx workspace configuration
+├── pnpm-workspace.yaml          # pnpm workspace definition
+└── tsconfig.base.json           # Shared TypeScript config
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+## Prerequisites
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **Node.js** >= 22
+- **pnpm** >= 9
 
-## Keep TypeScript project references up to date
+## Getting Started
 
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
+### 1. Install dependencies
 
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
+```bash
+pnpm install
 ```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+### 2. Start development servers
 
-```sh
-npx nx sync:check
+```bash
+# All apps
+pnpm dev
+
+# Individual apps
+pnpm dev:frontend
+pnpm dev:backoffice
 ```
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+### 3. Open in browser
 
-## Nx Cloud
+- **Frontend:** http://localhost:3000
+- **Backoffice:** http://localhost:3001
 
-Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+## Available Scripts
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start all dev servers |
+| `pnpm dev:frontend` | Start frontend dev server |
+| `pnpm dev:backoffice` | Start backoffice dev server |
+| `pnpm build` | Build all projects |
+| `pnpm build:frontend` | Build frontend only |
+| `pnpm build:backoffice` | Build backoffice only |
+| `pnpm test` | Run unit tests for all projects |
+| `pnpm lint` | Lint all projects |
+| `pnpm lint:fix` | Lint and auto-fix all projects |
+| `pnpm typecheck` | Type-check all projects |
+| `pnpm e2e` | Run all E2E tests |
+| `pnpm affected:build` | Build only affected projects |
+| `pnpm affected:test` | Test only affected projects |
+| `pnpm affected:lint` | Lint only affected projects |
+| `pnpm graph` | Open the Nx dependency graph |
 
-### Set up CI (non-Github Actions CI)
+## Adding Dependencies
 
-**Note:** This is only required if your CI provider is not GitHub Actions.
+Install at the workspace root:
 
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+```bash
+pnpm add -Dw <package>
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Install to a specific app:
 
-## Install Nx Console
+```bash
+pnpm add <package> --filter @org/artsgoz-frontend
+pnpm add <package> --filter @org/artsgoz-backoffice
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Commit Convention
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) enforced by commitlint and husky.
 
-## Useful links
+**Format:** `<type>(<scope>): <description>`
 
-Learn more:
+**Allowed types:**
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+| Type | Description |
+| --- | --- |
+| `feat` | A new feature |
+| `fix` | A bug fix |
+| `docs` | Documentation only |
+| `style` | Code style (formatting, semicolons, etc.) |
+| `refactor` | Code change that neither fixes a bug nor adds a feature |
+| `perf` | Performance improvement |
+| `test` | Adding or updating tests |
+| `build` | Build system or external dependencies |
+| `ci` | CI/CD configuration |
+| `chore` | Other changes that don't modify src or test files |
+| `revert` | Reverts a previous commit |
 
-And join the Nx community:
+**Examples:**
 
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```
+feat(frontend): add user login page
+fix(backoffice): resolve sidebar navigation bug
+docs: update README with setup instructions
+chore: upgrade Next.js to 16.0.1
+```
+
+## Git Hooks
+
+Husky runs the following hooks automatically:
+
+- **pre-commit** — runs `pnpm test` before each commit
+- **commit-msg** — validates commit message format via commitlint
+
+## Contributing
+
+1. Create a new branch from `main`:
+   ```bash
+   git checkout -b feat/your-feature
+   ```
+
+2. Make your changes and ensure all checks pass:
+   ```bash
+   pnpm lint
+   pnpm typecheck
+   pnpm test
+   ```
+
+3. Commit using the conventional commit format:
+   ```bash
+   git commit -m "feat(frontend): add new feature"
+   ```
+
+4. Push and open a pull request against `main`.
+
+## Nx Commands
+
+Run any Nx target on a specific project:
+
+```bash
+pnpm nx <target> <project>
+
+# Examples
+pnpm nx build @org/artsgoz-frontend
+pnpm nx test @org/artsgoz-backoffice
+pnpm nx lint @org/artsgoz-frontend
+```
+
+Generate a new app or library:
+
+```bash
+pnpm nx g @nx/next:app my-app
+pnpm nx g @nx/js:lib my-lib
+```
+
+## Recommended VS Code Extensions
+
+- [Nx Console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Playwright Test](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
+- [Jest Runner](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner)
