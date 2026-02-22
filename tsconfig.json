@@ -2,5 +2,18 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./apps/artsgoz-frontend-e2e"
+    },
+    {
+      "path": "./apps/artsgoz-frontend"
+    },
+    {
+      "path": "./apps/artsgoz-backoffice-e2e"
+    },
+    {
+      "path": "./apps/artsgoz-backoffice"
+    }
+  ]
 }
