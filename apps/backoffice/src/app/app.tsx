@@ -1,11 +1,7 @@
-import NxWelcome from './nx-welcome';
+import { AppRouter } from '../routes/AppRouter';
 
 export function App() {
-  return (
-    <div>
-      <NxWelcome title="@org/backoffice" />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
