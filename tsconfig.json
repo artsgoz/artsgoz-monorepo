@@ -17,6 +17,9 @@
     },
     {
       "path": "./apps/backoffice"
+    },
+    {
+      "path": "./apps/frontend"
     }
   ]
 }
