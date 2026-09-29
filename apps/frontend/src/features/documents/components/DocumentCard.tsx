@@ -13,7 +13,7 @@ export function DocumentCard({
   isBookmarked,
   onToggleBookmark,
 }: DocumentCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   // Render status badge for desktop
   const renderStatusBadge = () => {

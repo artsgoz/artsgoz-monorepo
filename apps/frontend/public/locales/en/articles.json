@@ -1,0 +1,134 @@
+{
+  "section_title": "Articles from Saraniyakorn Club",
+  "section_desc": "Latest news, articles, and events from within the Faculty",
+  "view_all": "View All Articles",
+  "drag": "drag",
+  "dragging": "dragging",
+  "mock": {
+    "art01": {
+      "title": "Welcome to Arts GOZ Student Portal",
+      "excerpt": "Discover how the new GOZ student portal simplifies your academic and daily life at Faculty of Arts, Chula.",
+      "author": "Saraniyakorn Team",
+      "category": "Announcement",
+      "content_0": "We are proud to introduce the new Arts GOZ Student Portal. This platform is designed to be the central hub for all student services, academic tracking, and public relations.",
+      "content_1": "You can now easily track your curriculum progress, submit course petitions, download important documents, and keep up with campus events through our integrated calendar.",
+      "content_2": "Explore the various tabs and features. If you find any issues, feel free to submit feedback to help us improve the platform."
+    },
+    "art02": {
+      "title": "How to Prepare for the Summer Internship Program",
+      "excerpt": "An ultimate guide on finding internships, building resumes, and preparing for interviews in your junior year.",
+      "author": "P'Siri, Arts 84",
+      "category": "Career Tips",
+      "content_0": "Securing a summer internship is a great way to gain professional experience and explore career paths. Start by preparing your resume and showcasing your language skills.",
+      "content_1": "Many top companies offer roles in Content Marketing, UX/UI Design, and Localization for Arts students. Tailor your application for each role.",
+      "content_2": "Practice common interview questions and be confident in your multilingual capabilities. Good luck!"
+    },
+    "art03": {
+      "title": "WestCiv Survival Guide: Tips from Senior Students",
+      "excerpt": "Don't panic! Here are the best study techniques and reading recommendations to pass Western Civilization with an A.",
+      "author": "History Major Seniors",
+      "category": "Study Guide",
+      "content_0": "Western Civilization (WestCiv) is known for its heavy reading load. The key is consistent reading and understanding the main historical themes rather than memorizing dates.",
+      "content_1": "Form study groups to discuss key concepts and summarize chapters. Sharing notes can help clarify complex historical events.",
+      "content_2": "Don't hesitate to ask your professors for guidance during office hours. They are always happy to help."
+    },
+    "art04": {
+      "title": "Student Wellness: Managing Stress and Mental Health",
+      "excerpt": "Learn about the counseling services and wellness activities available to Chula students.",
+      "author": "GOZ Welfare Team",
+      "category": "Health & Wellness",
+      "content_0": "Academic stress can take a toll on your mental health. Chulalongkorn University provides various support channels, including MindSpace and professional counseling.",
+      "content_1": "Remember to take breaks, practice mindfulness, and balance your study schedule with activities you enjoy.",
+      "content_2": "If you or your friends need someone to talk to, don't hesitate to reach out to the university's support services."
+    },
+    "art05": {
+      "title": "The Evolution of Language in the Digital Era",
+      "excerpt": "Explore how social media, memes, and internet slang are shaping the future of Thai and English.",
+      "author": "Linguistics Club",
+      "category": "Academic Articles",
+      "content_0": "The digital era has accelerated the evolution of language. Internet slang, abbreviations, and emojis have become integral to modern communication.",
+      "content_1": "Linguists observe that these changes reflect social adaptation and the need for fast, expressive digital interaction.",
+      "content_2": "Understanding these trends helps us adapt communication strategies in both personal and professional contexts."
+    },
+    "art06": {
+      "title": "Behind the Scenes of the Arts Open House 2026",
+      "excerpt": "Exclusive interviews with the student organizers who made this year's Open House a huge success.",
+      "author": "Saraniyakorn Reporter",
+      "category": "Campus Life",
+      "content_0": "This year's Arts Open House attracted thousands of high school students. The event showcased the diversity of our majors and active student clubs.",
+      "content_1": "Organizers spent months planning interactive booths, campus tours, and mock classes to give prospective students a taste of life at Arts Chula.",
+      "content_2": "A big thank you to all student volunteers who dedicated their time to make this event successful and memorable."
+    }
+  },
+  "saved_title": "Saved Articles & Info",
+  "search_saved_placeholder": "Search saved items...",
+  "filter": "Filter",
+  "filter_and_sort": "Filter & Sort Options",
+  "date_saved": "Date Saved",
+  "date_posted": "Date Posted",
+  "sort_newest": "Newest First",
+  "sort_oldest": "Oldest First",
+  "tab_articles": "Saved Articles",
+  "tab_internships": "Saved Internships",
+  "tab_reviews": "Saved Course Reviews",
+  "no_saved_articles": "No saved articles yet",
+  "no_saved_articles_desc": "Click the bookmark icon at the top right of any article card to save it here for later reading.",
+  "explore_articles": "Explore Articles",
+  "period_label": "Period: {{period}}",
+  "more_details": "View More Details",
+  "written_by_author": "Written by: {{author}}",
+  "published_at": "Published: {{date}}",
+  "read_full_review": "Read Full Review",
+  "go_to_articles": "Back to Main Articles",
+  "search_placeholder": "Search articles by title, content, or author...",
+  "clear_filters": "Clear All Filters",
+  "no_results_title": "No articles found",
+  "no_results_desc": "We couldn't find any articles matching \"{{query}}\". Try using different keywords.",
+  "categories": {
+    "all": "All Articles"
+  },
+  "written_by": "Written by {{author}}",
+  "published": "Published {{date}}",
+  "read_more": "Read More",
+  "saved_internships": {
+    "intern1": {
+      "role": "Content Marketing Intern",
+      "period": "June - August 2025",
+      "category": "Internship",
+      "author": "P'A, Arts 85"
+    },
+    "intern2": {
+      "role": "UX/UI Designer Intern",
+      "period": "June - July 2025",
+      "category": "Internship",
+      "author": "P'B, Arts 84"
+    }
+  },
+  "saved_reviews": {
+    "review1": {
+      "role": "Special English Translation",
+      "excerpt": "A popular course for those looking to hone their translation and critical reading skills in professional English contexts.",
+      "category": "Course Review",
+      "author": "English Major, Batch 86"
+    },
+    "review2": {
+      "role": "Western Civilization",
+      "excerpt": "Challenging but very rewarding and fun. The teachers are very caring and the curriculum offers extensive and deep historical knowledge.",
+      "category": "Course Review",
+      "author": "History Major, Batch 85"
+    }
+  },
+  "tags": {
+    "wfh": "WFH 100%",
+    "hybrid": "Hybrid",
+    "allowance": "Paid Allowance"
+  },
+  "detail": {
+    "not_found_title": "Article Not Found",
+    "not_found_desc": "The article you are trying to view might have been deleted or doesn't exist.",
+    "back_to_all": "Back to All Articles",
+    "back_to_articles": "Back to Articles",
+    "references": "References",
+    "read_more": "Read More"
+  }
+}

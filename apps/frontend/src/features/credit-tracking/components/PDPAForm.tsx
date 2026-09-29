@@ -7,7 +7,7 @@ interface PDPAFormProps {
 }
 
 export function PDPAForm({ onConfirm }: PDPAFormProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
   const [acknowledged, setAcknowledged] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,17 +18,17 @@ export function PDPAForm({ onConfirm }: PDPAFormProps) {
   };
 
   return (
-    <div className="w-full max-w-[680px] mx-auto bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-lg p-6 md:p-10 font-[ChulaCharasNew] my-8 select-none">
+    <div className="w-full max-w-[680px] mx-auto bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-lg p-6 md:p-10 font-[ChulaCharasNew] my-8">
       <h2 className="text-[#DE5D8F] text-[24px] md:text-[32px] font-bold text-center mb-6 leading-tight break-words">
-        {t('credit_tracking.pdpa.title')}
+        {t('pdpa.title')}
       </h2>
 
       <div className="text-[#404041] text-[16px] md:text-[18px] font-normal leading-relaxed space-y-4 mb-8">
         <p className="indent-8 break-words text-justify">
-          {t('credit_tracking.pdpa.desc1')}
+          {t('pdpa.desc1')}
         </p>
         <p className="indent-8 break-words text-justify">
-          {t('credit_tracking.pdpa.desc2')}
+          {t('pdpa.desc2')}
         </p>
       </div>
 
@@ -41,7 +41,7 @@ export function PDPAForm({ onConfirm }: PDPAFormProps) {
             onChange={(e) => setAcknowledged(e.target.checked)}
             className="w-5 h-5 rounded border-2 border-[#D0D0D1] text-[#DE5D8F] focus:ring-[#DE5D8F] transition-all cursor-pointer group-hover:border-[#DE5D8F]"
           />
-          <span className="truncate">{t('credit_tracking.pdpa.agree')}</span>
+          <span className="truncate">{t('pdpa.agree')}</span>
         </label>
 
         {/* Action Button */}
@@ -51,7 +51,7 @@ export function PDPAForm({ onConfirm }: PDPAFormProps) {
           variant="primary"
           className="w-full max-w-[200px] h-[48px] rounded-[8px] font-bold text-[18px]"
         >
-          {t('credit_tracking.pdpa.submit')}
+          {t('pdpa.submit')}
         </Button>
       </form>
     </div>

@@ -23,7 +23,7 @@ export function ArticleCard({
   imageUrl,
   onBookmarkChange,
 }: ArticleCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const navigate = useNavigate();
   const [isBookmarked, setIsBookmarked] = useState(() => {
     try {
@@ -108,10 +108,10 @@ export function ArticleCard({
         </h3>
         <div className="flex flex-col gap-[4px]">
           <span className="font-serif text-[14px] font-bold leading-[20px] text-[#6D6D6D] whitespace-nowrap overflow-hidden text-ellipsis">
-            {t('articles.written_by', { author: translatedAuthor })}
+            {t('written_by', { author: translatedAuthor })}
           </span>
           <span className="font-serif text-[14px] font-bold leading-[20px] text-[#99999A] whitespace-nowrap">
-            {t('articles.published', { date })}
+            {t('published', { date })}
           </span>
         </div>
       </div>
@@ -233,10 +233,10 @@ export function ArticleCard({
         </h3>
         <div className="bg-[rgba(255,255,255,0.26)] flex flex-col gap-[4px] items-start justify-center py-[4px] px-[12px] w-full rounded-[8px] overflow-hidden text-ellipsis">
           <span className="font-serif text-[14px] text-[#6D6D6D] font-bold leading-[20px] whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            {t('articles.written_by', { author: translatedAuthor })}
+            {t('written_by', { author: translatedAuthor })}
           </span>
           <span className="font-serif text-[14px] text-[#99999A] font-bold leading-[20px] whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            {t('articles.published', { date })}
+            {t('published', { date })}
           </span>
         </div>
       </div>

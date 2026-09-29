@@ -1,0 +1,1004 @@
+--- Page 1 ---
+
+1
+สาขาวิชาภูมิศาสตร์และภูมิสารสนเทศ
+(หลักสูตรปรับปรุง พ.ศ. 2566)
+1. หน่วยงานที่รับผิดชอบ
+ภาควิชาภูมิศาสตร์ คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จ้านวนหน่วยกิตรวมตลอดหลักสูตร 135 หน่วยกิต
+2.1 โครงสร้างหลักสูตร
+ภาควิชาภูมิศาสตร์เปิดสอนวิชาเฉพาะสาขาวิชาภูมิศาสตร์และภูมิสารสนเทศ แบบวิชาเอกเดี่ยว สําหรับ
+นิสิตที่เลือกเรียนเป็นวิชาเอก และเปิดสอนเป็นวิชาโท สําหรับนิสิตที่เรียนวิชาเอกสาขาอื่นทั้ในคณะและนอกคณะที่เลือก
+เรียนเป็นวิชาโท ดังนี้
+2.1.1 โปรแกรมปกติ
+2.1.1.1 แบบวิชาเอกเดี่ยว                         72 หน่วยกิต
+(1) กลุ่มวิชาพื้นฐาน                     18 หน่วยกิต
+วิชาบังคับ              18 หน่วยกิต
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                18 หน่วยกิต
+วิชาบังคับ              18 หน่วยกิต
+(3) กลุ่มวิชาเชี่ยวชาญ                   24 หน่วยกิต
+(4) กลุ่มวิชาสํารวจ                     12 หน่วยกิต
+วิชาบังคับ              6 หน่วยกิต
+วิชาเลือก              6 หน่วยกิต
+2.1.1.2 วิชาโท สําหรับนิสิตวิชาเอกสาขาอื่นทั้ในคณะและนอกคณะ เ18 หน่วยกิต
+วิชาบังคับ              9 หน่วยกิต
+วิชาเลือก              9 หน่วยกิต
+3. รายวิชา
+3.1 โปรแกรมปกติ
+3.1.1.1 แบบวิชาเอกเดี่ยว                                 72 หน่วยกิต
+(1) กลุ่มวิชาพื้นฐาน                                       18 หน่วยกิต
+วิชาบังคับ                              18 หน่วยกิต
+2205210*  ทักษะการสํารวจพื้นฐานทางภูมิศาสตร์        3 (3-0-6)
+Basic Skills in Geographical Survey
+2205211 ระบบกายภาพในสภาพแวดล้อม                              3 (3-0-6)
+Physical Systems of the Environment
+2205221 ภูมิศาสตร์มนุษย์เบื้องต้น                                      3 (3-0-6)
+Introduction to Human Geography
+2205314 ทรัพยากรและสิ่งแวดล้อม                                     3 (3-0-6)
+Resources and Environment
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 2 ---
+
+2
+2205341 ภูมิศาสตร์ประเทศไทย                                     3 (3-0-6)
+Geography of Thailand
+2205352      หลักการทําแผนที่                                             3 (3-0-6)
+Principles of Cartography
+(2) กลุ่มวิชาข้อกําหนดเฉพาะ                                              18 หน่วยกิต
+วิชาบังคับ                                                   18 หน่วยกิต
+2205215 กการรับรู้จากระยะไกล 1                                   3 (3-0-6)
+Remote Sensing |
+2205216 ระบบสารสนเทศภูมิศาสตร์ 1                          3 (3-0-6)
+Geographic Information System |
+2205223 ภูมิศาสตร์การตั้งถิ่นฐานขั้นต้น                                3 (3-0-6)
+Introduction to Geography of Settlement
+2205375 แนแนวความคิดทางภูมิศาสตร์                                   3 (3-0-6)
+Geographic Thoughts
+2205453* จีเอ็นเอสเอสและเทคนิคการสํารวจภูมิประเทศ      3 (3-0-6)
+GNSS and Topographic Surveying Techniques
+2205477      สถิติศาสตร์เซชิงพื้นที่สําหรับนักภูมิศาสตร์                     3 (3-0-6)
+Spatial Statistics for Geographers
+(3) กลุ่มวิชาเชี่ยวชาญ                                                    24 หน่วยกิต
+ให้นิสิตเลือกเรียนรายวิชาในหมวดใดหมวดหนึ่งต่อไปนี้ ไม่ตํากว่า 18 หน่วยกิต และเลือกเรียนใน
+หมวดเดียวกันหรือจากอีกหมวดหนึ่ง 6 หน่วยกิต
+ก) หมวดภูมิศาสตร์กายภาพและเทคโนโลยี
+2205310      การเปลี่ยนแปลงภูมิอากาศและการจัดการสิ่งแวดล้อม         3 (3-0-6)
+Climate Change and Environmental Management
+2205311 อุทกวิทยาเชิงภูมิศาสตร์                                   3 (3-0-6)
+Geographical Hydrology
+2205312 หลักการธรณีสัณฐานวิทยา                                  3 (3-0-6)
+Principles of Geomorphology
+2205313      อากาศวิทยา                                                3 (3-0-6)
+Climatology
+2205315 กการรับรู้จากระยะไกล 2                                  3 (3-0-6)
+Remote Sensing Il
+2205316 ระบบสารสนเทศภูมิศาสตร์ 2                                3 (3-0-6)
+Geographic Information System II
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 3 ---
+
+3
+
+2205317 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1       3 (3-0-6)
+Computer Programming for Geographers |
+
+2205319* ชปัญหาการเสื่อมโทรมของที่ดินและการจัดการ      3 (3-0-6)
+Land Degradation Problems and Management
+
+2205349 พลวัตธรณีสัณฐานบริเวณชายฝัง                             3 (3-0-6)
+Coastal Morphodynamics
+
+2205364 โฟโตแกรมเมตรีสําหรับนักภูมิศาสตร์                         3 (3-0-6)
+Photogrammetry for Geographers
+
+2205417 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 2        3 (3-0-6)
+Computer Programming for Geographers II
+
+2205441*  แบบจําลองพลวัติเชิงพื้นที่ทางภูมิศาสตร์กายภาพ     3 (3-0-6)
+Spatial Dynamic Model in Physical Geography
+
+2205454* การประยุกต์อากาศยานไร้คนขับในประเด็นทางภูมิศาสตร์ 3 (3-0-6)
+UAV Applications in Geographical Issues
+
+2205476 ฐานข้อมูลเชิงพื้นที่สําหรับนักภูมิศาสตร์                      3 (3-0-6)
+Spatial Database for Geographers
+
+2205479      ระบบภูมิสารสนเทศเพื่อการจัดการภัยธรรมชาติ               3 (3-0-6)
+Geoinformatics for Natural Hazard Management
+
+ข) หมวดภูมิศาสตร์มนุษย์และเทคโนโลยี
+
+2205222 ภภูมิศาสตร์เศรษฐกิจ                                         3 (3-0-6)
+Economic Geography
+
+2205231 ภูมิศาสตร์การท่องเที่ยว                                     3 (3-0-6)
+Geography of Tourism
+
+2205232 ภูมิศาสตร์การท่องเที่ยวในกลุ่มประชาคมอาเซียน             3 (3-0-6)
+Geography of ASEAN Tourism
+
+2205315 กการรับรู้จากระยะไกล 2                                  3 (3-0-6)
+Remote Sensing Il
+
+2205316 ระบบสารสนเทศภูมิศาสตร์ 2                                3 (3-0-6)
+Geographic Information System II
+
+2205317 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1       3 (3-0-6)
+Computer Programming for Geographers |
+
+2205318 กภูมิศาสตร์อาเซียน                                            3 (3-0-6)
+Geography of ASEAN
+
+2205324 ภูมิศาสตร์อุตสาหกรรม                                       3 (3-0-6)
+Geography of Manufacturing
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 4 ---
+
+4
+
+2205332 ภูมิศาสตร์การเมือง                                        3 (3-0-6)
+Political Geography
+
+2205333 ภูมิศาสตร์ประชากร                                       3 (3-0-6)
+Geography of Population
+
+2205334      ภูมิศาสตร์กับการจัดการทรัพยากรท่องเที่ยว                   3 (3-0-6)
+Geography and Tourist Resources Management
+
+2205337 ภูมิศาสตร์เมือง 1                                         3 (3-0-6)
+Urban Geography |
+
+2205338 การพัฒนาเมืองของภูมิภาคเอเชียตะวันออกเฉียงใต้           3 (3-0-6)
+Southeast Asian Urban Development
+
+2205339 ภูมิรัฐศาสตร์                                             3 (3-0-6)
+Geopolitics
+
+2205340* เทคนิคการวิเคราะห์ข้อมูลเชิงคุณภาพสําหรับนักภูมิศาสตร์ 3 (3-0-6)
+Qualitative Data Analysis for Geographers
+
+2205345 ภูมิยุทธศาสตร์ของอาเซียน                                  3 (3-0-6)
+Geostrategy of ASEAN
+
+2205347 ภูมิโบราณคดี                                             3 (3-0-6)
+Geo — Archaeology
+
+2205364 โฟโตแกรมเมตรีสําหรับนักภูมิศาสตร์                         3 (3-0-6)
+Photogrammetry for Geographers
+
+2205417 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 2        3 (3-0-6)
+Computer Programming for Geographers II
+
+2205421 สังคมกับพื้นที่                                            3 (3-0-6)
+Society and Space
+
+2205423 ภูมิศาสตร์การตลาด                                         3 (3-0-6)
+Marketing Geography
+
+2205437 ภูมิศาสตร์เมือง 2                                        3 (3-0-6)
+Urban Geography I
+
+2205438 ปัญหาการใช้ที่ดินในเมือง                                    3 (3-0-6)
+Problems in Urban Land Use
+
+2205454* การประยุกต์อากาศยานไร้คนขับในประเด็นทางภูมิศาสตร์ 3 (3-0-6)
+UAV Applications in Geographical Issues
+
+2205476 ฐานข้อมูลเชิงพื้นที่สําหรับนักภูมิศาสตร์                      3 (3-0-6)
+Spatial Database for Geographers
+
+2205478 ภูมิศาสตร์ภูมิภาค                                           3 (3-0-6)
+Regional Geography
+
+
+
+--- Page 5 ---
+
+5
+(4) กลุ่มวิชาสํารวจ                                        12 หน่วยกิต
+วิชาบังคับ                                                   6 หน่วยกิต
+2205401* สัมมนาภูมิศาสตร์                                         3 (3-0-6)
+Seminar in Geography
+2205404" โครงงานทางภูมิศาสตร์ 1                                  3 (1-6-2)
+Senior Project in Geography |
+วิชาเลือก                                                    6 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนีไม่ตํากว่า 6 หน่วยกิต
+2205414* โครงงานทางภูมิศาสตร์ 2                                  3 (1-6-2)
+Senior Project in Geography ll
+2205415*    การฝึกงานทางภูมิศาสตร์                                  6 (0-35-0)
+Internship in Geography
+หรือให้นิสิตเลือกเรียนรายวิชาจากภาควิชาวิศวกรรมสํารวจภาควิชาธรณีวิทยา ภาควิชา
+วิทยาศาสตร์สิงแวดล้อม ภาควิชาการวางแผนภาคและเมือง และภาควิชาภูมิสถาปัตยกรรม โดย
+ผ่านความเห็นชอบจากคณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชาภูมิศาสตร์และ
+ภูมิสารสนเทศ
+3.1.1.2 วิชาโท สําหรับนิสิตวิชาเอกสาขาอินทังในคณะและนอกคณะ                   18 หน่วยกิต
+วิชาบังคับ                                                   9 หน่วยกิต
+2205210* ทักษะการสํารวจพืนฐานทางภูมิศาสตร์        3 (3-0-6)
+Basic Skills in Geographical Survey
+2205211 ระบบกายภาพในสภาพแวดล้อม                              3 (3-0-6)
+Physical Systems of the Environment
+2205221 ภูมิศาสตร์มนุษย์เบืองต้น                                      3 (3-0-6)
+Introduction to Human Geography
+วิชาเลือก                                                    9 หน่วยกิต
+ให้นิสิตเลือกเรียนรายวิชาทีเปิดสอนจากภาควิชาภูมิศาสตร์
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 6 ---
+
+6
+3.3 แผนการศึกษา
+โปรแกรมปกติ
+
+ปีที่ 1 ภาคการศึกษาต้น
+
+2205221 ภูมิศาสตร์มนุษย์เบื้องต้น                 3 หน่วยกิต
+รวม                  3 หน่วยกิต
+ปีที่ 1 ภาคการศึกษาปลาย
+
+2205210*   ทักษะการสํารวจพื้นฐานทางภูมิศาสตร์         3 หน่วยกิต
+รวม                  3 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาต้น
+
+2205211 ระบบกายภาพในสภาพแวดล้อม             3 หน่วยกิต
+
+2205223 ภูมิศาสตร์การตั้งถิ่นฐานขั้นต้น              3 หน่วยกิต
+
+2205352   หลักการทําแผนที่                     3 หน่วยกิต
+รวม                  9 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาที่ปลาย
+
+2205215    การรับรู้จากระยะไกล 1                    3 หน่วยกิต
+
+2205216 ระบบสารสนเทศภูมิศาสตร์ 1                 3 หน่วยกิต
+
+XXXXXXX    วิชาเลือก                         3 หน่วยกิต
+รวม                  9 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาต้น
+
+2205314 ทรัพยากรและสิ่งแวดล้อม                3 หน่วยกิต
+
+2205341   ภูมิศาสตร์ประเทศไทย                  3 หน่วยกิต
+
+2205477   สถิติศาสตร์เซชิงพื้นที่สําหรับนักภูมิศาสตร์        3 หน่วยกิต
+
+XXXXXXX    วิชาเลือก                         3 หน่วยกิต
+รวม                   12 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาที่ปลาย
+
+2205401* สัมมนาภูมิศาสตร์                     3 หน่วยกิต
+
+2205453* จีเอ็นเอสเอสและเทคนิคการสํารวจภูมิประเทศ   3 หน่วยกิต
+
+XXXXXXX    วิชาเลือก                         6 หน่วยกิต
+รวม                   12 หน่วยกิต
+
+
+
+--- Page 7 ---
+
+7
+Un 4 ภาคการศึกษาต้น
+2205375     แนวความคิดทางภูมิศาสตร์                        3 หน่วยกิต
+2205404*    โครงงานทางภูมิศาสตร์ 1                          3 หน่วยกิต
+5๐๐๐๐๐๐      วิชาเลือก                                        6 หน่วยกิต
+รวม                                  12 หน่วยกิต
+ปีที 4 ภาคการศึกษาทีปลาย
+XXXXXXX       วิชาเลือก                                             12 หน่วยกิต
+รวม                               12 หน่วยกิต
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 8 ---
+
+8
+คําอธิบายรายวิชา
+2205210*  ทักษะการสํารวจพื้นฐานทางภูมิศาสตร์              3 (3-0-6)
+ทักษะขั้นพื้นฐานในการสํารวจภาคสนามและเก็บข้อมูลทางภูมิศาสตร์
+วิธีการสังเกต การสอบถามและบันทึกข้อมูลในภาคสนาม การใช้เครื่องมือในการเก็บข้อมูล
+ทางพื้นที่ แผนที่และภาพถ่ายทางอากาศเพื่อการสํารวจพื้นที่
+การวิเคราะห์และการนําเสนอข้อมูลจากภาคสนาม
+Basic Skills in Geographical Survey
+BAS SKILL GEOG SUR
+Basic skills in field survey and geographical data collection;
+observational methods, inquiry and recording of field data;
+use of equipment in collection of spatial data; map and aerial photographs
+for field survey; data analysis and presentation of field data.
+2205211 ระบบกายภาพในสภาพแวดล้อม                                      3 (3-0-6)
+องค์ประกอบทางกายภาพของสภาพแวดล้อมในรูปของระบบความเกี่ยวพันระหว่างระบบเหล่านี้
+ในอันที่จะทําให้เกิดสภาพแวดล้อมเฉพาะแบบในภูมิภาคต่าง ๆ ของโลก รวมทั้งการประยุกต์
+ความรู้เกี่ยวกับระบบกายภาพเหล่านี้เพื่อนํามาอธิบายปัญหาสภาพแวดล้อม
+Physical Systems of the Environment
+PHYS SYST ENV
+Physical components of the environment viewed as different but interrelated
+systems and expressed in specific types in different regions of the world;
+an application of the principles relating to these physical systems to
+the explanation of environmental problems
+2205215 การรับรู้จากระยะไกล 1                                                   3 (3-0-6)
+ระบบการเก็บข้อมูลโดยวิธีการรับรู้จากระยะไกล ลักษณะการแปลความหมาย
+และการใช้ภาพถ่ายทางอากาศและภาพจากดาวเทียม
+Remote Sensing |
+REMOTE SENSING |
+Systems of data collection by means of remote sensing;
+characteristics, interpretation and use of aerial photographs and satellite imagery.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 9 ---
+
+9
+2205216 ระบบสารสนเทศภูมิศาสตร์ 1                                         3 (3-0-6)
+เทคโนโลยีสารสนเทศภูมิศาสตร์ การนําเข้า การบรรณาธิกร การวิเคราะห์ข้อมูล
+และการแสดงด้วยแผนที่ การประยุกต์ระบบสารสนเทศภูมิศาสตร์ การใช้ซอฟต์แวร์
+ด้านระบบสารสนเทศภูมิศาสตร์
+Geographic Information System |
+GEOG INFO SYST |
+Geographic information system technology; data entry, editing, analysis and
+cartographic presentation; application of geographic information system;
+use of geographic information system software.
+2205221 ภูมิศาสตร์มนุษย์เบื้องต้น                                            3 (3-0-6)
+บทบาท ขอบเขต และความหมายของภูมิศาสตร์มนุษย์
+เนื้อหาแบบผสมผสานบนพื้นฐานของความสัมพันธ์ระหว่างปัจจัยด้านมนุษย์และปัจจัยด้านพื้นที่
+Introduction to Human Geography
+INTRO HUMAN GEOG
+Roles, scope and meaning of human geography; the integrated content
+of human geography based on the relationship between human
+and spatial factors.
+2205222 ภูมิศาสตร์เศรษฐกิจ                                                     3 (3-0-6)
+การผันแปรบนพื้นที่ของปัจจัยทางเศรษฐกิจ: ราคาสินค้าและวัตถุดิบ
+การบริโภค สถานประกอบการ ทรัพยากร การค้า ตลาด และการขนส่ง
+ความสัมพันธ์ระหว่างปัจจัยดังกล่าวกับระบบเศรษฐกิจ
+การประยุกต์หลักเกณฑ์ทางภูมิศาสตร์เศรษฐกิจในการวางแผนพัฒนาเศรษฐกิจ
+Economic Geography
+ECON GEOG
+Spatial variation of economic elements: prices of goods and raw materials,
+consumption, firms, resources, trade, market and transportation;
+the relationship between these elements and the economic system;
+the application of the principles of economic geography to economic planning.
+2205223 ภูมิศาสตร์การตั้งถิ่นฐานขั้นต้น                                           3 (3-0-6)
+วิวัฒนาการของการตั้งถิ่นฐานในส่วนต่าง ๆ ของโลก
+โดยพิจารณารูปแบบโครงสร้าง และบทบาทหน้าที่ของการตั้งถิ่นฐานในชนบทและในเมือง
+Introduction to Geography of Settlement
+INTRO GEOG SETTLE
+Evolution of settlements in different parts of the world,
+considering patterns, structure and functions of urban and rural settlements.
+
+
+
+--- Page 10 ---
+
+10
+
+2205231 ภูมิศาสตร์การท่องเที่ยว                                             3 (3-0-6)
+
+องค์ประกอบการท่องเที่ยว ปัจจัยทางภูมิศาสตร์ที่ส่งเสริมให้เกิดการท่องเที่ยว
+
+พฤติกรรมการท่องเที่ยว ความสําคัญและผลกระทบจากการท่องเที่ยวที่มีต่อสภาพเศรษฐกิจ
+
+สังคม ตลอดจนสภาพแวดล้อมในภูมิภาคต่าง ๆ โดยเน้นถึงการท่องเที่ยวในประเทศไทย
+
+Geography of Tourism
+
+GEOG TOUR
+
+Components of tourism, geographic factors giving rise to tourism; tourist behavior,
+
+significance and impact of tourism on economic, social and environmental
+
+conditions in different regions of the world with a particular reference to Thailand.
+2205232 ภูมิศาสตร์การท่องเที่ยวในกลุ่มประชาคมอาเซียน         3 (3-0-6)
+
+ลักษณะทางกายภาพ ภูมิหลังทางการเมือง ปัจจัยด้านเศรษฐกิจและสังคมที่ส่งผลต่อ
+
+การท่องเที่ยวในกลุ่มประชาคมอาเซียน ทั้งในด้านทรัพยากรการท่องเที่ยว รูปแบบและ
+
+แนวโน้มของการท่องเที่ยว องค์ประกอบทางภูมิศาสตร์ที่สนับสนุนการพัฒนาการท่องเที่ยว
+
+และกิจกรรมที่เกี่ยวเนือง
+
+Geography of ASEAN Tourism
+
+GEOG ASEAN TOUR
+
+Physical characteristics, political background, and socio-economic factors
+
+that affect tourism resources, models and trends of tourism
+
+in the ASEAN community; geographic elements that support the development
+
+of tourism and related activities.
+2205310  การเปลี่ยนแปลงภูมิอากาศและการจัดการสิ่งแวดล้อม       3 (3-0-6)
+
+การเปลี่ยนแปลงสภาพภูมิอากาศและผลกระทบต่อธรรมชาติและมนุษย์
+
+องค์ความรู้ และการรับรู้ถึงสาเหตุและผลจากการเปลี่ยนแปลงภูมิอากาศ
+
+โดยตามธรรมชาติและการกระทําของมนุษย์ หลักการและแนวทางการจัดการสิงแวดล้อมอย่าง
+
+มีประสิทธิภาพ ในบริบทด้านเศรษฐกิจ สังคม และประชากร นโยบายและแนวทางปฏิบัติ
+
+ระดับชาติและนานาชาติ
+
+Climate Change and Environmental Management
+
+CLIMATE CHG&ENV
+
+Climate change and its impacts on natural and humans; knowledge and
+
+perceptions of the causes and effects of natural and human-induced climate
+
+change; principles and practices of effective environmental management in
+
+the challenging context of population, economy and society;
+
+national and international policies and implementation plans.
+
+
+
+--- Page 11 ---
+
+11
+2205311 อุทกวิทยาเชิงภูมิศาสตร์                                             3 (3-0-6)
+ระบบและกระบวนการทางอุทกวิทยา
+การหมุนเวียนและการกักเก็บน้าภายในระบบอุทกวิทยา
+การคาดการณ์ทางอุทกวิทยาด้วยวิธีทางคณิตศาสตร์
+ผลกระทบจากการเปลี่ยนแปลงสภาพแวดล้อมที่มีต่อระบบอุทกวิทยา
+Geographical Hydrology
+GEOG HYDRO
+Hydrological system and processes; circulation and storage of water in the
+hydrological system; hydrological prediction using mathematical methods;
+impacts of environmental changes on the hydrological system.
+2205312 หลักการธรณีสัณฐานวิทยา                                                3 (3-0-6)
+ลักษณะทางกายภาพของภูมิประเทศ รูปแบบต่าง ๆ ของภูมิประเทศ
+กระบวนการที่ทําให้เกิดการเปลี่ยนแปลงของลักษณะภูมิประเทศ
+ความสัมพันธ์ระหว่างภูมิอากาศ และภูมิประเทศ
+Principles of Geomorphology
+PRINC GEQMORPH
+Physical characteristics of landforms; various facets of the processes that give rise
+to changes in characteristics of landforms; relationship between climate
+and landforms.
+2205313 กอากาศวิทยา                                                       3 (3-0-6)
+องค์ประกอบ ปัจจัยควบคุม และความผันแปรของอากาศ เรื่องราวเกี่ยวกับอากาศ
+เครื่องมือที่เกี่ยวข้อง วิธีพยากรณ์ลมฟ้าอากาศ ตลอดจนการกระจาย
+การจําแนก และลักษณะ ภูมิอากาศประเภทต่าง ๆ ของโลก
+Climatology
+CLIMATOLOGY
+Elements, controlling factors and climatic variations; details concerning climate;
+instruments involved; method of weather forecasting; distribution, classification
+and characteristics of the world’s climatic types.
+2205314 ทรัพยากรและสิ่งแวดล้อม                                                 3 (3-0-6)
+องค์ประกอบ โครงสร้าง และความสัมพันธ์ระหว่างทรัพยากรและสิงแวดล้อม
+ความขัดแย้งระหว่างการจัดการทรัพยากรและการอนุรักษ์สิงแวดล้อม
+การเปลี่ยนแปลงและการเกิดใหม่ของทรัพยากรและสิ่งแวดล้อม
+ภายใต้ระบบเทคโนโลยีสมัยใหม่ โดยเฉพาะอย่างยิ่งด้านการสื่อสารและข้อมูลข่าวสาร
+
+
+
+--- Page 12 ---
+
+12
+Resources and Environment
+RESOURCES ENV
+Components, structure and relationship between resources and environment;
+conflict between resource management and conservation;
+changes and recreation of resources and environment under modern technology,
+particularly in communication and information.
+2205315 การรับรู้จากระยะไกล 2                                              3 (3-0-6)
+(เงื่อนไขรายวิชา : รายวิชาที่ต้องสอบผ่าน 2205215 การรับรู้จากระยะไกล 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การสํารวจข้อมูลด้วยระบบการรับรู้จากระยะไกลเพื่อใช้ในงานภูมิศาสตร์
+เน้นการแปลความหมายสภาพแวดล้อมด้านธรรมชาติและวัฒนธรรมจากภาพถ่ายดาวเทียม
+Remote Sensing Il
+REMOTE SENSING I
+(CONDITION: PRER 2205215 REMOTE SENSING | OR CONSENT OF FACULTY)
+Survey of data by means of remote sensing for geographic work
+with emphasis on the interpretation of natural and cultural environments
+from satellite imagery.
+2205316 ระบบสารสนเทศภูมิศาสตร์ 2                                            3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205216 ระบบสารสนเทศภูมิศาสตร์ 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+วิธีการวิเคราะห์เชิงพื้นที่ แบบจําลองข้อมูลเซิงพื้นที่ การใช้ระบบสารสนเทศภูมิศาสตร์
+ในการจัดการแบบจําลองข้อมูลเซิงพื้นที่
+Geographic Information System II
+GEOG INFO SYST II
+(CONDITION: PRER 2205216 GEOG INFOR SYSTEM | OR CONSENT OF FACULTY)
+Spatial analytical methods; spatial data models; use of geographic information
+system in managing spatial data models.
+2205317 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1                  3 (3-0-6)
+การเขียนโปรแกรมคอมพิวเตอร์ด้วยภาษาระดับสูง
+เน้นเทคนิคที่มีประโยชน์ต่อการจัดการข้อมูลทางภูมิศาสตร์
+Computer Programming for Geographers |
+COMP PROG GEOG |
+Computer programming using high level language
+with emphasis on techniques useful for managing geographic data.
+
+
+
+--- Page 13 ---
+
+13
+2205318 ภูมิศาสตร์อาเซียน                                                      3 (3-0-6)
+องค์ประกอบทางกายภาพ เศรษฐกิจ และสังคมของกลุ่มประเทศอาเซียน
+เน้นความสําคัญของการกระจายทางพื้นที่ขององค์ประกอบเหล่านี้
+และความสัมพันธ์ของปัจจัยต่าง ๆ ที่เกี่ยวข้อง
+Geography of ASEAN
+GEOG ASEAN
+Physical, economic and social elements of the ASEAN countries
+with emphasis on the significance of their spatial distribution
+and relationship with other relevant factors.
+2205319* ปัญหาการเสื่อมโทรมของที่ดินและการจัดการ           3 (3-0-6)
+สาเหตุและกระบวนการทางกายภาพของการเสือมโทรมของที่ดินอันเป็นผลจากการชะล้างหน้าดิน
+การถล่มของมวลสาร การปนเปื้อนของดิน และการกลายเป็นทะเลทราย
+การบรรเทาผลกระทบและการจัดการปัญหาการเสื่อมโทรมของที่ดิน
+การประยุกต์ภูมิสารสนเทศในการจัดการปัญหาการเสื่อมโทรมของที่ดิน
+Land Degradation Problems and Management
+LAND DEGRAD MGT
+Causes and physical processes of land degradation as a result of soil erosion,
+mass movement, soil contamination, and desertification; mitigation and
+management of land degradation problems; application of geoinformatics for
+the management of land degradation problems.
+2205324 ภูมิศาสตร์อุตสาหกรรม                                                  3 (3-0-6)
+ปัจจัยต่าง ๆ ที่มีความสัมพันธ์กับที่ตั้งโรงงานอุตสาหกรรม ทฤษฎีแบบคลาสสิคเกี่ยวกับที่ตั้ง
+โรงงาน และแนวความคิดเชิงพฤติกรรมเกี่ยวกับที่ตั้งโรงงาน ซึ่งเน็นสถานประกอบการอุตสาหกรรม
+ในฐานะที่เป็นองค์กร การใช้หลักเกณฑ์ในภูมิศาสตร์อุตสาหกรรมประกอบการวางแผน
+อุตสาหกรรมทั้งในระดับภูมิภาคและระดับประเทศ
+Geography of Manufacturing
+GEOG MANUF
+Factors relating to manufacturing location; the classical theories of manufacturing
+location; the behavioral approach in which a manufacturing firm is regarded as a
+form of organization; an application of the principles of manufacturing geography
+to industrial planning, both at the regional and national level.
+2205332 ภูมิศาสตร์การเมือง                                                     3 (3-0-6)
+ความสัมพันธ์ระหว่างสภาพภูมิศาสตร์กับสภาพการเมือง
+ปัญหาทางการเมือง กิจกรรมทางการเมือง
+Political Geography
+POLIT GEOG
+Relationship between geographic and political conditions;
+political problems; political activities.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 14 ---
+
+14
+2205333 ภูมิศาสตร์ประชากร                                                       3 (3-0-6)
+การกระจายตัว ความหนาแน่นและองค์ประกอบของประชากร
+ภาวะการเจริญพันธุ์ ภาวะการตาย การย้ายถิ่น และการเพิ่มประชากรในภูมิภาคต่าง ๆ ของโลก
+โดยเน้นถึงสาเหตุและผลซึ่งอาจจะเกิดขึ้นจากปัจจัยต่าง ๆ ในภูมิภาคนั้น ๆ
+Geography of Population
+GEOG POP
+Population distribution, density and composition, fertility, mortality, migration
+and population increase in different regions of the world, with emphasis
+on causes and effects that might be linked to regional factors.
+2205334 ภูมิศาสตร์กับการจัดการทรัพยากรท่องเที่ยว          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205231 ภูมิศาสตร์การท่องเที่ยว หรือ
+2205232 ภูมิศาสตร์การท่องเที่ยวในกลุ่มประชาคมอาเซียน)
+ความสําคัญของทรัพยากรท่องเที่ยว การกระจายของทรัพยากรท่องเที่ยวในเชิงภูมิศาสตร์
+หลักการใช้ทรัพยากรท่องเที่ยวประเภทต่าง ๆ ให้เกิดประโยชน์มากที่สุด
+บทบาทและวิธีการของนักภูมิศาสตร์ในการอนุรักษ์และการวางแผนพัฒนาทรัพยากรท่องเที่ยว
+ในภูมิภาคต่าง ๆ ของประเทศไทย ตลอดจนปัญหาและผลกระทบที่เกี่ยวข้องทั้งจากปัจจัยภายใน
+และภายนอกประเทศ
+Geography and Tourist Resources Management
+GEOG/TOUR RESOURCE MGT
+(CONDITION: PRER 2205231 GEOG TOUR OR 2205232 GEOG ASEAN TOUR)
+Significance of tourist resources; geographic distribution of tourist resources;
+principles concerning optimal utilization of different tourist resources;
+roles of geographers and their methods in tourist resources conservation
+and development planning in different regions of Thailand; relevant problems
+and impacts caused by factors from within and outside the country.
+2205337 = aii aimalilos 1                                                         3 (3-0-6)
+การกําเนิดของเมือง การกระจาย การเจริญเติบโต หน้าที่ รูปร่างโครงสร้างภายใน
+โดยเน้นถึงรูปแบบการใช้ที่ดินจินตภาพเกี่ยวกับเมืองและพฤติกรรมของชาวเมือง
+รวมทั้งการนําหลักเกณฑ์ทางภูมิศาสตร์เมืองไปใช้ประโยชน์ในการวางแผน
+Urban Geography
+URBAN GEOG |
+Urbanization; distribution, growth, functions, and shapes of cities;
+their internal structures, with emphasis on patterns of land use;
+images of the cities and the behavior of their inhabitants;
+the application of the principles of Urban Geography to planning.
+
+
+
+--- Page 15 ---
+
+15
+2205338 การพัฒนาเมืองของภูมิภาคเอเชียตะวันออกเฉียงใต้                     3 (3-0-6)
+การพัฒนาเมือง การกลายเป็นเมือง และทฤษฎีเมืองของภูมิภาคเอเชียตะวันออกเฉียงใต้
+แนวโน้มการพัฒนาเมืองในภูมิภาคเอเชียตะวันออกเฉียงใต้ในปัจจุบัน
+จากบริบททางสังคม เศรษฐกิจ และนโยบายการบริหารจัดการเมือง
+อันนําไปสู่การวางกรอบแนวคิดเพื่อวางแผนพัฒนาเมืองในอนาคต
+Southeast Asian Urban Development
+SEA URBAN DEV
+Southeast Asian urban development, urbanisation, and urban theories;
+current trend in Southeast Asian urban development from social and
+economic contexts as well as urban management policies that
+contribute to constructing a framework for future urban development planning.
+2205339* ภูมิรัฐศาสตร์                                                              3 (3-0-6)
+ความสัมพันธ์ระหว่างภูมิศาสตร์กับปัญหาทางการเมือง กิจกรรมทางการเมือง
+นโยบายทางการเมือง และความสัมพันธ์ระหว่างประเทศตั้งแต่ในอดีตถึงปัจจุบัน
+ของภูมิภาคต่าง ๆ ที่สําคัญทัวโลก
+ทฤษฎีเกี่ยวกับภูมิรัฐศาสตร์ที่สําคัญ
+Geopolitics
+GEOPOLITICS
+Relationship between geography and political problems, political activities,
+political policies and international relations from the past to the present
+of world important regions; significant geopolitical theories.
+2205340* เทคนิคการวิเคราะห์ข้อมูลเชิงคุณภาพสําหรับนักภูมิศาสตร์      3 (3-0-6)
+วิธีการเลือกกลุ่มตัวอย่างที่เหมาะสม การรวบรวมข้อมูลเชิงคุณภาพจากหลากหลายวิธีการ
+วิธีการใช้เครื่องมือแต่ละประเภทในงานวิจัยเชิงคุณภาพ
+การวิเคราะห์ข้อมูลเชิงคุณภาพในงานวิจัยทางภูมิศาสตร์
+Qualitative Data Analysis for Geographers
+QUAL DATA ANALYSIS
+Methods to select suitable samples; quality data collection from
+a variety of methods use of tools in qualitative research;
+analysis of qualitative data in geographical research.
+2205341 = alerraimauseinelne                                               3 (3-0-6)
+องค์ประกอบทางกายภาพ เศรษฐกิจ และสังคมของประเทศไทย
+โดยเน้นถึงความสําคัญของการกระจายในทางพื้นที่ขององค์ประกอบเหล่านี้
+ตลอดจนความสัมพันธ์ระหว่างปัจจัยต่าง ๆ ที่เกี่ยวข้อง
+Geography of Thailand
+GEOG THAILAND
+Physical, economic and social elements of Thailand,
+with emphasis on their spatial distribution and their relationships.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 16 ---
+
+16
+
+2205345 กภภูมิยุทธศาสตร์ของอาเซียน                                                3 (3-0-6)
+
+บทบาทและความสําคัญของลักษณะทางภูมิศาสตร์
+
+เน้นด้านภูมิยุทธศาสตร์ของประเทศอาเซียน ทั้งในระดับภูมิภาคและระดับโลก
+
+ปัจจัยภายในและปัจจัยภายนอกที่ส่งผลกระทบต่อการเปลี่ยนแปลงอย่างรวดเร็ว
+
+ทางด้านเศรษฐกิจ สังคม การเมือง และภูมิยุทธศาสตร์ ภายใต้กระแสโลกาภิวัตน์ในภูมิภาคนี้
+
+วิเคราะห์ทฤษฎีสําคัญที่เกี่ยวข้องกับภูมิยุทธศาสตร์และการแข่งขันของชาติมหาอํานาจ
+
+ในภูมิภาคอาเซียนและดินแดนอื่น ๆ ที่ตั้งอยู่ระหว่างมหาสมุทรอินเดียกับมหาสมุทรแปซิฟิก
+
+Geostrategy of ASEAN
+
+GEOSTRATEGY ASEAN
+
+Roles and significance of geographical features emphasizing geostrategy of
+
+ASEAN countries at both regional and global levels;
+
+internal and external factors affecting rapid changes in economics,
+
+society, politics, and geostrategy under globalization in this region;
+
+analysis of related geostrategic theories and competitions among superpower
+
+nations in ASEAN and other regions between Indian and Pacific oceans.
+2205347 ภูมิโบราณคดี                                                             3 (3-0-6)
+
+ปัจจัยทางภูมิศาสตร์ที่มีผลต่อการก่อตัวและวิวัฒนาการของแหล่งโบราณคดี
+
+ความรู้เบื้องต้น ด้านธรณีวิทยาและปฐพีวิทยาในการศึกษาวิเคราะห์ที่ตั้งและ
+
+ตีความการก่อตัวของแหล่งโบราณคดี การประยุกต์เทคโนโลยีภูมิสารสนเทศ
+
+ในการวิเคราะห์ทางโบราณคดี
+
+Geo — Archaeology
+
+GEO ARCHAEOL
+
+Impact of geographic factors on site formation and evolution of archaeological
+
+sites; basic knowledge about geology and soil science for analytical study
+
+of archaeological sites and for the interpretation of site formation process;
+
+application of geoinformatics for archaeological analysis.
+2205349 พลจวัตธรณีสัณฐานบริเวณชายฝั่ง                                          3 (3-0-6)
+
+ความรู้พื้นฐานและแนวคิดด้านพลวัตธรณีสัณฐานบริเวณชายฝั่ง
+
+วิวัฒนาการและกระบวนการชายฝั่งแหล่งกําเนิดตะกอนชายฝั่งการเคลื่อนย้าย
+
+และการทับถมของตะกอนตามชายฝั่งประเภทต่าง ๆ
+
+การสํารวจชายฝัง กิจกรรมของมนุษย์ที่ส่งผลกระทบต่อชายฝั่ง
+
+Coastal Morphodynamics
+
+COAST MORPHDYNAM
+
+Basic knowledge about and concepts of coastal morphodynamics;
+
+coastal evolution and process; coastal sediment origin;
+
+transport and deposit of sedimentary materials from different coasts;
+
+coastal survey; impact of human activities on the coasts.
+
+
+
+--- Page 17 ---
+
+17
+2205352 หหลักการทําแผนที่                                                   3 (3-0-6)
+แผนที่ประเภทต่าง ๆ การใช้อุปกรณ์ช่วยทําแผนที่ การวางรูปแบบเส้นโครงแผนที่ ขนาด
+มาตราส่วนการใช้สัญลักษณ์และตัวอักษรเพื่อประกอบแผนที่ให้ถูกต้องตามวัตถุประสงค์
+Principles of Cartography
+PRINC CARTOG
+Different types of maps; map-making equipment; the selection of projection,
+size, scale, symbols and letters appropriate for particular objective
+in map construction.
+2205364 โฟโตแกรมเมตรีสําหรับนักภูมิศาสตร์                                      3 (3-0-6)
+พัฒนาการของอากาศยานและกล้องถ่ายรูปทางอากาศ
+การประยุกต์เทคนิคด้านโฟโตแกรมเมตรีเพื่อการผลิตแบบจําลองระดับสูงเชิงเลข
+แผนที่รูปถ่ายและแผนที่รูปถ่ายออร์โท
+Photogrammetry for Geographers
+PHOTOGRAM GEOG
+Development of aircraft and aerial camera;
+application of photogrammetric techniques to digital elevation model capturing,
+photomapping and orthophotomapping.
+2205375 แนวความคิดทางภูมิศาสตร์                                          3 (3-0-6)
+ที่มาและวิวัฒนาการของแนวความคิดทางภูมิศาสตร์ในเชิงวิวัฒนาการ
+โดยเน้นหลักปรัชญา และวิธีการศึกษาของนักภูมิศาสตร์ชั้นนําของชาติต่าง ๆ
+Geographic Thoughts
+GEOG THOUGHTS
+Origins of geographic thoughts and their evolution,
+with emphasis on the philosophical and methodological standpoints
+of leading geographers from different countries.
+2205401* สัมมนาภูมิศาสตร์                                                         3 (3-0-6)
+สัมมนาเกี่ยวกับแนวคิด ทฤษฎี แบบจําลอง
+และเทคนิคภูมิศาสตร์ที่ใช้ในการศึกษา วิเคราะห์ พยากรณ์
+และ/หรือ ให้ทางเลือกในการแก้ไขปัญหาเชิงพื้นที่
+Seminar in Geography
+SEM GEOG
+Seminar on concepts, theories, models and techniques in geography
+for studying, analyzing, predicting and/or providing solutions to
+spatial-based problems.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 18 ---
+
+18
+2205404* โครงงานทางภูมิศาสตร์ 1                                           3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205401 สัมมนาภูมิศาสตร์)
+การศึกษาเฉพาะเรืองที่นิสิตสนใจ โดยใช้ข้อมูล เทคนิค และทฤษฎีทางภูมิศาสตร์
+Senior Project in Geography |
+SNR PROJ GEOG |
+(CONDITION: PRER 2205401 SEM GEOG)
+Selected topics of student’s interest using geographic data,
+techniques, and theories.
+2205414* โครงงานทางภูมิศาสตร์ 2                                           3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205404 โครงงานทางภูมิศาสตร์ 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การประยุกต์ทฤษฎีและเทคนิคทางภูมิศาสตร์ในการทํางานวิจัย
+การพัฒนางานวิจัยสําหรับการเผยแพร่ในระดับชาติหรือนานาชาติ
+Senior Project in Geography II
+SNR PROJ GEOG II
+(CONDITION: PRER 2205404 SNR PROJ GEOG | OR CONSENT OF FACULTY)
+Application of theories and geographical techniques to research;
+research developent for national or international publication.
+2205415* การฝึกงานทางภูมิศาสตร์                                               6 (0-35-0)
+การฝึกปฏิบัติงานด้านภูมิศาสตร์และภูมิสารสนเทศในหน่วยงานของรัฐและเอกชน
+INTERNSHIP. IN GEOGRAPHY
+INTERN GEOGRAPHY
+Internship in Geography and Geoinformatics in public and private sectors.
+2205417 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 2                    3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205216 ระบบสารสนเทศภูมิศาสตร์ 1 และ
+2205317 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1)
+การเขียนโปรแกรมคอมพิวเตอร์ด้วยภาษาระดับสูงในระบบสารสนเทศภูมิศาสตร์
+Computer Programming for Geographers II
+COMP PROG GEOG II
+(CONDITION: PRER 2205216 GEOG INFOR SYSTEM | AND
+2205317 COMP PROG GEOG 1)
+Computer programming on geographic information system using high level language.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 19 ---
+
+19
+
+2205421 สังคมกับพื้นที่                                                             3 (3-0-6)
+
+การศึกษาเชิงภูมิศาสตร์ในเรื่องสังคมและพื้นที่ตั้งแต่ยุคโบราณ ยุคกลาง ยุคฟื้นฟูศิลปวิทยาการ
+
+ยุคนีโอ-คลาสสิก ยุคระหว่างสงคราม ยุคหลังสงครามจนถึงยุคปัจจุบัน
+
+ความสัมพันธ์ระหว่างสังคมกับพื้นที่แต่ละยุค
+
+แนวคิดและทฤษฎีที่รองรับการเปลี่ยนแปลงทางสังคมและพื้นที่ในอนาคต
+
+Society and Space
+
+SOC and SPACE
+
+Geographical studies in terms of society and space from the Ancient world,
+
+Middle Ages, Renaissance, Neo-classical period, Inter-war period,
+
+post-war period up the now; relationship between society and space in each
+
+period; concepts and theories that support social and spatial changes in the future.
+2205423 ภภูมิศาสตร์การตลาด                                                       3 (3-0-6)
+
+แนวคิดและทฤษฎีเกี่ยวกับการกระจายทางพื้นที่ของกิจกรรมตติยภูมิ
+
+การกระจายของบริเวณธุรกิจในเมืองและพฤติกรรมของผู้บริโภคเซิงพื้นที่
+
+โลกาภิวัฒน์และผลกระทบต่อกิจกรรมตติยภูมิในบริเวณต่าง ๆ ของโลก โดยเน้นประเทศไทย
+
+Marketing Geography
+
+MARKETING GEOG
+
+Concepts and theories of spatial distribution of tertiary activities;
+
+distribution of urban business areas and consumer behavior in space;
+
+globalization and its impacts on tertiary activities in different areas of the world
+
+with emphasis on Thailand.
+2205437 ภูมิศาสตร์เมือง 2                                                        3 (3-0-6)
+
+(เงื่อนไขรายวิชา:รายวิชาที่ต้องสอบผ่าน 2205337 ภูมิศาสตร์เมือง 1)
+
+วิเคราะห์เชิงเปรียบเทียบปัญหาที่สําคัญของเมืองในกลุ่มประเทศที่พัฒนาแล้ว
+
+กับกลุ่มประเทศที่กําลังพัฒนา โดยเน็นเกี่ยวกับโครงสร้าง บทบาท หน้าที่ และการใช้ที่ดิน
+
+แนวคิดในการพัฒนาเมืองใหม่
+
+Urban Geography I
+
+URBAN GEOG ||
+
+(CONDITION: PRER 2205337 URBAN GEOG 0)
+
+A comparative analysis of important urban problems in developed and
+
+developing countries, with emphasis on the problems relating to structure,
+
+functions and land use; concepts in the development of "new towns".
+
+
+
+--- Page 20 ---
+
+20
+2205438 ปัญหาการใช้ที่ดินในเมือง                                                 3 (3-0-6)
+(เงื่อนไขรายวิชา:รายวิชาที่ต้องสอบผ่าน 2205337 ภูมิศาสตร์เมือง 1)
+สัดส่วนการใช้ที่ดินในเมืองเพื่อกิจกรรมประเภทต่าง ๆ ทั้งในด้านเศรษฐกิจและไม่ใช่เศรษฐกิจ
+ความสําคัญของที่ตั้ง ระยะทาง และขนาดพื้นที่ในการกําหนดรูปแบบการใช้ที่ดินชนิดต่าง ๆ
+การนําเทคนิคและวิธีการแก้ปัญหาการใช้ที่ดินแบบใหม่มาประยุกต์ใช้เพื่อปรับปรุง
+ประสิทธิภาพของปฏิสัมพันธ์ทางพื้นที่ภายในเมือง
+Problems in Urban Land Use
+PROB URB LAND USE
+(CONDITION: PRER 2205337 URBAN GEOG 1)
+Proportions of urban land use for different economic and non-economic activities;
+the significance of location, distance, and areal size in determining
+different patterns of land use; application of modern land use techniques
+and solutions to improve the efficiency of urban spatial interrelations.
+2205441*  แบบจําลองพลวัตเชิงพื้นที่ทางภูมิศาสตร์กายภาพ         3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205216 ระบบสารสนเทศภูมิศาสตร์ 1)
+ลักษณะเฉพาะและองค์ประกอบของแบบจําลองพลวัตเชิงพื้นที่
+การใช้แบบจําลองพลวัตเชิงพื้นที่เพื่อศึกษากระบวนการทางกายภาพในสภาพแวดล้อม
+การเขียนโปรแกรมคอมทิวเตอร์ด้วยภาษาขั้นสูงเพื่อสร้างแบบจําลองพลวัตเชิงพื้นที่
+Spatial Dynamic Model in Physical Geography
+SPAT DYN MOD PHY G
+(CONDITION: PRER 2205216 GEOG INFO SYST |)
+Characteristics and components of spatial dynamic model; use of spatial dynamic
+model to study physical processes in the environment; computer programming
+with high-level language for development of spatial dynamic model.
+2205453* จีเอ็นเอสเอสและเทคนิคการสํารวจภูมิประเทศ           3 (3-0-6)
+หลักการพื้นฐานและองค์ประกอบของระบบจีเอ็นเอสเอส
+ขั้นตอนการทํางานและประมวลผลข้อมูลจากจีเอ็นเอสเอส
+การใช้จีเอ็นเอสเอสและเทคนิคการรังวัดบนพื้นราบเพื่อการสํารวจภูมิประเทศ
+GNSS AND TOPOGRAPHIC SURVEYING TECHNIQUES
+GNSS/TOPO SUR TECH
+Basic concepts and components of GNSS;
+operational procedures and processing of GNSS data;
+use of GNSS and plane survey techniques for topographic survey.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 21 ---
+
+21
+2205454* การประยุกต์อากาศยานไร้คนขับในประเด็นทางภูมิศาสตร์       3 (3-0-6)
+หลักการทํางานและองค์ประกอบของอากาศยานไร้คนขับ
+การสํารวจและการเก็บข้อมูลเชิงพื้นที่ด้วยอากาศยานไร้คนขับ
+การประมวลผลและวิเคราะห์ข้อมูลจากอากาศยานไร้คนขับ
+เพื่อการประยุกต์ใช้ในประเด็นทางภูมิศาสตร์ที่หลากหลาย
+UAV Applications in Geographical Issues
+UAV APP GEOG ISSUE
+Working principles and components of UAV; field survey and spatial
+data collection using UAV; UAV data processing and analysis for application
+in various geographical issues.
+2205476 ฐานข้อมูลเชิงพื้นที่สําหรับนักภูมิศาสตร์                                3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205216 ระบบสารสนเทศภูมิศาสตร์ 1)
+ความรู้พื้นฐานเกี่ยวกับฐานข้อมูลเชิงพื้นที่ การออกแบบ การสร้าง การเรียกใช้
+และการประยุกต์เพื่อใช้ในงานภูมิศาสตร์
+Spatial Database for Geographers
+SPAT DBASE GEOG
+(CONDITION: PRER 2205216 GEOG INFOR SYSTEM)
+Introduction to spatial database; design, development,
+retrieval and application in geographic work.
+2205477 สถิติศาสตร์เชิงพื้นที่สําหรับนักภูมิศาสตร์           3 (3-0-6)
+หลักการและวิธีการวิเคราะห์ข้อมูลเชิงพื้นที่ด้วยสถิติศาสตร์
+โดยเน้นการประยุกต์ใช้ในวิชาภูมิศาสตร์
+Spatial Statistics for Geographers
+SPAT STAT GEOG
+Principles and methods of spatial data analysis by using statistics
+with emphasis on its application to geography.
+2205478 ภูมิศาสตร์ภูมิภาค                                                   3 (3-0-6)
+องค์ประกอบทางกายภาพ เศรษฐกิจ และสังคมของภูมิภาคต่าง ๆ ทั่วโลก
+โดยเน้นถึงความสําคัญของการกระจายในพื้นที่ขององค์ประกอบเหล่านั้น
+ตลอดจนความสัมพันธ์ของปัจจัยต่าง ๆ ที่เกี่ยวข้อง
+Regional Geography
+REGION GEOG
+Physical, economic and social elements of world regions,
+with emphasis on the significance of spatial distribution
+including the relationship of various related factors.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 22 ---
+
+22
+
+2205479 ระบบภูมิสารสนเทศเพื่อการจัดการภัยธรรมชาติ                         3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2205215 การรับรู้จากระยะไกล 1 และ
+
+2205216 ระบบสารสนเทศภูมิศาสตร์ 1)
+
+ภัยธรรมชาติและผลกระทบต่อมนุษย์และสิงแวดล้อม แนวคิดในการจัดการภัยธรรมชาติ
+
+การป้องกันและการลดผลกระทบที่เกิดจากภัยธรรมชาติ การประยุกต์ใช้ระบบภูมิสารสนเทศ
+
+เพื่อการทําแผนที่ภัยธรรมชาติ การวิเคราะห์ผลกระทบและประเมินความเสียหายที่เกิดจาก
+
+ภัยธรรมชาติ ประโยชน์และข้อจํากัดในการใช้เทคโนโลยีภูมิสารสนเทศ
+
+Geoinformatics for Natural Hazard Management
+
+GEOINFO NH MGT
+
+(CONDITION: PRER 2205215 REMOTE SENSING | AND 2205216 GEOG INFO SYST 1)
+
+Natural hazards and their impacts on human and environment;
+
+concepts of natural hazard management, prevention and mitigation of natural
+
+hazards; applications of geoinformatics for natural hazard mapping, impact analysis
+
+and damage assessment; benefits and limitations associated with the use of
+
+geoinformatics technology.
+
+

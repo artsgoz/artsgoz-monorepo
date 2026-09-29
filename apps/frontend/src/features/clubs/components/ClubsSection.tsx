@@ -9,7 +9,7 @@ import { PATHS } from '../../../routes/paths.js';
 const ITEMS_PER_PAGE = 4;
 
 export function ClubsSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('clubs');
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(MOCK_CLUBS.length / ITEMS_PER_PAGE);
@@ -23,9 +23,9 @@ export function ClubsSection() {
   return (
     <section className="w-full flex flex-col gap-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 w-full">
-        <SectionHeading title={t('clubs.section_title')} description={t('clubs.section_desc')} />
+        <SectionHeading title={t('section_title')} description={t('section_desc')} />
         <Link to={PATHS.CLUBS} className="shrink-0">
-          <Button variant="outline">{t('clubs.view_all')}</Button>
+          <Button variant="outline">{t('view_all')}</Button>
         </Link>
       </div>
       

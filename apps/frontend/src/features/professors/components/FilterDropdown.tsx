@@ -9,7 +9,7 @@ interface FilterDropdownProps {
 }
 
 export function FilterDropdown({ label, options, value, onChange }: FilterDropdownProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 

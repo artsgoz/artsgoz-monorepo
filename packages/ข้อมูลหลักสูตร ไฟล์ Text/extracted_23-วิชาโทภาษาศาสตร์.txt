@@ -1,0 +1,482 @@
+--- Page 1 ---
+
+วิชาโทภาษาศาสตร์
+(หลักสูตรปรับปรุง พ.ศ. 2566)
+1. หน่วยงานที่รับผิดชอบ
+ภาควิชาภาษาศาสตร์ คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จํานวนหน่วยกิตรวมวิชาโท 18-20 หน่วยกิต
+2.1 โครงสร้างหลักสูตร
+ภาควิชาภาษาศาสตร์เปิดสอนวิชาโท สาขาวิชาภาษาศาสตร์ สําหรับนิสิตอักษรศาสตร์ที่ไม่ได้เรียนวิชาเอก
+เทคโนโลยีภาษาและสารสนเทศ และนิสิตนอกคณะที่เลือกเรียนเป็นวิชาโท ดังนี้
+2.1.1 โปรแกรมปกติสําหรับนิสิตในคณะ           18 หน่วยกิต
+วิชาบังคับเลือก          3 หน่วยกิต
+วิชาเลือก            15 หน่วยกิต
+2.1.2 โปรแกรมปกติสําหรับนิสิตนอกคณะ          18 หน่วยกิต
+วิชาบังคับ             3 หน่วยกิต
+วิชาเลือก            15 หน่วยกิต
+2.1.3 โปรแกรมเกียรตินิยม                   20 หน่วยกิต
+เอกัตศึกษา           12 หน่วยกิต
+ปริญญานิพนธ์          8 หน่วยกิต
+3. รายวิชา
+3.1 โปรแกรมปกติสําหรับนิสิตในคณะ                                         18 หน่วยกิต
+วิชาบังคับเลือก                       3 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2209304 ระบบไวยากรณ์                                            3 (3-0-6)
+Grammatical System
+2209305 ความหมายในภาษา                                         3 (3-0-6)
+Meaning in Language
+2209308 ระบบเสียง                                                 3 (3-0-6)
+Sound System
+วิชาเลือก                           15 หน่วยกิต
+นิสิตสามารถเลือกเรียนจากรายวิชาต่อไปนี้ ทั้งนี้นิสิตสามารถเรียนรายวิชาอื่น ๆ ในระดับปริญญาตรี
+หรือระดับบัณฑิตศึกษาของภาควิชาภาษาศาสตร์เป็นวิชาเลือกได้ โดยความเห็นชอบของคณะกรรมการบริหารหลักสูตร
+อักษรศาสตรบัณฑิต ภาควิชาภาษาศาสตร์
+
+
+
+--- Page 2 ---
+
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+
+2209261     พื้นฐานการเขียนโปรแกรมเพื่อการประมวลผลภาษาธรรมชาติ 3 (3-0-6)
+Basic Programming for Natural Language Processing
+
+2209304 ระบบไวยากรณ์                                            3 (3-0-6)
+Grammatical System
+
+2209305      ความหมายในภาษา                                         3 (3-0-6)
+Meaning in Language
+
+2209308 ระบบเสียง                                                 3 (3-0-6)
+Sound System
+
+2209309      การแปรและการเปลี่ยนแปลงในภาษา                        3 (3-0-6)
+Variation and Change in Language
+
+2209344 ภาษาศาสตร์กับการแปล                                    3 (3-0-6)
+Linguistics and Translation
+
+2209368 การวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์                 3 (3-0-6)
+Linguistics Analysis of Thai
+
+2209369 ภาษาตระกูลขร้า-ไท                                          3 (3-0-6)
+Kra-Dai Languages
+
+2209370      ภาษาและความคิด                                          3 (3-0-6)
+Language and Mind
+
+2209371 ภาษาศาสตร์ภาษาโรมานซ์เบื้องต้น                           3 (3-0-6)
+Introduction to Romance Linguistics
+
+2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น                            3 (3-0-6)
+Introduction to Computational Linguistics
+
+2209373 ภาษากับวัฒนธรรม                                         3 (3-0-6)
+Language and Culture
+
+2209375 ภาษาในกลุ่มประเทศอาเซียน+3                             3 (3-0-6)
+Languages in ASEAN Plus+3
+
+2209376 คลังข้อมูลภาษา                                              3 (3-0-6)
+Language Corpora
+
+2209377 ภาษาศาสตร์ภาคสนาม                                       3 (2-2-5)
+Field Linguistics
+
+2209378      ภาษากับการสื่อสารทางการตลาด                            3 (3-0-6)
+Language and Marketing Communications
+
+2209379 ภาษากับเพศ                                               3 (3-0-6)
+Language and Sex
+
+2209380      เรื่องคัดเฉพาะทางภาษาศาสตร์                              3 (3-0-6)
+Selected Topics in Linguistics
+
+2209381      เทคโนโลยีวัจนะ                                            3 (3-0-6)
+Speech Technology
+
+
+
+--- Page 3 ---
+
+2209382      การแปลภาษาด้วยคอมพิวเตอร์                              3 (3-0-6)
+Machine Translation
+2209384 การเข้าใจภาษาธรรมชาติ                                    3 (3-0-6)
+Natural Language Understanding
+2209390      เรื่องคัดเฉพาะทางเทคโนโลยีภาษา                           3 (3-0-6)
+Selected Topics in Language Technology
+3.2 โปรแกรมปกติสําหรับนิสิตนอกคณะ                                                 18 หน่วยกิต
+วิชาบังคับ                                           3 หน่วยกิต
+2209161     ภาษาทัศนา                                             3 (3-0-6)
+Introduction to Language
+วิชาเลือก                                           15 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาเลือกของโปรแกรมปกติสําหรับนิสิตในคณะ
+3.3 โปรแกรมเกียรตินิยม
+ผู้ที่เข้าศึกษาในโปรแกรมเกียรตินิยมจะต้องผ่านการเรียนในชั้นปีที่ 1 ด้วยแต้มเฉลียสะสมไม่ตํากว่า 3.75
+และเรียนรายวิชาในหลักสูตรมาแล้วไม่น้อยกว่า 36 หน่วยกิต กรณีได้แต้มเฉลี่ยสะสมตํากว่า 3.75 แต่สูงกว่าเกณฑ์ของ
+มหาวิทยาลัย คือ 3.50 ให้อยู่ในดุลยพินิจของคณะกรรมการบริหารคณะอักษรศาสตร์
+นิสิตโปรแกรมเกียรตินิยมต้องสอบได้แต้มเฉลี่ยสะสมไม่ตํากว่า 3.60 หากไม่สามารถสอบได้แต้มเฉลี่ยสะสม
+3.60 ติดต่อกัน 2 ภาคการศึกษา ต้องย้ายไปเรียนโปรแกรมปกติ โดยสามารถนับหน่วยกิตรายวิชาเอกัตศึกษา/รายวิชา
+ระดับบัณฑิตศึกษาในโปรแกรมเกียรตินิยม เป็นหน่วยกิตของโปรแกรมปกติได้
+3.3.1 เอกัตศึกษา หรือรายวิชาระดับบัณฑิตศึกษาโดยความเห็นชอบคณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต
+สาขาวิชาโทภาษาศาสตร์ 12 หน่วยกิต
+2209591      เอกัตศึกษา 1                                         3 (0-9-0)
+Independent Study |
+2209592 'เเอกัตศึกษา 2                                         3 (0-9-0)
+Independent Study |!
+2209593 เอกัตศึกษา 3                                         3 (0-9-0)
+Independent Study Ill
+2209594 เอกัตศึกษา 4                                         3 (0-9-0)
+Independent Study IV
+3.3.2 ปริญญานิพนธ์ 8 หน่วยกิต
+2209597 ปริญญานิพนธ์ 1                                      4 หน่วยกิต
+Senior Project |
+2209598 ขปริญญานิพนธ์ 2                                          4 หน่วยกิต
+Senior Project Il
+
+
+
+--- Page 4 ---
+
+3.4 แผนการศึกษา
+3.4.1 โปรแกรมปกติ
+ปีที 2 ภาคการศึกษาต้น
+XXXXXXX วิชาบังคับเลือก         3 หน่วยกิต
+รวม                   3 หน่วยกิต
+ขีที 2 ภาคการศึกษาปลาย
+XXXXXXX วิชาเลือก            3 หน่วยกิต
+รวม                   3 หน่วยกิต
+ปีที 3 ภาคการศึกษาต้น
+XXXXXXX วิชาเลือก             3 หน่วยกิต
+รวม                     3 หน่วยกิต
+ขีที 3 ภาคการศึกษาปลาย
+XXXXXXX วิชาเลือก            3 หน่วยกิต
+รวม                   3 หน่วยกิต
+Un 4 ภาคการศึกษาต้น
+XXXXXXX วิชาเลือก            3 หน่วยกิต
+รวม                   3 หน่วยกิต
+ปีที 4 ภาคการศึกษาทีปลาย
+XXXXXXX วิชาเลือก            3 หน่วยกิต
+รวม                   3 หน่วยกิต
+3.4.2 โปรแกรมเกียรตินิยม
+ปีที 2 ภาคการศึกษาต้น
+2209591    เอกัตศึกษา 1            3 หน่วยกิต
+หรือ
+XXXXXXX ววิชาระดับบัณฑิตศึกษา      3 หน่วยกิต
+รวม                    3 หน่วยกิต
+ขีที 2 ภาคการศึกษาปลาย
+2209592    เอกัตศึกษา 2             3 หน่วยกิต
+หรือ
+XXXXXXX ววิชาระดับบัณฑิตศึกษา      3 หน่วยกิต
+รวม                    3 หน่วยกิต
+
+
+
+--- Page 5 ---
+
+ปีที่ 3 ภาคการศึกษาต้น
+2209593    เอกัตศึกษา 3            3 หน่วยกิต
+หรือ
+XXXXXXX วิชาระดับบัณฑิตศึกษา       3 หน่วยกิต
+รวม                             3 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาปลาย
+2209594    เอกัตศึกษา 4            3 หน่วยกิต
+หรือ
+XXXXXXX วิชาระดับบัณฑิตศึกษา       3 หน่วยกิต
+รวม                             3 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาต้น
+2209597 ปริญญานิพนธ์ 1         4 หน่วยกิต
+รวม                    4 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาปลาย
+2209598 ปริญญานิพนธ์ 2           4 หน่วยกิต
+รวม                    4 หน่วยกิต
+
+
+
+--- Page 6 ---
+
+คําอธิบายรายวิชา
+2209161 ภาษาทัศนา                                                        3 (3-0-6)
+นิยามและขอบเขตของภาษาศาสตร์ ลักษณะของภาษามนุษย์
+มโนทัศน์พื้นฐานเกี่ยวกับเสียงในภาษาระบบเสียง โครงสร้างคํา
+ไวยากรณ์ ความหมาย ระบบการเขียน การเปลี่ยนแปลงของภาษา
+ภาษากับสังคมและการเรียนรู้ภาษา การวิเคราะห์ภาษาตามแนวภาษาศาสตร์
+การตีความข้อมูลทางภาษาเชิงคุณภาพและเชิงปริมาณ
+Introduction to Language
+INTRO LANG
+Definition and scope of linguistics; characteristics of human language;
+basic concepts about speech sounds, sound system, word structure,
+grammar, Meaning, writing system, language change, language and society,
+and language learning; linguistic analysis of languages;
+interpretation of qualitative and quantitative language data
+2209261     พื้นฐานการเขียนโปรแกรมเพื่อการประมวลผลภาษาธรรมชาติ            3 (3-0-6)
+มโนทัศน์พื้นฐานของการเขียนโปรแกรม ตัวแปร ตัวดําเนินการ
+โครงสร้างข้อมูล การควบคุมลําดับการทํางาน โปรแกรมย่อย
+การฝึกเขียนโปรแกรมเพื่อประมวลผลข้อความ
+Basic Programming for Natural Language Processing
+BASIC PROG NLP
+Basic concepts of programming: variables, operators, data structure, control flow,
+subroutines; text processing programming practicum.
+2209304 ระบบไวยากรณ์                                                           3 (3-0-6)
+มโนทัศน์ของคํา วลี และประโยค โครงสร้างของคํา วลี และประโยค
+ชนิดของคํา ประเภททางไวยากรณ์ ความสัมพันธ์ของคําในวลี
+วากยสัมพันธ์ของวลีในประโยค
+วิเคราะห์ระบบไวยากรณ์ในข้อมูลที่มีความยากระดับกลางในภาษาต่าง ๆ
+Grammatical System
+GRAM SYSTEM
+Concepts of words, phrases, and sentences; word, phrase, and sentence structures;
+parts of speech; grammatical categories; relationship of words in a phrase;
+relationship of phrases in a sentence; analysis of the grammatical system
+in intermediate-level data from various languages.
+
+
+
+--- Page 7 ---
+
+2209305 คความหมายในภาษา                                                3 (3-0-6)
+นิยามของความหมายในภาษา ความหมายประเภทต่าง ๆ ในระดับคํา
+แนวทางการกําหนดความหมายของคํา วงความหมาย ความหมายเหมือน
+ความหมายตรงกันข้าม และการพ้องรูปพ้องเสียง
+Meaning in Language
+MEANING LANG
+Definition of linguistic meaning; different types of lexical meaning;
+approaches in determining lexical meaning; semantic fields;
+synonymy, antonymy, and homonymy.
+2209308 ระบบเสียง                                                             3 (3-0-6)
+มโนทัศน์สําคัญทางทฤษฎีสัทวิทยา การฝึกวิเคราะห์ระบบเสียง
+ปรากฏการณ์ทางสัทวิทยาที่น่าสนใจ
+Sound System
+SOUND SYSTEM
+Important concepts in phonological theory; practice in phonological analysis;
+interesting phonological phenomena.
+2209309 การแปรและการเปลี่ยนแปลงในภาษา                                 3 (3-0-6)
+การแปรของภาษาตามปัจจัยทางภาษาและสังคม
+การเปลี่ยนแปลงของภาษาประเภทต่าง ๆ ปัจจัยที่ทําให้ภาษาเปลี่ยนแปลง
+ความสัมพันธ์ระหว่างการแปรของภาษากับการเปลี่ยนแปลงของภาษา
+Variation and Change in Language
+VAR CHG LANG
+Language variation according to linguistic and social factors;
+types of language change; factors contributing to language change;
+relationship between language variation and change.
+2209344 ภาษาศาสตร์กับการแปล                                                3 (3-0-6)
+ความรู้เรืองลักษณะและปรากฏการณ์ต่าง ๆ ที่มือยู่ในภาษา
+ซึ่งได้จากการศึกษาทางภาษาศาสตร์อันเป็นพื้นฐานสําหรับการแปล
+Linguistics and Translation
+LING TRANSL
+Knowledge of characteristics and phenomena in language
+derived from linguistic studies serving as a foundation for translation.
+
+
+
+--- Page 8 ---
+
+2209368 การวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์                           3 (3-0-6)
+ลักษณะสําคัญของระบบเสียงและระบบไวยากรณ์ภาษาไทย
+ปรากฏการณ์ทางเสียง ไวยากรณ์ ความหมาย การเปลี่ยนแปลง
+และการแปรในภาษาไทยที่น่าสนใจและแนวทางการวิเคราะห์
+การประยุกต์ใช้ในด้านเทคโนโลยีภาษาและแวดวงอื่น ๆ
+Linguistics Analysis of Thai
+LING ANALYS THAI
+Characteristics of the sound system and the grammatical system of Thai;
+Selected phenomena relating to sound, grammar, meaning, language change,
+and language variation in Thai linguistics and their analyses;
+application in language technology and other domains.
+2209369 กภาษาตระกูลขร้า-ไท                                                3 (3-0-6)
+พัฒนาการของภาษาตระกูลขร้า-ไท ความสัมพันธ์ระหว่างภาษาตระกูลขร้า-ไท
+ความสัมพันธ์ระหว่างภาษาตระกูลขร้า-ไทกับภาษาตระกูลอื่น
+วิจีการศึกษาภาษาตระกูลขร้า-ไท ภาษาไทยในฐานะภาษาตระกูลขร้า-ไท
+ประเด็นคัดสรรเกี่ยวกับภาษาตระกูลขร้า-ไท
+Kra-Dai Languages
+KRA DAI LANGUAGES
+Development of Kra-Dai languages; relationship among Kra-Dai languages;
+relationship between Kra-Dai languages and other language families;
+methods for studying Kra-Dai languages; Thai as a Kra-Dai language;
+selected issues concerning Kra-Dai languages.
+2209370 ภาษาและความคิด                                                  3 (3-0-6)
+ความสามารถทางภาษาของมนุษย์และสัตว์ การรับภาษาของเด็ก
+การรับรู้เสียงพูด การเข้าใจภาษา การผลิตภาษา การรับภาษาที่สอง
+สมองกับภาษา ภาษา วัฒนธรรม และปริชาน
+Language and Mind
+LANG MIND
+Language ability in human beings and animals; child language acquisition;
+speech perception;language comprehension; language production;
+second language acquisition; brain and language; language, culture and cognition.
+2209371 ภาษาศาสตร์ภาษาโรมานซ์เบื้องต้น                                   3 (3-0-6)
+นิยามกลุ่มภาษาโรมานซ์ ความหลากหลายของภาษาในกลุ่มโรมานซ์
+ลักษณะสําคัญของภาษากลุ่มโรมานซ์ พัฒนาการของภาษากลุ่มโรมานซ์จากภาษาละติน
+สถานการณ์ทางภาษาของภาษากลุ่มโรมานซ์ในโลกปัจจุบัน
+
+
+
+--- Page 9 ---
+
+Introduction to Romance Linguistics
+INTRO ROMANCE LING
+Definition of the Romance language family; diversity of Romance languages;
+characteristics of Romance languages; development from Latin into Romance
+languages; current linguistic situation of Romance languages.
+
+2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น                                       3 (3-0-6)
+แนวคิดและทฤษฎีพื้นฐานที่เกี่ยวข้องกับการประมวลผลภาษาธรรมชาติ
+ระบบการประมวลผลภาษาธรรมชาติแบบใช้กฎ แบบอิงสถิติ และแบบเครือข่ายนิวรอล
+การประยุกต์ใช้งานการประมวลผลภาษาธรรมชาติในงานต่าง ๆ
+Introduction to Computational Linguistics
+INTRO COMPU LING
+Basic concepts and theories related to natural language processing;
+rule-based, statistical-based, and neural network approaches;
+applications of natural language processing.
+
+2209373 ภาษากับวัฒนธรรม                                                     3 (3-0-6)
+ลักษณะของภาษากับลักษณะของวัฒนธรรม ภาษากับโลกทัศน์
+การจําแนกประเภททางไวยากรณ์และทางวัฒนธรรม ทฤษฎีและงานวิจัยเกี่ยวกับคําเรียกสี
+คําเรียกญาติ และ อุปลักษณ์ ภาษากับเพศ ระบบภาษาและวัฒนธรรมของชุมชนต่าง ๆ
+Language and Culture
+LANG CULTURE
+Characteristics of language and culture; language and world view;
+grammatical and cultural categories; theories and research on color terms,
+kinship terms, and metaphor; language and gender;
+linguistic and cultural systems of various communities.
+
+2209375 ภาษาในกลุ่มประเทศอาเซียน+3                                         3 (3-0-6)
+ความหลากหลายทางภาษาในกลุ่มประเทศอาเซียน+3
+ความรู้เบื้องต้นเกี่ยวกับภาษาในกลุ่มประเทศอาเซียน จีน เกาหลี และญี่ปุ่น
+Languages in ASEAN Plus+3
+LANG ASEAN PLUS
+Linguistic diversity in ASEAN+3;
+language profiles of ASEAN countries and in China, Korea, and Japan.
+
+
+
+--- Page 10 ---
+
+2209376 คคลังข้อมูลภาษา                                                    3 (3-0-6)
+การออกแบบและการสร้างคลังข้อมูลภาษา เครื่องมือและวิธีการสร้าง ค้นคืน และวิเคราะห์
+คลังข้อมูลภาษา การใช้คลังข้อมูลในการวิจัยและการประยุกต์ใช้คลังข้อมูล
+Language Corpora
+LANG CORPORA
+Design and construction of language corpora; tools and methodology
+in constructing, retrieving, and analyzing language corpora;
+research use and application of corpora.
+2209377 ภาษาศาสตร์ภาคสนาม                                                    3 (2-2-5)
+เทคนิคการเก็บข้อมูลภาษาเพื่อการวิเคราะห์ทางภาษาศาสตร์แง่มุมต่าง ๆ
+การบันทึกและการวิเคราะห์ข้อมูลทิได้จากการเก็บข้อมูลภาคสนาม
+Field Linguistics
+FLD LING
+Techniques for eliciting language data for several aspects of linguistic analysis;
+recording and analysis of linguistic data from the field.
+2209378     ภาษากับการสื่อสารทางการตลาด                                     3 (3-0-6)
+มโนทัศน์สําคัญทางภาษาศาสตร์ที่เกี่ยวข้องกับการสื่อสารทางการตลาด
+องค์ประกอบทางเสียง คํา และความหมายของชือตราสินค้าที่สัมพันธ์กับการรับรู้คุณลักษณะสินค้า
+บทบาทของโครงสร้างและการใช้ภาษาในกลยุทธ์การสื่อสารทางการตลาด
+Language and Marketing Communications
+LANG MKTG COM
+Major linguistic concepts relating to marketing communications;
+sound, word and meaning components of brand names
+relating to the perception of product attributes;
+roles of linguistic structure and use in marketing communications strategy.
+2209379 ภาษากับเพศ                                                             3 (3-0-6)
+มโนทัศน์สําคัญทางภาษาศาสตร์ที่เกี่ยวข้องกับความสัมพันธ์ของภาษากับเพศ
+ทั้งเพศสรีระ เพศสภาวะและเพศวิถี การแปรของภาษาตามเพศ
+การใช้ภาษาเพื่อบ่งชี้เพศ การสร้างและแสดงตัวตนทางเพศผ่านภาษา
+บทบาทของภาษาที่เกี่ยวข้องกับความหลากหลายทางเพศในสังคม
+Language and Sex
+LANG SEX
+Major linguistic concepts relating to the relationship between language and
+sex/gender/sexuality; linguistic variation and sex/gender/sexuality;
+use of language to index sex/gender/sexuality; construction and
+presentation of sex/gender/sexuality of the self through language;
+roles of language as related to gender/sexual diversity in society.
+
+
+
+--- Page 11 ---
+
+2209380     เรื่องคัดเฉพาะทางภาษาศาสตร์                                       3 (3-0-6)
+เรื่องทางภาษาศาสตร์ที่น่าสนใจ
+Selected Topics in Linguistics
+SEL TOP LING
+Interesting topics in linguistics.
+2209381 เทคโนโลยีวัจนะ                                                    3 (3-0-6)
+ลักษณะทางกลสัทศาสตร์ของเสียงพูด ระเบียบวิธีทางสถิติสําหรับการวิเคราะห์เสียงพูด
+ระบบรู้จําเสียงพูดอัตโนมัติ การสังเคราะห์เสียงพูดจากข้อความ
+Speech Technology
+SPEECH TECH
+Acoustic characteristics of speech; statistical methods for speech analysis;
+automatic speech recognition; text-to-speech synthesis.
+2209382 การแปลภาษาด้วยคอมพิวเตอร์                                      3 (3-0-6)
+มโนทัศน์พื้นฐานและวิธีการทางสถิติที่เกี่ยวข้องกับการแปลภาษาด้วยคอมพิวเตอร์
+การแปลโดยยืดคําเป็นหลัก การแปลโดยยืดวลีเป็นหลัก
+การแปลโดยยึดวากยสัมพันธ์เป็นหลัก การฝึกพัฒนาระบบการแปลภาษา
+Machine Translation
+MACHINE TRANSL
+Basic concepts and statistical methods in machine translation;
+word-based translation, phrase-based translation;
+syntax-based translation; Practicum in building translation systems
+2209384 การเข้าใจภาษาธรรมชาติ                                            3 (3-0-6)
+ระบบต่าง ๆ สําหรับสกัดสารสนเทศจากข้อมูลภาษา ได้แก่ การสกัดหัวเรื่อง
+การวิเคราะห์อารมณ์ การรู้จําชื่อเฉพาะ การแก้ปัญหาเอนทิติ
+การแก้ปัญหา การอ้างอิงร่วม และการสกัดหาความสัมพันธ์
+การประยุกต์ใช้การเข้าใจภาษาธรรมชาติในงานด้านเทคโนโลยีภาษาและสารสนเทศ
+Natural Language Understanding
+NLU
+Systems to extract information from language data: topic extraction,
+sentiment analysis, named-entity recognition, entity resolution,
+coreference resolution, and relation extraction;
+application of natural language understanding in language and
+information technology.
+
+
+
+--- Page 12 ---
+
+2209390 เรื่องคัดเฉพาะทางเทคโนโลยีภาษา                                    3 (3-0-6)
+เรื่องทางเทคโนโนโลยีภาษาที่น่าสนใจ
+Selected Topics in Language Technology
+SEL TOP LANG TECH
+Interesting topics in language technology.
+2209591 เอกัตศึกษา 1                                                             3 (0-9-0)
+(เงื่อนไขรายวิชา : รายวิชาที่คณะอนุญาตให้เรียน)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจทางภาษาศาสตร์หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study |
+INDEPT STUD |
+(CONDITION : CONSENT OF FACULTY)
+In-depth study of one or more topics of special interest in linguistics.
+2209592 เอกัตศึกษา 2                                                             3 (0-9-0)
+(เงื่อนไขรายวิชา : รายวิชาที่ต้องสอบผ่าน 2209591 เอกัตศึกษา 1
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจทางภาษาศาสตร์หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study |!
+INDEPT STUD II
+(CONDITION : PRER 2209591 INDENT STUD 1 OR CONSENT OF FACULTY)
+In-depth study of one or more topics of special interest in linguistic.
+2209593 เอกัตศึกษา 3                                                             3 (0-9-0)
+(เงื่อนไขรายวิชา : รายวิชาที่ต้องสอบผ่าน 2209592 เอกัตศึกษา 2
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจทางภาษาศาสตร์หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study Ill
+INDEPT STUD III
+(CONDITION : PRER 2209592 INDENT STUD I] OR CONSENT OF FACULTY)
+In-depth study of one or more topics of special interest in linguistics.
+2209594 เอกัตศึกษา 4                                                             3 (0-9-0)
+(เงื่อนไขรายวิชา : รายวิชาที่ต้องสอบผ่าน 2209593 เอกัตศึกษา 3
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจทางภาษาศาสตร์หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study IV
+INDEPT STUD IV
+(CONDITION : PRER 2209593 INDENT STUD Ill OR CONSENT OF FACULTY)
+In-depth study of one or more topics of special interest in linguistic.
+
+
+
+--- Page 13 ---
+
+2209597 ทปริญญานิพนธ์ 1                                                     4 หน่วยกิต
+Senior Project 1
+SR PRO) |
+
+2209598 ปริญญานิพนธ์ 2                                                     4 หน่วยกิต
+Senior Project 2
+SR PROJ II
+
+

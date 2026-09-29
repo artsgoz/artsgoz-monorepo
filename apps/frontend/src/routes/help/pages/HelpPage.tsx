@@ -37,7 +37,7 @@ const CATEGORIES = [
 ] as const;
 
 export default function HelpPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('help');
   const [searchQuery, setSearchQuery]     = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [expandedId, setExpandedId]       = useState<string | null>(null);
@@ -88,12 +88,12 @@ export default function HelpPage() {
           {/* ── LEFT: Link Tree image ────────────────────────────── */}
           <div className="w-full lg:w-[40%] shrink-0 flex flex-col gap-6">
             <h1 className="text-[40px] lg:text-[48px] font-bold text-[#404041] leading-[1.2] font-serif">
-              {t('help.title')}
+              {t('title')}
             </h1>
             <div className="w-full aspect-[521/679] rounded-[20px] overflow-hidden border border-[#ECECEC] shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-[#FDF8FA]/10">
               <img 
                 src={linkTreeImg} 
-                alt={t('help.image_alt')} 
+                alt={t('image_alt')} 
                 className="w-full h-full object-cover select-none" 
               />
             </div>
@@ -102,14 +102,14 @@ export default function HelpPage() {
           {/* ── RIGHT: Search + Chips + FAQ + Button ─────────────── */}
           <div className="w-full lg:flex-1 flex flex-col gap-0 pt-0 lg:pt-1">
             <h2 className="text-[32px] lg:text-[40px] font-bold text-[#404041] leading-[1.2] font-serif mb-6 mt-6 lg:mt-0">
-              {t('help.faq_title')}
+              {t('faq_title')}
             </h2>
 
             {/* Search Field */}
             <div className="mb-4">
               <SearchInput
                 size="lg"
-                placeholder={t('help.search_placeholder')}
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
               />
@@ -157,7 +157,7 @@ export default function HelpPage() {
                   <div className="flex flex-col items-center justify-center py-10 text-center">
                     <Search size={36} className="text-gray-300 mb-3" />
                     <p className="text-gray-500 text-[18px]">
-                      {t('help.no_results')}
+                      {t('no_results')}
                     </p>
                   </div>
                 )}
@@ -171,7 +171,7 @@ export default function HelpPage() {
                 variant="primary"
                 className="font-serif shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
               >
-                {t('help.send_question_btn')}
+                {t('send_question_btn')}
                 <Send size={16} />
               </Button>
             </div>
@@ -206,10 +206,10 @@ export default function HelpPage() {
               </button>
 
               <h3 className="text-2xl font-bold text-gray-800 mb-2 font-[ChulaCharasNew]">
-                {t('help.modal.title')}
+                {t('modal.title')}
               </h3>
               <p className="text-gray-500 text-[15px] mb-6 font-[ChulaCharasNew]">
-                {t('help.modal.subtitle')}
+                {t('modal.subtitle')}
               </p>
 
               {submitSuccess ? (
@@ -223,41 +223,41 @@ export default function HelpPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-800 mb-1 font-[ChulaCharasNew]">{t('help.modal.success_title')}</h4>
-                  <p className="text-gray-500 text-[15px] font-[ChulaCharasNew]">{t('help.modal.success_subtitle')}</p>
+                  <h4 className="text-xl font-bold text-gray-800 mb-1 font-[ChulaCharasNew]">{t('modal.success_title')}</h4>
+                  <p className="text-gray-500 text-[15px] font-[ChulaCharasNew]">{t('modal.success_subtitle')}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleModalSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('help.modal.name_label')}</label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.name_label')}</label>
                     <input
                       type="text"
                       required
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      placeholder={t('help.modal.name_placeholder')}
+                      placeholder={t('modal.name_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] font-[ChulaCharasNew]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('help.modal.email_label')}</label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.email_label')}</label>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      placeholder={t('help.modal.email_placeholder')}
+                      placeholder={t('modal.email_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] font-[ChulaCharasNew]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('help.modal.question_label')}</label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.question_label')}</label>
                     <textarea
                       required
                       rows={4}
                       value={question}
                       onChange={e => setQuestion(e.target.value)}
-                      placeholder={t('help.modal.question_placeholder')}
+                      placeholder={t('modal.question_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] resize-none font-[ChulaCharasNew]"
                     />
                   </div>
@@ -266,7 +266,7 @@ export default function HelpPage() {
                     variant="primary"
                     className="w-full mt-2 font-serif shadow-md"
                   >
-                    {t('help.modal.submit_btn')}
+                    {t('modal.submit_btn')}
                   </Button>
                 </form>
               )}

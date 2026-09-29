@@ -2,4 +2,6 @@
 @import '../../../packages/design-system/src/lib/design-system.css';
 
 /* nx-tailwind-sources:start */
+@source "../../../packages/design-system";
+@source "../../../packages/yellow-card-shared";
 /* nx-tailwind-sources:end */

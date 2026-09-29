@@ -14,7 +14,7 @@ import { FilterDropdown } from './FilterDropdown.js';
 import { ProfessorPagination } from './ProfessorPagination.js';
 
 export function ProfessorsSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
   const [currentPage, setCurrentPage] = useState(1);

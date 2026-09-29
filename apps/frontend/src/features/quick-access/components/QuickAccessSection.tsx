@@ -21,7 +21,7 @@ export function QuickAccessSection({
   isManageMode = false,
   onDeleteMenu
 }: QuickAccessSectionProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   return (
     <section className="w-full flex flex-col">
       {!hideHeading && (

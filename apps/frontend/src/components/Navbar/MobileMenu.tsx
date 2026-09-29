@@ -42,7 +42,7 @@ export function MobileMenuPanel({
 }: MobileMenuPanelProps) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const isActive = (path: string) => location.pathname === path;
 
   // Map icons based on nav item path (stable key — not the label which is now a translation key)

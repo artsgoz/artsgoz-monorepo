@@ -79,7 +79,7 @@ function SavedArticleCard({
   article: typeof MOCK_ARTICLES[0];
   onUnbookmark: () => void;
 }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const navigate = useNavigate();
 
   const title = t(article.title);
@@ -138,15 +138,15 @@ function SavedArticleCard({
           <div className="flex items-center gap-4 flex-wrap">
             <span className="flex items-center gap-1.5 min-w-0 truncate max-w-[150px] md:max-w-none">
               <Feather size={14} className="text-gray-350 shrink-0" />
-              <span className="truncate">{t('articles.written_by', { author })}</span>
+              <span className="truncate">{t('written_by', { author })}</span>
             </span>
             <span className="flex items-center gap-1.5 whitespace-nowrap">
               <Timer size={14} className="text-gray-350 shrink-0" />
-              {t('articles.published', { date: article.date })}
+              {t('published', { date: article.date })}
             </span>
           </div>
           <span className="flex items-center gap-1 text-[#DE5D8F] font-bold group-hover:translate-x-1 transition-transform shrink-0">
-            {t('articles.read_more')}
+            {t('read_more')}
             <ArrowRight size={14} />
           </span>
         </div>
@@ -157,7 +157,7 @@ function SavedArticleCard({
 }
 
 export default function ArticlesPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -322,7 +322,7 @@ export default function ArticlesPage() {
               <div className="flex items-center gap-4">
                 <Bookmark size={40} className="text-[#DE5D8F] shrink-0" fill="#DE5D8F" />
                 <h1 className="text-[36px] md:text-[48px] font-bold text-[#404041] font-serif leading-none">
-                  {t('articles.saved_title')}
+                  {t('saved_title')}
                 </h1>
               </div>
 
@@ -331,7 +331,7 @@ export default function ArticlesPage() {
                 <div className="flex-1 w-full">
                   <SearchInput
                     size="lg"
-                    placeholder={t('articles.search_saved_placeholder')}
+                    placeholder={t('search_saved_placeholder')}
                     value={savedSearchQuery}
                     onChange={(e) => setSavedSearchQuery(e.target.value)}
                   />
@@ -346,7 +346,7 @@ export default function ArticlesPage() {
                     }`}
                   >
                     <SlidersHorizontal size={16} />
-                    {t('articles.filter')}
+                    {t('filter')}
                   </button>
 
                   <AnimatePresence>
@@ -359,12 +359,12 @@ export default function ArticlesPage() {
                         className="absolute right-0 top-[60px] w-full md:w-[360px] p-6 bg-white border border-gray-200 rounded-2xl shadow-xl z-40 flex flex-col gap-6"
                       >
                         <h4 className="font-bold text-[18px] text-[#404041] font-serif border-b border-gray-100 pb-2">
-                          {t('articles.filter_and_sort')}
+                          {t('filter_and_sort')}
                         </h4>
 
                         {/* Date Saved Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('articles.date_saved')}</span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('date_saved')}</span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -374,7 +374,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_newest')}</span>
+                              <span className="text-[14px] font-serif">{t('sort_newest')}</span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -384,14 +384,14 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_oldest')}</span>
+                              <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
                             </label>
                           </div>
                         </div>
 
                         {/* Date Posted Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('articles.date_posted')}</span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('date_posted')}</span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -401,7 +401,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_newest')}</span>
+                              <span className="text-[14px] font-serif">{t('sort_newest')}</span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -411,7 +411,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_oldest')}</span>
+                              <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
                             </label>
                           </div>
                         </div>
@@ -429,7 +429,7 @@ export default function ArticlesPage() {
                     savedTab === 'articles' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_articles')}
+                  {t('tab_articles')}
                   {savedTab === 'articles' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -443,7 +443,7 @@ export default function ArticlesPage() {
                     savedTab === 'internships' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_internships')}
+                  {t('tab_internships')}
                   {savedTab === 'internships' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -457,7 +457,7 @@ export default function ArticlesPage() {
                     savedTab === 'reviews' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_reviews')}
+                  {t('tab_reviews')}
                   {savedTab === 'reviews' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -487,16 +487,16 @@ export default function ArticlesPage() {
                   <div className="flex flex-col items-center justify-center py-20 text-center bg-[#FDF8FA]/30 border border-dashed border-pink-200 rounded-[24px] w-full px-4">
                     <BookmarkX size={64} className="text-pink-300 mb-4" />
                     <h3 className="text-[20px] font-bold text-gray-700 font-serif mb-2">
-                      {t('articles.no_saved_articles')}
+                      {t('no_saved_articles')}
                     </h3>
                     <p className="text-gray-400 max-w-sm text-[15px] font-serif mb-6 leading-relaxed">
-                      {t('articles.no_saved_articles_desc')}
+                      {t('no_saved_articles_desc')}
                     </p>
                     <button
                       onClick={() => navigate('/articles')}
                       className="px-6 py-2.5 bg-[#E992B4] hover:bg-[#DE5D8F] text-white font-bold rounded-xl transition-all cursor-pointer active:scale-95 font-serif text-[15px] border-none"
                     >
-                      {t('articles.explore_articles')}
+                      {t('explore_articles')}
                     </button>
                   </div>
                 )
@@ -524,10 +524,10 @@ export default function ArticlesPage() {
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif">
                         <div className="flex items-center gap-4">
-                          <span>{t('articles.period_label', { period: t(intern.periodKey) })}</span>
+                          <span>{t('period_label', { period: t(intern.periodKey) })}</span>
                         </div>
                         <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
-                          {t('articles.more_details')}
+                          {t('more_details')}
                           <ArrowRight size={14} />
                         </a>
                       </div>
@@ -555,12 +555,12 @@ export default function ArticlesPage() {
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
                         <div className="flex items-center gap-3 flex-wrap">
-                          <span>{t('articles.written_by_author', { author: t(rev.authorKey) })}</span>
+                          <span>{t('written_by_author', { author: t(rev.authorKey) })}</span>
                           <span>•</span>
-                          <span>{t('articles.published_at', { date: rev.date })}</span>
+                          <span>{t('published_at', { date: rev.date })}</span>
                         </div>
                         <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
-                          {t('articles.read_full_review')}
+                          {t('read_full_review')}
                           <ArrowRight size={14} />
                         </a>
                       </div>
@@ -583,7 +583,7 @@ export default function ArticlesPage() {
                 variant="primary"
                 className="px-8 h-[58px] rounded-xl font-serif text-[16px]"
               >
-                {t('articles.go_to_articles')}
+                {t('go_to_articles')}
                 <ArrowRight size={18} />
               </Button>
             </div>
@@ -603,8 +603,8 @@ export default function ArticlesPage() {
 
           {/* Page Title */}
           <SectionHeading
-            title={t('articles.section_title')}
-            description={t('articles.section_desc')}
+            title={t('section_title')}
+            description={t('section_desc')}
           />
 
           {/* Search + Category Filter */}
@@ -612,7 +612,7 @@ export default function ArticlesPage() {
             {/* Full-content-width lg search bar */}
             <SearchInput
               size="lg"
-              placeholder={t('articles.search_placeholder')}
+              placeholder={t('search_placeholder')}
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -653,10 +653,10 @@ export default function ArticlesPage() {
             <div className="flex flex-col items-center justify-center py-20 px-4 text-center bg-[#F7F8F9] rounded-[24px] border border-dashed border-gray-300 w-full">
               <Search size={64} className="text-gray-300 mb-4" />
               <h3 className="text-[20px] font-bold text-gray-700 font-serif mb-2">
-                {t('articles.no_results_title')}
+                {t('no_results_title')}
               </h3>
               <p className="text-gray-500 max-w-md text-[16px] font-serif break-words">
-                {t('articles.no_results_desc', { query: searchQuery || t(selectedCategory) })}
+                {t('no_results_desc', { query: searchQuery || t(selectedCategory) })}
               </p>
               {(searchQuery || selectedCategory !== 'articles.categories.all') && (
                 <Button
@@ -664,7 +664,7 @@ export default function ArticlesPage() {
                   variant="primary"
                   className="mt-6 px-6 py-2.5 h-[42px] rounded-[9999px] font-serif text-[14px]"
                 >
-                  {t('articles.clear_filters')}
+                  {t('clear_filters')}
                 </Button>
               )}
             </div>

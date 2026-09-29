@@ -1,0 +1,1317 @@
+--- Page 1 ---
+
+1
+สาขาวิชาภาษาอังกฤษ
+(หลักสูตรปรับปรุง พ.ศ. 2566)
+1. หน่วยงานที่รับผิดชอบ
+ภาควิชาภาษาอังกฤษ คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จ้านวนหน่วยกิตรวมวิชาเฉพาะสาขา 147 หน่วยกิต
+2.1 โครงสร้างหลักสูตร
+ภาควิชาภาษาอังกฤษเปิดสอนวิชาเฉพาะสาขาวิชาภาษาอังกฤษ แบบวิชาเอกเดียว สําหรับนิสิตอักษรศาสตร์ที่
+เลือกเรียนเป็นวิชาเอก และเปิดสอนเป็น วิชาโท สําหรับนิสิตที่เรียนวิชาเอกสาขาอื่นทั้ในคณะและนอกคณะ ดังนี้
+2.1.1 หมวดวิชาการศึกษาทั่วไป                        36 หน่วยกิต
+(1) วิชาศึกษาทั่วไป                  30 หน่วยกิต
+(2) เลือกเสรี                      6 หน่วยกิต
+2.1.2 แบบวิชาเอกเดี่ยว                                         111 หน่วยกิต
+(1) กลุ่มวิชาพื้นฐาน                 15 หน่วยกิต
+(2 กลุ่มวิชาพื้นฐานอักษรศาสตร์          27 หน่วยกิต
+(3) กลุ่มวิชาข้อกําหนดเฉพาะ                  21 หน่วยกิต
+(4) กลุ่มวิชาเชี่ยวชาญ                33 หน่วยกิต
+(5) กลุ่มวิชาสํารวจ                  15 หน่วยกิต
+วิชาโท สําหรับนิสิตวิชาเอกสาขาอื่นทั้งในคณะและนอกคณะ       18 หน่วยกิต
+วิชาเลือก                                        18 หน่วยกิต
+3. รายวิชา
+3.1 แบบวิชาเอกเดี่ยว                                             111 หน่วยกิต
+3.1.1 กลุ่มวิชาพื้นฐาน                                 15 หน่วยกิต
+2202111 ภาษาอังกฤษ 1                                            3 (3-0-6)
+English |
+2202112 ภาษาอังกฤษ 2                                                      3 (3-0-6)
+English II
+2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น                  3 (3-0-6)
+Introduction to English Sound System and Structure
+2202234      การศึกษาวรรณกรรมอังกฤษเบื้องต้น                         3 (3-0-6)
+Introduction to the Study of English Literature
+2202266 ภูมิหลังของวรรณคดีอังกฤษ                                 3 (3-0-6)
+Background to British Literature
+หรือ
+2202267      ภูมิหลังของวรรณคดีอเมริกัน                                3 (3-0-6)
+Background to American Literature
+
+
+
+--- Page 2 ---
+
+2
+3.1.2 กลุ่มวิชาพื้นฐานอักษรศาสตร์                                 27 หน่วยกิต
+ให้นิสิตเลือกเรียนจากกลุ่มวิชาต่อไปนี้อย่างน้อยกลุ่มละ 1 รายวิชา รวมเป็น 5 รายวิชา (15 หน่วยกิต)
+และนิสิตสามารถเลือกเรียนอิสระตามความสนใจ จํานวน 4 รายวิชา ทั้งนี้ นิสิตสามารถเลือกเรียนซ้ากลุ่มรายวิชาได้
+3.1.2.1 กลุ่มวิชาที่ 1 ทักษะการแสวงหาความรู้และการจัดการในโลกดิจิทัล
+2206105* การดํารงชีวิตกับสารสนเทศในยุคดิจิทัล        3 (3-0-6)
+Living with Information in Digital Age
+2206261* หลักการจัดการสําหรับมนุษยศาสตร์                        3 (3-0-6)
+Principles of Management for the Humanities
+2209261    พื้นฐานการเขียนโปรแกรมเพื่อการประมวลผลภาษาธรรมชาติ 3 (3-0-6)
+Basic Programming for Natural Language Processing
+2201227* ภาษาไทยเพื่อวิชาชีพในยุคดิจิทัล                           3 (3-0-6)
+Thai Language for Careers in Digital Age
+3.1.2.2 กลุ่มวิชาที่ 2 วิจารณญาณเพื่อการดํารงตนในโลกร่วมสมัย
+2207102 ปรัชญาทั่วไป                                             3 (3-0-6)
+General Philosophy
+2207162* มนุษย์กับศาสนาในโลกร่วมสมัย                            3 (3-0-6)
+Man and Religion in Contemporary World
+2207105* ปรัชญากับสถานการณ์ปัจจุบัน                             3 (3-0-6)
+Philosophy and Current Affairs
+2209161      ภาษาทัศนา                                              3 (3-0-6)
+Introduction to Language
+3.1.2.3 กลุ่มวิชาที่ 3 การเรียนรู้และตระหนักความเป็นไทย
+2201152 กว)วรรณคดิไทย                                               3 (3-0-6)
+Thai Literature
+2204220* อารยธรรมไทย                                            3 (3-0-6)
+Thai Civilization
+2221120* วัฒนธรรมสัมพันธ์ไทย-ภารตะ                              3 (3-0-6)
+Thai-Indian Cultural Relationship
+3.1.2.4 กลุ่มวิชาที่ 4 ความรู้เรื่องโลก/การเสริมสร้างความเป็นพลเมืองโลก
+2204182      อารยธรรมตะวันตก                                         3 (3-0-6)
+Western Civilization
+2204181      อารยธรรมตะวันออก                                        3 (3-0-6)
+Eastern Civilization
+2205200 มนุษย์กับภูมิศาสตร์                                       3 (3-0-6)
+Man and Geography
+2230002* การสื่อสารระหว่างวัฒนธรรมและความเป็นพลเมืองโลก   3 (3-0-6)
+Intercultural Communication and Global Citizenship
+
+
+
+--- Page 3 ---
+
+3
+3.1.2.5 กลุ่มวิชาที่ 5 ภูมิปัญญาและการแสดงออกของมนุษย์
+
+2208102 ศิลปะการละครกับชีวิตประจําวัน                            3 (3-0-6)
+Introduction to Dramatic Arts
+
+2210213* วรรณกรรมกับโลกร่วมสมัย                                 3 (3-0-6)
+Literature and the Contemporary World
+
+2230001* วัฒนธรรมตะวันตกและความเป็นพลเมืองโลก      3 (3-0-6)
+Western Culture and Global Citizenship
+
+2220101* วัฒนธรรมตะวันออกกับสังคมไทย                           3 (3-0-6)
+Eastern Cultures and Thai Society
+
+3.1.3 กลุ่มวิชาข้อกําหนดเฉพาะ                                    21 หน่วยกิต
+
+2202201 ทักษะการพูดภาษาอังกฤษเชิงวิชาการ                        3 (3-0-6)
+Academic English Oral Skills
+
+2202202 เรียงความอังกฤษ 1                                        3 (3-0-6)
+English Composition |
+
+2202208      การสนทนาและอภิปรายภาษาอังกฤษ                        3 (3-0-6)
+English Conversation and Discussion
+
+2202217 ทักษะการอ่านอังกฤษ                                       3 (3-0-6)
+English Reading Skills
+
+2202302 เรียงความอังกฤษ 2                                                 3 (3-0-6)
+English Composition II
+
+2202304      การเขียนภาษาอังกฤษธุรกิจ                                 3 (3-0-6)
+English Business Writing
+
+2202374      เรื่องแต่งและเรื่องจริงในร้อยแก้วภาษาอังกฤษ                3 (3-0-6)
+Fiction and Fact in English Prose
+
+3.1.4 กลุ่มวิชาเชี่ยวชาญ                                           33 หน่วยกิต
+
+ภาษาศาสตร์                                           12 หน่วยกิต
+
+2202324      สัทศาสตร์เพื่อการออกเสียงภาษาอังกฤษ                     3 (3-0-6)
+Phonetics for English Pronunciation
+
+2202326 กวทากยสัมพันธ์ภาษาอังกฤษ                                  3 (3-0-6)
+English Syntax
+
+2202327 อรรถศาสตร์และวัจนปฏิบัติศาสตร์ภาษาอังกฤษเบื้องต้น       3 (3-0-6)
+Introduction to English Semantics and Pragmatics
+
+2202328 ปริจเฉทภาษาอังกฤษ                                       3 (3-0-6)
+English Discourse
+
+การแปล                                              9 หน่วยกิต
+
+2202124 แปลอังกฤษขั้นต้น                                          3 (3-0-6)
+Introduction to Translation
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 4 ---
+
+4
+
+2202313 แปลอังกฤษ-ไทย                                            3 (3-0-6)
+'ไสลทรเลฟี็อท: มีทธนรท -ไไทลเ
+
+2202314 แปลไทย-อังกฤษ 1                                         3 (3-0-6)
+Translation: Thai - English |
+
+วรรณคดี                                               12 หน่วยกิต
+
+ให้นิสิตเลือกจากรายวิชาต่อไปนี้
+
+2202263 ภูมิหลังทางเทวตํานานและคัมภีร์ไบเบิลในวรรณกรรมอังกฤษ 3 (3-0-6)
+Mythological and Biblical Background to English Literature
+
+2202340 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 19                3 (3-0-6)
+Nineteenth—Century British Fiction
+
+2202341     วรรณกรรมอเมริกันศตวรรษที่ 19                      3 (3-0-6)
+Nineteenth-Century American Literature
+
+2202342 บทละครศตวรรษที่ 20 ถึงปัจจุบัน                           3 (3-0-6)
+Drama from the Twentieth Century to the Present
+
+2202344 วรรณกรรมโลกร่วมสมัยที่ประพันธ์เป็นภาษาอังกฤษ           3 (3-0-6)
+Contemporary World Literature in English
+
+2202345 กวีนิพนธ์อังกฤษตั้งแต่ยุคอลิซาบีธันถึงยุคออกัสต้น            3 (3-0-6)
+British Poetry from the Elizabethans to the Augustans
+
+2202349 กกวีนิพนธ์แห่งการขบถจากยุคโรแมนติกถึงยุควิกตอเรียน       3 (3-0-6)
+The Poetry of Rebellion: The Romantics to the Victorians
+
+2202441 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 20 ถึงปัจจุบัน          3 (3-0-6)
+British Fiction from the Twentieth Century to the Present
+
+2202442 วรรณกรรมร้อยแก้วอเมริกันศตวรรษที่ 20 ถึงปัจจุบัน         3 (3-0-6)
+American Fiction from the Twentieth Century to the Present
+
+2202445 กวีนิพนธ์อังกฤษศตวรรษที่ 20 ถึงปัจจุบัน                    3 (3-0-6)
+British Poetry from the Twentieth Century to the Present
+
+2202446 กวีนิพนธ์อเมริกันศตวรรษที่ 20 ถึงปัจจุบัน                   3 (3-0-6)
+American Poetry from the Twentieth Century to the Present
+
+2202450 เชกสเปียร์                                                 3 (3-0-6)
+Shakespeare
+
+3.1.5 กลุ่มวิชาสํารวจ                                             15 หน่วยกิต
+ให้นิสิตเลือกเรียนรายวิชาดังต่อไปนี้ ทั้งนี้นิสิตสามารถเลือกรายวิชาอื่น ๆ ในคณะและ/หรือ
+นอกคณะเป็นรายวิชาในกลุ่มนี้ได้
+
+2202317 ทักษะการอ่านอังกฤษเชิงวิจารณ์                             3 (3-0-6)
+English Critical Reading Skills
+
+2202370 วรรณกรรมฉบับแปลภาษาอังกฤษ                           3 (3-0-6)
+Literature in English Translation
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 5 ---
+
+5
+
+2202371 วรรณกรรมเด็ก                                             3 (3-0-6)
+Children’s Literature
+
+2202372 ว)วรรณกรรมกับภาพยนตร์                                    3 (3-0-6)
+Literature and Film
+
+2202373 วรรณกรรมสิงแวดล้อม                                      3 (3-0-6)
+Environmental Literature
+
+2202401 การเขียนเชิงสร้างสรรค์                                     3 (3-0-6)
+Creative Writing
+
+2202402* การเขียนเชิงสร้างสรรค์อิงเรื่องจริง         3 (3-0-6)
+Creative Non-Fiction Writing
+
+2202405 การเขียนรายงานการค้นคว้า                                 3 (3-0-6)
+Research Writing
+
+2202408 การปราศรัยในที่ชุมชน                                      3 (3-0-6)
+Public Speaking
+
+2202414 แปลไทย-อังกฤษ 2                                                  3 (3-0-6)
+Translation: Thai - English II
+
+2202421 วิวัฒนาการของภาษาอังกฤษ                                3 (3-0-6)
+Development of the English Language
+
+2202426 ทหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 1                         3 (3-0-6)
+Selected Topics in the English Language |
+
+2202427 หัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 2                              3 (3-0-6)
+Selected Topics in the English Language I
+
+2202428 หัวข้อคัดสรรในวรรณกรรมอังกฤษ 1                       3 (3-0-6)
+Selected Topics in English Literature |
+
+2202429 หัวข้อคัดสรรในวรรณกรรมอังกฤษ 2                              3 (3-0-6)
+Selected Topics in English Literature I
+
+2202449 ทฤษฎีวรรณกรรมวิจารณ์สมัยใหม่เบื้องต้น                    3 (3-0-6)
+Introduction to Modern Critical Theory
+
+2202499 การศึกษาอิสระ: อังกฤษ                                    3 (1-0-8)
+Independent Study: English
+
+วิชาโท                                                                            18 หน่วยกิต
+นิสิตที่เลือกเรียนวิชาโทภาษาอังกฤษ ให้เลือกเรียนจากรายวิชาต่อไปนี้ ทั้งนี้ให้นับรายวิชา 2202124
+แปลอังกฤษขั้นต้น เป็นรายวิชาโทได้เฉพาะนิสิตนอกคณะเท่านั้น
+
+2202124 แปลอังกฤษขั้นต้น                                          3 (3-0-6)
+Introduction to Translation
+
+2202201 ทักษะการพูดภาษาอังกฤษเชิงวิชาการ                        3 (3-0-6)
+Academic English Oral Skills
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 6 ---
+
+6
+
+2202202 เรียงความอังกฤษ 1                                        3 (3-0-6)
+English Composition |
+
+2202208      การสนทนาและอภิปรายภาษาอังกฤษ                        3 (3-0-6)
+English Conversation and Discussion
+
+2202217 ทักษะการอ่านอังกฤษ                                       3 (3-0-6)
+English Reading Skills
+
+2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น                  3 (3-0-6)
+Introduction to English Sound System and Structure
+
+2202234      การศึกษาวรรณกรรมอังกฤษเบื้องต้น                         3 (3-0-6)
+Introduction to the Study of English Literature
+
+2202263 ภูมิหลังทางเทวตํานานและคัมภีร์ไบเบิลในวรรณกรรมอังกฤษ 3 (3-0-6)
+Mythological and Biblical Background to English Literature
+
+2202265 วรรณกรรมอังกฤษเชิงวิจักษ์                                 3 (3-0-6)
+English Literature Appreciation
+
+2202266 ภูมิหลังของวรรณคดีอังกฤษ                                 3 (3-0-6)
+Background to British Literature
+
+2202267 ภูมิหลังของวรรณคดีอเมริกัน                                3 (3-0-6)
+Background to American Literature
+
+2202302 เรียงความอังกฤษ 2                                                 3 (3-0-6)
+English Composition II
+
+2202304 การเขียนภาษาอังกฤษธุรกิจ                                 3 (3-0-6)
+English Business Writing
+
+2202313 แปลอังกฤษ-ไทย                                            3 (3-0-6)
+Translation: English -Thai
+
+2202314 แปลไทย-อังกฤษ 1                                         3 (3-0-6)
+Translation: Thai - English |
+
+2202317 ทักษะการอ่านอังกฤษเชิงวิจารณ์                             3 (3-0-6)
+English Critical Reading Skills
+
+2202324      สัทศาสตร์เพื่อการออกเสียงภาษาอังกฤษ                     3 (3-0-6)
+Phonetics for English Pronunciation
+
+2202326 กวทากยสัมพันธ์ภาษาอังกฤษ                                  3 (3-0-6)
+English Syntax
+
+2202327 อรรถศาสตร์และวัจนปฏิบัติศาสตร์ภาษาอังกฤษเบื้องต้น       3 (3-0-6)
+Introduction to English Semantics and Pragmatics
+
+2202328 ปริจเฉทภาษาอังกฤษ                                       3 (3-0-6)
+English Discourse
+
+2202340 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 19                3 (3-0-6)
+Nineteenth—Century British Fiction
+
+
+
+--- Page 7 ---
+
+7
+
+2202341     วรรณกรรมอเมริกันศตวรรษที่ 19                      3 (3-0-6)
+Nineteenth-Century American Literature
+
+2202342 บทละครศตวรรษที่ 20 ถึงปัจจุบัน                           3 (3-0-6)
+Drama from the Twentieth Century to the Present
+
+2202344 วรรณกรรมโลกร่วมสมัยที่ประพันธ์เป็นภาษาอังกฤษ           3 (3-0-6)
+Contemporary World Literature in English
+
+2202345 กวีนิพนธ์อังกฤษตั้งแต่ยุคอลิซาบีธันถึงยุคออกัสต้น            3 (3-0-6)
+British Poetry from the Elizabethans to the Augustans
+
+2202349 กกวีนิพนธ์แห่งการขบถจากยุคโรแมนติกถึงยุควิกตอเรียน       3 (3-0-6)
+The Poetry of Rebellion: The Romantics to the Victorians
+
+2202365      วรรณกรรมร้อยแก้วภาษาอังกฤษยอดนิยม                    3 (3-0-6)
+Popular Fiction in English
+
+2202370 วรรณกรรมฉบับแปลภาษาอังกฤษ                           3 (3-0-6)
+Literature in English Translation
+
+2202371 วรรณกรรมเด็ก                                             3 (3-0-6)
+Children’s Literature
+
+2202372 ว)วรรณกรรมกับภาพยนตร์                                    3 (3-0-6)
+Literature and Film
+
+2202373 วรรณกรรมสิงแวดล้อม                                      3 (3-0-6)
+Environmental Literature
+
+2202374      เรื่องแต่งและเรื่องจริงในร้อยแก้วภาษาอังกฤษ                3 (3-0-6)
+Fiction and Fact in English Prose
+
+2202401 การเขียนเชิงสร้างสรรค์                                     3 (3-0-6)
+Creative Writing
+
+2202402* การเขียนเชิงสร้างสรรค์อิงเรื่องจริง         3 (3-0-6)
+Creative Non-Fiction Writing
+
+2202405 กการเขียนรายงานการค้นคว้า                                 3 (3-0-6)
+Research Writing
+
+2202408 การปราศรัยในที่ชุมชน                                      3 (3-0-6)
+Public Speaking
+
+2202414 แปลไทย-อังกฤษ 2                                                  3 (3-0-6)
+Translation: Thai - English II
+
+2202421 วิวัฒนาการของภาษาอังกฤษ                                3 (3-0-6)
+Development of the English Language
+
+2202426 ทหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 1                         3 (3-0-6)
+Selected Topics in the English Language |
+
+2202427 หัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 2                              3 (3-0-6)
+Selected Topics in the English Language I
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 8 ---
+
+8
+2202428 หัวข้อคัดสรรในวรรณกรรมอังกฤษ 1                         3 (3-0-6)
+Selected Topics in English Literature |
+2202429 หัวข้อคัดสรรในวรรณกรรมอังกฤษ 2                              3 (3-0-6)
+Selected Topics in English Literature I
+2202441 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 20 ถึงปัจจุบัน          3 (3-0-6)
+British Fiction from the Twentieth Century to the Present
+2202442 วรรณกรรมร้อยแก้วอเมริกันศตวรรษที่ 20 ถึงปัจจุบัน         3 (3-0-6)
+American Fiction from the Twentieth Century to the Present
+2202445 กวีนิพนธ์อังกฤษศตวรรษที่ 20 ถึงปัจจุบัน                    3 (3-0-6)
+British Poetry from the Twentieth Century to the Present
+2202446 กวีนิพนธ์อเมริกันศตวรรษที่ 20 ถึงปัจจุบัน                   3 (3-0-6)
+American Poetry from the Twentieth Century to the Present
+2202449 ทฤษฎีวรรณกรรมวิจารณ์สมัยใหม่เบื้องต้น                    3 (3-0-6)
+Introduction to Modern Critical Theory
+2202450 เชกสเปียร์                                                 3 (3-0-6)
+Shakespeare
+3.3 แผนการศึกษา
+ปีที่ 1 ภาคการศึกษาต้น
+2202111         ภาษาอังกฤษ 1                                    3 หน่วยกิต
+22XXXXX*       วิชาพื้นฐานอักษรศาสตร์                            6 หน่วยกิต
+รวม                                9 หน่วยกิต
+ปีที่ 1 ภาคการศึกษาปลาย
+2202112       ภาษาอังกฤษ 2                              3 หน่วยกิต
+2202124         แปลอังกฤษขั้นต้น                                 3 หน่วยกิต
+22XXXXX** วิชาพื้นฐานอักษรศาสตร์                            9 หน่วยกิต
+รวม                                15 หน่วยกิต
+หมายเหตุ         * ให้นิสิตเลือกเรียน 2 รายวิชา จาก 2 กลุ่มวิชา ที่ไม่ช้ากลุ่มกัน
+** ให้นิสิตเลือกเรียน 3 รายวิชา จาก 3 กลุ่มวิชา ที่ไม่ช้ากลุ่มกัน
+ปีที่ 2 ภาคการศึกษาต้น
+2202201         ทักษะการพูดภาษาอังกฤษเชิงวิชาการ                3 หน่วยกิต
+หรือ
+2202208         การสนทนาและอภิปรายภาษาอังกฤษ                3 หน่วยกิต
+2202217         ทักษะการอ่านอังกฤษ                              3 หน่วยกิต
+2202224         ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น          3 หน่วยกิต
+2202234         การศึกษาวรรณกรรมอังกฤษเบื้องต้น                 3 หน่วยกิต
+22XXXXX        วิชาพื้นฐานอักษรศาสตร์                            6 หน่วยกิต
+รวม                              18 หน่วยกิต
+
+
+
+--- Page 9 ---
+
+9
+ปีที่ 2 ภาคการศึกษาปลาย
+2202201     ทักษะการพูดภาษาอังกฤษเชิงวิชาการ          3 หน่วยกิต
+หรือ
+2202208     การสนทนาและอภิปรายภาษาอังกฤษ          3 หน่วยกิต
+2202202     เรียงความอังกฤษ 1                    3 หน่วยกิต
+2202374     เรื่องแต่งและเรื่องจริงในร้อยแก้วภาษาอังกฤษ     3 หน่วยกิต
+22XXXXX     วิชาพื้นฐานอักษรศาสตร์                6 หน่วยกิต
+รวม                 15 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาต้น
+2202266      ภูมิหลังของวรรณคดีอังกฤษ               3 หน่วยกิต
+หรือ
+2202267      ภูมิหลังของวรรณคดีอเมริกัน               3 หน่วยกิต
+2202302     เรียงความอังกฤษ 2                    3 หน่วยกิต
+2202324     สัทศาสตร์เพื่อการออกเสียงภาษาอังกฤษ        3 หน่วยกิต
+หรือ
+2202326      วากยสัมพันธ์ภาษาอังกฤษ                3 หน่วยกิต
+2202313      แปลอังกฤษ-ไทย                     3 หน่วยกิต
+หรือ
+2202314      แปลไทย-อังกฤษ 1                    3 หน่วยกิต
+22XXXXX     วิชาเชี่ยวชาญวรรณคดี                  3 หน่วยกิต
+รวม                 15 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาปลาย
+2202304      การเขียนภาษาอังกฤษธุรกิจ               3 หน่วยกิต
+2202324     สัทศาสตร์เพื่อการออกเสียงภาษาอังกฤษ        3 หน่วยกิต
+หรือ
+2202326      วากยสัมพันธ์ภาษาอังกฤษ                3 หน่วยกิต
+2202313      แปลอังกฤษ-ไทย                     3 หน่วยกิต
+หรือ
+2202314      แปลไทย-อังกฤษ 1                    3 หน่วยกิต
+22XXXXX     วิชาเชี่ยวชาญวรรณคดี                  3 หน่วยกิต
+XXXXXXX     วิชาเลือก                         3 หน่วยกิต
+รวม                 15 หน่วยกิต
+
+
+
+--- Page 10 ---
+
+10
+ปีที่ 4 ภาคการศึกษาต้น
+2202327      อรรถศาสตร์และวัจนปฏิบัติศาสตร์           3 หน่วยกิต
+ภาษาอังกฤษเบื้องต้น
+หรือ
+2202328     ปริจเฉทภาษาอังกฤษ                   3 หน่วยกิต
+22XXXXX     วิชาเชี่ยวชาญวรรณคดี                  3 หน่วยกิต
+XXXXXXX    วิชาเลือก                         6 หน่วยกิต
+รวม                  12 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาปลาย
+2202327          อรรถศาสตร์และวัจนปฏิบัติศาสตร์                     3 หน่วยกิต
+ภาษาอังกฤษเบื้องต้น
+หรือ
+2202328     ปริจเฉทภาษาอังกฤษ                   3 หน่วยกิต
+22XXXXX     วิชาเชี่ยวชาญวรรณคดี                  3 หน่วยกิต
+XXXXXXX    วิชาเลือก                         6 หน่วยกิต
+รวม                  12 หน่วยกิต
+
+
+
+--- Page 11 ---
+
+11
+คําอธิบายรายวิชา
+
+2202124 แปลอังกฤษขั้นต้น                                                  3 (3-0-6)
+
+หลักการแปลเบื้องต้น การแปลประโยคและข้อความขนาดสั้นประเภทต่าง ๆ
+
+จากภาษาอังกฤษเป็นภาษาไทย
+
+และจากภาษาไทยเป็นภาษาอังกฤษ เน้นความถูกต้อง
+
+ความแตกต่างทางโครงสร้าง และความแตกต่างระหว่างการใช้ภาษาไทยกับภาษาอังกฤษ
+
+Introduction to Translation
+
+INTRO TRANSL
+
+Principles of basic translation; translation of various types of sentences and
+
+short passages from English to Thai and Thai to English, with emphasis on
+
+accuracy and differences in structure and usage between the two languages.
+2202201 ทักษะการพูดภาษาอังกฤษเชิงวิชาการ                                 3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+
+การฟังเพื่อจับใจความ การจดโน้ตย่อและย่อความเรืองที่ฟัง
+
+การอภิปรายบทเรียนในหัวข้อที่เป็นวิชาการ
+
+การนําเสนอความคิดและข้อโต้แย้งอย่างมีเหตุผลในรูปของสุนทรพจน์ขนาดสั้น
+
+Academic English Oral Skills
+
+ACAD ENG ORAL
+
+(CONDITION: PRER 2202112 ENGLISH Il OR 5500112 EXP ENG ll)
+
+Listening comprehension; note-taking and summarizing;
+
+discussion of texts on academic topics;
+
+logical presentation of ideas and arguments through short speeches.
+2202202 เรียงความอังกฤษ 1                                                   3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+
+การเขียนย่อหน้าที่สละสลวย การเขียนโครงร่างสําหรับเรียงความ การเขียนบทนํา
+
+เนื้อเรื่อง และบทสรุป การเขียนเรียงความขนาดสั้นในรูปแบบและหัวข้อที่หลากหลาย
+
+English Composition |
+
+ENG COMPO |
+
+(CONDITION: PRER 2202112 ENGLISH Il OR 5500112 EXP ENG Il)
+
+Writing of well-organized paragraphs; preparation of outlines
+
+for compositions; writing of the introductory paragraph,
+
+body paragraph and concluding paragraph;
+
+short composition writing in a variety of forms and on various topics.
+
+
+
+--- Page 12 ---
+
+12
+2202208     การสนทนาและอภิปรายภาษาอังกฤษ                                 3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+การสนทนาและอภิปรายหัวข้อต่าง ๆ ในชีวิตประจําวันและการทํางาน
+การฟังเพื่อจับใจความการแสดงความคิดและข้อโต้แย้งอย่างมีเหตุผล
+โดยการอภิปรายในชั้นเรียนและการนําเสนอหน้าชั้นเรียน
+English Conversation and Discussion
+ENG CONVER DISC
+(CONDITION: PRER 2202112 ENGLISH II OR 5500112 EXP ENG Il)
+Conversation and discussion on topics related to everyday life and work;
+listening comprehension; logical expression of ideas
+and arguments through class discussion and presentations.
+2202217 = MnweNIsd UaINAY                                               3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+การอ่านงานเขียนประเภทต่าง ๆ เพื่อความเข้าใจ การใช้กลวิธีการอ่านต่าง ๆ
+การย่อความ การวิเคราะห์โครงสร้างและการใช้ภาษาของเรื่องที่อ่าน
+English Reading Skills
+ENG READ SKILLS
+(CONDITION: PRER 2202112 ENGLISH II OR 5500112 EXP ENG Il)
+Reading comprehension of various text types; use of reading strategies;
+summary writing; analysis of structure and language of the materials.
+2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+สัทวิทยา วิทยาหน่วยคํา และโครงสร้างทางไวยากรณ์ระดับพื้นฐานในภาษาอังกฤษ
+Introduction to English Sound System and Structure
+INTRO SOUND STRUC
+(CONDITION: PRER 2202112 ENGLISH II OR 5500112 EXP ENG Il)
+Basic English phonology, morphology and syntax.
+2202234     การศึกษาวรรณกรรมอังกฤษเบื้องต้น                                  3 (3-0-6)
+ความรู้พื้นฐานด้านองค์ประกอบวรรณกรรมภาษาอังกฤษ
+ได้แก่ รูปแบบ แก่นเรื่อง และกลวิธีการประพันธ์
+การวิเคราะห์ร้อยแก้ว ร้อยกรอง และบทละครที่คัดสรร
+Introduction to the Study of English Literature
+INTRO STUD ENG LIT
+Introduction to the literary elements of English literature:
+form, theme, and technique;
+analysis of selected prose, poetry, and drama.
+
+
+
+--- Page 13 ---
+
+13
+2202263 ภภูมิหลังทางเทวตํานานและคัมภีร์ไบเบิลในวรรณกรรมอังกฤษ     3 (3-0-6)
+ภูมิหลังเทวตํานานกรีกและโรมัน และคัมภีร์ใบเบิลในงานวรรณกรรม
+การนําความรู้ไปใช้ในการตีความวรรณกรรมอังกฤษ
+Mythological and Biblical Background to English Literature
+MYTH BIBL ENG LIT
+Greco-Roman mythological and Biblical background to literature;
+their relevance to interpretation of English literature.
+2202265 กวรรณกรรมอังกฤษเชิงวิจักษ์                                              3 (3-0-6)
+ความรู้พื้นฐานด้านรูปแบบ แก่นเรื่อง และกลวิธีการประพันธ์วรรณกรรมภาษาอังกฤษ
+การวิจักษ์ การวิเคราะห์และวิจารณ์งานร้อยแก้ว ร้อยกรอง และบทละครที่คัดสรร
+English Literature Appreciation
+ENG LIT APP
+Introduction to the form, theme and technique of English literary works;
+appreciation, analysis and criticism of selected prose, poetry and drama.
+2202266 ภูมิหลังของวรรณคดีอังกฤษ                                               3 (3-0-6)
+ภูมิหลังทางประวัติศาสตร์ ปรัชญา สังคม และวัฒนธรรมของวรรณคดีอังกฤษ
+ตั้งแต่สมัยแองโกลแซกซันถึงคริสต์ศตวรรษที่ 20
+นักเขียนสําคัญและผลงานที่โดดเด่น การวิเคราะห์บทอ่านคัดสรร
+Background to British Literature
+BKGD BRIT LIT
+Historical, philosophical, social and cultural backgroun to British literature
+from the Anglo-Saxon period to the twentieth century;
+major writers and their representative works; analysis of excerpts.
+2202267 ภูมิหลังของวรรณคดีอเมริกัน                                              3 (3-0-6)
+ภูมิหลังทางประวัติศาสตร์ ปรัชญา สังคม และวัฒนธรรมของวรรณคดีอเมริกัน
+ตั้งแต่สมัยเริ่มแรกถึงคริสต์ศตวรรษที่ 20
+นักเขียนสําคัญและผลงานที่โดดเด่น การวิเคราะห์บทอ่านคัดสรร
+Background to American Literature
+BKGD AM LIT
+Historical, philosophical, social and cultural background to American literature
+from the beginning to the twentieth century;
+major writers and their representative works; analysis of excerpts.
+
+
+
+--- Page 14 ---
+
+14
+
+2202302 เรียงความอังกฤษ 2                                                       3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202202 เรียงความอังกฤษ 1)
+
+การเขียนเรียงความหัวข้อต่าง ๆ
+
+เน็นการเสนอความคิดอย่างมีเหตุผลและการใช้ภาษาที่ถูกต้องเหมาะสม
+
+ความรู้พื้นฐานในการอ้างอิง
+
+English Composition II
+
+ENG COMPO II
+
+(CONDITION: PRER 2202202 ENG COMPO 1)
+
+Writing of essays on various topics,
+
+with emphasis on logical presentation of ideas and proper use of language;
+
+introduction to the use of references.
+2202304 การเขียนภาษาอังกฤษธุรกิจ                                             3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202112 ภาษาอังกฤษ 2 หรือ
+
+5500112 ภาษาอังกฤษเพื่อการเรียนรู้ในชีวิตจริง 2)
+
+การเขียนจดหมายทางธุรกิจ ประวัติการศึกษาและการทํางาน
+
+บันทึกข้อความรายงานการประชุม และรายงาน
+
+โดยเน้นรูปแบบที่ถูกต้อง เนื้อหา ความชัดเจน และความกระชับของข้อความ
+
+English Business Writing
+
+ENG BUS WRIT
+
+(CONDITION: PRER 2202112 ENGLISH Il OR 5500112 EXP ENG Il)
+
+Writing of business letters, resumes, memorandums, minutes, and reports,
+
+with emphasis on correct form, content, clarity and conciseness of expression.
+2202313 แปลอังกฤษ-ไทย                                                   3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202124 การแปลอังกฤษขั้นต้น)
+
+การแปลตัวบทประเภทที่ให้ข้อมูล ประเภทแสดงความรู้สึก
+
+และประเภทโน้มน้าวจากภาษาอังกฤษเป็นภาษาไทย
+
+Translation: English-Thai
+
+TRANSL E-T
+
+(CONDITION: PRER 2202124 INTRO TRANSL)
+
+Translation of informative, expressive and vocative texts from English into Thai.
+2202314 แปลไทย-อังกฤษ 1                                                   3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202124 การแปลอังกฤษขั้นต้น)
+
+การแปลตัวบทประเภทที่ให้ข้อมูล และประเภทแสดงความรู้สึกจากภาษาไทยเป็นภาษาอังกฤษ
+
+Translation: Thai-English |
+
+TRANSL T-E |
+
+(CONDITION: PRER 2202124 INTRO TRANSL)
+
+Translation of informative and expressive texts from Thai into English.
+
+
+
+--- Page 15 ---
+
+15
+2202317 ททักษะการอ่านอังกฤษเชิงวิจารณ์                                           3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202217 ทักษะการอ่านอังกฤษ หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+หลักการอ่านเชิงวิจารณ์
+การอ่านเชิงวิเคราะห์และวิจารณ์บทความคัดสรรที่เกี่ยวกับประเด็น
+ซึ่งกําลังเป็นที่วิพากษ์วิจารณ์ในปัจจุบัน
+การอภิปรายเกี่ยวกับประเด็นต่าง ๆ โดยการพูดและการเขียน
+English Critical Reading Skills
+CRIT READ SKILL
+(CONDITION: PRER 2202217 ENG READ SKILLS OR CONSENT OF FACULTY)
+Principles of critical reading;
+analytical and critical reading of selected articles on current controversial issues;
+oral and written discussion of the issues.
+2202324 สัทศาสตร์เพื่อการออกเสียงภาษาอังกฤษ                               3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การใช้สัทอักษรในการถ่ายเสียงทั้งระดับคําและประโยค หน่วยเสียงและเสียงย่อย
+การลงเสียงหนักในระดับคําและการลงเสียงหนักในระดับประโยคที่ใช้ในสถานการณ์จริง
+เสียงในการพูดต่อเนื่อง ภาษาย่อยต่าง ๆ ของภาษาอังกฤษ
+Phonetics for English Pronunciation
+PHONE ENG PRONUN
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY))
+Use of phonetic alphabet in transcription at word and sentence levels;
+phonemes and allophones; word stress and sentence stress in real life situations;
+sounds in connected speech; varieties of English.
+2202326 วภากยสัมพันธ์ภาษาอังกฤษ                                                3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การวิเคราะห์โครงสร้างประโยคภาษาอังกฤษตามทฤษฎีไวยากรณ์ต่าง ๆ
+และการนําไปประยุกต์ใช้ในด้านต่าง ๆ
+English Syntax
+ENGLISH SYNTAX
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY))
+Analysis of English sentence structures according to
+syntactic theories and its application.
+
+
+
+--- Page 16 ---
+
+16
+2202327 อรรถศาสตร์และวัจนปฏิบัติศาสตร์ภาษาอังกฤษเบื้องต้น      3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+อรรถศาสตร์และวัจนปฏิบัติศาสตร์ระดับพื้นฐานภาษาอังกฤษ
+Introduction to English Semantics and Pragmatics
+INTRO ENG SEM PRAG
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY)
+Basic English semantics and pragmatics.
+2202328 ปริจเฉทภาษาอังกฤษ                                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+แนวคิดพื้นฐานในการวิเคราะห์ปริจเฉจ การวิเคราะห์ตัวบทพูดและตัวบทเขียนภาษาอังกฤษ
+การประยุกต์ใช้การวิเคราะห์ปริจเฉจภาษาอังกฤษ
+English Discourse
+ENG DISC
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY)
+Basic concepts in discourse analysis; analysis of English spoken and written texts;
+applications of English discourse analysis.
+2202340 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 19                           3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหา แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์ของวรรณกรรมร้อยแก้วอังกฤษในศตวรรษที่ 19
+การวิเคราะห์และวิจารณ์วรรณกรรมร้อยแก้วที่คัดสรร
+Nineteenth—Century British Fiction
+19C BRIT FICT
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Subject matter, theme, form and technique of nineteenth-century British fiction;
+analysis and criticism of selected fiction.
+2202341 วรรณกรรมอเมริกันศตวรรษที่ 19                                   3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหา แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์ของวรรณกรรมอเมริกันร้อยแก้วและร้อยกรอง
+ในศตวรรษที่ 19 การวิเคราะห์และวิจารณ์งานวรรณกรรมที่คัดสรร
+
+
+
+--- Page 17 ---
+
+17
+Nineteenth-Century American Literature
+19C AM LIT
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Subject matter, theme, form and technique of nineteenth-century
+American prose and poetry;
+analysis and criticism of selected works.
+
+2202342 บทละครศตวรรษที่ 20 ถึงปัจจุบัน                                    3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+เนื้อหา แก่นเรื่อง รูปแบบ
+
+และกลวิธีการประพันธ์ของบทละครอังกฤษและอเมริกันศตวรรษที่ 20 ถึงปัจจุบัน
+
+การวิเคราะห์และวิจารณ์บทละครที่คัดสรร
+
+Drama from the Twentieth Century to the Present
+
+DRAMA 20C-PRES
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Subject matter, theme, form and technique of British and American drama
+from the twentieth century to the present;
+
+analysis and criticism of selected plays.
+
+2202344 วรรณกรรมโลกร่วมสมัยที่ประพันธ์เป็นภาษาอังกฤษ       3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+การวิเคราะห์และวิจารณ์ผลงานที่คัดสรรจากงานประพันธ์ภาษาอังกฤษ
+
+โดยนักเขียนที่มิใช่ชาวอังกฤษหรืออเมริกัน
+
+Contemporary World Literature in English
+
+CONT WORLD LIT
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Analysis and criticism of selected works written in English
+
+by authors from cultures other than Britain and the United States.
+
+2202345 กวีนิพนธ์อังกฤษตั้งแต่ยุคอลิซาบีธันถึงยุคออกัสต้น                      3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์กวีนิพนธ์อังกฤษในสมัยอลิซาบีธัน
+
+เมตาฟิซิคัล คาวาเลียร์ และออกัสตัน การวิเคราะห์และวิจารณ์บทร้อยกรองที่คัดสรร
+
+
+
+--- Page 18 ---
+
+18
+British Poetry from the Elizabethans to the Augustans
+POETRY ELIZ-AUG
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR
+2200217 WORLD LIT OR CONSENT OF FACULTY)
+Subject matter, theme, form and technique of Elizabethan,
+Metaphysical, Cavalier and Augustan poetry;
+analysis and criticism of selected poems.
+
+2202349 กกวีนิพนธ์แห่งการขบถจากยุคโรแมนติกถึงยุควิกตอเรียน                  3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหา แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์กวีนิพนธ์อังกฤษ
+ตั้งแต่สมัยโรแมนติกถึงวิกตอเรียน จิตวิญญาณขบถของปัจเจกบุคคลต่อสังคมและการเมือง
+การวิเคราะห์และวิจารณ์บทร้อยกรองที่คัดสรร
+The Poetry of Rebellion: The Romantics to the Victorians
+POET REB ROMAN-VIC
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Subject matter, theme, form and technique of British poetry from
+the Romantic to the Victorian periods;
+
+individual spirit for social and political rebellion;
+
+analysis and criticism of selected poems.
+
+2202365 กวรรณกรรมร้อยแก้วภาษาอังกฤษยอดนิยม          3 (3-0-6)
+องค์ประกอบและประเภทของวรรณกรรมร้อยแก้วภาษาอังกฤษที่นิยมแพร่หลาย
+บริบททางสังคมและวัฒนธรรม การวิเคราะห์และวิจารณ์วรรณกรรมที่คัดสรร
+Popular Fiction in English
+POP FICT ENG
+Elements and genres of popular fiction in English;
+social and cultural contexts; analysis and criticism of selected works.
+
+2202370 วรรณกรรมฉบับแปลภาษาอังกฤษ                                         3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+การวิเคราะห์และวิจารณ์งานประพันธ์คัดสรรฉบับแปลเป็นภาษาอังกฤษ
+โดยผ่านมุมมองด้านสังคม วัฒนธรรมและวรรณกรรม
+
+
+
+--- Page 19 ---
+
+19
+Literature in English Translation
+LIT ENG TRANSL
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Analysis and criticism of selected works that have been translated
+into English from a social, cultural and literary perspective.
+
+2202371 วรรณกรรมเด็ก                                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+รูปแบบ เนื้อหา และบทบาทของวรรณกรรมเด็กที่ประพันธ์เป็นภาษาอังกฤษ
+
+การวิเคราะห์และวิจารณ์วรรณกรรมเด็กที่คัดสรร
+
+Children’s Literature
+
+CHILD LIT
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Form, content, and roles of children’s literature written in English;
+analysis and criticism of selected works.
+
+2202372     วรรณกรรมกับภาพยนตร์                                            3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+ความสัมพันธ์ระหว่างวรรณกรรมที่ประพันธ์เป็นภาษาอังกฤษกับภาพยนตร์
+รูปแบบที่เป็นลักษณะเฉพาะของศิลปะทั้งสองประเภท
+
+ประเด็นและปัญหาในการแปลงวรรณกรรมให้เป็นภาพยนตร์
+
+การวิเคราะห์และวิจารณ์บทวรรณกรรมที่คัดสรร
+
+Literature and Film
+
+LIT / FILM
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Relationship between literary works written in English and films;
+the distinctive nature of the two art forms;
+
+issues and problems involved in adapting literary works to films;
+analysis and criticism of selected literary works.
+
+
+
+--- Page 20 ---
+
+20
+2202373     วรรณกรรมสิ่งแวดล้อม                                              3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหา แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์ของวรรณกรรมสิ่งแวดล้อม
+ที่ประพันธ์เป็นภาษาอังกฤษ บทบาทของวรรณกรรมในการสร้างนิเวศสํานึก
+การวิเคราะห์และวิจารณ์งานที่คัดสรร
+Environmental Literature
+ENVI LIT
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Subject matter, theme, form, and
+technique of environmental literature written in English;
+roles of literature in fostering ecological awareness;
+analysis and criticism of selected works.
+2202374 เเรื่องแต่งและเรื่องจริงในร้อยแก้วภาษาอังกฤษ                          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การวิเคราะห์ วิจารณ์ และอภิปรายงานประพันธ์ร้อยแก้วรูปแบบต่าง ๆ
+เทคนิค กลวิธี และความสามารถในการดึงดูดผู้อ่าน
+Fiction and Fact in English Prose
+FICT FAC ENG PROSE
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Analysis, criticism and discussion of different types of prose works
+and their techniques, strategies and appeal.
+2202401 การเขียนเชิงสร้างสรรค์                                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202202 เรียงความอังกฤษ 1 หรือ
+2210230 พื้นฐานการเขียนเชิงสร้างสรรค์ หรือรายวิชาที่คณะอนุญาตให้เรียน)
+องค์ประกอบงานเขียนเชิงสร้างสรรค์ ได้แก่ มุมมอง สถานที่ เวลา อารมณ์และบรรยากาศ
+ตัวละคร บทสนทนา เนื้อเรื่อง การสับเปลี่ยนด้านเวลา และปมปริศนา
+การฝึกฝนกลวิธีการประพันธ์ที่ใช้จินตนาการ
+Creative Writing
+CREAT WRIT
+(CONDITION: PRER 2202202 ENG COMPO | OR 2210230 FUND CREAT WRIT
+OR CONSENT OF FACULTY)
+Elements of creative writing: point-of-view, setting, mood, characterization, dialog,
+plot, timeshift and suspense; practice of the techniques of imaginative writing.
+
+
+
+--- Page 21 ---
+
+21
+2202402* การเขียนเชิงสร้างสรรค์อิงเรื่องจริง               3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202202 เรียงความอังกฤษ 1 หรือ
+2210230 พื้นฐานการเขียนเชิงสร้างสรรค์ หรือรายวิชาที่คณะอนุญาตให้เรียน)
+องค์ประกอบของงานเขียนเชิงสร้างสรรค์อิงเรื่องจริง
+การวิเคราะห์ตัวบทงานเขียนเชิงสร้างสรรค์อิงเรื่องจริงที่คัดสรรและกลวิธีการประพันธ์
+การเขียนงานเขียนเชิงสร้างสรรค์ในรูปแบบและหัวข้อที่หลากหลาย
+Creative Non-Fiction Writing
+CREA NON FIC WRIT
+(CONDITION: PRER 2202202 ENG COMPO | OR 2210230 FUND CREAT WRIT OR
+CONSENT OF FACULTY)
+Elements of creative non-fiction;
+analysis of selected creative non-fiction works and their techniques;
+writing of creative non-fiction works in a variety of forms and on various topics.
+2202405 กการเขียนรายงานการค้นคว้า                                         3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202302 เรียงความอังกฤษ 2)
+การเขียนรายงานการค้นคว้าโดยเน็นกระบวนการ ได้แก่
+การเลือกหัวข้อที่เหมาะสม การใช้ห้องสมุดและเทคโนโลยีสารสนเทศ
+การสรุปใจความในรูปแบบต่าง ๆ การพัฒนาโครงร่าง และประเด็นหลัก การอ้างอิง
+Research Writing
+RESEARCH WRITING
+(CONDITION: PRER 2202302 ENG COMPO I)
+Writing of a research paper with emphasis on process:
+appropriate topic selection, use of library facilities and information technology,
+various methods of note-taking, outline and
+thesis development, presentation of references.
+2202408 การปราศรัยในที่ชุมชน                                              3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202201 ทักษะการพูดภาษาอังกฤษเชิงวิชาการ หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การพูดเพื่อสือความคิดอย่างได้ผล การเตรียมและกล่าวคําปราศรัยแบบต่าง ๆ
+เพื่อชักชวน กระตุ้น และจูงใจให้เชื่อ
+Public Speaking
+PUBLIC SPEAKING
+(CONDITION: PRER 2202201 ACAD ENG ORAL OR CONSENT OF FACULTY)
+Effective oral communication of ideas;
+preparation and delivery of various types of speeches to persuade,
+stimulate and convince.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 22 ---
+
+22
+
+2202414 แปลไทย-อังกฤษ 2                                                       3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202314 แปลไทย-อังกฤษ 1)
+
+การแปลตัวบทประเภททิให้ข้อมูล ประเภทแสดงความรู้สึก และประเภทโน้มน้าว
+
+จากภาษาไทยเป็นภาษาอังกฤษ โดยเน้นวิธีการแปลแบบตีความตัวบทต้นฉบับ
+
+และเรียบเรียงบทแปลให้เป็นธรรมชาติ
+
+Translation: Thai-English II
+
+TRANSL T-E Il
+
+(CONDITION: PRER 2202314 TRANSL T-E 1)
+
+Translation of informative,
+
+expressive, and vocative texts from Thai into English,
+
+with emphasis on interpretation of source texts and naturalness of target texts.
+2202421 ท วิวัฒนาการของภาษาอังกฤษ                                        3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น)
+
+ที่มาและวิวัฒนาการของภาษาอังกฤษ
+
+การเปลี่ยนแปลงทางเสียง ไวยากรณ์และคําศัพท์ เน้นปัจจัยด้านสังคม การเมือง
+
+และวัฒนธรรม ที่ก่อให้เกิดการเปลี่ยนแปลงนานาภาษาอังกฤษโลก
+
+Development of the English Language
+
+DEV ENG LANG
+
+(CONDITION: PRER 2202224 INTRO SOUND STRUC)
+
+Origin and development of the English language:
+
+phonological, grammatical and lexical changes, with emphasis on
+
+socio-political and cultural factors leading to such changes; World Englishes.
+2202426 ทหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 1                                  3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+การวิเคราะห์และการอภิปรายหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ
+
+Selected Topics in the English Language |
+
+SEL TOP ENG |
+
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY)
+
+Analysis and discussion of selected topics concerning the English language.
+2202427 ทหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ 2                                 3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202224 ระบบเสียงและโครงสร้างภาษาอังกฤษขั้นต้น
+
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+การวิเคราะห์และการอภิปรายหัวข้อคัดสรรเกี่ยวกับภาษาอังกฤษ
+
+
+
+--- Page 23 ---
+
+23
+Selected Topics in the English Language II
+SEL TOP ENG ||
+(CONDITION: PRER 2202224 INTRO SOUND STRUC OR CONSENT OF FACULTY)
+Analysis and discussion of selected topics concerning the English language.
+2202428 หหัวข้อคัดสรรในวรรณกรรมอังกฤษ 1                                 3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การวิเคราะห์และการวิจารณ์หัวข้อคัดสรรในวรรณกรรมอังกฤษ
+ผ่านมุมมองด้านสังคม วัฒนธรรม และวรรณกรรม
+Selected Topics in English Literature |
+SEL TOP ENG LIT |
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Analysis and criticism of selected topics in English literature from a social,
+cultural and literary perspective.
+2202429 รหัวข้อคัดสรรในวรรณกรรมอังกฤษ 2                                 3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การวิเคราะห์และการวิจารณ์หัวข้อคัดสรรในวรรณกรรมอังกฤษ
+ผ่านมุมมองด้านสังคม วัฒนธรรม และวรรณกรรม
+Selected Topics in English Literature I
+SEL TOP ENG LIT Il
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT OR
+CONSENT OF FACULTY)
+Analysis and criticism of selected topics in English literature
+from a social, cultural and literary perspective.
+2202441 วรรณกรรมร้อยแก้วอังกฤษศตวรรษที่ 20 ถึงปัจจุบัน                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์วรรณกรรมร้อยแก้วอังกฤษ
+ในศตวรรษที่ 20 ถึงปัจจุบัน
+การวิเคราะห์และวิจารณ์งานวรรณกรรมร้อยแก้วที่คัดสรร
+
+
+
+--- Page 24 ---
+
+24
+British Fiction from the Twentieth Century to the Present
+BRIT FICT 20C-PRES
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+Subject matter, theme, form and
+technique of British fiction from the twentieth century to the present;
+analysis and criticism of selected works.
+
+2202442 วรรณกรรมร้อยแก้วอเมริกันศตวรรษที่ 20 ถึงปัจจุบัน                    3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และ
+กลวิธีการประพันธ์ของวรรณกรรมร้อยแก้วอเมริกันในศตวรรษที่ 20 ถึงปัจจุบัน
+การวิเคราะห์และวิจารณ์งานวรรณกรรมร้อยแก้วที่คัดสรร
+American Fiction from the Twentieth Century to the Present
+AM FICT 20C-PRES
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Subject matter, theme, form and
+technique of American fiction from the twentieth century to the present;
+analysis and criticism of selected works.
+
+2202445 กกวีนิพนธ์อังกฤษศตวรรษที่ 20 ถึงปัจจุบัน                              3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และ
+กลวิธีการประพันธ์กวีนิพนธ์อังกฤษในศตวรรษที่ 20 ถึงปัจจุบัน
+การวิเคราะห์และวิจารณ์บทร้อยกรองที่คัดสรร
+British Poetry from the Twentieth Century to the Present
+BRIT POET 20C-PRES
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Subject matter, theme, form and
+technique of British poetry from the twentieth century to the present;
+analysis and criticism of selected poems.
+
+
+
+--- Page 25 ---
+
+25
+
+2202446 กกวีนิพนธ์อเมริกันศตวรรษที่ 20 ถึงปัจจุบัน                             3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และ
+
+กลวิธีการประพันธ์กวีนิพนธ์อเมริกันในศตวรรษที่ 20 ถึงปัจจุบัน
+
+การวิเคราะห์และวิจารณ์บทร้อยกรองที่คัดสรร
+
+American Poetry from the Twentieth Century to the Present
+
+AM POET 20C-PRES
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT OR
+CONSENT OF FACULTY)
+
+Subject matter, theme, form and technique of American poetry
+
+from the twentieth century to the present;
+
+analysis and criticism of selected poems.
+
+2202449 ทฤษฎีวรรณกรรมวิจารณ์สมัยใหม่เบื้องต้น          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2200217 วรรณกรรมโลก หรือรายวิชาที่คณะอนุญาตให้เรียน)
+
+ทฤษฎีวรรณกรรมวิจารณ์สมัยใหม่เบื้องต้น
+
+การประยุกต์ทฤษฎีวรรณกรรมวิจารณ์ในการวิเคราะห์ผลงานวรรณกรรมที่คัดสรร
+Introduction to Modern Critical Theory
+
+INTRO CRIT THEO
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2200217 WORLD LIT
+OR CONSENT OF FACULTY)
+
+Introduction to modern critical theories;
+
+application of these theories in analyzing selected literary works.
+
+2202450 เชกสเปียร์                                                                3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202234 การศึกษาวรรณกรรมอังกฤษเบื้องต้น หรือ
+2208102 ศิลปะการละครกับชีวิตประจําวัน หรือ 2200217 วรรณกรรมโลก หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+เนื้อหาสาระ แก่นเรื่อง รูปแบบ และกลวิธีการประพันธ์ของบทละครของเชกสเปียร์
+
+การวิเคราะห์และวิจารณ์บทละครที่คัดสรร
+
+Shakespeare
+
+SHAKESPEARE
+
+(CONDITION: PRER 2202234 INTRO STUD ENG LIT OR 2208102 DRAMA EVERYDAY
+OR 2200217 WORLD LIT OR CONSENT OF FACULTY)
+
+Subject matter, theme, form and technique of Shakespeare’s plays;
+
+analysis and criticism of selected plays.
+
+
+
+--- Page 26 ---
+
+26
+
+2202499 การศึกษาอิสระ: อังกฤษ                                             3 (1-0-8)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2202302 เรียงความอังกฤษ 2 และ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+อ่านและเขียนเชิงวิจารณ์ในเรื่องเฉพาะทางสาขาภาษาหรือวรรณคดีอังกฤษ
+
+Independent Study: English
+
+INDEPT STUD ENG
+
+(CONDITION: PRER 2202302 ENG COMPO II AND CONSENT OF FACULTY)
+
+Critical reading and writing on special topics
+
+in the field of English language or literature.
+
+

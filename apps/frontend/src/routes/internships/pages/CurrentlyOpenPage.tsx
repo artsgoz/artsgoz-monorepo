@@ -18,7 +18,7 @@ const SORT_OPTIONS = [
 ];
 
 export default function CurrentlyOpenPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('internships');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('all');
   const [sortOrder, setSortOrder] = useState('newest');
@@ -42,7 +42,7 @@ export default function CurrentlyOpenPage() {
         t(item.companyKey).toLowerCase().includes(searchQuery.toLowerCase());
       const matchesTag =
         selectedTag === 'all' ||
-        t(item.languageTagKey).toLowerCase() === t(`internships.tags.${selectedTag}`).toLowerCase();
+        t(item.languageTagKey).toLowerCase() === t(`tags.${selectedTag}`).toLowerCase();
       return matchesSearch && matchesTag;
     });
     if (sortOrder === 'oldest') list = [...list].reverse();
@@ -62,7 +62,7 @@ export default function CurrentlyOpenPage() {
             {/* Left: Title */}
             <div className="lg:w-[38%] flex flex-col justify-end pb-4">
               <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-bold text-[#404041] leading-[1.15] font-serif">
-                {t('internships.open.title')}
+                {t('open.title')}
               </h1>
             </div>
 
@@ -92,7 +92,7 @@ export default function CurrentlyOpenPage() {
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder={t('internships.open.search_placeholder')}
+                placeholder={t('open.search_placeholder')}
                 className="flex-1 bg-transparent text-[#404041] text-[16px] outline-none placeholder-[#99999A] font-[ChulaCharasNew]"
               />
               <Search size={20} className="text-[#8B8B8C] shrink-0" />
@@ -119,7 +119,7 @@ export default function CurrentlyOpenPage() {
             {/* Sort Row */}
             <div className="flex items-center gap-3">
               <span className="text-[14px] md:text-[16px] font-bold text-[#404041]">
-                {t('internships.sort.label')}
+                {t('sort.label')}
               </span>
               <div className="relative">
                 <button
@@ -159,7 +159,7 @@ export default function CurrentlyOpenPage() {
           {/* ── Section Title ── */}
           <div className="flex items-center gap-4 mb-6">
             <h2 className="text-[28px] md:text-[36px] font-bold text-[#404041] font-serif">
-              {t('internships.open.listing_title')}
+              {t('open.listing_title')}
             </h2>
             <span className="px-3 py-1 rounded-full bg-[#FCEFF4] text-[#DE5D8F] text-[14px] font-bold">
               {filteredInternships.length}
@@ -220,7 +220,7 @@ export default function CurrentlyOpenPage() {
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <Search size={56} className="text-gray-300 mb-4" />
-                <p className="text-[18px] text-gray-500 font-serif">{t('internships.no_results')}</p>
+                <p className="text-[18px] text-gray-500 font-serif">{t('no_results')}</p>
               </div>
             )}
           </div>

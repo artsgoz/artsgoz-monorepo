@@ -1,0 +1,605 @@
+--- Page 1 ---
+
+1
+สาขาวิชาเทคโนโลยีภาษาและสารสนเทศ
+(หลักสูตรปรับปรุง พ.ศ. 2566)
+1. หน่วยงานที่รับผิดชอบ
+ภาควิชาบรรณารักษศาสตร์ และภาควิชาภาษาศาสตร์ คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จํานวนหน่วยกิตรวมตลอดหลักสูตร 129 หน่วยกิต
+2.1 โครงสร้างหลักสูตร
+ภาควิชาบรรณารักษศาสตร์และภาควิชาภาษาศาสตร์เปิดสอนวิชาเฉพาะสาขาวิชาเทคโนโลยีภาษา
+และสารสนเทศแบบวิชาเอก-โท สําหรับนิสิตที่เลือกเรียนเป็นวิชาเอก ดังนี้
+แบบวิชาเอก - โท                                                                  66 หน่วยกิต
+1) วิชาเอก                                             48 หน่วยกิต
+(1) กลุ่มวิชาพื้นฐาน                                   18 หน่วยกิต
+วิชาบังคับ                                     18 หน่วยกิต
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                     12 หน่วยกิต
+วิชาบังคับ                               6 หน่วยกิต
+วิชาเลือก                                6 หน่วยกิต
+(3) กลุ่มวิชาเชี่ยวชาญ                                 18 หน่วยกิต
+วิชาบังคับเลือก                           9 หน่วยกิต
+วิชาเลือก                                9 หน่วยกิต
+2) วิชาโท                                              18 หน่วยกิต
+นิสิตเอกสาขาวิชาเทคโนโลยีภาษาและสารสนเทศเลือกเรียนวิชาโทสาขาอื่นในคณะหรือนอกคณะ
+ยกเว้นสาขาวิชาโทภาษาศาสตร์ สาขาวิชาโทสารสนเทศศึกษาและสาขาวิชาโทมนุษยศาสตร์ดิจิทัล
+3. รายวิชา
+3.1 แบบวิชาเอก - โท                                                                66 หน่วยกิต
+1) วิชาเอก                                                  48 หน่วยกิต
+(1) วิชาพื้นฐาน                                                        18 หน่วยกิต
+วิชาบังคับ                                                18 หน่วยกิต
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ       3 (3-0-6)
+System Design for Information Work
+2209304 ระบบไวยากรณ์                                            3 (3-0-6)
+Grammatical System
+2209305 ความหมายในภาษา                                         3 (3-0-6)
+Meaning in Language
+2209308 ระบบเสียง                                                 3 (3-0-6)
+Sound System
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 2 ---
+
+2
+2209368 กการวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์                 3 (3-0-6)
+Linguistic Analysis of Thai
+2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น                            3 (3-0-6)
+Introduction to Computational Linguistics
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                          12 หน่วยกิต
+วิชาบังคับ                                                6 หน่วยกิต
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                           3 (3-0-6)
+Statistics for Humanities Research
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์                    3 (3-0-6)
+Database Management for the Humanities
+วิชาเลือก                                                 6 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาดังต่อไปนี้
+2206491    โครงการสารสนเทศศึกษา 1                          3 (1-6-2)
+Project in Information Studies |
+2206492     โครงการสารสนเทศศึกษา 2                              3 (1-6-2)
+Project in Information Studies II
+2209491 'โครงการเทคโนโลยีภาษา 1                          3 (1-6-2)
+Project in Language Technology |
+2209492 โครงการเทคโนโลยีภาษา 2                               3 (1-6-2)
+Project in Language Technology II
+(3) กลุ่มวิชาเชี่ยวชาญ                                           18 หน่วยกิต
+วิชาบังคับเลือก                                          9 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาดังต่อไปนี้
+2200158 ภาษาศาสตร์ประยุกต์เพื่อการสอนภาษาไทย                  3 (3-0-6)
+ในฐานะภาษาต่างประเทศ
+Applied Linguistics for Teaching Thai as a Foreign Language
+2206216" ผู้ใช้และบริการสารสนเทศ                                 3 (3-0-6)
+Information Users and Services
+2206285 การแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล              3 (3-0-6)
+Digitization of Information Resources
+2206289      การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ              3 (3-0-6)
+Data Communications and Networking in Information Work
+2206290 /พื้นฐานมนุษยศาสตร์ดิจิทัล                                  3 (3-0-6)
+Introduction to Digital Humanities
+2206356* การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด   3 (3-0-6)
+Library Collection Management and Organization
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 3 ---
+
+3
+
+2206384 การจัดการสารสนเทศในสํานักงาน                           3 (3-0-6)
+Office Information Management
+
+2206386      การออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ         3 (3-0-6)
+User Interface Design in Information Work
+
+2206415 การตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ »3 (3-0-6)
+Marketing and Public Relations for Information Organizations
+
+2206442 เครื่องมือสําหรับมนุษยศาสตร์ดิจิทัล                          3 (3-0-6)
+Tools for Digital Humanities
+
+2206489 การศึกษาอิสระ                                           3 (1-6-2)
+Independent Study
+
+2209309      การแปรและการเปลี่ยนแปลงในภาษา                        3 (3-0-6)
+Variation and Change in Language
+
+2209344 ภาษาศาสตร์กับการแปล                                    3 (3-0-6)
+Linguistics and Translation
+
+2209369 ภาษาตระกูลขร้า-ไท                                        3 (3-0-6)
+Kra-Dai Languages
+
+2209370      ภาษาและความคิด                                          3 (3-0-6)
+Language and Mind
+
+2209371 ภาษาศาสตร์ภาษาโรมานช์เบื้องต้น                           3 (3-0-6)
+Introduction to Romance Linguistics
+
+2209373 ภาษากับวัฒนธรรม                                         3 (3-0-6)
+Language and Culture
+
+2209376 คลังข้อมูลภาษา                                            3 (3-0-6)
+Language Corpora
+
+2209377 ภาษาศาสตร์ภาคสนาม                                      3 (2-2-5)
+Field Linguistics
+
+2209378      ภาษากับการสื่อสารทางการตลาด                            3 (3-0-6)
+Language and Marketing Communications
+
+2209379 ภาษากับเพศ                                             3 (3-0-6)
+Language and Sex
+
+2209381 เทคโนโลยีวัจนะ                                            3 (3-0-6)
+Speech Technology
+
+2209382      การแปลภาษาด้วยคอมพิวเตอร์                              3 (3-0-6)
+Machine Translation
+
+2209384      การเข้าใจภาษาธรรมชาติ                                    3 (3-0-6)
+Natural Language Understanding
+
+2209390 เรรื่องคัดเฉพาะทางเทคโนโลยีภาษา                           3 (3-0-6)
+Selected Topics in Language Technology
+
+
+
+--- Page 4 ---
+
+4
+2209607 ภาษาศาสตร์เชิงคลินิก                                      3 (3-0-6)
+Clinical Linguistics
+วิชาเลือก                                                 9 หน่วยกิต
+นิสิตสามารถเลือกเรียนจากรายวิชาใดรายวิชาหนึ่งต่อไปนี้
+(1) กลุ่มวิชาบังคับเลือกในกลุ่มวิชาเชี่ยวชาญ
+(2 รายวิชาอื่น ๆ ในระดับปริญญาตรี หรือระดับบัณฑิตศึกษาในจุฬาลงกรณ์มหาวิทยาลัยได้
+โดยผ่านความเห็นชอบของคณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชา
+เทคโนโลยีภาษาและสารสนเทศ
+2) วิชาโท                                                                       18 หน่วยกิต
+นิสิตเอกสาขาวิชาเทคโนโลยีภาษาและสารสนเทศเลือกเรียนวิชาโทสาขาอื่นจากในคณะหรือนอกคณะ
+ยกเว้นสาขาวิชาโทภาษาศาสตร์ สาขาวิชาโทสารสนเทศศึกษา และสาขาวิชาโทมนุษยศาสตร์ดิจิทัล
+3.2 แผนการศึกษา
+แบบวิชาเอก-โท
+ปีที่ 2 ภาคการศึกษาต้น
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ     3 หน่วยกิต
+2209308 ระบบเสียง                                              3 หน่วยกิต
+2209304 ระบบไวยากรณ์                                        3 หน่วยกิต
+รวม                                   9 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาปลาย
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์              3 หน่วยกิต
+2209305 ความหมายในภาษา                                    3 หน่วยกิต
+2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น                      3 หน่วยกิต
+รวม                                   9 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาต้น
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                     3 หน่วยกิต
+2209368 กการวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์           3 หน่วยกิต
+9๐๐๐๐๐๐ วิชาเลือกกลุ่มวิชาเชี่ยวชาญ                          6 หน่วยกิต
+รวม                                    12 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาปลาย
+9๐๐๐๐๐๐ วิชาเลือกกลุ่มวิชาเชี่ยวชาญ                          9 หน่วยกิต
+2๐๐๐๐๐% ววิชาโท                                              6 หน่วยกิต
+รวม                                   15 หน่วยกิต
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 5 ---
+
+5
+
+ปีที่ 4 ภาคการศึกษาต้น
+9๐๐๐๐๐๐ วิชาเลือกกลุ่มวิชาเชี่ยวชาญ                           3 หน่วยกิต
+XXXXXXX วิชาบังคับเลือกกลุ่มวิชาข้อกําหนดเฉพาะ     3 หน่วยกิต
+XXXXXXX วิชาโท                                                6 หน่วยกิต
+
+รวม                                    12 หน่วยกิต
+
+ปีที่ 4 ภาคการศึกษาปลาย
+XXXXXXX วิชาบังคับเลือกกลุ่มวิชาข้อกําหนดเฉพาะ     3 หน่วยกิต
+XXXXXXX วิชาโท                                                6 หน่วยกิต
+รวม                                   9 หน่วยกิต
+
+
+
+--- Page 6 ---
+
+6
+คําอธิบายรายวิชา
+2200158 ภาษาศาสตร์ประยุกต์เพื่อการสอนภาษาไทยในฐานะภาษาต่างประเทศ 3 (3-0-6)
+ภาษาศาสตร์ประยุกต์สําหรับการเรียนการสอนภาษาไทยในฐานะภาษาต่างประเทศ
+การวิเคราะห์และแก้ปัญหาการเรียนภาษาไทยของผู้เรียนชาวต่างประเทศ
+วิธีการสอนและจัดกิจกรรมเสริมการเรียนภาษาไทยให้ชาวต่างชาติ
+Applied Linguistics for Teaching Thai as a Foreign Language
+APP LING TTFL
+Applied linguistics for learning and teaching of Thai asa foreign language;
+analyzing and solving foreigners’ problems in learning Thai;
+methods of teaching Thai and organizing activities that
+enhance Thai language learning for foreigners.
+2206216* ผู้ใช้และบริการสารสนเทศ                                               3 (3-0-6)
+พฤติกรรมสารสนเทศและความต้องการสารสนเทศของผู้ใช้
+การศึกษาผู้ใช้และประสบการณ์ผู้ใช้ หลักและขั้นตอนในการจัดบริการสารสนเทศ
+Information Users and Services
+INFO USER SERV
+Information behaviors and needs of users; user studies and user experience;
+principles and process of information service provision.
+2206285 กการแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล                        3 (3-0-6)
+หลักการพื้นฐานการแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล
+กระบวนการแปลงให้อยู่ในรูปดิจิทัล ประเด็นทางกฎหมายและจริยธรรม
+ทีเกี่ยวข้องกับการแปลงให้อยู่ในรูปดิจิทัล
+Digitization of Information Resources
+DIGIT INFO RES
+Fundamental principles of the digitization of information resources;
+digitization process; legal and ethical considerations in digitization.
+2206289 การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ                        3 (3-0-6)
+ความหมาย ประเภท และวิวัฒนาการของการสื่อสารข้อมูลและเครือข่าย
+ทฤษฎีการสื่อสารข้อมูลและเครือข่ายคอมพิวเตอร์ ฮาร์ดแวร์และซอฟต์แวร์
+ของการสื่อสารข้อมูลและเครือข่าย การส่งผ่านข้อมูลในแบบต่าง ๆ
+สถาปัตยกรรมการสื่อสาร การประยุกต์ใช้งานการสือสารข้อมูลในงานสารสนเทศ
+และการรักษาความปลอดภัยเครือข่าย
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 7 ---
+
+7
+Data Communications and Networking in Information work
+DATA COMM NETWORK
+Definition, types and evolution of data communications and networking;
+theories of data communications and computer network;
+hardware and software of data communications and networking;
+transmission of data in different ways; communication architecture;
+application of data communications in information work and network security.
+2206290 ศพื้นฐานมนุษยศาสตร์ดิจิทัล                                                3 (3-0-6)
+ภาพรวมของแนวคิด เครื่องมือ กิจกรรมและข้อถกเถียงทางมนุษยศาสตร์ดิจิทัล
+ความแตกต่างระหว่างมนุษยศาสตร์แบบดั้งเดิมกับมนุษยศาสตร์ดิจิทัล
+ผลของมนุษยศาสตร์ดิจิทัลต่อการวิจัยและศาสตร์ทางมนุษยศาสตร์
+Introduction to Digital Humanities
+INTRO DIGITAL HUMAN
+Overview of concepts, tools, activities and debates of digital humanities;
+contrast between traditional and digital humanities;
+effects of digital humanities on humanities research and disciplines.
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ            3 (3-0-6)
+ระบบการจัดการสารสนเทศ สถาปัตยกรรมสารสนเทศ
+การออกแบบกระบวนการและผลลัพธ์
+System Design for Information Work
+SYS DES INFO
+Information management systems; information architecture;
+process and output design.
+2206356* การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด            3 (3-0-6)
+กระบวนการจัดการทรัพยากรสารสนเทศห้องสมุดและเทคโนโลยีที่เกี่ยวข้อง
+กฎหมายเกี่ยวกับการจัดการทรัพยากรสารสนเทศห้องสมุด การดําเนินงานเทคนิคและเครื่องมือ
+เพื่อทํารายการและจัดหมวดหมู่ทรัพยากรสารสนเทศห้องสมุดประเภทต่าง ๆ การผลิตระเบียน
+รายการห้องสมุดออนไลน์ การจัดการภาระงานด้านการจัดระบบทรัพยากรสารสนเทศในห้องสมุด
+Library Collection Management and Organization
+LIB COL MGT & ORG
+Library collection management process and related technology;
+laws related to library collection management; operations, techniques
+and tools for cataloging and classifying various types of library information
+resources; production of online library catalogs; task management of information
+resource organization in libraries.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 8 ---
+
+8
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                                    3 (3-0-6)
+ข้อมูล ตัวแปร และการคํานวณเบื้องหลังสถิติ การสรุปข้อมูล การวัดความถี่
+การเปรียบเทียบระหว่างกลุ่ม ความสัมพันธ์ระหว่างตัวแปร การตีความ และการนําเสนอสถิติ
+Statistics for Humanities Research
+STAT HUMAN RES
+Data, variables, and computing behind statistics; summarizing data;
+measuring frequency; comparing between groups; relationships between variables;
+interpreting and presenting statistics.
+2206384 การจัดการสารสนเทศในสํานักงาน                                    3 (3-0-6)
+หลักและวิธีการจัดการสารสนเทศในสํานักงาน
+เทคโนโลยีสําหรับจัดเก็บและค้นคืนสารสนเทศและเอกสาร
+Office Information Management
+OFFICE INFO MGT
+Principles and methods for office information management;
+technology for the storage and retrieval of information and documents.
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์                              3 (3-0-6)
+ลักษณะฐานข้อมูลในสาขามนุษยศาสตร์ การออกแบบและพัฒนาฐานข้อมูลเชิงสัมพันธ์
+ภาษาเอสคิวแอล การออกแบบและพัฒนาฐานข้อมูลสําหรับข้อมูลแบบไม่มีโครงสร้าง
+Database Management for the Humanities
+DATA MGT HUMAN
+Characteristics of databases in the humanities; design and development
+of relational database; SQL language; design and development of database
+for unstructured data.
+2206386 กการออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ                   3 (3-0-6)
+แนวคิดสําคัญเกี่ยวกับการออกแบบส่วนต่อประสานที่มีผู้ใช้เป็นศูนย์กลาง
+วิจีการออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ การประเมินส่วนต่อประสานกับผู้ใช้
+User Interface Design in Information Work
+USE IN DE INF WRK
+Major concepts relevant to interface design which is user-centered; user interface
+design methods in information work; user interface evaluation.
+2206415 กการตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ                3 (3-0-6)
+หลักการตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ
+การตลาดสําหรับผลิตภัณฑ์สารสนเทศและบริการ กลยุทธ์การตลาดและการประชาสัมพันธ์
+การสร้างแบรนด์ การสร้างภาพลักษณ์ การสื่อสารการตลาดเชิงบูรณาการ
+
+
+
+--- Page 9 ---
+
+9
+Marketing and Public Relations for Information Organizations
+MKT PR INFO ORG
+Principles of marketing and public relations for information organizations;
+marketing for information products and services; marketing and public relations
+strategies; branding; image building; integrated marketing communication.
+2206442 เครื่องมือสําหรับมนุษยศาสตร์ดิจิทัล                                   3 (3-0-6)
+ขอบเขตของมนุษยศาสตร์ดิจิทัล เครื่องมือในการจัดการ วิเคราะห์
+และสร้างมโนทัศน์ข้อมูลในมนุษยศาสตร์ดิจิทัล
+Tools for Digital Humanities
+TOOLS DIGIT HUMAN
+Scope of digital humanities; tools for data management, analysis,
+and visualization in digital humanities.
+2206489 การศึกษาอิสระ                                                     3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่คณะอนุญาตให้เรียน)
+การวิจัยเรื่องคัดเฉพาะทางสารสนเทศศึกษาตามความสนใจของผู้ศึกษา การนําเสนอผลงานวิจัย
+Independent Study
+INDEP STUDY
+(CONDITION: CONSENT OF FACULTY)
+Research on a selected topic of student’s interest in information studies;
+presentation of research work.
+2206491 lasanisarsdumearinw 1                                       3 (1-6-2)
+โครงการวิจัยพื้นฐานหรือโครงการวิจัยและพัฒนาด้านสารสนเทศศึกษา
+Project in Information Studies |
+PROJ INFO STUD |
+Basic research or research and development project in information studies.
+2206492 โครงการสารสนเทศศึกษา 2                                         3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2206491 โครงการสารสนเทศศึกษา 1)
+โครงการวิจัยพื้นฐานหรือโครงการวิจัยและพัฒนาด้านสารสนเทศศึกษา
+Project in Information Studies II
+PROJ INFO STUD II
+(CONDITION: PRER 2206491 PROJ INFO STUD |)
+Basic research or research and development project in information studies.
+
+
+
+--- Page 10 ---
+
+10
+2209304 ระบบไวยากรณ์                                                        3 (3-0-6)
+มโนทัศน์ของคํา วลี และประโยค โครงสร้างของคํา วลี และประโยค ชนิดของคํา
+ประเภททางไวยากรณ์ ความสัมพันธ์ของคําในวลี วากยสัมพันธ์ของวลีในประโยค
+วิเคราะห์ระบบไวยากรณ์ในข้อมูลที่มีความยากระดับกลางในภาษาต่าง ๆ
+Grammatical System
+GRAM SYSTEM
+Concepts of words, phrases, and sentences; word, phrase, and sentence structures;
+parts of speech; grammatical categories; relationship of words in a phrase;
+relationship of phrases in a sentence; analysis of the grammatical system
+in intermediate-level data.
+2209305 คความหมายในภาษา                                                3 (3-0-6)
+นิยามของความหมายในภาษา ความหมายประเภทต่าง ๆ ในระดับคํา
+แนวทางการกําหนดความหมายของคํา วงความหมาย ความหมายเหมือน
+ความหมายตรงกันข้าม และการพ้องรูปพ้องเสียง
+Meaning in Language
+MEANING LANG
+Definition of linguistic meaning; different types of lexical meaning;
+approaches in determining lexical meaning; semantic fields;
+synonymy, antonymy, and homonymy.
+2209308 ระบบเสียง                                                             3 (3-0-6)
+มโนทัศน์สําคัญและพื้นฐานทฤษฎีทางสรีรสัทศาสตร์ กลสัทศาสตร์
+โสตสัทศาสตร์และสัทวิทยา การฝึกวิเคราะห์ระบบเสียง
+ปรากฏการณ์ทางสัทวิทยาที่น่าสนใจ
+Sound System
+SOUND SYSTEM
+Important concepts and basic theoretical knowledge in
+articulatory phonetics, auditory phonetics and phonological theory;
+practice in phonological analysis; interesting phonological phenomena.
+2209309 การแปรและการเปลี่ยนแปลงในภาษา                                 3 (3-0-6)
+การแปรของภาษาตามปัจจัยทางภาษาและสังคม
+การเปลี่ยนแปลงของภาษาประเภทต่าง ๆ ปัจจัยที่ทําให้ภาษาเปลี่ยนแปลง
+ความสัมพันธ์ระหว่างการแปรของภาษากับการเปลี่ยนแปลงของภาษา
+Variation and Change in Language
+VAR CHG LANG
+Language variation according to linguistic and social factors;
+types of language change; factors contributing to language change;
+relationship between language variation and change.
+
+
+
+--- Page 11 ---
+
+11
+2209344 ภาษาศาสตร์กับการแปล                                                3 (3-0-6)
+ความรู้เรืองลักษณะและปรากฏการณ์ต่าง ๆ ที่มือยู่ในภาษา
+ซึ่งได้จากการศึกษาทางภาษาศาสตร์อันเป็นพื้นฐานสําหรับการแปล
+Linguistics and Translation
+LING TRANSL
+Knowledge of characteristics and phenomena in language
+derived from linguistic studies serving as a foundation for translation.
+2209368 การวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์                           3 (3-0-6)
+ลักษณะสําคัญของระบบเสียงและระบบไวยากรณ์ภาษาไทย
+ปรากฏการณ์ทางเสียง ไวยากรณ์ ความหมาย การเปลี่ยนแปลง
+และการแปรในภาษาไทยที่คัดสรรและแนวทางการวิเคราะห์
+การประยุกต์ใช้ในด้านเทคโนโลยีภาษาและแวดวงอื่นๆ
+Linguistic Analysis of Thai
+LING ANALYS THAI
+Characteristics of the sound system and the grammatical system of Thai;
+selected phenomena relating to sound, grammar, meaning, language change,
+and language variation in Thai and their analyses;
+application in language technology and other domains.
+2209369 กภาษาตระกูลขร้า-ไท                                                3 (3-0-6)
+พัฒนาการของภาษาตระกูลขร้า-ไท ความสัมพันธ์ระหว่างภาษาตระกูลขร้า-ไท
+ความสัมพันธ์ระหว่างภาษาตระกูลขร้า-ไทกับภาษาตระกูลอื่น
+วิจีการศึกษาภาษาตระกูลขร้า-ไท ภาษาไทยในฐานะภาษาตระกูลขร้า-ไท
+ประเด็นคัดสรรเกี่ยวกับภาษาตระกูลขร้า-ไท
+Kra-Dai Languages
+KRA DAI LANGUAGES
+Development of Kra-Dai languages; relationship among Kra-Dai languages;
+relationship between Kra-Dai languages and other language families;
+methods for studying Kra-Dai languages; Thai as a Kra-Dai language;
+selected issues concerning Kra-Dai languages.
+2209370 ภาษาและความคิด                                                  3 (3-0-6)
+ความสามารถทางภาษาของมนุษย์และสัตว์ การรับภาษาของเด็ก
+การรับรู้เสียงพูด การเข้าใจภาษา การผลิตภาษา การรับภาษาที่สอง
+สมองกับภาษา ภาษา วัฒนธรรม และปริชาน
+Language and Mind
+LANG MIND
+Language ability in human beings and animals; child language acquisition;
+speech perception; language comprehension; language production;
+second language acquisition; brain and language; language, culture and cognition.
+
+
+
+--- Page 12 ---
+
+12
+2209371 ภาษาศาสตร์ภาษาโรมานซ์เบื้องต้น                                   3 (3-0-6)
+นิยามกลุ่มภาษาโรมานซ์ ความหลากหลายของภาษาในกลุ่มโรมานซ์
+ลักษณะสําคัญของภาษากลุ่มโรมานซ์ พัฒนาการของภาษากลุ่มโรมานซ์จากภาษาละติน
+สถานการณ์ทางภาษาของภาษากลุ่มโรมานซ์ในโลกปัจจุบัน
+Introduction to Romance Linguistics
+INTRO ROMANCE LING
+Definition of the Romance language family; diversity of Romance languages;
+characteristics of Romance languages; development from Latin into Romance
+languages; current linguistic situation of Romance languages.
+2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น                                       3 (3-0-6)
+แนวคิดและทฤษฎีพื้นฐานที่เกี่ยวข้องกับการประมวลผลภาษาธรรมชาติ
+ระบบการประมวลผลภาษาธรรมชาติแบบใช้กฎแบบอิงสถิติและแบบเครือข่ายนิวรอล
+การประยุกต์ใช้งานการประมวลผลภาษาธรรมชาติในงานต่าง ๆ
+Introduction to Computational Linguistics
+INTRO COMPU LING
+Basic concepts and theories related to natural language processing;
+rule-based, statistical-based, and neural network approaches;
+applications of natural language processing.
+2209373 ภาษากับวัฒนธรรม                                                     3 (3-0-6)
+ลักษณะของภาษากับลักษณะของวัฒนธรรม ภาษากับโลกทัศน์
+การจําแนกประเภททางไวยากรณ์และทางวัฒนธรรม
+ทฤษฎีและงานวิจัยเกี่ยวกับคําเรียกสี คําเรียกญาติ และอุปลักษณ์
+ภาษากับเพศ ระบบภาษาและวัฒนธรรมของชุมชนต่าง ๆ
+Language and Culture
+LANG CULTURE
+Characteristics of language and culture; language and world view;
+grammatical and cultural categories; theories and research on color terms,
+kinship terms, and metaphor; language and gender; linguistic and cultural systems
+of various communities.
+2209376 คคลังข้อมูลภาษา                                                    3 (3-0-6)
+การออกแบบและการสร้างคลังข้อมูลภาษา
+เครื่องมือและวิธีการสร้าง ค้นคืน และวิเคราะห์คลังข้อมูลภาษา
+การใช้คลังข้อมูลในการวิจัยและการประยุกต์ใช้คลังข้อมูล
+Language Corpora
+LANG CORPORA
+Design and construction of language corpora;
+tools and methodology in constructing, retrieving,
+and analyzing language corpora; research use and application of corpora.
+
+
+
+--- Page 13 ---
+
+13
+2209377 ภาษาศาสตร์ภาคสนาม                                                    3 (2-2-5)
+(เงื่อนไขรายวิชา : รายวิชาที่คณะอนุญาตให้เรียน)
+เทคนิคการเก็บข้อมูลภาษาเพื่อการวิเคราะห์ทางภาษาศาสตร์แง่มุมต่าง ๆ
+การบันทึกและการวิเคราะห์ข้อมูลทิได้จากการเก็บข้อมูลภาคสนาม
+Field Linguistics
+FLD LING
+(CONDITION : CONSENT OF FACULTY)
+Techniques for eliciting language data for several aspects of linguistic analysis;
+recording and analysis of linguistic data from the field.
+2209378     ภาษากับการสื่อสารทางการตลาด                                     3 (3-0-6)
+มโนทัศน์สําคัญทางภาษาศาสตร์ที่เกี่ยวข้องกับการสื่อสารทางการตลาด
+องค์ประกอบทางเสียงคําและความหมายของชือตราสินค้าที่สัมพันธ์กับการรับรู้คุณลักษณะสินค้า
+บทบาทของโครงสร้างและการใช้ภาษาในกลยุทธ์การสื่อสารทางการตลาด
+Language and Marketing Communications
+LANG MKTG COM
+Major linguistic concepts relating to marketing communications;
+sound, word and meaning components of brand names relating to
+the perception of product attributes; roles of linguistic structure
+and use in marketing communications strategy.
+2209379 ภาษากับเพศ                                                             3 (3-0-6)
+มโนทัศน์สําคัญทางภาษาศาสตร์ที่เกี่ยวข้องกับความสัมพันธ์ของภาษากับเพศ
+ทั้งเพศสรีร เพศสภาวะและเพศวิถี การแปรของภาษาตามเพศ
+การใช้ภาษาเพื่อบ่งชี้เพศ การสร้างและแสดงตัวตนทางเพศผ่านภาษา
+บทบาทของภาษาที่เกี่ยวข้องกับความหลากหลายทางเพศในสังคม
+Language and Sex
+LANG SEX
+Major linguistic concepts relating to the relationship between language and
+sex/gender/sexuality; linguistic variation and sex/gender/sexuality;
+use of language to index sex/gender/sexuality; construction and presentation
+of sex/gender/sexuality; of the self through language; roles of language
+as related gender/sex/sexual diversity in society.
+2209381 เทคโนโลยีวัจนะ                                                    3 (3-0-6)
+ลักษณะทางกลสัทศาสตร์ของเสียงพูด ระเบียบวิธีทางสถิติสําหรับการวิเคราะห์เสียงพูด
+ระบบรู้จําเสียงพูดอัตโนมัติ การสังเคราะห์เสียงพูดจากข้อความ
+Speech Technology
+SPEECH TECH
+Acoustic characteristics of speech; statistical methods for speech analysis;
+automatic speech recognition; text-to-speech synthesis.
+
+
+
+--- Page 14 ---
+
+14
+2209382 การแปลภาษาด้วยคอมพิวเตอร์                                      3 (3-0-6)
+มโนทัศน์พื้นฐานและวิธีการทางสถิติที่เกี่ยวข้องกับการแปลภาษาด้วยคอมพิวเตอร์
+การแปลโดยยืดคําเป็นหลัก การแปลโดยยืดวลีเป็นหลัก
+การแปลโดยยึดวากยสัมพันธ์เป็นหลัก การฝึกพัฒนาระบบการแปลภาษา
+Machine Translation
+MACHINE TRANSL
+Basic concepts and statistical methods in machine translation;
+word-based translation; phrase-based translation;
+syntax-based translation; practicum in building translation systems.
+2209384 การเข้าใจภาษาธรรมชาติ                                            3 (3-0-6)
+ระบบต่าง ๆ สําหรับสกัดสารสนเทศจากข้อมูลภาษา ได้แก่ การสกัดหัวเรื่อง
+การวิเคราะห์อารมณ์ การรู้จําชื่อเฉพาะ การแก้ปัญหาเอนทิติ การแก้ปัญหา
+การอ้างอิงร่วมและการสกัดหาความสัมพันธ์ การประยุกต์ใช้การเข้าใจภาษาธรรมชาติ
+ในงานด้านเทคโนโลยีภาษาและสารสนเทศ
+Natural Language Understanding
+NLU
+Systems to extract information from language data: topic extraction,
+sentiment analysis, named-entity recognition, entity resolution,
+coreference resolution, and relation extraction; application of natural language
+understanding in language and information technology.
+2209390 เรื่องคัดเฉพาะทางเทคโนโลยีภาษา                                    3 (3-0-6)
+เรื่องทางเทคโนโลยีภาษาที่น่าสนใจ
+Selected Topics in Language Technology
+SEL TOP LANG TECH
+Interesting topics in language technology.
+2209491 โครงการเทคโนโลยีภาษา 1                                     3 (1-6-2)
+โครงการวิจัยพื้นฐานหรือวิจัยและพัฒนาด้านเทคโนโลยีภาษา
+Project in Language Technology |
+PROJ LANG TECH |
+Basic research or research and development project in language technology.
+2209492 โครงการเทคโนโลยีภาษา 2                                         3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2209491 โครงการเทคโนโลยีภาษา 1)
+โครงการวิจัยพื้นฐานหรือวิจัยและพัฒนาด้านเทคโนโลยีภาษา
+Project in Language Technology II
+PROJ LANG TECH Il
+(CONDITION: PRER 2209491 PROJ LANG TECH 1)
+Basic research or research and development project in language technology.
+
+
+
+--- Page 15 ---
+
+15
+
+2209607 ภาษาศาสตร์เชิงคลินิก                                                  3 (3-0-6)
+
+ขอบเขตของภาษาศาสตร์เชิงคลินิก ภาษากับสมอง ความผิดปกติและความบกพร่อง
+
+ด้านภาษาระหว่างและหลังการพัฒนาภาษา ประเภทของความผิดปกติทางภาษา
+
+จริยธรรมการวิจัยในคน งานวิจัยด้านภาษาศาสตร์เชิงคลินิก
+
+Clinical Linguistics
+
+CLINIC LING
+
+Scope of clinical linguistics and brain; developmental and acquired language
+
+disorders/impairments; types of language disorders; human research ethics;
+
+research in clinical linguistics.
+
+

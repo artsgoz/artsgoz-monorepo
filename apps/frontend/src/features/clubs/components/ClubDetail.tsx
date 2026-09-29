@@ -9,14 +9,14 @@ interface ClubDetailProps {
 }
 
 export function ClubDetail({ clubId }: ClubDetailProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('clubs');
   const selectedClub = MOCK_CLUBS.find((c) => c.id === clubId) || MOCK_CLUBS.find((c) => c.id === 'club-04') || MOCK_CLUBS[0];
 
   // Dynamic Fallbacks for clubs that don't have detailed fields populated
   const aboutText = selectedClub.aboutTextKey ? t(selectedClub.aboutTextKey) : t(selectedClub.descriptionKey);
   const activitiesText = selectedClub.activitiesTextKey 
     ? t(selectedClub.activitiesTextKey)
-    : t('clubs.detail.default_activities_desc', { category: t(selectedClub.categoryKey) });
+    : t('detail.default_activities_desc', { category: t(selectedClub.categoryKey) });
   
   const instagramUsername = selectedClub.instagram || 'arts_goz';
   const facebookUrl = selectedClub.facebook || 'https://www.facebook.com/artsgozcu/';
@@ -43,13 +43,13 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
       }))
     : [
         {
-          title: t('clubs.detail.default_act01_title', { name: t(selectedClub.nameKey) }),
-          description: t('clubs.detail.default_act01_desc'),
+          title: t('detail.default_act01_title', { name: t(selectedClub.nameKey) }),
+          description: t('detail.default_act01_desc'),
           imageUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&fit=crop'
         },
         {
-          title: t('clubs.detail.default_act02_title'),
-          description: t('clubs.detail.default_act02_desc'),
+          title: t('detail.default_act02_title'),
+          description: t('detail.default_act02_desc'),
           imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&fit=crop'
         }
       ];
@@ -63,15 +63,15 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
       }))
     : [
         {
-          title: t('clubs.detail.default_ach01_title'),
-          subtitle: t('clubs.detail.default_ach01_sub'),
-          description: t('clubs.detail.default_ach01_desc'),
+          title: t('detail.default_ach01_title'),
+          subtitle: t('detail.default_ach01_sub'),
+          description: t('detail.default_ach01_desc'),
           imageUrl: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1100&h=400&fit=crop'
         },
         {
-          title: t('clubs.detail.default_ach02_title'),
-          subtitle: t('clubs.detail.default_ach02_sub'),
-          description: t('clubs.detail.default_ach02_desc'),
+          title: t('detail.default_ach02_title'),
+          subtitle: t('detail.default_ach02_sub'),
+          description: t('detail.default_ach02_desc'),
           imageUrl: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1100&h=400&fit=crop'
         }
       ];
@@ -107,7 +107,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
         {/* Club Title */}
         <h1 className="text-[32px] md:text-[36px] font-bold leading-tight select-none flex items-center gap-3">
           <span className="w-2.5 h-8 bg-[#DE5D8F] rounded-full shrink-0" />
-          {t('clubs.detail.title_suffix', { name: t(selectedClub.nameKey) })}
+          {t('detail.title_suffix', { name: t(selectedClub.nameKey) })}
         </h1>
 
         {/* Gallery Carousel & Info Boxes Row */}
@@ -154,7 +154,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
             {/* Box 1: What is this club about? */}
             <div className="flex flex-col gap-2 bg-white border-l-4 border-[#DE5D8F] pl-4 py-1">
               <h3 className="text-[20px] font-bold text-black flex items-center gap-2">
-                {t('clubs.detail.about_title', { name: t(selectedClub.nameKey) })}
+                {t('detail.about_title', { name: t(selectedClub.nameKey) })}
               </h3>
               <p className="text-[15px] leading-relaxed text-[#404041] font-sans font-medium text-justify">
                 {aboutText}
@@ -164,7 +164,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
             {/* Box 2: What do we do? */}
             <div className="flex flex-col gap-2 bg-white border-l-4 border-[#DE5D8F] pl-4 py-1">
               <h3 className="text-[20px] font-bold text-black flex items-center gap-2">
-                {t('clubs.detail.what_we_do')}
+                {t('detail.what_we_do')}
               </h3>
               <p className="text-[15px] leading-relaxed text-[#404041] font-sans font-medium text-justify">
                 {activitiesText}
@@ -178,7 +178,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
       <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-6 bg-[#DE5D8F] rounded-full shrink-0" />
-          <h2 className="text-[20px] font-bold">{t('clubs.detail.contacts')}</h2>
+          <h2 className="text-[20px] font-bold">{t('detail.contacts')}</h2>
         </div>
 
         <div className="flex flex-wrap gap-4 items-center w-full">
@@ -222,7 +222,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
               <div className="flex flex-col items-start leading-tight">
                 <span className="text-[13px] text-gray-500 font-sans">Facebook</span>
                 <span className="text-[15px] font-sans font-bold text-black group-hover:text-[#DE5D8F] transition-colors">
-                  {t('clubs.detail.fb_prefix', { name: t(selectedClub.nameKey) })}
+                  {t('detail.fb_prefix', { name: t(selectedClub.nameKey) })}
                 </span>
               </div>
             </a>
@@ -272,7 +272,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
       <div className="flex flex-col gap-8 w-full border-t border-gray-100 pt-10">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-6 bg-[#DE5D8F] rounded-full shrink-0" />
-          <h2 className="text-[24px] font-bold">{t('clubs.detail.activities')}</h2>
+          <h2 className="text-[24px] font-bold">{t('detail.activities')}</h2>
         </div>
 
         {/* Staggered Grid of Activities */}
@@ -323,7 +323,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
                 flex items-center justify-center gap-2 select-none
               "
             >
-              {showAllActivities ? t('clubs.detail.show_less') : t('clubs.detail.see_more')}
+              {showAllActivities ? t('detail.show_less') : t('detail.see_more')}
             </button>
           </div>
         )}
@@ -333,7 +333,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
       <div className="flex flex-col gap-8 w-full border-t border-gray-100 pt-10">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-6 bg-[#DE5D8F] rounded-full shrink-0" />
-          <h2 className="text-[24px] font-bold">{t('clubs.detail.achievements')}</h2>
+          <h2 className="text-[24px] font-bold">{t('detail.achievements')}</h2>
         </div>
 
         {/* achievements Card List */}
@@ -385,7 +385,7 @@ export function ClubDetail({ clubId }: ClubDetailProps) {
                 flex items-center justify-center gap-2 select-none
               "
             >
-              {showAllAchievements ? t('clubs.detail.show_less') : t('clubs.detail.see_more')}
+              {showAllAchievements ? t('detail.show_less') : t('detail.see_more')}
             </button>
           </div>
         )}

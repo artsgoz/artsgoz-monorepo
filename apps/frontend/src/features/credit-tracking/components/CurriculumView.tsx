@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquareWarning } from 'lucide-react';
+import { MessageSquareWarning, ChevronDown, ChevronRight, BookOpen } from 'lucide-react';
 import type { Subject, AcademicProfile } from '../types.js';
+import { MAJOR_CURRICULUMS, MINOR_CURRICULUMS } from '@org/yellow-card-shared';
+import type { CourseDetail } from '@org/yellow-card-shared';
 
 interface CurriculumViewProps {
   subjects?: Subject[];
@@ -9,46 +12,81 @@ interface CurriculumViewProps {
 }
 
 export function CurriculumView({ profile }: CurriculumViewProps) {
-  const { t } = useTranslation();
-  const majorName = profile?.major ?? 'credit_tracking.majors.default';
-  const minorName = profile?.minor ?? 'credit_tracking.minors.default';
+  const { t } = useTranslation('credit_tracking');
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+
+  const majorNameKey = profile?.major ? profile.major.replace(/^credit_tracking\./, '') : 'majors.default';
+  const minorNameKey = profile?.minor ? profile.minor.replace(/^credit_tracking\./, '') : 'minors.default';
+
+  // Resolve major key (e.g. "majors.thai" -> "thai")
+  const majorKey = profile?.major ? profile.major.replace(/^credit_tracking\./, '').replace(/^majors\./, '') : 'thai';
+  const minorKey = profile?.minor ? profile.minor.replace(/^credit_tracking\./, '').replace(/^minors\./, '') : '';
+
+  const majorInfo = MAJOR_CURRICULUMS[majorKey];
+  const minorInfo = MINOR_CURRICULUMS[minorKey];
+
+  const majorDisplayTitle = majorInfo
+    ? `${majorInfo.nameTh} (${majorInfo.revision})`
+    : t(majorNameKey);
+
+  const totalCreditsDisplay = majorInfo
+    ? `${majorInfo.totalCredits} หน่วยกิต`
+    : '129-153 หน่วยกิต';
 
   const curriculumRows = [
     {
-      part: t('credit_tracking.curriculum.major_title'),
-      credits: 48,
-      detail: t('credit_tracking.curriculum.major_details'),
+      part: t('curriculum.major_title'),
+      credits: majorInfo?.breakdown.major ?? 48,
+      detail: t('curriculum.major_details'),
     },
     {
-      part: t('credit_tracking.curriculum.specific_courses'),
-      credits: 18,
-      detail: '',
+      part: t('curriculum.basic_courses'),
+      credits: majorInfo?.breakdown.majorCompulsory ?? 18,
+      detail: 'กลุ่มวิชาพื้นฐาน (บังคับ)',
       isIndented: true,
     },
     {
-      part: t('credit_tracking.curriculum.basic_courses'),
-      credits: 12,
-      detail: '',
+      part: t('curriculum.specific_courses'),
+      credits: majorInfo?.breakdown.majorSpecified ?? 12,
+      detail: 'กลุ่มวิชาข้อกำหนดเฉพาะ (วิชาเลือก)',
       isIndented: true,
     },
     {
-      part: t('credit_tracking.curriculum.specialized_courses'),
-      credits: 18,
-      detail: '',
+      part: t('curriculum.specialized_courses'),
+      credits: majorInfo?.breakdown.majorSpecialized ?? 18,
+      detail: 'กลุ่มวิชาเชี่ยวชาญ (วิชาเลือก)',
       isIndented: true,
     },
     {
-      part: t('credit_tracking.curriculum.minor_title'),
-      credits: 18,
-      detail: minorName !== 'credit_tracking.minors.default' && minorName !== 'credit_tracking.minors.none'
-        ? t('credit_tracking.curriculum.minor_name', { name: t(minorName) })
-        : t('credit_tracking.curriculum.minor_desc_empty'),
+      part: t('curriculum.minor_title'),
+      credits: minorInfo ? parseInt(minorInfo.totalCredits) || 18 : 18,
+      detail: minorInfo
+        ? `${minorInfo.nameTh} (${minorInfo.totalCredits} หน่วยกิต)`
+        : minorNameKey !== 'minors.default' && minorNameKey !== 'minors.none' && minorNameKey !== 'credit_tracking.minors.default' && minorNameKey !== 'credit_tracking.minors.none'
+        ? t('curriculum.minor_name', { name: t(minorNameKey) })
+        : t('curriculum.minor_desc_empty'),
     },
   ];
 
+  // Group major courses by course group
+  const groupedMajorCourses: Record<string, CourseDetail[]> = {};
+  if (majorInfo?.courses) {
+    majorInfo.courses.forEach((course: CourseDetail) => {
+      const g = course.group || 'รายวิชาในหลักสูตร';
+      if (!groupedMajorCourses[g]) {
+        groupedMajorCourses[g] = [];
+      }
+      groupedMajorCourses[g].push(course);
+    });
+  }
+
+  const toggleGroup = (groupName: string) => {
+    setOpenGroup(openGroup === groupName ? null : groupName);
+  };
+
   return (
     <div
-      className="w-full space-y-10 select-none min-w-0"
+      className="w-full space-y-10 min-w-0"
       style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
     >
       {/* ───── Top Section: Title + Curriculum Overview ───── */}
@@ -58,7 +96,7 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
             className="text-black truncate"
             style={{ fontSize: '28px', fontWeight: 700, lineHeight: '36px' }}
           >
-            {t('credit_tracking.curriculum.title')}
+            {t('curriculum.title')} ({totalCreditsDisplay})
           </h1>
         </div>
 
@@ -77,53 +115,53 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
                   className="border border-[#D0D0D1]/40 px-3 py-2 text-center font-bold"
                   colSpan={3}
                 >
-                  {t('credit_tracking.curriculum.general_ed')}
+                  {t('curriculum.general_ed')}
                   <br />
-                  <span style={{ fontWeight: 400 }}>{t('credit_tracking.curriculum.credits_val', { count: 30 })}</span>
+                  <span style={{ fontWeight: 400 }}>{t('curriculum.credits_val', { count: 30 })}</span>
                 </th>
                 <th
                   className="border border-[#D0D0D1]/40 px-3 py-2 text-center font-bold"
                   colSpan={4}
                 >
-                  {t('credit_tracking.curriculum.specific_ed')}
+                  {t('curriculum.specific_ed')}
                   <br />
-                  <span style={{ fontWeight: 400 }}>{t('credit_tracking.curriculum.specific_credits_detail')}</span>
+                  <span style={{ fontWeight: 400 }}>{t('curriculum.specific_credits_detail')}</span>
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-3 py-2 text-center font-bold">
-                  {t('credit_tracking.curriculum.free_choice')}
+                  {t('curriculum.free_choice')}
                   <br />
-                  <span style={{ fontWeight: 400 }}>{t('credit_tracking.curriculum.credits_val', { count: 6 })}</span>
+                  <span style={{ fontWeight: 400 }}>{t('curriculum.credits_val', { count: 6 })}</span>
                 </th>
               </tr>
               <tr style={{ backgroundColor: '#F0F0F0', fontSize: '13px' }}>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal">
-                  {t('credit_tracking.curriculum.general_sub1')}
+                  {t('curriculum.general_sub1')}
                   <br />
-                  {t('credit_tracking.curriculum.credits_val', { count: 12 })}
+                  {t('curriculum.credits_val', { count: 12 })}
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal">
-                  {t('credit_tracking.curriculum.general_sub2')}
+                  {t('curriculum.general_sub2')}
                   <br />
-                  {t('credit_tracking.curriculum.credits_val', { count: 12 })}
+                  {t('curriculum.credits_val', { count: 12 })}
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal">
-                  {t('credit_tracking.curriculum.general_sub3')}
+                  {t('curriculum.general_sub3')}
                   <br />
-                  {t('credit_tracking.curriculum.credits_val', { count: 6 })}
+                  {t('curriculum.credits_val', { count: 6 })}
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal">
-                  {t('credit_tracking.curriculum.basic_arts')}
+                  {t('curriculum.basic_arts')}
                   <br />
-                  {t('credit_tracking.curriculum.credits_val', { count: 27 })}
+                  {t('curriculum.credits_val', { count: 27 })}
                 </th>
                 <th
                   className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal"
                   colSpan={2}
                 >
-                  {t('credit_tracking.curriculum.english_major_detail')}
+                  {majorInfo ? majorInfo.nameTh : t('curriculum.english_major_detail')}
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center align-top whitespace-normal">
-                  {t('credit_tracking.curriculum.other_majors_detail')}
+                  {t('curriculum.other_majors_detail')}
                 </th>
                 <th className="border border-[#D0D0D1]/40 px-2 py-2 text-center" rowSpan={2} />
               </tr>
@@ -131,19 +169,19 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
             <tbody style={{ fontSize: '13px' }}>
               <tr>
                 <td className="border border-[#D0D0D1]/40 px-2 py-2 align-top text-center" colSpan={3}>
-                  {t('credit_tracking.curriculum.general_12_credits')}
+                  {t('curriculum.general_12_credits')}
                 </td>
                 <td className="border border-[#D0D0D1]/40 px-2 py-2 align-top text-center whitespace-normal">
-                  {t('credit_tracking.curriculum.basic_arts_detail')}
+                  {t('curriculum.basic_arts_detail')}
                 </td>
                 <td className="border border-[#D0D0D1]/40 px-2 py-2 align-top text-center whitespace-normal">
-                  {t('credit_tracking.curriculum.major_range_detail')}
+                  {majorInfo ? `${majorInfo.breakdown.major} หน่วยกิต` : t('curriculum.major_range_detail')}
                 </td>
                 <td className="border border-[#D0D0D1]/40 px-2 py-2 align-top text-center whitespace-normal">
-                  {t('credit_tracking.curriculum.minor_18_credits')}
+                  {minorInfo ? `${minorInfo.totalCredits} หน่วยกิต` : t('curriculum.minor_18_credits')}
                 </td>
                 <td className="border border-[#D0D0D1]/40 px-2 py-2 align-top text-center whitespace-normal">
-                  {t('credit_tracking.curriculum.other_major_credits')}
+                  {t('curriculum.other_major_credits')}
                 </td>
               </tr>
             </tbody>
@@ -159,13 +197,13 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
             className="text-black truncate"
             style={{ fontSize: '28px', fontWeight: 700, lineHeight: '36px' }}
           >
-            {t(majorName)}
+            {majorDisplayTitle}
           </h2>
           <p
             className="text-black break-words"
             style={{ fontSize: '16px', fontWeight: 400, lineHeight: '24px' }}
           >
-            {t('credit_tracking.curriculum.req_details_desc')}
+            {t('curriculum.req_details_desc')}
           </p>
         </div>
 
@@ -180,19 +218,19 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
               className="flex-1 text-black"
               style={{ fontSize: '18px', fontWeight: 700, lineHeight: '24px' }}
             >
-              {t('credit_tracking.curriculum.col_component')}
+              {t('curriculum.col_component')}
             </span>
             <span
               className="w-[100px] text-center text-black"
               style={{ fontSize: '18px', fontWeight: 700, lineHeight: '24px' }}
             >
-              {t('credit_tracking.curriculum.col_credits')}
+              {t('curriculum.col_credits')}
             </span>
             <span
               className="flex-1 text-black text-right"
               style={{ fontSize: '18px', fontWeight: 700, lineHeight: '24px' }}
             >
-              {t('credit_tracking.curriculum.col_details')}
+              {t('curriculum.col_details')}
             </span>
           </div>
 
@@ -242,6 +280,108 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
           ))}
         </div>
 
+        {/* ───── Course Directory Section (Parsed from Text Files) ───── */}
+        {majorInfo && majorInfo.courses.length > 0 && (
+          <div className="flex flex-col gap-4 w-full max-w-[744px] mt-6">
+            <h3 className="text-black text-[22px] font-bold flex items-center gap-2">
+              <BookOpen size={22} className="text-[#DE5D8F]" />
+              บัญชีรายวิชาในหลักสูตร{majorInfo.nameTh}
+            </h3>
+
+            <div className="flex flex-col gap-3">
+              {Object.entries(groupedMajorCourses).map(([groupName, courses]) => {
+                const isOpen = openGroup === groupName || openGroup === null;
+
+                return (
+                  <div
+                    key={groupName}
+                    className="border border-[#D0D0D1]/40 rounded-[10px] overflow-hidden bg-white shadow-sm"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleGroup(groupName)}
+                      className="w-full px-5 py-3.5 bg-[#FCEFF4] hover:bg-[#F9DFE9] transition-colors flex items-center justify-between text-left"
+                    >
+                      <span className="font-bold text-[17px] text-[#303030]">
+                        {groupName} ({courses.length} รายวิชา)
+                      </span>
+                      {isOpen ? (
+                        <ChevronDown size={20} className="text-[#DE5D8F]" />
+                      ) : (
+                        <ChevronRight size={20} className="text-[#DE5D8F]" />
+                      )}
+                    </button>
+
+                    {isOpen && (
+                      <div className="divide-y divide-[#F0F0F0] px-5 py-2">
+                        {courses.map((c: CourseDetail, i: number) => (
+                          <div
+                            key={i}
+                            className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                          >
+                            <div className="flex items-center gap-3">
+                              <span className="font-mono text-[14px] bg-[#F0F0F0] text-[#303030] px-2 py-0.5 rounded shrink-0">
+                                {c.code}
+                              </span>
+                              <div className="flex flex-col">
+                                <span className="font-bold text-[15px] text-black">
+                                  {c.nameTh}
+                                </span>
+                                {c.nameEn && c.nameEn !== c.nameTh && (
+                                  <span className="text-[13px] text-[#707070] italic">
+                                    {c.nameEn}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <span className="text-[14px] text-[#505050] font-semibold shrink-0">
+                              {c.credits} หน่วยกิต
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Minor Course Directory if Minor Selected */}
+        {minorInfo && minorInfo.courses.length > 0 && (
+          <div className="flex flex-col gap-4 w-full max-w-[744px] mt-4">
+            <h3 className="text-black text-[22px] font-bold flex items-center gap-2">
+              <BookOpen size={22} className="text-[#DE5D8F]" />
+              บัญชีรายวิชา{minorInfo.nameTh}
+            </h3>
+
+            <div className="border border-[#D0D0D1]/40 rounded-[10px] overflow-hidden bg-white shadow-sm divide-y divide-[#F0F0F0] px-5 py-3">
+              {minorInfo.courses.map((c: CourseDetail, i: number) => (
+                <div
+                  key={i}
+                  className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[14px] bg-[#F0F0F0] text-[#303030] px-2 py-0.5 rounded shrink-0">
+                      {c.code}
+                    </span>
+                    <div className="flex flex-col">
+                      <span className="font-bold text-[15px] text-black">{c.nameTh}</span>
+                      {c.nameEn && c.nameEn !== c.nameTh && (
+                        <span className="text-[13px] text-[#707070] italic">{c.nameEn}</span>
+                      )}
+                    </div>
+                  </div>
+                  <span className="text-[14px] text-[#505050] font-semibold shrink-0">
+                    {c.credits} หน่วยกิต
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Orange Warning Banner */}
         <div
           className="flex items-center gap-3 w-full"
@@ -266,7 +406,7 @@ export function CurriculumView({ profile }: CurriculumViewProps) {
             className="text-white break-words"
             style={{ fontSize: '18px', fontWeight: 700, lineHeight: '24px' }}
           >
-            {t('credit_tracking.curriculum.warning_note')}
+            {t('curriculum.warning_note')}
           </span>
         </div>
       </div>

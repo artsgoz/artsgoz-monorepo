@@ -18,7 +18,7 @@ export function DropdownMenuContainer({
   onChange,
   id,
 }: DropdownMenuContainerProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
   const isEmpty = !value || value === placeholder;
 
   return (

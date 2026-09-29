@@ -7,7 +7,8 @@ interface GradeReportInteractiveProps {
   topicName: string;
   description?: string;
   hasDescription?: boolean;
-  onAddSubject: () => void;
+  onAddSubject?: () => void;
+  readOnly?: boolean;
   children: React.ReactNode;
 }
 
@@ -16,9 +17,10 @@ export function GradeReportInteractive({
   description,
   hasDescription = false,
   onAddSubject,
+  readOnly = false,
   children,
 }: GradeReportInteractiveProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
   const [isOpen, setIsOpen] = useState(true);
 
   const containerClass = isOpen 
@@ -68,15 +70,17 @@ export function GradeReportInteractive({
                 {children}
               </div>
 
-              {/* Round Plus Add Button at bottom centered */}
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); onAddSubject(); }}
-                className="w-[44px] h-[44px] bg-[#E992B4] hover:bg-[#DE5D8F] text-white rounded-full flex items-center justify-center cursor-pointer transition-all mx-auto mt-4 border-none"
-                title={t('credit_tracking.planner.add_course_title')}
-              >
-                <Plus size={20} />
-              </button>
+              {/* Round Plus Add Button (Hidden in ReadOnly mode) */}
+              {!readOnly && onAddSubject && (
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); onAddSubject(); }}
+                  className="w-[44px] h-[44px] bg-[#E992B4] hover:bg-[#DE5D8F] text-white rounded-full flex items-center justify-center cursor-pointer transition-all mx-auto mt-4 border-none"
+                  title={t('credit_tracking.planner.add_course_title')}
+                >
+                  <Plus size={20} />
+                </button>
+              )}
             </div>
           </motion.div>
         )}

@@ -61,38 +61,38 @@ function AccordionItem({ title, icon, isOpen, onToggle, children }: AccordionIte
 }
 
 export default function AboutPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('about');
   const [openSection, setOpenSection] = useState<string | null>('vision');
 
   const toggleSection = (section: string) => {
     setOpenSection(prev => (prev === section ? null : section));
   };
 
-  const visionPoints = (t('about.vision_points', { returnObjects: true }) as string[]) || [];
-  const policyPoints = (t('about.policy_points', { returnObjects: true }) as string[]) || [];
+  const visionPoints = (t('vision_points', { returnObjects: true }) as string[]) || [];
+  const policyPoints = (t('policy_points', { returnObjects: true }) as string[]) || [];
 
   const downloadForms = [
     {
-      name: t('about.download_forms.form1.name'),
-      desc: t('about.download_forms.form1.desc'),
+      name: t('download_forms.form1.name'),
+      desc: t('download_forms.form1.desc'),
       format: 'PDF / DOCX',
       size: '1.2 MB'
     },
     {
-      name: t('about.download_forms.form2.name'),
-      desc: t('about.download_forms.form2.desc'),
+      name: t('download_forms.form2.name'),
+      desc: t('download_forms.form2.desc'),
       format: 'PDF / XLSX',
       size: '980 KB'
     },
     {
-      name: t('about.download_forms.form3.name'),
-      desc: t('about.download_forms.form3.desc'),
+      name: t('download_forms.form3.name'),
+      desc: t('download_forms.form3.desc'),
       format: 'PDF',
       size: '2.4 MB'
     },
     {
-      name: t('about.download_forms.form4.name'),
-      desc: t('about.download_forms.form4.desc'),
+      name: t('download_forms.form4.name'),
+      desc: t('download_forms.form4.desc'),
       format: 'PDF',
       size: '640 KB'
     }
@@ -110,7 +110,7 @@ export default function AboutPage() {
             <div className="w-[220px] md:w-[254px] aspect-[254/239] shrink-0 overflow-hidden">
               <img 
                 src={logoGoz} 
-                alt={t('about.logo_alt')} 
+                alt={t('logo_alt')} 
                 className="w-full h-full object-contain drop-shadow-sm select-none"
               />
             </div>
@@ -118,10 +118,10 @@ export default function AboutPage() {
             {/* Description Text */}
             <div className="flex-1 flex flex-col gap-6 text-center lg:text-left">
               <h2 className="text-[32px] md:text-[40px] lg:text-[48px] font-bold text-[#404041] font-serif leading-tight">
-                {t('about.title')}
+                {t('title')}
               </h2>
               <p className="text-[18px] md:text-[20px] font-normal text-[#6D6D6D] font-serif leading-relaxed text-justify">
-                {t('about.description')}
+                {t('description')}
               </p>
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function AboutPage() {
             
             {/* 1. วิสัยทัศน์ */}
             <AccordionItem
-              title={t('about.vision_title')}
+              title={t('vision_title')}
               icon={<Target size={26} />}
               isOpen={openSection === 'vision'}
               onToggle={() => toggleSection('vision')}
@@ -148,7 +148,7 @@ export default function AboutPage() {
 
             {/* 2. นโยบาย */}
             <AccordionItem
-              title={t('about.policy_title')}
+              title={t('policy_title')}
               icon={<Shield size={26} />}
               isOpen={openSection === 'policy'}
               onToggle={() => toggleSection('policy')}
@@ -165,7 +165,7 @@ export default function AboutPage() {
 
             {/* 3. ดาวน์โหลด */}
             <AccordionItem
-              title={t('about.download_title')}
+              title={t('download_title')}
               icon={<BookOpen size={26} />}
               isOpen={openSection === 'downloads'}
               onToggle={() => toggleSection('downloads')}
@@ -197,7 +197,7 @@ export default function AboutPage() {
                         className="flex items-center gap-1 text-[13px] font-bold text-[#DE5D8F] hover:text-[#CA5582] transition-colors"
                       >
                         <Download size={14} />
-                        {t('about.download_btn')}
+                        {t('download_btn')}
                       </a>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ export default function AboutPage() {
 
             {/* 4. ระเบียบการเบิกจ่าย ก.อศ. */}
             <AccordionItem
-              title={t('about.download_flowchart_title')}
+              title={t('download_flowchart_title')}
               icon={<Layers size={26} />}
               isOpen={openSection === 'regulations'}
               onToggle={() => toggleSection('regulations')}
@@ -217,7 +217,7 @@ export default function AboutPage() {
                 <div className="w-full max-w-[580px] rounded-xl overflow-hidden border border-[#ECECEC] shadow-sm">
                   <img 
                     src={gozDisbursement} 
-                    alt={t('about.download_flowchart_title')} 
+                    alt={t('download_flowchart_title')} 
                     className="w-full object-cover select-none"
                   />
                 </div>
@@ -234,7 +234,7 @@ export default function AboutPage() {
                   className="font-serif border-[#DE5D8F] text-[#DE5D8F] hover:bg-[#FDF8FA] h-[46px] rounded-xl font-bold text-[15px]"
                 >
                   <Download size={16} />
-                  {t('about.download_flowchart_btn')}
+                  {t('download_flowchart_btn')}
                 </Button>
               </div>
             </AccordionItem>

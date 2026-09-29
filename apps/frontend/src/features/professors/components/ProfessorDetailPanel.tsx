@@ -7,7 +7,7 @@ interface ProfessorDetailPanelProps {
 }
 
 export function ProfessorDetailPanel({ professor, onBack }: ProfessorDetailPanelProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   return (
     <div
@@ -120,7 +120,7 @@ interface InfoSectionProps {
 }
 
 function InfoSection({ title, items }: InfoSectionProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   return (
     <div className="flex flex-col min-w-0" style={{ gap: '12px', marginTop: '10px' }}>

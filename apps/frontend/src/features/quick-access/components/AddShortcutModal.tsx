@@ -13,7 +13,7 @@ interface AddShortcutModalProps {
 }
 
 export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddShortcutModalProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Filter out services that are already added as shortcuts

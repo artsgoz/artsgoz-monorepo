@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
   "exports": {
     ".": {
       "@org/source": "./src/index.tsx",

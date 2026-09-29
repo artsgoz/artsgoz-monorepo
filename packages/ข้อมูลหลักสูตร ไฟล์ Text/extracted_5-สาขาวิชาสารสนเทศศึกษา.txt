@@ -1,0 +1,698 @@
+--- Page 1 ---
+
+1
+za            ce
+สาขาวชาสารสนเทศศกษา
+(หลักสูตรปรบปรุง พ.ศ. 2566)
+1. หน่วยงานทีรับผิดชอบ
+ภาควิชาบรรณารักษศาสตร์ คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จํานวนหน่วยกิตรวมตลอดหลักสูตร 129 หน่วยกิต
+2.1  โครงสร้างหลักสูตร
+ภาควิชาบรรณารักษศาสตร์เปิดสอนวิชาสาขาวิชาสารสนเทศศึกษา แบบวิชาเอก-โท สําหรับนิสิตทิเลือก
+เรียนเป็นวิชาเอก และเปิดสอนเป็นวิชาโท สําหรับนิสิตทีเรียนวิชาเอกสาขาอินทังในคณะและนอกคณะดังนี
+แบบวิชาเอก - โท                                             66 หน่วยกิต
+1) วิชาเอก                                   48 หน่วยกิต
+(1) กลุ่มวิชาพืนฐาน                     18 หน่วยกิต
+วิชาบังคับ                     18 หน่วยกิต
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                12 หน่วยกิต
+วิชาเลือก                     12 หน่วยกิต
+(3) กลุ่มวิชาเชียวชาญ                   18 หน่วยกิต
+วิชาเลือก                     18 หน่วยกิต
+2) วิชาโท                                   18 หน่วยกิต
+นิสิตเอกสาขาวิชาสารสนเทศศึกษาทิเลือกเรียนแบบวิชาเอก - โท ต้องเลือกเรียน วิชาโท
+สาขาอืนจากในคณะหรือนอกคณะ ยกเว้นสาขาวิชาโทมนุษยศาสตร์ดิจิทัล และสาขาวิชาโทบรรณาธิการศึกษาทีต้อง
+ได้รับความเห็นชอบจากคณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา
+วิชาโท สําหรับนิสิตวิชาเอกสาขาอืนทังในคณะและนอกคณะ        18 หน่วยกิต
+วิชาเลือก                                    18 หน่วยกิต
+3. รายวิชา
+แบบวิชาเอก - โท                                                                      66 หน่วยกิต
+1) วิชาเอก                                                                      48 หน่วยกิต
+(1) กลุ่มวิชาพืนฐาน                          18 หน่วยกิต
+วิชาบังคับ                          18 หน่วยกิต
+2206212 ภูมิทัศน์สารสนเทศ                                3 (3-0-6)
+Information Landscapes
+2206216" ผู้ใช้และบริการสารสนเทศ                           3 (3-0-6)
+Information Users and Services
+2206228* พินฐานการดูแลรักษาข้อมูลและสารสนเทศ       3 (3-0-6)
+Introduction to Data and Information Curation
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 2 ---
+
+2206261* หลักการจัดการสําหรับมนุษยศาสตร์                        3 (3-0-6)
+Principles of Management for the Humanities
+(เนื่องจากเป็นรายวิชาบังคับของวิชาเอก นิสิตเอกสารสนเทศศึกษาไม่สามารถเลือก
+รายวิชานี้เป็นวิชาพื้นฐานอักษรศาสตร์ได้)
+
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ       3 (3-0-6)
+System Design for Information Work
+
+2206493* 'โครงงานบูรณาการความรู้ด้านสารสนเทศศึกษา      3 (1-6-2)
+Capstone Project in Information Studies
+
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                          12 หน่วยกิต
+วิชาเลือก                                             12 หน่วยกิต
+
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+
+2205317 กการเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1       3 (3-0-6)
+Computer Programming for Geographers |
+
+2206214      สังคมสารสนเทศ                                            3 (3-0-6)
+Information Society
+
+2206249 การคิดเชิงระบบสําหรับประเด็นทางมนุษยศาสตร์             3 (3-0-6)
+Systematic Thinking for Issues in Humanities
+
+2206283 ระบบค้นคืนสารสนเทศ                                       3 (3-0-6)
+Information Retrieval System
+
+2206289  การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ     3 (3-0-6)
+Data Communications and Networking in
+Information Work
+
+2206290 /พื้นฐานมนุษยศาสตร์ดิจิทัล                                  3 (3-0-6)
+Introduction to Digital Humanities
+
+2206356* การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด   3 (3-0-6)
+Library Collection Management and Organization
+
+2206386      การออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ         3 (3-0-6)
+User Interface Design in Information Work
+
+2206415 การตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ »3 (3-0-6)
+Marketing and Public Relations for
+Information Organizations
+
+2206484 การประมวลสารสนเทศสําเร็จรูป                              3 (3-0-6)
+Information Repackaging
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 3 ---
+
+3
+(3) กลุ่มวิชาเชี่ยวชาญ                                   18 หน่วยกิต
+วิชาเลือก                                             18 หน่วยกิต
+
+นิสิตเอกสาขาวิชาสารสนเทศศึกษาต้องเลือกเรียนรายวิชาในกลุ่มนี้
+
+2206285 การแปลงทรัพยากรสารสนเทศเให้อยู่ในรูปดิจิทัล               3 (3-0-6)
+Digitization of Information Resouces
+
+2206313      การสอนการรู้สารสนเทศ                                      3 (3-0-6)
+Information Literacy Instructions
+
+2206315 =. gananrsWawWadieluy                                       3 (2-2-5)
+The Modern Publishing Trade
+
+2206352 ววิชาชีพบรรณาธิการ                                          3 (3-0-6)
+Editorial Profession
+
+2206353      เสวนาบรรณาธิการ                                           3 (3-0-6)
+Editorial Discussion
+
+2206358      แหล่งสารสนเทศทางธุรกิจ                                    3 (3-0-6)
+Business Information Sources
+
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                            3 (3-0-6)
+Statistics for Humanities Research
+
+2206375      การจัดการจดหมายเหตุ                                       3 (3-0-6)
+Archives Management
+
+2206376      การจัดการสารสนเทศมรดกทางวัฒนธรรม                     3 (3-0-6)
+Cultural Heritage Information Management
+
+2206379* การจัดการเอกสารในสํานักงาน                             3 (3-0-6)
+Office Records Management
+
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์                     3 (3-0-6)
+Database Management for the Humanities
+
+2206437 การจัดการความรู้ในองค์กร                                   3 (3-0-6)
+Knowledge Management in Organizations
+
+2206439 การจัดการข้อมูลวิจัย                                         3 (3-0-6)
+Research Data Management
+
+2206442 เครื่องมือสําหรับมนุษยศาสตร์ดิจิทัล                           3 (3-0-6)
+Tools for Digital Humanities
+
+2206489 กการศึกษาอิสระ                                           3 (1-6-2)
+Independent Study
+นอกเหนือจากรายวิชาในกลุ่มวิชาเชียวชาญที่ภาควิชาฯ กําหนดให้นิสิตเลือกเรียน
+
+จากจํานวน 15 รายวิชาข้างต้น นิสิตสามารถเลือกเรียนรายวิชาอื่นในระดับปริญญาตรีและระดับ
+
+บัณฑิตศึกษาที่เปิดสอนในคณะ และนอกคณะอักษรศาสตร์ได้ โดยต้องได้รับความเห็นชอบจาก
+
+คณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 4 ---
+
+2) วิชาโท                                                                       18 หน่วยกิต
+นิสิตเอกสาขาวิชาสารสนเทศศึกษาที่เลือกเรียนแบบวิชาเอก - โท ต้องเลือกเรียนวิชาโทสาขาอื่นจาก
+ในคณะหรือนอกคณะ
+วิชาโท สําหรับนิสิตวิชาเอกสาขาอื่นทั้งในคณะและนอกคณะ                     18 หน่วยกิต
+วิชาเลือก                                              18 หน่วยกิต
+
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+
+2206212 ภูมิทัศน์สารสนเทศ                                        3 (3-0-6)
+Information Landscapes
+
+2206214      สังคมสารสนเทศ                                            3 (3-0-6)
+Information Society
+
+2206216" ผู้ใช้และบริการสารสนเทศ                                 3 (3-0-6)
+Information Users and Services
+
+2206228*  พื้นฐานการดูแลรักษาข้อมูลและสารสนเทศ       3 (3-0-6)
+Introduction to Data and Information Curation
+
+2206249 การคิดเชิงระบบสําหรับประเด็นทางมนุษยศาสตร์              3 (3-0-6)
+Systematic Thinking for Issues in Humanities
+
+2206283 ระบบค้นคืนสารสนเทศ                                       3 (3-0-6)
+Information Retrieval System
+
+2206285 การแปลงทรัพยากรสารสนเทศเให้อยู่ในรูปดิจิทัล               3 (3-0-6)
+Digitization of Information Resouces
+
+2206289      การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ               3 (3-0-6)
+Data Communications and Networking in
+Information Work
+
+2206290 /พื้นฐานมนุษยศาสตร์ดิจิทัล                                   3 (3-0-6)
+Introduction to Digital Humanities
+
+2206313      การสอนการรู้สารสนเทศ                                      3 (3-0-6)
+Information Literacy Instructions
+
+2206315 =. gananrsWawWadieluy                                       3 (2-2-5)
+The Modern Publishing Trade
+
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ        3 (3-0-6)
+System Design for Information Work
+
+2206352 ววิชาชีพบรรณาธิการ                                          3 (3-0-6)
+Editorial Profession
+
+2206353      เสวนาบรรณาธิการ                                           3 (3-0-6)
+Editorial Discussion
+
+2206356* การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด   3 (3-0-6)
+Library Collection Management and Organization
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 5 ---
+
+5
+2206358      แหล่งสารสนเทศทางธุรกิจ                                    3 (3-0-6)
+Business Information Sources
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                            3 (3-0-6)
+Statistics for Humanities Research
+2206375      การจัดการจดหมายเหตุ                                       3 (3-0-6)
+Archives Management
+2206376      การจัดการสารสนเทศมรดกทางวัฒนธรรม                     3 (3-0-6)
+Cultural Heritage Information Management
+2206379* การจัดการเอกสารในสํานักงาน                             3 (3-0-6)
+Office Records Management
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์                     3 (3-0-6)
+Database Management for the Humanities
+2206386      การออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ         3 (3-0-6)
+User Interface Design in Information Work
+2206415 การตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ »3 (3-0-6)
+Marketing and Public Relations for
+Information Organizations
+2206437 การจัดการความรู้ในองค์กร                                   3 (3-0-6)
+Knowledge Management in Organizations
+2206439 การจัดการข้อมูลวิจัย                                         3 (3-0-6)
+Research Data Management
+2206442 เครื่องมือสําหรับมนุษยศาสตร์ดิจิทัล                           3 (3-0-6)
+Tools for Digital Humanities
+2206484 การประมวลสารสนเทศสําเร็จรูป                              3 (3-0-6)
+Information Repackaging
+4. แผนการศึกษา
+ปีที่ 2 ภาคการศึกษาต้น
+2206212 ภูมิทัศน์สารสนเทศ                                3 หน่วยกิต
+2206216*” ผู้ใช้และบริการสารสนเทศ                         3 หน่วยกิต
+2206๐00 วิชาเลือก                                          3 หน่วยกิต
+รวม                         9 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาปลาย
+2206228*  พื้นฐานการดูแลรักษาข้อมูลและสารสนเทศ  3 หน่วยกิต
+2206261* หหลักการจัดการสําหรับมนุษยศาสตร์             3 หน่วยกิต
+2206XXX วิชาเลือก                                          3 หน่วยกิต
+รวม                         9 หน่วยกิต
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 6 ---
+
+Un 3 ภาคการศึกษาต้น
+2206333* กการออกแบบระบบสําหรับงานสารสนเทศ   3 หน่วยกิต
+2206XXX      วิชาเลือก                                        6 หน่วยกิต
+รวม                         9 หน่วยกิต
+ปีที 3 ภาคการศึกษาปลาย
+2206XXX      วิชาเลือก                                        9 หน่วยกิต
+รวม                         9 หน่วยกิต
+ปีที 4 ภาคการศึกษาต้น
+2206493*  โครงงานบูรณาการความรู้ด้านสารสนเทศศึกษา 3 หน่วยกิต
+2206XXX      วิชาเลือก                                          3 หน่วยกิต
+รวม                         6 หน่วยกิต
+ปีที 4 ภาคการศึกษาปลาย
+2206XXX วิชาเลือก                                         6 หน่วยกิต
+รวม                         6 หน่วยกิต
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 7 ---
+
+7
+คําอธิบายรายวิชา
+
+2205317 การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักภูมิศาสตร์ 1                   3 (3-0-6)
+
+การเขียนโปรแกรมคอมพิวเตอร์ด้วยภาษาระดับสูง
+
+เน้นเทคนิคที่มีประโยชน์ต่อการจัดการ ข้อมูลอ้างอิงทางภูมิศาสตร์
+
+Computer Programming for Geographers |
+
+COMP PROG GEOG |
+
+Computer programming using high level language
+
+with emphasis on techniques useful for managing geographic data.
+2206212 ภภูมิทัศน์สารสนเทศ                                                     3 (3-0-6)
+
+คุณลักษณะ รูปแบบของสารสนเทศ และแนวคิดที่เกี่ยวข้องในบริบทการเรียนรู้
+
+บริบทวัฒนธรรม ชุมชนและสังคม ทั้งในรูปที่จับต้องได้และจับต้องไม่ได้
+
+Information Landscapes
+
+INFO LAND
+
+Properties, formats of information and related concepts in learning, cultural,
+
+communal, and societal contexts, in both tangible and intangible forms.
+2206214 สังคมสารสนเทศ                                                       3 (3-0-6)
+
+สารสนเทศกับความเปลี่ยนแปลงทางสังคม
+
+บทบาทของสารสนเทศในการพัฒนาเทคโนโลยีสารสนเทศและผลกระทบ
+
+กฎหมายที่เกี่ยวข้องกับสารสนเทศ นโยบายสารสนเทศ
+
+บทบาทของหน่วยงานในประเทศและต่างประเทศด้านสารสนเทศ
+
+บทบาทและจริยธรรมของนักวิชาชีพสารสนเทศ มาตรฐานด้านสารสนเทศ
+
+Information Society
+
+INFO SOCIETY
+
+Information and social changes; its roles in development;
+
+Information technology and its impacts;
+
+information-related law; information policy;
+
+roles of national and international organizations in information;
+
+roles and ethics of information professionals; information standards.
+2206216* ผู้ใช้และบริการสารสนเทศ                                               3 (3-0-6)
+
+พฤติกรรมสารสนเทศและความต้องการสารสนเทศของผู้ใช้
+
+การศึกษาผู้ใช้และประสบการณ์ผู้ใช้ หลักและขั้นตอนในการจัดบริการสารสนเทศ
+
+Information Users and Services
+
+INFO USER SERV
+
+Information behaviors and needs of users; user studies and user experience;
+
+principles and process of information service provision.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 8 ---
+
+2206228*  พื้นฐานการดูแลรักษาข้อมูลและสารสนเทศ            3 (3-0-6)
+แนวคิดเรื่องการดูแลรักษาข้อมูลและสารสนเทศเพื่อการใช้งานในระยะยาว
+วงจรชีวิตที่เกี่ยวข้อง หลักการและขั้นตอน การนําไปใช้ประโยชน์และการนํากลับมาใช้ใหม่
+ประเด็นกฎหมายและจริยธรรมที่เกี่ยวข้อง
+Introduction to Data and Information Curation
+INTRO DIC
+Concepts of data and information curation for long-term use;
+related lifecycles; principles and process; use and reuse;
+related legal and ethical issues.
+2206249 การคิดเชิงระบบสําหรับประเด็นทางมนุษยศาสตร์                       3 (3-0-6)
+ที่มาของการคิดเชิงระบบ โครงสร้างและพลวัตของระบบ
+แนวคิดพื้นฐานการวิเคราะห์และออกแบบระบบ
+การประยุกต์ใช้การคิดเชิงระบบกับประเด็นทางมนุษยศาสตร์
+Systematic Thinking for Issues in Humanities
+SYS THINK HUM
+Origins of systematic thinking; structure and dynamics of systems;
+foundations of system analysis and design;
+application of systematic thinking to issues in humanities.
+2206261* หลักการจัดการสําหรับมนุษยศาสตร์                                     3 (3-0-6)
+นโยบายและการวางแผน การจัดองค์กร การจัดการทรัพยากร ภาวะผู้นํา
+แนวคิดการจัดการสมัยใหม่และมุมมองจากมนุษยศาสตร์
+Principles of Management for the Humanities
+PRIN MGT HUMAN
+Policy and planning; organizing; resource management; leadership;
+modern management concepts and perspectives from the humanities.
+2206283 ระบบค้นคืนสารสนเทศ                                              3 (3-0-6)
+ส่วนประกอบของระบบค้นคืนสารสนเทศ โครงสร้างฐานข้อมูลและระบบการทําดรรชนี
+กลยุทธ์การสืบค้น การสืบค้นฐานข้อมูลเชิงโครงสร้างและฐานข้อมูลข้อความ
+การสืบค้นด้วยภาษาเอสคิวแอล การประเมินผลการสืบค้น
+Information Retrieval System
+INFO RETR SYST
+Components of information retrieval system;
+database structure and indexing system; search strategies;
+structured database and text-based searching;
+searching with SQL; search evaluation.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 9 ---
+
+9
+
+2206285 กการแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล                        3 (3-0-6)
+
+หลักการพื้นฐานการแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล
+
+กระบวนการแปลงให้อยู่ในรูปดิจิทัล
+
+ประเด็นทางกฎหมายและจริยธรรมที่เกี่ยวข้องกับการแปลงให้อยู่ในรูปดิจิทัล
+
+Digitization of Information Resources
+
+DIGIT INFO RES
+
+Fundamental principles of the digitization of information resources;
+
+digitization process; legal and ethical considerations of digitization.
+2206289 การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ                        3 (3-0-6)
+
+ความหมาย ประเภท และวิวัฒนาการของการสื่อสารข้อมูลและเครื่อข่าย
+
+ทฤษฎีการสื่อสารข้อมูลและเครือข่ายคอมพิวเตอร์
+
+ฮาร์ดแวร์และซอฟต์แวร์ของการสือสารข้อมูลและเครื่อข่าย
+
+การส่งผ่านข้อมูลในแบบต่าง ๆ สถาปัตยกรรมการสื่อสาร
+
+การประยุกต์ใช้งานการสื่อสารข้อมูลในงานสารสนเทศ และการรักษาความปลอดภัยเครือข่าย
+
+Data Communications and Networking in Information Work
+
+DATA COMM NETWORK
+
+Definition, types and evolution of data communications and networking;
+
+theories of data communications and computer network;
+
+hardware and software of data communications and networking;
+
+transmission of data in different ways; communication architecture;
+
+application of data communications in information work and network security.
+
+2206290 พื้นฐานมนุษยศาสตร์ดิจิทัล                                              3 (3-0-6)
+
+ภาพรวมของแนวคิด เครื่องมือ กิจกรรมและข้อถกเถียงทางมนุษยศาสตร์ดิจิทัล
+
+ความแตกต่างระหว่างมนุษยศาสตร์แบบดั้งเดิมกับมนุษยศาสตร์ดิจิทัล
+
+ผลของมนุษยศาสตร์ดิจิทัลต่อการวิจัยและศาสตร์ทางมนุษยศาสตร์
+
+Introduction to Digital Humanities
+
+INTRO DIGIT HUMAN
+
+Overview of concepts, tools, activities and debates of digital humanities;
+
+contrast between traditional and digital humanities;
+
+effects of digital humanities on humanities research and disciplines.
+
+2206313 การสอนการรู้สารสนเทศ                                                3 (3-0-6)
+
+แบบจําลองการรู้สารสนเทศ ทฤษฎีการเรียนรู้
+
+การออกแบบการสอนเพื่อการรู้สารสนเทศ เทคโนโลยีการสอน
+
+การประเมินการรู้สารสนเทศ การคัดเลือก จัดหา จัดระบบ จัดเก็บ
+
+และบริการสื่อการสอนเพื่อการรู้สารสนเทศ
+
+
+
+--- Page 10 ---
+
+Information Literacy Instructions
+
+INFO LIT INST
+
+Information literacy models; learning theories;
+
+instructional design for information literacy; instructional technologies;
+information literacy assessment; selection, acquisition, organization,
+storage and services of instructional media for information literacy.
+
+2206315 ธุรกิจการพิมพ์สมัยใหม่                                              3 (2-2-5)
+พัฒนาการการพิมพ์ การควบคุมคุณภาพและการประเมินราคา
+เทคโนโลยีที่ใช้กับธุรกิจการพิมพ์ การพิมพ์อิเล็กทรอนิกส์
+กฎหมายที่เกี่ยวข้อง การจัดจําหน่ายสิงพิมพ์
+The Modern Publishing Trade
+MOD PUB TRADE
+Publishing development; quality control and cost estimation;
+technology used in publishing trade; electronic publishing;
+related law; printed materials distribution.
+
+2206333* การออกแบบระบบสําหรับงานสารสนเทศ             3 (3-0-6)
+ระบบการจัดการสารสนเทศ สถาปัตยกรรมสารสนเทศ
+การออกแบบกระบวนการและผลลัพธ์
+System Design for Information Work
+SYS DES INFO
+Information management systems; information architecture;
+process and output design.
+
+2206352 ทวิชาชีพบรรณาธิการ                                                     3 (3-0-6)
+หลักเบื้องต้นในการทํางานบรรณาธิการ ทักษะการทํางานบรรณาธิการสาขาต่าง ๆ
+ได้แก่ บรรณาธิการต้นฉบับ บรรณาธิการต้นฉบับแปล บรรณาธิการฝายศิลป์
+บรรณาธิการรูปเล่ม บรรณาธิการบริหาร บรรณาธิการหนังสือ บรรณาธิการวารสาร
+และนิตยสาร และบรรณาธิการสื่ออิเล็กทรอนิกส์
+Editorial Profession
+EDRL PROF
+Fundamental principles of editing; various areas of editorial skills:
+manuscript editors, translation editors, art editors, graphic editors,
+executive editors, book editors, journal and magazine editors,
+and electronic media editors.
+
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 11 ---
+
+11
+2206353 เสวนาบรรณาธิการ                                                 3 (3-0-6)
+ทักษะการเสนอความคิดเห็นอย่างมีเหตุผล การใช้เหตุผล การรับฟัง
+และการวิเคราะห์ทัศนะของผู้อื่น การวิเคราะห์ข่าวสาร การผสานความคิด
+และการนําความคิดเห็นมาใช้ประโยชน์ในฐานะบรรณาธิการ
+Editorial Discussion
+EDRL DIS
+Skills in presentation of logical ideas, reasoning, hearing,
+and analyzing others’ opinions; news analysis; ideas integration;
+and utilizing ideas as editors.
+2206356* การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด        3 (3-0-6)
+กระบวนการจัดการทรัพยากรสารสนเทศห้องสมุดและเทคโนโลยีที่เกี่ยวข้อง
+กฎหมายเกี่ยวกับการจัดการทรัพยากรสารสนเทศห้องสมุด
+การดําเนินงาน เทคนิคและเครื่องมือเพื่อทํารายการและจัดหมวดหมู่ทรัพยากรสารสนเทศ
+ห้องสมุดประเภทต่าง ๆ การผลิตระเบียนรายการห้องสมุดออนไลน์
+การจัดการภาระงานด้านการจัดระบบทรัพยากรสารสนเทศในห้องสมุด
+Library Collection Management and Organization
+LIB COL MGT ORG
+Library collection management process and related technology;
+laws related to library collection management;
+operations, techniques and tools for cataloging
+and classifying various types of library information resources;
+production of online library catalogs;
+task management of information resource organization in libraries.
+2206358 แหล่งสารสนเทศทางธุรกิจ                                           3 (3-0-6)
+ประเภทและลักษณะของแหล่งและทรัพยากรสารสนเทศทางธุรกิจ
+กฎหมายที่เกี่ยวข้องการจัดทรัพยากรสารสนเทศและบริการ
+Business Information Sources
+BUSINESS INFO SOU
+Types and characteristics of information sources and resources in business;
+related laws; organization of information resources and services.
+2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์                                    3 (3-0-6)
+ข้อมูล ตัวแปร และการคํานวณเบื้องหลังสถิติ การสรุปข้อมูล
+การวัดความถี่ การเปรียบเทียบระหว่างกลุ่ม ความสัมพันธ์ระหว่างตัวแปร
+การติความและการนําเสนอสถิติ
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 12 ---
+
+Statistics for Humanities Research
+STAT HUMAN RES
+Data, variables, and computing behind statistics; summarizing data;
+measuring frequency; comparing between groups; relationships between variables;
+interpreting and presenting statistics.
+2206375 การจัดการจดหมายเหตุ                                             3 (3-0-6)
+ลักษณะและคุณค่าของจดหมายเหตุ
+การประเมินคุณค่า การจัดระบบและการจัดทําคําอธิบาย
+การเข้าถึงและการใช้จดหมายเหตุ การสงวนรักษา กฎหมายที่เกี่ยวข้อง
+จรรยาบรรณวิชาชีพ องค์กรและความร่วมมือด้านจดหมายเหตุ
+Archives Management
+ARCHIVES MGT
+Nature and value of archives; archival appraisal, arrangement and description,
+access and use; preservation; related laws;
+professional ethics; archival organizations and collaborations.
+2206376 การจัดการสารสนเทศมรดกทางวัฒนธรรม                             3 (3-0-6)
+ขอบเขตและประเภทของสารสนเทศมรดกทางวัฒนธรรม
+การอนุรักษ์และสงวนรักษาการจัดระบบ
+การเข้าถึงและการเผยแพร่สารสนเทศมรดกทางวัฒนธรรม กฎหมายที่เกี่ยวข้อง
+นโยบายการจัดการสารสนเทศมรดกทางวัฒนธรรม
+Cultural Heritage Information Management
+CUL HERI INFO MGT
+Scope and types of cultural heritage information;
+conservation and preservation, organization,
+access and dissemination of cultural heritage information; related laws;
+policies on cultural heritage information management.
+2206379* การจัดการเอกสารในสํานักงาน                                          3 (3-0-6)
+หลักและวิธีการจัดการเอกสารในสํานักงาน
+เทคโนโลยีสําหรับจัดเก็บและค้นคืนเอกสาร
+Office Records Management
+OFFICE RECS MGT
+Principles and methods for office records management;
+technology for the storage and retrieval of records.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 13 ---
+
+13
+2206385 การจัดการฐานข้อมูลสําหรับมนุษยศาสตร์                              3 (3-0-6)
+ลักษณะฐานข้อมูลในสาขามนุษยศาสตร์
+การออกแบบและพัฒนาฐานข้อมูลเชิงสัมพันธ์ ภาษาเอสคิวแอล
+การออกแบบและพัฒนาฐานข้อมูลสําหรับข้อมูลแบบไม่มีโครงสร้าง
+Database Management for the Humanities
+DATA MGT HUMAN
+Characteristics of databases in the Humanities;
+design and development of relational database; SQL language;
+design and development of database for unstructured data.
+2206386 กการออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ                   3 (3-0-6)
+แนวคิดสําคัญเกี่ยวกับการออกแบบส่วนต่อประสานที่มีผู้ใช้เป็นศูนย์กลาง
+วิจีการออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ
+การประเมินส่วนต่อประสานกับผู้ใช้
+User Interface Design in Information Work
+USE IN DE INF WRK
+Major concepts relevant to interface design which is user-centered;
+user interface design methods in information work;
+user interface evaluation.
+2206415 กการตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ                3 (3-0-6)
+หลักการตลาดและการประชาสัมพันธ์สําหรับองค์กรสารสนเทศ
+การตลาดสําหรับผลิตภัณฑ์สารสนเทศและบริการ กลยุทธ์การตลาด และการประชาสัมพันธ์
+การสร้างแบรนด์ การสร้างภาพลักษณ์ การสื่อสารการตลาดเชิงบูรณาการ
+Marketing and Public Relations for Information Organizations
+MKT PR INFO ORG
+Principles of marketing and public relations for information organizations;
+marketing for information products and services;
+marketing and public relations strategies; branding; image building;
+integrated marketing communication.
+2206437 การจัดการความรู้ในองค์กร                                          3 (3-0-6)
+หลักการและแนวคิดเกี่ยวกับการจัดการความรู้
+การพัฒนาองค์กรแห่งการเรียนรู้ การสร้างวัฒนธรรมการเรียนรู้
+กลยุทธ์การจัดการความรู้ กระบวนการจัดการความรู้
+เครื่องมือและเทคนิคสําหรับการจัดการความรู้
+
+
+
+--- Page 14 ---
+
+Knowledge Management in Organizations
+KNOWLEDGE MGT ORG
+Principles and concepts of knowledge management;
+developing a learning organization; cultivating a learning culture;
+knowledge management strategies; knowledge management processes;
+knowledge management tools and techniques.
+2206439 กการจัดการข้อมูลวิจัย                                               3 (3-0-6)
+การสื่อสารทางวิชาการและวงจรชีวิตข้อมูลวิจัย
+ลักษณะและประเภทข้อมูลวิจัย กระบวนการจัดการข้อมูลวิจัย
+ประเด็นทางกฎหมายและจริยธรรมที่เกี่ยวข้อง
+Research Data Management
+RES DATA MGT
+Scholarly communication and research data life cycle;
+characteristics and types of research data;
+process of research data management;
+related legal and ethical considerations.
+2206442 เครื่องมือสําหรับมนุษยศาสตร์ดิจิทัล                                   3 (3-0-6)
+ขอบเขตของมนุษยศาสตร์ดิจิทัล
+เครื่องมือในการจัดการ วิเคราะห์ และสร้างมโนทัศน์ข้อมูลในมนุษยศาสตร์ดิจิทัล
+Tools for Digital Humanities
+TOOLS DIGIT HUMAN
+Scope of digital humanities;
+tools for data management, analysis, and visualization in digital humanities.
+2206484 การประมวลสารสนเทศสําเร็จรูป                                      3 (3-0-6)
+การศึกษาผู้ใช้ การคัดเลือก การประเมิน การวิเคราะห์และสังเคราะห์
+การเขียนใหม่ การจัดรูปลักษณ์ใหม่ การเผยแพร่และการตลาดสารสนเทศ
+เพื่อตอบสนองความต้องการของผู้ใช้กลุ่มเป้าหมาย
+Information Repackaging
+INFO REPACKAGING
+User studies; selection, evaluation, analysis and synthesis,
+rewriting, rearranging, dissemination and marketing of information
+in response to the target users’ needs.
+
+
+
+--- Page 15 ---
+
+15
+2206489 การศึกษาอิสระ                                                     3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่คณะอนุญาตให้เรียน)
+การวิจัยเรื่องคัดเฉพาะทางสารสนเทศศึกษาตามความสนใจของผู้ศึกษา
+การนําเสนอผลงานวิจัย
+Independent Study
+INDEP STUDY
+(CONDITION: CONSENT OF FACULTY)
+Research on a selected topic of student’s interest in information studies;
+presentation of research work.
+2206493* โครงงานบูรณาการความรู้ด้านสารสนเทศศึกษา           3 (1-6-2)
+(เงื่อนไขรายวิชา: รายวิชาที่คณะอนุญาตให้เรียน)
+การประยุกต์ความรู้ด้านสารสนเทศศึกษาในรูปแบบของการศึกษาค้นคว้าด้วยตนเอง
+การฝึกงาน หรือโครงงาน
+Capstone Project in Information Studies
+CAP PROJ IS
+(CONDITION: CONSENT OF FACULTY)
+Application of information studies knowledge in the form of self study,
+practicum or project.
+* รายวิชาเปิดใหม่
+
+

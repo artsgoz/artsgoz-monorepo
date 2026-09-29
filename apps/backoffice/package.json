@@ -1,5 +1,9 @@
 {
   "name": "@org/backoffice",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@org/design-system": "workspace:*",
+    "@org/yellow-card-shared": "workspace:*"
+  }
 }

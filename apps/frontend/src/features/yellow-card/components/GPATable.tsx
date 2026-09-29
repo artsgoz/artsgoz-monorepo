@@ -21,7 +21,7 @@ const GRADE_POINTS: Record<string, number> = {
 };
 
 export function GPATable({ subjects }: GPATableProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
 
   // Normalize and group courses by semester
   const termCalculations = useMemo<(GPATermData & { hasData?: boolean })[]>(() => {
@@ -43,8 +43,8 @@ export function GPATable({ subjects }: GPATableProps) {
       for (let i = 0; i < 8; i++) {
         defaultTerms.push({
           semester: i % 2 === 0 
-            ? t('yellow_card.gpa_table.term_first_placeholder') 
-            : t('yellow_card.gpa_table.term_second_placeholder'),
+            ? t('gpa_table.term_first_placeholder') 
+            : t('gpa_table.term_second_placeholder'),
           ca: 0,
           cg: 0,
           gpa: 0,
@@ -131,10 +131,10 @@ export function GPATable({ subjects }: GPATableProps) {
         let year = parseInt(parts[1]) || 0;
         if (year < 100) year += 2500;
         displayLabel = term === '1' 
-          ? t('yellow_card.gpa_table.term_first_prefix', { year }) 
+          ? t('gpa_table.term_first_prefix', { year }) 
           : term === '2' 
-            ? t('yellow_card.gpa_table.term_second_prefix', { year }) 
-            : t('yellow_card.gpa_table.term_summer_prefix', { year });
+            ? t('gpa_table.term_second_prefix', { year }) 
+            : t('gpa_table.term_summer_prefix', { year });
       } else {
         const hasPrefix = sem.trim().startsWith('1.');
         const leadingSpaces = sem.startsWith(' ') ? '' : '  ';
@@ -160,8 +160,8 @@ export function GPATable({ subjects }: GPATableProps) {
       const idx = paddedTerms.length;
       paddedTerms.push({
         semester: idx % 2 === 0 
-          ? t('yellow_card.gpa_table.term_first_placeholder') 
-          : t('yellow_card.gpa_table.term_second_placeholder'),
+          ? t('gpa_table.term_first_placeholder') 
+          : t('gpa_table.term_second_placeholder'),
         ca: 0,
         cg: 0,
         gpa: 0,
@@ -181,7 +181,7 @@ export function GPATable({ subjects }: GPATableProps) {
       <div 
         className="w-full h-[60px] bg-[#E992B4] rounded-[8px] px-5 flex items-center justify-between shadow-xs mb-6 min-w-0"
       >
-        <span className="text-white text-[18px] font-bold truncate">{t('yellow_card.gpa_table.title')}</span>
+        <span className="text-white text-[18px] font-bold truncate">{t('gpa_table.title')}</span>
       </div>
 
       {/* Warning Banner */}
@@ -189,7 +189,7 @@ export function GPATable({ subjects }: GPATableProps) {
         type="warning"
         emphasis="solid"
         icon={BookPlus}
-        message={t('yellow_card.gpa_table.warning_note')}
+        message={t('gpa_table.warning_note')}
         className="w-fit max-w-full mb-6 font-[ChulaCharasNew] bg-[#EE8A50] border-transparent"
       />
 
@@ -198,14 +198,14 @@ export function GPATable({ subjects }: GPATableProps) {
         <table className="w-full min-w-[1058px] table-fixed border-collapse text-center text-[15px]">
           <thead>
             <tr className="border-b border-[#D0D0D1]/30 font-bold text-center text-[16px]">
-              <th className="py-3 px-4 text-left text-white w-[221px] border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>{t('yellow_card.grade_report.term_year')}</th>
+              <th className="py-3 px-4 text-left text-white w-[221px] border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>{t('grade_report.term_year')}</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>CA</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>CG</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>GPA</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>CAX</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>CGX</th>
               <th className="py-3 px-4 w-[84px] text-white border-r border-white/20" style={{ backgroundColor: '#E992B4' }}>GPAX</th>
-              <th className="py-3 px-4 w-[333px] text-black font-bold" style={{ backgroundColor: '#D0D0D1' }}>{t('yellow_card.gpa_table.col_remark')}</th>
+              <th className="py-3 px-4 w-[333px] text-black font-bold" style={{ backgroundColor: '#D0D0D1' }}>{t('gpa_table.col_remark')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#D0D0D1]/20">

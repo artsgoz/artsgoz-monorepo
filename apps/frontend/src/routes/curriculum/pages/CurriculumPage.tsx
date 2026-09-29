@@ -31,7 +31,7 @@ interface MajorInfo {
 }
 
 export default function CurriculumPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('curriculum');
   const [selectedMajor, setSelectedMajor] = useState<string>('thai');
   const [activeTab, setActiveTab] = useState<'about' | 'structure' | 'tuition' | 'admission'>('about');
   
@@ -45,291 +45,291 @@ export default function CurriculumPage() {
   const MAJORS: MajorInfo[] = useMemo(() => [
     {
       id: 'thai',
-      nameKey: 'curriculum_page.majors.thai.title',
+      nameKey: 'majors.thai.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/1-สาขาวิชาภาษาไทย.pdf',
-      descKey: 'curriculum_page.majors.thai.description',
-      reqKey: 'curriculum_page.majors.thai.requirements',
+      descKey: 'majors.thai.description',
+      reqKey: 'majors.thai.requirements',
       color: '#de5d8f', // Design system pink-500
       bgGradient: 'from-[#fceff4] to-[#f5cddc]', // Design system pink-50 to pink-100
       initials: 'TH',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'english',
-      nameKey: 'curriculum_page.majors.english.title',
+      nameKey: 'majors.english.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/2-สาขาวิชาภาษาอังกฤษ.pdf',
-      descKey: 'curriculum_page.majors.english.description',
-      reqKey: 'curriculum_page.majors.english.requirements',
+      descKey: 'majors.english.description',
+      reqKey: 'majors.english.requirements',
       color: '#0165f8', // Design system blue-500
       bgGradient: 'from-[#e6f0fe] to-[#b0cffd]', // Design system blue-50 to blue-100
       initials: 'EN',
       creditsRange: '138',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 57 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 57 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'history',
-      nameKey: 'curriculum_page.majors.history.title',
+      nameKey: 'majors.history.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/3-สาขาวิชาประวัติศาสตร์.pdf',
-      descKey: 'curriculum_page.majors.history.description',
-      reqKey: 'curriculum_page.majors.history.requirements',
+      descKey: 'majors.history.description',
+      reqKey: 'majors.history.requirements',
       color: '#f8c135', // Design system yellow-500
       bgGradient: 'from-[#fef9eb] to-[#fdecc0]', // Design system yellow-50 to yellow-100
       initials: 'HI',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 51 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 51 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'geography',
-      nameKey: 'curriculum_page.majors.geography.title',
+      nameKey: 'majors.geography.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/4-สาขาวิชาภูมิศาสตร์.pdf',
-      descKey: 'curriculum_page.majors.geography.description',
-      reqKey: 'curriculum_page.majors.geography.requirements',
+      descKey: 'majors.geography.description',
+      reqKey: 'majors.geography.requirements',
       color: '#3d940b', // Design system green-500
       bgGradient: 'from-[#ecf4e7] to-[#c3deb3]', // Design system green-50 to green-100
       initials: 'GE',
       creditsRange: '141',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 60 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 60 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'philosophy',
-      nameKey: 'curriculum_page.majors.philosophy.title',
+      nameKey: 'majors.philosophy.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/5-สาขาวิชาปรัชญา.pdf',
-      descKey: 'curriculum_page.majors.philosophy.description',
-      reqKey: 'curriculum_page.majors.philosophy.requirements',
+      descKey: 'majors.philosophy.description',
+      reqKey: 'majors.philosophy.requirements',
       color: '#bc58fd', // Design system purple-500
       bgGradient: 'from-[#f8eeff] to-[#eacbfe]', // Design system purple-50 to purple-100
       initials: 'PH',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'information',
-      nameKey: 'curriculum_page.majors.information.title',
+      nameKey: 'majors.information.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/6-สาขาวิชาสารสนเทศศึกษา.pdf',
-      descKey: 'curriculum_page.majors.information.description',
-      reqKey: 'curriculum_page.majors.information.requirements',
+      descKey: 'majors.information.description',
+      reqKey: 'majors.information.requirements',
       color: '#99999a', // Design system grey-500
       bgGradient: 'from-[#f7f8f9] to-[#dfdfe0]', // Design system grey-25 to grey-100
       initials: 'IS',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'french',
-      nameKey: 'curriculum_page.majors.french.title',
+      nameKey: 'majors.french.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/7-สาขาวิชาภาษาฝรั่งเศส.pdf',
-      descKey: 'curriculum_page.majors.french.description',
-      reqKey: 'curriculum_page.majors.french.requirements',
+      descKey: 'majors.french.description',
+      reqKey: 'majors.french.requirements',
       color: '#0165f8', // Design system blue-500
       bgGradient: 'from-[#e6f0fe] to-[#b0cffd]',
       initials: 'FR',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'german',
-      nameKey: 'curriculum_page.majors.german.title',
+      nameKey: 'majors.german.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/8-สาขาวิชาภาษาเยอรมัน.pdf',
-      descKey: 'curriculum_page.majors.german.description',
-      reqKey: 'curriculum_page.majors.german.requirements',
+      descKey: 'majors.german.description',
+      reqKey: 'majors.german.requirements',
       color: '#3d940b', // Design system green-500
       bgGradient: 'from-[#ecf4e7] to-[#c3deb3]',
       initials: 'DE',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'japanese',
-      nameKey: 'curriculum_page.majors.japanese.title',
+      nameKey: 'majors.japanese.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/9-สาขาวิชาภาษาญี่ปุ่น.pdf',
-      descKey: 'curriculum_page.majors.japanese.description',
-      reqKey: 'curriculum_page.majors.japanese.requirements',
+      descKey: 'majors.japanese.description',
+      reqKey: 'majors.japanese.requirements',
       color: '#ea234f', // Design system red-500
       bgGradient: 'from-[#fde9ed] to-[#f8bbc8]', // Design system red-50 to red-100
       initials: 'JA',
       creditsRange: '138',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 57 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 57 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'chinese',
-      nameKey: 'curriculum_page.majors.chinese.title',
+      nameKey: 'majors.chinese.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/10-สาขาวิชาภาษาจีน.pdf',
-      descKey: 'curriculum_page.majors.chinese.description',
-      reqKey: 'curriculum_page.majors.chinese.requirements',
+      descKey: 'majors.chinese.description',
+      reqKey: 'majors.chinese.requirements',
       color: '#f8c135', // Design system yellow-500
       bgGradient: 'from-[#fef9eb] to-[#fdecc0]',
       initials: 'ZH',
       creditsRange: '138',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 57 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 57 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'pali',
-      nameKey: 'curriculum_page.majors.pali.title',
+      nameKey: 'majors.pali.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/11-สาขาวิชาภาษาบาลีและสันสกฤต.pdf',
-      descKey: 'curriculum_page.majors.pali.description',
-      reqKey: 'curriculum_page.majors.pali.requirements',
+      descKey: 'majors.pali.description',
+      reqKey: 'majors.pali.requirements',
       color: '#bc58fd', // Design system purple-500
       bgGradient: 'from-[#f8eeff] to-[#eacbfe]',
       initials: 'PA',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'spanish',
-      nameKey: 'curriculum_page.majors.spanish.title',
+      nameKey: 'majors.spanish.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/12-สาขาวิชาภาษาสเปน.pdf',
-      descKey: 'curriculum_page.majors.spanish.description',
-      reqKey: 'curriculum_page.majors.spanish.requirements',
+      descKey: 'majors.spanish.description',
+      reqKey: 'majors.spanish.requirements',
       color: '#ea6d24', // Design system orange-500
       bgGradient: 'from-[#fdf0e9] to-[#f8d2bb]', // Design system orange-50 to orange-100
       initials: 'ES',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'italian',
-      nameKey: 'curriculum_page.majors.italian.title',
+      nameKey: 'majors.italian.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/13-สาขาวิชาภาษาอิตาเลียน.pdf',
-      descKey: 'curriculum_page.majors.italian.description',
-      reqKey: 'curriculum_page.majors.italian.requirements',
+      descKey: 'majors.italian.description',
+      reqKey: 'majors.italian.requirements',
       color: '#3d940b', // Design system green-500
       bgGradient: 'from-[#ecf4e7] to-[#c3deb3]',
       initials: 'IT',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'korean',
-      nameKey: 'curriculum_page.majors.korean.title',
+      nameKey: 'majors.korean.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/14-สาขาวิชาภาษาเกาหลี.pdf',
-      descKey: 'curriculum_page.majors.korean.description',
-      reqKey: 'curriculum_page.majors.korean.requirements',
+      descKey: 'majors.korean.description',
+      reqKey: 'majors.korean.requirements',
       color: '#0165f8', // Design system blue-500
       bgGradient: 'from-[#e6f0fe] to-[#b0cffd]',
       initials: 'KO',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'arabic',
-      nameKey: 'curriculum_page.majors.arabic.title',
+      nameKey: 'majors.arabic.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/15-สาขาวิชาภาษาอาหรับ.pdf',
-      descKey: 'curriculum_page.majors.arabic.description',
-      reqKey: 'curriculum_page.majors.arabic.requirements',
+      descKey: 'majors.arabic.description',
+      reqKey: 'majors.arabic.requirements',
       color: '#99999a', // Design system grey-500
       bgGradient: 'from-[#f7f8f9] to-[#dfdfe0]',
       initials: 'AR',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'south_asian',
-      nameKey: 'curriculum_page.majors.south_asian.title',
+      nameKey: 'majors.south_asian.title',
       pdfUrl: 'https://www.arts.chula.ac.th/th/wp-content/uploads/2023/06/16-สาขาวิชาภาษาเอเชียใต้.pdf',
-      descKey: 'curriculum_page.majors.south_asian.description',
-      reqKey: 'curriculum_page.majors.south_asian.requirements',
+      descKey: 'majors.south_asian.description',
+      reqKey: 'majors.south_asian.requirements',
       color: '#bc58fd', // Design system purple-500
       bgGradient: 'from-[#f8eeff] to-[#eacbfe]',
       initials: 'SA',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     },
     {
       id: 'balac',
-      nameKey: 'curriculum_page.majors.balac.title',
+      nameKey: 'majors.balac.title',
       pdfUrl: 'http://www.balac.arts.chula.ac.th/',
-      descKey: 'curriculum_page.majors.balac.description',
-      reqKey: 'curriculum_page.majors.balac.requirements',
+      descKey: 'majors.balac.description',
+      reqKey: 'majors.balac.requirements',
       color: '#de5d8f', // Design system pink-500
       bgGradient: 'from-[#fceff4] to-[#f5cddc]',
       initials: 'BC',
       creditsRange: '135',
       duration: '4',
       structure: [
-        { titleKey: 'curriculum_page.structure_faculty_core', descKey: 'curriculum_page.structure_faculty_core_desc', credits: 27 },
-        { titleKey: 'curriculum_page.structure_major_courses', descKey: 'curriculum_page.structure_major_courses_desc', credits: 54 },
-        { titleKey: 'curriculum_page.structure_gen_ed', descKey: 'curriculum_page.structure_gen_ed_desc', credits: 30 }
+        { titleKey: 'structure_faculty_core', descKey: 'structure_faculty_core_desc', credits: 27 },
+        { titleKey: 'structure_major_courses', descKey: 'structure_major_courses_desc', credits: 54 },
+        { titleKey: 'structure_gen_ed', descKey: 'structure_gen_ed_desc', credits: 30 }
       ]
     }
   ], []);
@@ -356,7 +356,7 @@ export default function CurriculumPage() {
           {/* Header Row: Title & Selector Dropdown */}
           <div className="flex flex-row items-center justify-between gap-4 border-b border-gray-100 pb-6 mb-8">
             <h1 className="text-[32px] md:text-[40px] font-bold text-black font-serif">
-              {t('curriculum_page.select_major_label')}
+              {t('select_major_label')}
             </h1>
             
             {/* Dropdown Selector */}
@@ -479,7 +479,7 @@ export default function CurriculumPage() {
                   activeTab === tab ? 'text-black' : 'text-[#6D6D6D] hover:text-black/80'
                 }`}
               >
-                {t(`curriculum_page.tab_${tab}`)}
+                {t(`tab_${tab}`)}
                 {activeTab === tab && (
                   <motion.div
                     layoutId="curriculumTabUnderline"
@@ -521,7 +521,7 @@ export default function CurriculumPage() {
                         style={{ backgroundColor: activeMajor.color }}
                       >
                         <Download size={14} />
-                        {t('curriculum_page.download_pdf')}
+                        {t('download_pdf')}
                       </Button>
                     </div>
 
@@ -533,7 +533,7 @@ export default function CurriculumPage() {
                       
                       <div className="border-t border-gray-300 pt-6 flex flex-col gap-2">
                         <h5 className="text-[15px] font-bold text-[#6D6D6D] uppercase tracking-wide">
-                          {t('curriculum_page.admission.requirements_title')}
+                          {t('admission.requirements_title')}
                         </h5>
                         <p className="text-[14px] md:text-[16px] text-gray-600 leading-relaxed text-justify">
                           {t(activeMajor.reqKey)}
@@ -548,7 +548,7 @@ export default function CurriculumPage() {
                   <div className="flex flex-col gap-6">
                     {/* Header Credits Summary */}
                     <h3 className="text-[20px] md:text-[28px] font-bold text-black font-serif leading-tight">
-                      {t('curriculum_page.total_credits_label')} {activeMajor.creditsRange} {t('curriculum_page.credits')} &nbsp;|&nbsp; {t('curriculum_page.duration_label')} {t('curriculum_page.duration_val')}
+                      {t('total_credits_label')} {activeMajor.creditsRange} {t('credits')} &nbsp;|&nbsp; {t('duration_label')} {t('duration_val')}
                     </h3>
 
                     {/* Collapsible Container */}
@@ -591,12 +591,12 @@ export default function CurriculumPage() {
                                           กลุ่มวิชาบังคับพื้นฐาน
                                         </h6>
                                         <ul className="flex flex-col gap-2 text-[14px] md:text-[16px] text-white/80 list-disc pl-5">
-                                          <li>{t('curriculum_page.subjects.b1111')}</li>
-                                          <li>{t('curriculum_page.subjects.b1112')}</li>
-                                          <li>{t('curriculum_page.subjects.b1121')}</li>
-                                          <li>{t('curriculum_page.subjects.b1122')}</li>
-                                          <li>{t('curriculum_page.subjects.b1211')}</li>
-                                          <li>{t('curriculum_page.subjects.b1221')}</li>
+                                          <li>{t('subjects.b1111')}</li>
+                                          <li>{t('subjects.b1112')}</li>
+                                          <li>{t('subjects.b1121')}</li>
+                                          <li>{t('subjects.b1122')}</li>
+                                          <li>{t('subjects.b1211')}</li>
+                                          <li>{t('subjects.b1221')}</li>
                                         </ul>
                                       </div>
                                     )}
@@ -616,15 +616,15 @@ export default function CurriculumPage() {
                                           กลุ่มวิชาศึกษาทั่วไปที่แนะนำ
                                         </h6>
                                         <ul className="flex flex-col gap-2 text-[14px] md:text-[16px] text-white/80 list-disc pl-5">
-                                          <li>{t('curriculum_page.subjects.g227')}</li>
-                                          <li>{t('curriculum_page.subjects.g105')}</li>
-                                          <li>{t('curriculum_page.subjects.g261')}</li>
-                                          <li>{t('curriculum_page.subjects.g261n')}</li>
+                                          <li>{t('subjects.g227')}</li>
+                                          <li>{t('subjects.g105')}</li>
+                                          <li>{t('subjects.g261')}</li>
+                                          <li>{t('subjects.g261n')}</li>
                                         </ul>
                                       </div>
                                     )}
                                     <div className="text-[13px] md:text-[14px] font-bold text-white/70 border-t border-white/20 pt-3">
-                                      {t('curriculum_page.total_credits_label')} {item.credits} {t('curriculum_page.credits')}
+                                      {t('total_credits_label')} {item.credits} {t('credits')}
                                     </div>
                                   </div>
                                 </motion.div>
@@ -641,7 +641,7 @@ export default function CurriculumPage() {
                 {activeTab === 'tuition' && (
                   <div className="flex flex-col gap-6">
                     <h3 className="text-[20px] md:text-[28px] font-bold text-black font-serif leading-tight">
-                      {t('curriculum_page.tuition_rates')}
+                      {t('tuition_rates')}
                     </h3>
 
                     {/* Collapsible Container */}
@@ -660,7 +660,7 @@ export default function CurriculumPage() {
                           className="w-full flex items-center justify-between py-4 cursor-pointer text-left border-none bg-transparent"
                         >
                           <span className={`text-[20px] md:text-[28px] font-bold ${expandedTuition === 0 ? 'text-white' : 'text-[#404040]'}`}>
-                            {t('curriculum_page.tuition_regular')}
+                            {t('tuition_regular')}
                           </span>
                           <ChevronDown 
                             className={`w-6 h-6 transition-transform duration-300 ${expandedTuition === 0 ? 'text-white rotate-180' : 'text-[#636363]'}`} 
@@ -677,12 +677,12 @@ export default function CurriculumPage() {
                             >
                               <div className="pb-4 pt-2 flex flex-col gap-4 font-serif">
                                 <p className="text-[14px] md:text-[16px] text-white/80 leading-normal">
-                                  {t('curriculum_page.tuition_regular_desc')}
+                                  {t('tuition_regular_desc')}
                                 </p>
                                 <div className="flex flex-col gap-2.5 border-t border-white/20 pt-4 text-[15px] md:text-[18px] text-white">
-                                  <div>{t('curriculum_page.tuition_details.regular.sem_regular')}</div>
-                                  <div>{t('curriculum_page.tuition_details.regular.sem_summer')}</div>
-                                  <div>{t('curriculum_page.tuition_details.regular.sem_inter')}</div>
+                                  <div>{t('tuition_details.regular.sem_regular')}</div>
+                                  <div>{t('tuition_details.regular.sem_summer')}</div>
+                                  <div>{t('tuition_details.regular.sem_inter')}</div>
                                 </div>
                               </div>
                             </motion.div>
@@ -703,7 +703,7 @@ export default function CurriculumPage() {
                           className="w-full flex items-center justify-between py-4 cursor-pointer text-left border-none bg-transparent"
                         >
                           <span className={`text-[20px] md:text-[28px] font-bold ${expandedTuition === 1 ? 'text-white' : 'text-[#404040]'}`}>
-                            {t('curriculum_page.tuition_international')}
+                            {t('tuition_international')}
                           </span>
                           <ChevronDown 
                             className={`w-6 h-6 transition-transform duration-300 ${expandedTuition === 1 ? 'text-white rotate-180' : 'text-[#636363]'}`} 
@@ -720,12 +720,12 @@ export default function CurriculumPage() {
                             >
                               <div className="pb-4 pt-2 flex flex-col gap-4 font-serif">
                                 <p className="text-[14px] md:text-[16px] text-white/80 leading-normal">
-                                  {t('curriculum_page.tuition_international_desc')}
+                                  {t('tuition_international_desc')}
                                 </p>
                                 <div className="flex flex-col gap-2.5 border-t border-white/20 pt-4 text-[15px] md:text-[18px] text-white">
-                                  <div>{t('curriculum_page.tuition_details.balac.sem_thai')}</div>
-                                  <div>{t('curriculum_page.tuition_details.balac.sem_inter')}</div>
-                                  <div>{t('curriculum_page.tuition_details.balac.sem_summer')}</div>
+                                  <div>{t('tuition_details.balac.sem_thai')}</div>
+                                  <div>{t('tuition_details.balac.sem_inter')}</div>
+                                  <div>{t('tuition_details.balac.sem_summer')}</div>
                                 </div>
                               </div>
                             </motion.div>
@@ -742,7 +742,7 @@ export default function CurriculumPage() {
                   <div className="flex flex-col gap-6">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4">
                       <h3 className="text-[20px] md:text-[28px] font-bold text-black font-serif leading-tight">
-                        {t('curriculum_page.admission_title')}
+                        {t('admission_title')}
                       </h3>
 
                       <Button
@@ -750,42 +750,42 @@ export default function CurriculumPage() {
                         variant="outline"
                         className="font-serif border-black text-black bg-white hover:bg-gray-50 h-[44px] rounded-[10px]"
                       >
-                        {t('curriculum_page.visit_mytcas_btn')}
+                        {t('visit_mytcas_btn')}
                         <ExternalLink size={14} />
                       </Button>
                     </div>
 
                     <p className="text-[15px] md:text-[17px] text-gray-500 leading-relaxed -mt-2">
-                      {t('curriculum_page.admission_desc')}
+                      {t('admission_desc')}
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div className="p-6 rounded-2xl border border-gray-200 bg-white flex flex-col gap-3 shadow-2xs">
                         <span className="w-8 h-8 rounded-full bg-black/5 text-black flex items-center justify-center text-[15px] font-bold">1</span>
-                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('curriculum_page.admission.tcas_round1')}</h5>
-                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('curriculum_page.admission.tcas_round1_desc')}</p>
+                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('admission.tcas_round1')}</h5>
+                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('admission.tcas_round1_desc')}</p>
                       </div>
 
                       <div className="p-6 rounded-2xl border border-gray-200 bg-white flex flex-col gap-3 shadow-2xs">
                         <span className="w-8 h-8 rounded-full bg-black/5 text-black flex items-center justify-center text-[15px] font-bold">2</span>
-                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('curriculum_page.admission.tcas_round2')}</h5>
-                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('curriculum_page.admission.tcas_round2_desc')}</p>
+                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('admission.tcas_round2')}</h5>
+                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('admission.tcas_round2_desc')}</p>
                       </div>
 
                       <div className="p-6 rounded-2xl border border-gray-200 bg-white flex flex-col gap-3 shadow-2xs">
                         <span className="w-8 h-8 rounded-full bg-black/5 text-black flex items-center justify-center text-[15px] font-bold">3</span>
-                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('curriculum_page.admission.tcas_round3')}</h5>
-                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('curriculum_page.admission.tcas_round3_desc')}</p>
+                        <h5 className="font-bold text-[16px] md:text-[18px] text-black leading-tight">{t('admission.tcas_round3')}</h5>
+                        <p className="text-[13px] md:text-[15px] text-gray-500 leading-relaxed text-justify">{t('admission.tcas_round3_desc')}</p>
                       </div>
                     </div>
 
                     <div className="p-6 rounded-2xl bg-gray-50 border border-gray-150 flex flex-col gap-3.5 mt-2">
                       <h5 className="font-bold text-[16px] text-black flex items-center gap-2">
-                        {t('curriculum_page.admission.requirements_title')}
+                        {t('admission.requirements_title')}
                       </h5>
                       <ul className="flex flex-col gap-2.5 text-[14px] md:text-[16px] text-gray-600 pl-4 list-disc">
-                        <li>{t('curriculum_page.admission.gpa_req')}</li>
-                        <li>{t('curriculum_page.admission.tgas_req')}</li>
+                        <li>{t('admission.gpa_req')}</li>
+                        <li>{t('admission.tgas_req')}</li>
                       </ul>
                     </div>
                   </div>

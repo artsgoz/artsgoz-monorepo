@@ -6,7 +6,7 @@ import { MOCK_ARTICLES } from '../constants.js';
 import { ArticleCard } from './ArticleCard.js';
 
 export function ArticleDetailSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -18,16 +18,16 @@ export function ArticleDetailSection() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
         <h2 className="text-[28px] font-bold text-gray-800 font-serif mb-4">
-          {t('articles.detail.not_found_title', { defaultValue: 'ไม่พบบทความนี้' })}
+          {t('detail.not_found_title', { defaultValue: 'ไม่พบบทความนี้' })}
         </h2>
         <p className="text-gray-600 mb-6 font-serif">
-          {t('articles.detail.not_found_desc', { defaultValue: 'บทความที่คุณต้องการเข้าชมอาจถูกลบหรือไม่มีอยู่จริง' })}
+          {t('detail.not_found_desc', { defaultValue: 'บทความที่คุณต้องการเข้าชมอาจถูกลบหรือไม่มีอยู่จริง' })}
         </p>
         <button
           onClick={() => navigate('/articles')}
           className="font-serif px-6 py-2.5 rounded-[9999px] text-white font-bold bg-[#E992B4] hover:bg-[#DE5D8F] transition-colors cursor-pointer"
         >
-          {t('articles.detail.back_to_all', { defaultValue: 'กลับสู่หน้าบทความทั้งหมด' })}
+          {t('detail.back_to_all', { defaultValue: 'กลับสู่หน้าบทความทั้งหมด' })}
         </button>
       </div>
     );
@@ -43,7 +43,7 @@ export function ArticleDetailSection() {
           className="group flex items-center gap-2 text-[#DE5D8F] hover:text-pink-600 font-serif font-bold text-[16px] transition-colors cursor-pointer w-fit"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span>{t('articles.detail.back_to_articles', { defaultValue: 'กลับไปหน้าบทความ' })}</span>
+          <span>{t('detail.back_to_articles', { defaultValue: 'กลับไปหน้าบทความ' })}</span>
         </button>
 
         {/* ── Article content section (Figma: Frame 6529, column gap:24px) ── */}
@@ -108,11 +108,11 @@ export function ArticleDetailSection() {
             >
               {/* Author: ChulaCharasNew, 16px, bold, #6D6D6D, row gap:11px */}
               <span className="font-serif font-bold text-[16px] leading-[24px] text-[#6D6D6D]">
-                {t('articles.written_by', { author: t(article.author) })}
+                {t('written_by', { author: t(article.author) })}
               </span>
               {/* Date: ChulaCharasNew, 16px, bold, #99999A */}
               <span className="font-serif font-bold text-[16px] leading-[24px] text-[#99999A]">
-                {t('articles.published', { date: article.date })}
+                {t('published', { date: article.date })}
               </span>
             </div>
           </div>
@@ -149,7 +149,7 @@ export function ArticleDetailSection() {
         <div className="flex flex-col gap-6 w-full">
           {/* "รายการอ้างอิง": ChulaCharasNew, 32px, bold, lineHeight:40px */}
           <h2 className="font-serif font-bold text-[24px] md:text-[32px] leading-[32px] md:leading-[40px] text-black">
-            {t('articles.detail.references', { defaultValue: 'รายการอ้างอิง' })}
+            {t('detail.references', { defaultValue: 'รายการอ้างอิง' })}
           </h2>
           <div className="flex flex-col gap-2 text-[16px] leading-[24px] font-serif text-black">
             <p>1. คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย. (2567). <em>ประวัติคณะอักษรศาสตร์</em>. https://www.arts.chula.ac.th/</p>
@@ -162,7 +162,7 @@ export function ArticleDetailSection() {
       <div className="w-full max-w-[1181px] mx-auto px-4 lg:px-6 pb-14 flex flex-col gap-10">
         {/* "อ่านต่อ": ChulaCharasNew, 32px, bold, lineHeight:40px, black */}
         <h2 className="font-serif font-bold text-[24px] md:text-[32px] leading-[32px] md:leading-[40px] text-black">
-          {t('articles.detail.read_more', { defaultValue: 'อ่านต่อ' })}
+          {t('detail.read_more', { defaultValue: 'อ่านต่อ' })}
         </h2>
 
         {/* Horizontal scroll row (Figma: row, overflowScroll:x, gap:29px) */}

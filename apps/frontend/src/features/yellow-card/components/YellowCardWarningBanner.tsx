@@ -7,7 +7,7 @@ interface YellowCardWarningBannerProps {
 }
 
 export function YellowCardWarningBanner({ onClose }: YellowCardWarningBannerProps) {
-  useTranslation();
+  useTranslation('yellow_card');
 
   return (
     <SystemBanner

@@ -1,0 +1,997 @@
+--- Page 1 ---
+
+1
+สาขาวิชาภาษาจีน
+(หลักสูตรปรับปรุง พ.ศ. 2566)
+1. หน่วยงานที่รับผิดชอบ
+ภาควิชาภาษาตะวันออก สาขาวิชาภาษาจีน คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+2. หลักสูตร
+จํานวนหน่วยกิตรวมตลอดหลักสูตร 135-137 หน่วยกิต
+2.1 โครงสร้างหลักสูตร
+ภาควิชาภาษาตะวันออกเปิดสอนวิชาเอกสาขาวิชาภาษาจีน แบบวิชาเอกเดี่ยว สําหรับนิสิตที่เลือกเรียน
+เป็นวิชาเอกและเปิดสอนเป็นวิชาโทสําหรับนิสิตที่เรียนวิชาเอกสาขาอื่นทั้ในคณะและนอกคณะ ดังนี้
+2.1.1 โปรแกรมปกติ
+แบบวิชาเอกเดี่ยว                                                              72 หน่วยกิต
+(1) กลุ่มวิชาพื้นฐาน                     18 หน่วยกิต
+วิชาบังคับ            18 หน่วยกิต
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                18 หน่วยกิต
+วิชาบังคับ            12 หน่วยกิต
+วิชาเลือก             6 หน่วยกิต
+(3) กลุ่มวิชาเชี่ยวชาญ                         18 หน่วยกิต
+วิชาบังคับ             6 หน่วยกิต
+วิชาเลือก            12 หน่วยกิต
+(4) กลุ่มวิชาสํารวจ                           18 หน่วยกิต
+วิชาเลือก            18 หน่วยกิต
+วิชาโท สําหรับนิสิตวิชาเอกสาขาอื่นทั้งในคณะและนอกคณะ      18 หน่วยกิต
+วิชาบังคับ            12 หน่วยกิต
+วิชาเลือก             6 หน่วยกิต
+2.1.2 โปรแกรมเกียรตินิยม
+ผู้ที่เข้าศึกษาโปรแกรมเกียรตินิยมจะต้องผ่านการเรียนในชั้นปุที่ 1 ด้วยแต้มเฉลี่ยสะสมไม่ตํากว่า 3.75
+และเรียนรายวิชาในหลักสูตรมาแล้วไม่น้อยกว่า 36 หน่วยกิต กรณีได้แต้มสะสมตํากว่า 3.75 แต่สูงกว่าเกณฑ์ของ
+มหาวิทยาลัย คือ 3.50 ให้อยู่ในดุลยพินิจของคณะกรรมการบริหารคณะอักษรศาสตร์ ทั้งนี้ นิสิตโปรแกรมเกียรตินิยมต้อง
+สอบได้แต้มเฉลี่ยสะสมไม่ตํากว่า 3.60 และหากไม่สามารถสอบได้แต้มเฉลี่ยสะสม 3.60 ติดต่อกัน 2 ภาคการศึกษา ต้อง
+ย้ายไปเรียนโปรแกรมปกติโดยสามารถนับหน่วยกิตรายวิชาเอกัตศึกษา รายวิชาระดับบัณฑิตศึกษาในโปรแกรมเกียรตินิยม
+เป็นหน่วยกิตของโปรแกรมปกติได้
+
+
+
+--- Page 2 ---
+
+2
+แบบวิชาเอกเดี่ยว                                                            74 หน่วยกิต
+() กลุ่มวิชาพื้นฐาน                          18 หน่วยกิต
+วิชาบังคับ                   18 หน่วยกิต
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                    18 หน่วยกิต
+วิชาบังคับ                   12 หน่วยกิต
+วิชาเลือก                    6 หน่วยกิต
+(3) กลุ่มวิชาเชี่ยวชาญ                         18 หน่วยกิต
+วิชาบังคับ                    6 หน่วยกิต
+วิชาเลือก                    12 หน่วยกิต
+(4) กลุ่มวิชาสํารวจ                           20 หน่วยกิต
+วิชาเลือก                   20 หน่วยกิต
+3. รายวิชา
+3.1 โปรแกรมปกติ
+3.1.1 แบบวิชาเอกเดี่ยว                                           72 หน่วยกิต
+() กลุ่มวิชาพื้นฐาน                                     18 หน่วยกิต
+วิชาบังคับ                                                       18 หน่วยกิต
+2222342 วิวัฒนาการตัวอักษรจีน                                       3 (3-0-6)
+Evolution of the Chinese Characters
+2222345* แปูริทัศน์วรรณคดีจีน                                      3 (3-0-6)
+Introduction to Chinese Literature
+2222346* ขปริทัศน์ระบบเสียงและโครงสร้างภาษาจีนกลาง      3 (3-0-6)
+Introduction to Chinese Sound System and Structure
+2222347* การแปลภาษาจีน                                        3 (3-0-6)
+Chinese Translation
+2222348* กภาษาจีนโบราณ                                         3 (3-0-6)
+Classical Chinese
+2222349" จจีนร่วมสมัย                                             3 (3-0-6)
+Contemporary China
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                              18 หน่วยกิต
+วิชาบังคับ                                                          12 หน่วยกิต
+2222221     ทักษะการฟังและการพูดภาษาจีน 1                      3 (2-2-5)
+Chinese Listening and Speaking Skills |
+2222222      ทักษะการฟังและการพูดภาษาจีน 2                           3 (2-2-5)
+Chinese Listening and Speaking Skills II
+2222233* การอ่านภาษาจีนเชิงวิเคราะห์                             3 (3-0-6)
+Chinese Analytical Reading
+2222234* การอ่านภาษาจีนจากสือดิจิทัล                            3 (3-0-6)
+Chinese Reading from Digital Media
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 3 ---
+
+3
+วิชาเลือก                                                        6 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2222121     ภาษาจีนกลางสําหรับผู้เริ่มเรียน 1                       3 (2-2-5)
+Chinese for Beginners |
+2222122      ภาษาจีนกลางสําหรับผู้เริ่มเรียน 2                           3 (2-2-5)
+Chinese for Beginners II
+2222203 กภาษาจีนกลาง 3                                        3 (3-0-6)
+Chinese Ill
+2222204 ภาษาจีนกลาง 4                                        3 (3-0-6)
+Chinese IV
+(3) กลุ่มวิชาเชี่ยวชาญ                                                18 หน่วยกิต
+วิชาบังคับ                                                 6 หน่วยกิต
+2222311 การพูดภาษาจีนในที่ชุมนุมชน                                         3 (2-2-5)
+Chinese Public Speaking
+2222437 การเขียนภาษาจีน 1                                   3 (3-0-6)
+Chinese Writing |
+วิชาเลือก                                                           12 หน่วยกิต
+ให้นิสิตเลือกเรียน 1 รายวิชาในหมวด ก
+และเลือกเรียน 3 รายวิชาในหมวด ข กลุ่มความสนใจเดียวกัน
+หมวด ก กลุ่มวิชาพัฒนาทักษะภาษา                        3 หน่วยกิต
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2222417 ภาษาจีนจากสื่อโสตทัศน์                                      3 (3-0-6)
+Chinese from Audio-Visual Media
+2222438 การเขียนภาษาจีน 2                                          3 (3-0-6)
+Chinese Writing II
+หมวด ข กลุ่มวิชาพัฒนาความรู้ภาษาจีนเฉพาะด้านตามความสนใจ 9 หน่วยกิต
+ให้นิสิตเลือกเรียน 3 รายวิชาในกลุ่มความสนใจเดียวกัน
+(1) กลุ่มความสนใจด้านภาษาศาสตร์
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2222341 ไวยากรณ์จีนกลาง                                            3 (3-0-6)
+Chinese Grammar
+2222343 สัทศาสตร์ภาษาจีนกลาง                                      3 (3-0-6)
+Chinese Phonetics
+2222464* ภาษาจีนในฐานะภาษาต่างประเทศ                         3 (3-0-6)
+Chinese as a Foreign Language
+
+
+
+--- Page 4 ---
+
+4
+2222480 กการศึกษาเปรียบต่างภาษาจีน-ไทย                            3 (3-0-6)
+Chinese-Thai Contrastive Study
+(2 กลุ่มความสนใจด้านวรรณคดีและวรรณกรรมสมัยใหม่และร่วมสมัย
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2222451  /ประวัติวรรณคดีจีน 1                                      3 (3-0-6)
+History of Chinese Literature |
+2222452 ประวัติวรรณคดิจีน 2                                      3 (3-0-6)
+History of Chinese Literature I
+2222453      สัมมนาเรื่องสั้นและนวนิยายจีนสมัยใหม่                       3 (3-0-6)
+Seminar in Modern Chinese Fiction
+2222454* วรรณกรรมกับภาพยนตร์จีนสมัยใหม่                        3 (3-0-6)
+Modern Chinese Literature and Cinema
+(3) กลุ่มความสนใจด้านภาษาเชิงวิชาชีพ
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+2222361      ภาษาจีนด้านความสัมพันธ์ระหว่างประเทศ                    3 (3-0-6)
+Chinese for International Relations
+2222362 ภาษาจีนธุรกิจ                                                3 (3-0-6)
+Chinese for Business
+2222461      ภาษาจีนสําหรับการท่องเที่ยว                                 3 (3-0-6)
+Chinese for Tourism
+2222463* การแปลนวนิยายจีน                                       3 (3-0-6)
+Chinese Novel Translation
+(4) กลุ่มวิชาสํารวจ                                     18 หน่วยกิต
+วิชาเลือก                                                        18 หน่วยกิต
+ให้เลือกเรียนรายวิชาจากสาขาวิชาอื่นในคณะอักษรศาสตร์หรือรายวิชาในคณะต่าง ๆ ใน
+จุฬาลงกรณ์มหาวิทยาลัย ได้แก่ คณะรัฐศาสตร์ คณะพาณิชยศาสตร์และการบัญชี คณะเศรษฐศาสตร์
+คณะนิติศาสตร์ คณะครุศาสตร์และคณะนิเทศศาสตร์ โดยรายวิชานอกสาขาต้องได้รับความเห็นชอบจาก
+คณะกรรมการบริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชาภาษาจีน ทั้งนี้ นิสิตสามารถเรียนรายวิชาของ
+สาขาวิชาภาษาจีนเป็นส่วนหนึ่งของกลุ่มวิชานีได้
+3.1.2 วิชาโท                                                                        18 หน่วยกิต
+สําหรับนิสิตวิชาเอกสาขาอื่นทั้ในคณะและนอกคณะเลือกเรียนเป็นวิชาโท
+วิชาบังคับ                                                   12 หน่วยกิต
+2222100* จจีนปริทัศน์                                               3 (3-0-6)
+Introduction to Chinese
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 5 ---
+
+5
+
+2222112 ภาษาจีนเพื่อการสื่อสาร 2                                   3 (3-0-6)
+Chinese for Communication II
+
+2222213 ภาษาจีนเพื่อการสื่อสาร 3                                 3 (3-0-6)
+Chinese for Communication III
+
+2222214 ภาษาจีนเพื่อการสื่อสาร 4                                 3 (3-0-6)
+Chinese for Communication IV
+
+วิชาเลือก                                                    6 หน่วยกิต
+
+ให้นิสิตเลือกเรียนจากรายวิชาต่อไปนี้
+
+2222111 ภาษาจีนเพื่อการสื่อสาร 1                             3 (3-0-6)
+Chinese for Communication |
+
+2222227 7ทักษะการอ่านภาษาจีน 1                             3 (3-0-6)
+Chinese Reading Skill |
+
+2222228 กทักษะการอ่านภาษาจีน 2                                   3 (3-0-6)
+Chinese Reading Skill II
+
+2222229     การฟังและการพูดภาษาจีนเพื่อการสื่อสาร 1              3 (3-0-6)
+Chinese Listening and Speaking for Communication |
+
+2222231      การฟังและการพูดภาษาจีนเพื่อการสื่อสาร 2                 3 (3-0-6)
+Chinese Listening and Speaking for Communication II
+
+2222232 %ปูริทัศน์วัฒนธรรมจีน                                       3 (3-0-6)
+Introduction to Chinese Culture
+
+2222331 ทักษะการเขียนภาษาจีน                                    3 (3-0-6)
+Chinese Writing Skill
+
+2222332      ภาษาจีนเพื่อการต่างประเทศ                                3 (3-0-6)
+Chinese for Foreign Affairs
+
+2222333      ภาษาจีนเพื่อการสือสารทางธุรกิจ                            3 (3-0-6)
+Chinese for Business Communication
+
+2222334      ภาษาจีนเพื่อการทดสอบมาตรฐาน                            3 (3-0-6)
+Chinese for Standardized Tests
+
+2222335 ภาพยนตร์จีน                                                 3 (3-0-6)
+Chinese Cinema
+
+3.2 โปรแกรมเกียรตินิยม
+4.2.1 แบบวิชาเอกเดี่ยว                                        74 หน่วยกิต
+() กลุ่มวิชาพื้นฐาน                                     18 หน่วยกิต
+เรียนรายวิชาเหมือนกับในโปรแกรมปกติ
+(2 กลุ่มวิชาข้อกําหนดเฉพาะ                              18 หน่วยกิต
+เรียนรายวิชาเหมือนกับในโปรแกรมปกติ
+
+
+
+--- Page 6 ---
+
+6
+(3) กลุ่มวิชาเชี่ยวชาญ                                  18 หน่วยกิต
+เรียนรายวิชาเหมือนกับในโปรแกรมปกติ
+(4) กลุ่มวิชาสํารวจ                                      20 หน่วยกิต
+วิชาเลือก                                                       20 หน่วยกิต
+เรียนรายวิชาเอกัตศึกษาหรือวิชาในระดับบัณฑิตศึกษาโดยความเห็นชอบของคณะกรรมการ
+บริหารหลักสูตรอักษรศาสตรบัณฑิต สาขาวิชาภาษาจีน จํานวน 12 หน่วยกิต และปริญญานิพนธ์ จํานวน
+8 หน่วยกิต
+2222591     เอกัตศึกษา 1                     3 (1-6-2)
+Independent Study |
+2222592 'เเอกัตศึกษา 2                     3 (1-6-2)
+Independent Study |!
+2222593 เอกัตศึกษา 3                     3 (1-6-2)
+Independent Study Ill
+2222594     เอกัตศึกษา 4                       3 (1-6-2
+Independent Study IV
+2222597 ปริญญานิพนธ์ 1                     4 หน่วยกิต
+Senior Project |
+2222598 ปริญญานิพนธ์ 2                      4 หน่วยกิต
+Senior Project Il
+3.3 แผนการศึกษา
+3.3.1 โปรแกรมปกติ
+ปีที่ 1 ภาคการศึกษาต้น
+XXXXXXX วิชาเลือก                               3 หน่วยกิต
+รวม                      3 หน่วยกิต
+ปีที่ 1 ภาคการศึกษาปลาย
+XXXXXXX วิชาเลือก                               3 หน่วยกิต
+รวม                      3 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาต้น
+2222221    ทักษะการฟังและการพูดภาษาจีน 1        3 หน่วยกิต
+2222233 กการอ่านภาษาจีนเชิงวิเคราะห์          3 หน่วยกิต
+XXXXXXX ทวิชาเลือก                             3-6 หน่วยกิต
+รวม                   9-12 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาปลาย
+2222222    ทักษะการฟังและการพูดภาษาจีน 2        3 หน่วยกิต
+2222234 การอ่านภาษาจีนจากสื่อดิจิทัล         3 หน่วยกิต
+XXXXXXX วิชาเลือก                             3-6 หน่วยกิต
+รวม                   9-12 หน่วยกิต
+
+
+
+--- Page 7 ---
+
+7
+ปีที่ 3 ภาคการศึกษาต้น
+2222311 การพูดภาษาจีนในที่ชุมนุมชน          3 หน่วยกิต
+2222345 ปูริทัศน์วรรณคดีจีน               3 หน่วยกิต
+2222346 ปูริทัศน์ระบบเสียง                3 หน่วยกิต
+และโครงสร้างภาษาจีนกลาง
+2222348 ภาษาจีนโบราณ                 3 หน่วยกิต
+XXXXXXX วิชาเลือก                                    0-6 หน่วยกิต
+รวม                       12-18 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาปลาย
+2222342 วิวัฒนาการตัวอักษรจีน             3 หน่วยกิต
+2222347 การแปลภาษาจีน                3 หน่วยกิต
+2222349 จีนร่วมสมัย                    3 หน่วยกิต
+XXXXXXX วิชาเลือก                                    3-9 หน่วยกิต
+รวม                       12-18 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาต้น
+2222437 การเขียนภาษาจีน 1                  3 หน่วยกิต
+XXXXXXX วิชาเลือก                    9-12 หน่วยกิต
+รวม            12-15 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาปลาย
+XXXXXXX วิชาเลือก                   12-15 หน่วยกิต
+รวม            12-15 หน่วยกิต
+3.3.2 โปรแกรมเกียรตินิยม
+ปีที่ 1 ภาคการศึกษาต้น
+XXXXXXX วิชาเลือก                     3 หน่วยกิต
+รวม              3 หน่วยกิต
+ปีที่ 1 ภาคการศึกษาปลาย
+XXXXXXX วิชาเลือก                                       3 หน่วยกิต
+รวม              3 หน่วยกิต
+ปีที่ 2 ภาคการศึกษาต้น
+2222221    ทักษะการฟังและการพูดภาษาจีน 1        3 หน่วยกิต
+2222233 กการอ่านภาษาจีนเชิงวิเคราะห์          3 หน่วยกิต
+2222591    เอกัตศึกษา 1                   3 หน่วยกิต
+XXXXXXX วิชาเลือก                                     0-3 หน่วยกิต
+รวม                        9-12 หน่วยกิต
+
+
+
+--- Page 8 ---
+
+8
+ปีที่ 2 ภาคการศึกษาปลาย
+2222222    ทักษะการฟังและการพูดภาษาจีน 2        3 หน่วยกิต
+2222234 การอ่านภาษาจีนจากสื่อดิจิทัล         3 หน่วยกิต
+2222592 เเอกัตศึกษา 2                       3 หน่วยกิต
+XXXXXXX วิชาเลือก                                     0-3 หน่วยกิต
+รวม                        9-12 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาต้น
+2222311 การพูดภาษาจีนในที่ชุมนุมชน          3 หน่วยกิต
+2222345 ปูริทัศน์วรรณคดีจีน               3 หน่วยกิต
+2222346 ปูริทัศน์ระบบเสียง                3 หน่วยกิต
+และโครงสร้างภาษาจีนกลาง
+2222348 ภาษาจีนโบราณ                 3 หน่วยกิต
+2222593 เอกัตศึกษา 3                       3 หน่วยกิต
+รวม             15 หน่วยกิต
+ปีที่ 3 ภาคการศึกษาปลาย
+2222342 วิวัฒนาการตัวอักษรจีน             3 หน่วยกิต
+2222347 การแปลภาษาจีน                3 หน่วยกิต
+2222349 จีนร่วมสมัย                    3 หน่วยกิต
+2222594    เอกัตศึกษา 4                       3 หน่วยกิต
+XXXXXXX วิชาเลือก                                    3-6 หน่วยกิต
+รวม                     15-18 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาต้น
+2222437 การเขียนภาษาจีน 1                  3 หน่วยกิต
+2222597 ปริญญานิพนธ์ 1                     4 หน่วยกิต
+XXXXXXX วิชาเลือก                   6-9 หน่วยกิต
+รวม                       13-16 หน่วยกิต
+ปีที่ 4 ภาคการศึกษาปลาย
+2222598 ปริญญานิพนธ์ 2                4 หน่วยกิต
+XXXXXXX วิชาเลือก                                    3-6 หน่วยกิต
+รวม                        7-10 หน่วยกิต
+
+
+
+--- Page 9 ---
+
+9
+คําอธิบายรายวิชา
+2222100* จีนปริทัศน์                                                             3 (3-0-6)
+ระบบเสียงภาษาจีนมาตรฐาน สัทอักษรพินอิน อักขรวิธีอักษรจีน
+และความรู้ทั่วไปด้านต่าง ๆ เกี่ยวกับภาษาและวัฒนธรรมจีน
+Introduction to Chinese
+INTRO CHINESE
+Standard Chinese sound system; PINYIN phonetic alphabet;
+Chinese character orthography and general knowledge of Chinese language
+and culture in different aspects.
+2222111 ภาษาจีนเพื่อการสื่อสาร 1                                           3 (3-0-6)
+ระบบเสียงภาษาจีนกลาง ศัพท์พื้นฐานที่ใช้ในชีวิตประจําวัน
+เน็นการออกเสียงให้ถูกต้อง ความรู้อักษรจีน 300 ตัว
+Chinese for Communication |
+CHIN COMM |
+Sound system of standard Chinese; basic vocabulary used in everyday life,
+with emphasis on correct pronunciation; Knowledge of 300 Chinese characters.
+2222112 ภาษาจีนเพื่อการสื่อสาร 2                                          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222111 ภาษาจีนเพื่อการสื่อสาร 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนที่ใช้ในการติดต่อสื่อสาร โครงสร้างไวยากรณ์
+และรูปประโยคพื้นฐานภาษาจีนกลาง ความรู้อักษรจีน 600 ตัว
+Chinese for Communication II
+CHIN COM II
+(CONDITION: PRER 2222111 CHIN COMM | OR CONSENT OF FACULTY)
+Vocabulary and expressions commonly used in communication;
+basic Chinese grammatical structures and sentence patterns;
+knowledge of 600 Chinese characters.
+2222121 ภาษาจีนกลางสําหรับผู้เริ่มเรียน 1                                   3 (2-2-5)
+ระบบเสียงภาษาจีนกลาง ศัพท์พื้นฐานที่ใช้ในชีวิตประจําวัน ได้แก่ ศัพท์เครือญาติ เครื่องแต่งกาย
+ส่วนต่าง ๆ ของร่างกาย อาหาร เครื่องใช้สอย และจํานวนนับความรู้อักษรจีน 500 ตัว
+Chinese for Beginners |
+CHIN BEGINNERS |
+Sound system of Standard Chinese; basic vocabulary used in everyday life:
+kinship, clothing, body parts, food, utensils and numbers;
+knowledge of 500 Chinese characters.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 10 ---
+
+10
+
+2222122 ภาษาจีนกลางสําหรับผู้เริ่มเรียน 2                                    3 (2-2-5)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222121 ภาษาจีนกลางสําหรับผู้เริ่มเรียน 1 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ศัพท์เกี่ยวกับการบอกทิศทาง การเดินทาง การติดต่อสื่อสาร โครงสร้างไวยากรณ์
+
+และรูปประโยคพื้นฐานภาษาจีนกลาง ความรู้อักษรจีน 1,000 ตัว
+
+Chinese for Beginners II
+
+CHIN BEGINNERS II
+
+(CONDITION: PRER 2222121 CHINESE FOR BEGINNERS | OR CONSENT OF FACULTY)
+
+Vocabulary on directions, travels, communication; basic Chinese grammatical
+
+structures and sentence patterns; knowledge of 1,000 Chinese characters.
+2222203 ภาษาจีนกลาง 3                                                        3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่คณะอนุญาตให้เรียน)
+
+ศัพท์ด้านศิลปวัฒนธรรม ปรัชญาและศาสนา เน้นการอ่านจับใจความ ความรู้อักษรจีน 1,500 ตัว
+
+Chinese Ill
+
+CHINESE Ill
+
+(CONDITION: CONSENT OF FACULTY)
+
+Vocabulary in the fields of art, culture, philosophy and religion,
+
+with emphasis on reading for main ideas; knowledge of 1,500 Chinese characters.
+2222204 ภาษาจีนกลาง 4                                      3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222203 ภาษาจีนกลาง 3 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ศัพท์พื้นฐานทางวิชาการด้านวิทยาศาสตร์ สังคมศาสตร์ และธุรกิจ
+
+เน็นการอ่านจับใจความสําคัญ ความรู้อักษรจีน 2,000 ตัว
+
+Chinese IV
+
+CHINESE IV
+
+(CONDITION: PRER 2222203 CHINESE Ill OR CONSENT OF FACULTY)
+
+Basic technical vocabulary in the fields of science, social sciences
+
+and business, with emphasis on reading for main ideas;
+
+knowledge of 2,000 Chinese characters.
+2222213 ภาษาจีนเพื่อการสื่อสาร 3                                              3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222112 ภาษาจีนเพื่อการสือสาร 2 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ศัพท์ สํานวน บทสนทนา ที่ใช้ในการติดต่อสื่อสาร โครงสร้างประโยคต่าง ๆ ที่ซับซ้อนขึ้น
+
+การฝึกเขียนข้อความขนาดสั้น ความรู้อักษรจีน 900 ตัว
+
+
+
+--- Page 11 ---
+
+11
+Chinese for Communication Ill
+CHIN COM Ill
+(CONDITION: PRER 2222112 CHIN COM Il OR CONSENT OF FACULTY)
+Vocabulary, expressions, conversation used in communication,
+more complex sentence structures, practice writing short composition,
+knowledge of 900 Chinese characters.
+
+2222214 ภาษาจีนเพื่อการสื่อสาร 4                                          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222213 ภาษาจีนเพื่อการสือสาร 3 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ทักษะการฟัง การพูด การอ่าน การเขียน โดยเน้นรูปแบบประโยคที่ซับซ้อน
+
+การใช้ภาษาให้เหมาะสมตามวัฒนธรรมจีน ความรู้อักษรจีน 1,200 ตัว
+
+Chinese for Communication IV
+
+CHIN COM IV
+
+(CONDITION: PRER 2222213 CHIN COM Ill OR CONSENT OF FACULTY)
+
+Listening, speaking, reading and writing skills with emphasis
+
+on complex sentence patterns; language usage appropriate to Chinese culture;
+knowledge of 1,200 Chinese characters.
+
+2222221 ทักษะการฟังและการพูดภาษาจีน 1                                  3 (2-2-5)
+(เงื่อนไขรายวิชา: รายวิชาที่คณะอนุญาตให้เรียน)
+
+ทักษะการฟังและการพูดภาษาจีนกลาง เน็นการออกเสียงให้ถูกต้อง
+
+การสนทนาโดยใช้ศัพท์สํานวนพื้นฐาน
+
+Chinese Listening and Speaking Skills |
+
+CHIN LIST SPK |
+
+(CONDITION: CONSENT OF FACULTY)
+
+Listening and speaking skills in Chinese with emphasis on correct pronunciation;
+conversation using basic vocabulary and expressions.
+
+2222222 ทักษะการฟังและการพูดภาษาจีน 2                                    3 (2-2-5)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222221 ทักษะการฟังและการพูดภาษาจีน 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ทักษะการฟังและการพูดภาษาจีนกลาง เน็นการออกเสียงให้ถูกต้อง
+
+การสนทนาโดยใช้ศัพท์สํานวนที่ซับซ้อน
+
+Chinese Listening and Speaking Skills II
+
+CHIN LIST SPK II
+
+(CONDITION: PRER 2222221 CHIN LIST SPK | OR CONSENT OF FACULTY)
+
+Listening and speaking skills in Chinese with emphasis on correct pronunciation;
+Conversation using complex vocabulary and expressions.
+
+
+
+--- Page 12 ---
+
+12
+2222227 ททักษะการอ่านภาษาจีน 1                                          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสือสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนจากความเรียง เรื่องสั้น
+และบทความคัดสรรที่มีเนื้อหาด้านประวัติศาสตร์จีน การอ่านจับใจความ
+Chinese Reading Skill |
+CHIN READ SKILL |
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions used in selected essays,
+short stories and articles on Chinese history; reading comprehension.
+2222228 7ทักษะการอ่านภาษาจีน 2                                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222227 ทักษะการอ่านภาษาจีน 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนจากความเรียงและร้อยแก้วคัดสรรขนาดยาว
+การอ่านเพื่อสรุปความ
+Chinese Reading Skill II
+CHIN READ SKILL Il
+(CONDITION: PRER 2222227 CHIN READ SKILL | OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions used in selected long essays and prose;
+summary reading.
+2222229 การฟังและการพูดภาษาจีนเพื่อการสื่อสาร 1                           3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสือสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ทักษะการฟัง และการพูดภาษาจีน เน้นการใช้ศัพท์สํานวนและประโยคในชีวิตประจําวัน
+Chinese Listening and Speaking for Communication |
+CH LIST SPK COM |
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Listening and speaking skills in Chinese with emphasis on vocabulary,
+expressions and sentences used in daily life.
+2222231 การฟังและการพูดภาษาจีนเพื่อการสื่อสาร 2                           3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222229 การฟังและการพูดภาษาจีนเพื่อการสื่อสาร 1
+หรือ รายวิชาที่คณะอนุญาตให้เรียน)
+ทักษะการฟัง และการพูดภาษาจีน การเล่าเรืองจากประสบการณ์จริง ภาพยนตร์ และดีวีดี
+การแสดงความคิดเห็น
+
+
+
+--- Page 13 ---
+
+13
+Chinese Listening and Speaking for Communication II
+CH LISN SPK COM II
+(CONDITION: PRER 2222229 CH LIST SPK COM | OR CONSENT OF FACULTY)
+Listening and speaking skills in Chinese; recounting events and stories from actual
+experiences, films and DVDs.; presentation of ideas.
+2222232 = -ริทัศน์วัฒนธรรมจีน                                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ภาพรวมของวัฒนธรรมจีน พัฒนาการของสังคมจีนผ่านประเพณี ความคิดทางปรัชญา
+การเมือง ศิลปะ และวรรณคดี อิทธิพลของการเปลี่ยนแปลงทางสังคม การเมือง
+และเศรษฐกิจต่อวัฒนธรรมจีนในยุคสมัยต่าง ๆ
+Introduction to Chinese Culture
+INTRO CHIN CULT
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Overview of Chinese culture; development of Chinese society through customs,
+philosophy ideas, politics, art and literature; influences of social, political
+and economic changes on Chinese culture in different eras.
+2222233* การอ่านภาษาจีนเชิงวิเคราะห์                                             3 (3-0-6)
+ทักษะการอ่านภาษาจีนเชิงวิเคราะห์ กลยุทธ์ในการอ่าน
+การอนุมาน การสรุปความ การประเมินสิ่งที่อ่านอย่างมีวิจารณญาณ
+การวิเคราะห์ลีลาการเขียน วัตถุประสงค์และทัศนคติของผู้เขียน
+Chinese Analytical Reading
+CHIN ANALY READ
+Chinese analytical reading skills; reading strategies; inference; summarization;
+textual evaluation and judgment; analysis of writing styles, purposes
+and attitudes of the authors.
+2222234* การอ่านภาษาจีนจากสื่อดิจิทัล                                            3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222233 การอ่านภาษาจีนเชิงวิเคราะห์ หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์ สํานวน และวัจนลีลาในบทอ่านคัดสรรจากสือดิจิทัลจีน
+การอ่านจับใจความสําคัญและสรุปความ การแสดงความคิดเห็น
+Chinese Reading from Digital Media
+CHIN READ DG MEDIA
+(CONDITION: PRER 2222233 CHIN ANALY READ OR CONSENT OF FACUTLY)
+Vocabulary, expressions and styles in selected readings from Chinese digital media;
+reading comprehension and summarization of content; presentation of ideas.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 14 ---
+
+14
+2222311 การพูดภาษาจีนในที่ชุมนุมชน                                        3 (2-2-5)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222222 ทักษะการฟังและการพูดภาษาจีน 2 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ทักษะการพูดภาษาจีนในที่ชุมนุมชน การแสดงความคิดเห็น การใช้ภาษาและท่าทางเพื่อโน้มน้าวใจผู้ฟัง
+Chinese Public Speaking
+CHIN PUB SPEAK
+(CONDITION: PRER 2222222 CHIN LIST SPK Il OR CONSENT OF FACULTY)
+Skills in Chinese public speaking: expression of ideas,
+use of verbal and nonverbal languages for persuasive purpose.
+2222331 ทักษะการเขียนภาษาจีน                                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การเขียนภาษาจีนที่ใช้ในชีวิตประจําวัน ได้แก่ ข้อความสั้น บันทึกประจําวัน บัตรเชิญ ใบสมัคร
+แบบฟอร์มต่าง ๆ เน้นการใช้ศัพท์สํานวนและโวหารที่ถูกต้องในรูปแบบที่เหมาะสม
+Chinese Writing Skill
+CHIN WRIT SKILL
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Writing of everyday Chinese: notes, diaries, invitation cards,
+application letters and forms with emphasis on appropriate formats,
+usage of vocabulary, idioms and expressions in appropriate formats.
+2222332 ภาษาจีนเพื่อการต่างประเทศ                                         3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนกลางด้านความสัมพันธ์ระหว่างประเทศ การเมืองโลก
+องค์การระหว่างประเทศ และการทูต โครงสร้างประโยคทีใช้ในด้านการต่างประเทศ
+Chinese for Foreign Affairs
+CHIN FOR AFF
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions in international relations,
+world politics, international organizations and diplomacy;
+sentence structures used in foreign affairs.
+2222333 ภาษาจีนเพื่อการสื่อสารทางธุรกิจ                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์ สํานวน และ โครงสร้างประโยคภาษาจีนที่ใช้ในวงการค้า ธุรกิจ และการธนาคารทั้งในประเทศ
+และระหว่างประเทศ ทักษะการพูดและการเขียนเชิงธุรกิจ
+
+
+
+--- Page 15 ---
+
+15
+Chinese for Business Communication
+CHIN BUS COM
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Chinese vocabulary, expressions and sentence structures
+used in domestic and international trade, business and banking;
+speaking and writing skills in business.
+2222334 ภาษาจีนเพื่อการทดสอบมาตรฐาน                                        3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์ สํานวน และโครงสร้างประโยคภาษาจีน ทักษะการฟัง การอ่าน และการเขียน
+เพื่อการทดสอบข้อสอบมาตรฐานภาษาจีน
+Chinese for Standardized Tests
+CHIN STD TEST
+(CONDITION: PRER 2222214 CHIN COM IV OR CONSENT OF FACULTY)
+Chinese vocabulary, expressions and sentence structures;
+listening, reading and writing skills for Chinese standardized tests.
+2222335 กภาพยนตร์จีน                                                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222214 ภาษาจีนเพื่อการสื่อสาร 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ภาพยนตร์จีนสมัยใหม่และร่วมสมัย การวิเคราะห์และวิจารณ์ภาพยนตร์ที่คัดสรร
+Chinese Cinema
+CHINESE CINEMA
+(CONDITION: PRER 2222214 CHIN COMM IV OR CONSENT OF FACULTY)
+Modern and contemporary Chinese film; analysis and criticism of selected films.
+2222341 ไวยากรณ์จีนกลาง                                                  3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ลักษณะและโครงสร้างภาษาจีน เน้นเรืองชนิดของคํา รูปประโยค
+ความหมาย และคําลงท้าย การเขียนประโยคซับซ้อนภาษาจีน
+Chinese Grammar
+CHIN GRAMMAR
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Characteristics and structures of Chinese with emphasis on parts of speech,
+sentence patterns, meaning, and final particles; writing complex Chinese sentences.
+
+
+
+--- Page 16 ---
+
+16
+2222342 วิวัฒนาการตัวอักษรจีน                                                 3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+วิวัฒนาการตัวอักษรจีนตั้งแต่สมัยอักษรจารึกโบราณจนถึงระบบตัวอักษรสมัยปัจจุบัน
+โครงสร้างตัวอักษรจีนแต่ละสมัย
+Evolution of the Chinese Characters
+EVOL CHIN CHARACT
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Evolution of the Chinese characters from those used in ancient inscriptions
+up to the modern character system; Chinese character structure
+in different periods.
+2222343 สัทศาสตร์ภาษาจีนกลาง                                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+ระบบเสียงภาษาจีนกลาง ได้แก่ พยัญชนะ สระ วรรณยุกต์ การเชื่อมคํา
+การลงเสียงหนักเบา และทํานองเสียง การฝึกหัดออกเสียงในห้องปฏิบัติการทางภาษา
+เน้นการแก้ไขการออกเสียง
+Chinese Phonetics
+CHIN PHONETICS
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACUTLY)
+Standard Chinese sound system: consonants, vowels, tones, liaison,
+accent and intonation; pronunciation practice in language laboratory
+with emphasis on correcting pronunciation.
+2222345* ปริทัศน์วรรณคดีจีน                                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+วรรณคดีจีนตั้งแต่ยุคก่อนราชวงศ์ฉินถึงศตวรรษที่ 20 โดยสังเขป
+การวิเคราะห์และวิจารณ์ผลงานวรรณคดีที่คัดสรร
+Introduction to Chinese Literature
+INTRO CHIN LIT
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACUTLY)
+Brief introduction of Chinese literature from the pre-Qin period to
+the twentieth century; analysis and criticism of selected literary works.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 17 ---
+
+17
+2222346* ปปริทัศน์ระบบเสียงและโครงสร้างภาษาจีนกลาง           3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ความรู้เบื้องต้นเกี่ยวกับองค์ประกอบพื้นฐานของสัทวิทยา
+วิทยาหน่วยคํา และวากยสัมพันธ์ในภาษาจีนกลาง
+Introduction to Chinese Sound System and Structure
+INT CH SOUND STRUC
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACUTLY)
+Introduction to basic elements of Mandarin Chinese phonology,
+morphology and syntax.
+2222347* การแปลภาษาจีน                                                         3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การแปลข้อเขียนร้อยแก้วประเภทต่าง ๆ จากภาษาจีนเป็นภาษาไทย
+และจากภาษาไทยเป็นภาษาจีน ปัญหาในการแปล
+Chinese Translation
+CHINESE TRANSL
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Translation of different types of prose from Chinese into Thai
+and from Thai into Chinese; problems in translation.
+2222348* ภาษาจีนโบราณ                                                          3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+คําศัพท์และโครงสร้างไวยากรณ์ภาษาจีนโบราณ สํานวนในวัฒนธรรมจีน
+การเปรียบเทียบภาษาจีนโบราณกับภาษาจีนปัจจุบัน
+Classical Chinese
+CLASSICAL CHINESE
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACUTLY)
+Classical Chinese vocabulary and grammatical structure;
+idioms in Chinese culture; comparison between classical Chinese
+and modern Chinese.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 18 ---
+
+18
+2222349* จจีนร่วมสมัย                                                               3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+คําศัพท์และความรู้ทั่วไปเกี่ยวกับประเทศจีนร่วมสมัย
+Contemporary China
+CONTEMPORARY CHINA
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACUTLY)
+Vocabulary and general knowledge of contemporary China.
+2222361 ภาษาจีนด้านความสัมพันธ์ระหว่างประเทศ                             3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนกลางด้านความสัมพันธ์ระหว่างประเทศ การเมืองโลก
+องค์การระหว่างประเทศและการทูต โครงสร้างประโยคที่ใช้ในด้านความสัมพันธ์ระหว่างประเทศ
+Chinese for International Relations
+CHIN INTER REL
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions in international relations, world politics,
+international organizations and diplomacy; sentence structures used
+in international relations.
+2222362 ภาษาจีนธุรกิจ                                                            3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนกลางที่ใช้ในวงการค้า ธุรกิจและการธนาคารทั้งในประเทศ
+และระหว่างประเทศ วัฒนธรรม ประเพณี และจิตวิทยาในการทําธุรกิจของชาวจีน
+ทักษะการพูดและการเขียนเชิงธุรกิจ
+Chinese for Business
+CHIN BUSINESS
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions used in domestic and
+international trade, business and banking; culture, traditions and psychology
+in doing business of the Chinese; speaking and writing skills in business.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 19 ---
+
+19
+
+2222417 ภาษาจีนจากสื่อโสตทัศน์                                                  3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ภาษาจีนจากสื่อต่าง ๆ ได้แก่ ภาพยนตร์ วิทยุ โทรทัศน์ เน้นการจับใจความสําคัญและการอภิปราย
+
+Chinese from Audio-Visual Media
+
+CHIN A-V MEDIA
+
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+
+Chinese language from media: film radio and television,
+
+with emphasis on identifying main ideas and discussion.
+2222437 การเขียนภาษาจีน 1                                                      3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+การเขียนภาษาจีนที่ใช้ในชีวิตประจําวันและการทํางาน จดหมายและบันทึกประเภทต่าง ๆ
+
+ประกาศ โฆษณา ประชาสัมพันธ์ และรายงาน
+
+Chinese Writing |
+
+CHIN WRIT |
+
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+
+Chinese writing in everyday life and at work: various types of letters and memos,
+
+announcements, advertisements, public relations, and reports.
+2222438 กการเขียนภาษาจีน 2                                                  3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222437 การเขียนภาษาจีน 1 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+การเขียนภาษาจีนบรรยายและพรรณนาเหตุการณ์ เรื่องราว ผู้คน และสถานการณ์
+
+Chinese Writing II
+
+CHIN WRIT Il
+
+(CONDITION: PRER 2222437 CHIN WRIT | OR CONSENT OF FACULTY)
+
+Narrative and descriptive Chinese writing on events, stories, people, and situations.
+2222451 ไประวัติวรรณคดีจีน 1                                                     3 (3-0-6)
+
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+
+รายวิชาที่คณะอนุญาตให้เรียน)
+
+ประวัติวรรณคดีจีนตั้งแต่สมัยแรกเริ่มถึงก่อนสมัยราชวงศ์ถัง
+
+การอ่านและวิเคราะห์บทคัดสรรจากวรรณคดีจีนที่สําคัญในแต่ละสมัย
+
+History of Chinese Literature |
+
+HIST CHIN LIT |
+
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+
+History of Chinese literature from the beginning to pre-Tang Dynasty;
+
+reading and analysis of excerpts from masterpieces of each period.
+
+
+
+--- Page 20 ---
+
+20
+2222452 ไประวัติวรรณคดีจีน 2                                                   3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222451 ประวัติวรรณคดีจีน 1 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ประวัติวรรณคดีจีนตั้งแต่สมัยราชวงศ์ถังถึงสมัยปัจจุบัน
+การอ่านวิเคราะห์และประเมินบทคัดสรรจากวรรณคดีจีนที่สําคัญในแต่ละสมัย
+History of Chinese Literature II
+HIST CHIN LIT II
+(CONDITION: PRER 2222451 HIST CHIN LIT |OR CONSENT OF FACULTY)
+History of Chinese literature from the Tang Dynasty up to the present time;
+reading, analysis and evaluation of excerpts from masterpieces of each period.
+2222453 สัมมนาเรื่องสั้นและนวนิยายจีนสมัยใหม่                               3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ลักษณะเด่น เค้าโครงเรื่อง ลีลาการเขียนของเรื่องสั้นและนวนิยายจีนสมัยใหม่ที่คัดสรร
+Seminar in Modern Chinese Fiction
+SEM MOD CHIN FICT
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Characteristics, plots, and styles of selected modern Chinese short stories
+and novels.
+2222454* วรรณกรรมกับภาพยนตร์จีนสมัยใหม่                                     3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ความสัมพันธ์ระหว่างวรรณกรรมกับภาพยนตร์จีนสมัยใหม่
+การวิเคราะห์และวิจารณ์งานที่คัดสรร
+Modern Chinese Literature and Cinema
+MOD CH LIT CINEMA
+(Condition: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Relationship between modern Chinese literature and cinema;
+analysis and criticism of selected works.
+2222461 ภาษาจีนสําหรับการท่องเที่ยว                                        3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ศัพท์และสํานวนภาษาจีนที่ใช้ในวงการท่องเที่ยว ศิลปวัฒนธรรม ประเพณี
+และความรู้ทั่วไปเกี่ยวกับประเทศไทย การฝึกทักษะการพูดในสถานการณ์จําลอง
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 21 ---
+
+21
+Chinese for Tourism
+CHIN TOURISM
+(Condition: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Chinese vocabulary and expressions used in tourism; art, culture, traditions;
+and general knowledge of Thailand; practice in simulated situations.
+2222463* การแปลนวนิยายจีน                                                      3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+การแปลนวนิยายจีนเป็นภาษาไทย ปัญหาและกลยุทธ์ในการแปล
+Chinese Novel Translation
+CHIN NOVEL TRANSL
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Translation of Chinese novels into Thai; translation problems and strategies.
+2222464* ภาษาจีนในฐานะภาษาต่างประเทศ                                        3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4 หรือ
+รายวิชาที่คณะอนุญาตให้เรียน)
+ภาษาศาสตร์จีนประยุกต์ในการเรียนการสอนภาษา การใช้ภาษาศาสตร์ในการวิเคราะห์
+และแก้ปัญหาการเรียนภาษาจีนของผู้เรียนชาวไทย
+Chinese as a Foreign Language
+CHIN FOREIGN LANG
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Applied Chinese linguistics in language learning and teaching;
+use of linguistics in analyzing and solving Thai learners’ problems
+in Chinese learning.
+2222480 การศึกษาเปรียบต่างภาษาจีน-ไทย                                    3 (3-0-6)
+(เงื่อนไขรายวิชา: รายวิชาที่ต้องสอบผ่าน 2222204 ภาษาจีนกลาง 4
+หรือรายวิชาที่คณะอนุญาตให้เรียน)
+การศึกษาเปรียบต่างระบบเสียง ไวยากรณ์ และระบบการเขียนระหว่างภาษาจีนกับภาษาไทย
+Chinese-Thai Contrastive Study
+CH-TH CONTRAST
+(CONDITION: PRER 2222204 CHINESE IV OR CONSENT OF FACULTY)
+Contrastive study of the sound system, grammar
+and the writing system between Chinese and Thai.
+* รายวิชาเปิดใหม่
+
+
+
+--- Page 22 ---
+
+22
+2222591 เอกัตศึกษา 1                                                             3 (1-6-2)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจด้านภาษา วรรณคดี หรือวัฒนธรรมจีน
+หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study |
+INDEPT STUD |
+In-depth study of one or more topics of special interest in
+the Chinese language, literature or culture.
+2222592 'เเอกัตศึกษา 2                                                             3 (1-6-2)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจด้านภาษา วรรณคดีหรือวัฒนธรรมจีน
+หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study |!
+INDEPT STUD Il
+In-depth study of one or more topics of special interest in
+the Chinese language, literature or culture.
+2222593 'เอกัตศึกษา 3                                                             3 (1-6-2)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจด้านภาษา วรรณคดี หรือวัฒนธรรมจีน
+หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study Ill
+INDEPT STUD Ill
+In-depth study of one or more topics of special interest in
+the Chinese language, literature or culture.
+2222594 เอกัตศึกษา 4                                                             3 (1-6-2)
+การศึกษาอย่างลึกซึ้งในหัวข้อที่น่าสนใจด้านภาษา วรรณคดี หรือวัฒนธรรมจีน
+หัวข้อใดหัวข้อหนึ่งหรือหลายหัวข้อ
+Independent Study IV
+INDEPT STUD IV
+In-depth study of one or more topics of special interest
+in the Chinese language, literature or culture.
+2222597 ปริญญานิพนธ์ 1                                                      4 หน่วยกิต
+Senior Project |
+SR PROJ |
+2222598 ขปริญญานิพนธ์ 2                                                        4 หน่วยกิต
+Senior Project Il
+SR PROJ Il
+
+

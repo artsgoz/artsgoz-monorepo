@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { logoImg, MobileStudentProfileCard, MobileManageAccountCard } from '@org/design-system';
 import { PATHS } from '../../routes/paths.js';
@@ -12,23 +12,6 @@ export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false);
   const [mobileProfileView, setMobileProfileView] = useState<'profile' | 'manage'>('profile');
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = (e: Event) => {
-      const target = e.target as HTMLElement | Document;
-      let scrollTopValue = 0;
-      if (target === document) {
-        scrollTopValue = window.scrollY || document.documentElement.scrollTop;
-      } else if (target instanceof HTMLElement) {
-        scrollTopValue = target.scrollTop;
-      }
-      setIsScrolled(scrollTopValue > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll, true);
-    return () => window.removeEventListener('scroll', handleScroll, true);
-  }, []);
 
 
 
@@ -44,43 +27,36 @@ export function Navbar() {
   };
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-transparent transition-all duration-300">
-      {/* Background layer: transparent at top, white glassmorphism when scrolled */}
-      <div
-        className={`absolute inset-0 bg-white transition-all duration-300 ease-in-out z-0 ${
-          isScrolled 
-            ? 'bg-opacity-80 backdrop-blur-md shadow-[0_2px_10px_0_rgba(0,0,0,0.05)] border-b border-gray-150/70' 
-            : 'bg-opacity-0 shadow-none border-b border-transparent'
-        }`}
-      />
-
-      <div className="relative z-10 flex items-center justify-between lg:justify-end w-full h-[65px] lg:h-[81px] px-4 lg:px-6 gap-4 lg:gap-[38px]">
+    <nav className="w-full fixed top-0 left-0 z-50 bg-[#F2F2F2] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
+      <div className="relative flex items-center justify-between lg:justify-start w-full h-[65px] lg:h-[81px] px-4 lg:px-[50px] gap-4">
+        {/* Logo — left side */}
         <Link
           to={PATHS.ROOT}
-          className="shrink-0 flex items-center hover:opacity-90 transition-opacity lg:mr-auto"
+          className="shrink-0 flex items-center hover:opacity-90 transition-opacity"
         >
           <img
             src={logoImg}
             alt="Artsgoz Logo"
-            className="w-[130px] lg:w-[174px] aspect-[174/37] object-contain transition-all"
+            className="w-[130px] lg:w-[174px] aspect-[174/37] object-contain"
           />
         </Link>
 
-        <div className="hidden lg:block transition-all duration-300">
+        {/* Desktop menu — centred between logo and right actions */}
+        <div className="hidden lg:flex flex-1 justify-center">
           <DesktopMenu />
         </div>
 
-        <div className="hidden sm:block transition-all duration-300">
-          <div className="flex items-center gap-4 lg:gap-[38px]">
-            <NavActions
-              isLoggedIn={isLoggedIn}
-              onLogin={handleLogin}
-              onLogout={handleLogout}
-            />
-          </div>
+        {/* Right actions: search + lang + login */}
+        <div className="hidden sm:flex items-center gap-4 lg:gap-[38px] lg:ml-auto">
+          <NavActions
+            isLoggedIn={isLoggedIn}
+            onLogin={handleLogin}
+            onLogout={handleLogout}
+          />
         </div>
 
-        <div className="lg:hidden transition-all duration-300">
+        {/* Mobile hamburger */}
+        <div className="lg:hidden ml-auto">
           <MobileMenuToggle
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
