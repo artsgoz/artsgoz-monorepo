@@ -1,6 +1,7 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'node:path';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -17,6 +18,14 @@ export default defineConfig(() => ({
     host: 'localhost',
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@base-components': resolve(
+        import.meta.dirname,
+        '../../libs/base-components/src/index.ts',
+      ),
+    },
+  },
   build: {
     outDir: './dist',
     emptyOutDir: true,

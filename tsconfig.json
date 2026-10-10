@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/backoffice"
-    },
-    {
       "path": "./apps/artsgoz-frontend"
     },
     {
@@ -20,6 +17,9 @@
     },
     {
       "path": "./libs/base-components"
+    },
+    {
+      "path": "./apps/artsgoz-backoffice"
     }
   ]
 }

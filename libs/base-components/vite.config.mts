@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
+import { resolve } from 'node:path';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -14,6 +15,14 @@ export default defineConfig(() => ({
       tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
     }),
   ],
+  resolve: {
+    alias: {
+      '@base-components': resolve(
+        import.meta.dirname,
+        '../../libs/base-components/src/index.ts',
+      ),
+    },
+  },
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [],

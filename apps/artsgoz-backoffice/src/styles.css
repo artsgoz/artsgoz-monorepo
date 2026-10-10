@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import '../../../packages/design-system/src/lib/design-system.css';
 
 /* nx-tailwind-sources:start */
+@source "../../../libs/base-components";
 /* nx-tailwind-sources:end */
