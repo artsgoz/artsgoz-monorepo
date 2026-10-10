@@ -1,7 +1,9 @@
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOM from 'react-dom/client';
+import { MaintenancePage } from '@base-components';
 import App from './app/app';
+import { IS_MAINTENANCE_MODE } from './config/maintenance';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -10,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      {IS_MAINTENANCE_MODE ? <MaintenancePage /> : <App />}
     </BrowserRouter>
   </StrictMode>,
 );
