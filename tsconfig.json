@@ -11,6 +11,12 @@
     },
     {
       "path": "./apps/aksornsara-frontend"
+    },
+    {
+      "path": "./apps/aksornsara-api-e2e"
+    },
+    {
+      "path": "./apps/aksornsara-api"
     }
   ]
 }

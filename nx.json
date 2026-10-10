@@ -46,7 +46,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/kb-api-e2e/**/*"]
+      "exclude": ["apps/aksornsara-api-e2e/**/*"]
     },
     {
       "plugin": "@nx/vite/plugin",
