@@ -2,10 +2,26 @@ import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import {
-  BookOpen, Users, Bookmark, ListTodo, FileText, Search,
-  GraduationCap, Globe, ClipboardList, Umbrella, Heart, Pill,
-  Brain, HeartHandshake, Dumbbell, Smile, Bus, Lightbulb,
-  X, Compass
+  BookOpen,
+  Users,
+  Bookmark,
+  ListTodo,
+  FileText,
+  Search,
+  GraduationCap,
+  Globe,
+  ClipboardList,
+  Umbrella,
+  Heart,
+  Pill,
+  Brain,
+  HeartHandshake,
+  Dumbbell,
+  Smile,
+  Bus,
+  Lightbulb,
+  X,
+  Compass,
 } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import { SectionHeading, Button } from '@org/design-system';
@@ -26,34 +42,200 @@ interface ServiceItem {
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 const SERVICES_DATA: ServiceItem[] = [
-  { id: 'articles', titleKey: 'quick_access.menus.articles_title', descriptionKey: 'quick_access.menus.articles_desc', icon: BookOpen, href: PATHS.ARTICLES, category: 'general', tags: ['general'] },
-  { id: 'clubs', titleKey: 'quick_access.menus.clubs_title', descriptionKey: 'quick_access.menus.clubs_desc', icon: Users, href: PATHS.CLUBS, category: 'general', tags: ['general'] },
-  { id: 'saved', titleKey: 'quick_access.menus.saved_title', descriptionKey: 'quick_access.menus.saved_desc', icon: Bookmark, href: `${PATHS.ARTICLES}?tab=saved`, category: 'general', tags: ['general'] },
-  { id: 'tracking', titleKey: 'quick_access.menus.credit_tracking_title', descriptionKey: 'quick_access.menus.credit_tracking_desc', icon: ListTodo, href: PATHS.CREDIT_TRACKING, category: 'academic', tags: ['academic', 'learning'] },
-  { id: 'yellow-card', titleKey: 'quick_access.menus.yellow_card_title', descriptionKey: 'quick_access.menus.yellow_card_desc', icon: FileText, href: PATHS.YELLOW_CARD, category: 'academic', tags: ['academic', 'learning'] },
-  { id: 'professors', titleKey: 'quick_access.menus.professor_name_search_title', descriptionKey: 'quick_access.menus.professor_name_search_desc', icon: Compass, href: PATHS.PROFESSORS, category: 'academic', tags: ['academic', 'learning'] },
-  { id: 'curriculum', titleKey: 'quick_access.menus.curriculum_departments_title', descriptionKey: 'quick_access.menus.curriculum_departments_desc', icon: GraduationCap, href: PATHS.CURRICULUM, category: 'academic', tags: ['academic', 'learning'] },
-  { id: 'scholarships', titleKey: 'quick_access.menus.scholarship_title', descriptionKey: 'quick_access.menus.scholarship_desc', icon: Globe, href: PATHS.INTERNSHIPS, category: 'academic', tags: ['academic'] },
-  { id: 'forms', titleKey: 'quick_access.menus.documents_forms_title', descriptionKey: 'quick_access.menus.documents_forms_desc', icon: ClipboardList, href: PATHS.FORMS, category: 'academic', tags: ['academic', 'learning'] },
-  { id: 'umbrella', titleKey: 'quick_access.menus.umbrella_title', descriptionKey: 'quick_access.menus.umbrella_desc', icon: Umbrella, href: '?service=umbrella', category: 'kos', tags: ['kos'] },
-  { id: 'sanitary-pads', titleKey: 'quick_access.menus.sanitary_pads_title', descriptionKey: 'quick_access.menus.sanitary_pads_desc', icon: Heart, href: '?service=sanitary-pads', category: 'kos', tags: ['kos'] },
-  { id: 'medicine', titleKey: 'quick_access.menus.medicine_title', descriptionKey: 'quick_access.menus.medicine_desc', icon: Pill, href: '?service=medicine', category: 'kos', tags: ['kos'] },
-  { id: 'mindspace', titleKey: 'quick_access.menus.mindspace_title', descriptionKey: 'quick_access.menus.mindspace_desc', icon: Brain, href: 'https://chula.wellness.in.th/', category: 'university', tags: ['university', 'mental'], isExternal: true },
-  { id: 'health-center', titleKey: 'quick_access.menus.health_center_title', descriptionKey: 'quick_access.menus.health_center_desc', icon: HeartHandshake, href: 'https://www.chula.ac.th/about/student-life/health-services/', category: 'university', tags: ['university', 'mental'], isExternal: true },
-  { id: 'sports', titleKey: 'quick_access.menus.sports_center_title', descriptionKey: 'quick_access.menus.sports_center_desc', icon: Dumbbell, href: 'https://www.cusports.chula.ac.th/', category: 'university', tags: ['university'], isExternal: true },
-  { id: 'mental-tips', titleKey: 'quick_access.menus.mental_health_title', descriptionKey: 'quick_access.menus.mental_health_desc', icon: Smile, href: 'https://chula.wellness.in.th/', category: 'university', tags: ['university', 'mental'], isExternal: true },
-  { id: 'popbus', titleKey: 'quick_access.menus.cu_pop_bus_title', descriptionKey: 'quick_access.menus.cu_pop_bus_desc', icon: Bus, href: 'https://www.chula.ac.th/about/student-life/cu-pop-bus/', category: 'university', tags: ['university'], isExternal: true },
-  { id: 'learning-center', titleKey: 'quick_access.menus.innovation_center_title', descriptionKey: 'quick_access.menus.innovation_center_desc', icon: Lightbulb, href: 'https://lic.chula.ac.th/', category: 'university', tags: ['university'], isExternal: true },
+  {
+    id: 'articles',
+    titleKey: 'quick_access.menus.articles_title',
+    descriptionKey: 'quick_access.menus.articles_desc',
+    icon: BookOpen,
+    href: PATHS.ARTICLES,
+    category: 'general',
+    tags: ['general'],
+  },
+  {
+    id: 'clubs',
+    titleKey: 'quick_access.menus.clubs_title',
+    descriptionKey: 'quick_access.menus.clubs_desc',
+    icon: Users,
+    href: PATHS.CLUBS,
+    category: 'general',
+    tags: ['general'],
+  },
+  {
+    id: 'saved',
+    titleKey: 'quick_access.menus.saved_title',
+    descriptionKey: 'quick_access.menus.saved_desc',
+    icon: Bookmark,
+    href: `${PATHS.ARTICLES}?tab=saved`,
+    category: 'general',
+    tags: ['general'],
+  },
+  {
+    id: 'tracking',
+    titleKey: 'quick_access.menus.credit_tracking_title',
+    descriptionKey: 'quick_access.menus.credit_tracking_desc',
+    icon: ListTodo,
+    href: PATHS.CREDIT_TRACKING,
+    category: 'academic',
+    tags: ['academic', 'learning'],
+  },
+  {
+    id: 'yellow-card',
+    titleKey: 'quick_access.menus.yellow_card_title',
+    descriptionKey: 'quick_access.menus.yellow_card_desc',
+    icon: FileText,
+    href: PATHS.YELLOW_CARD,
+    category: 'academic',
+    tags: ['academic', 'learning'],
+  },
+  {
+    id: 'professors',
+    titleKey: 'quick_access.menus.professor_name_search_title',
+    descriptionKey: 'quick_access.menus.professor_name_search_desc',
+    icon: Compass,
+    href: PATHS.PROFESSORS,
+    category: 'academic',
+    tags: ['academic', 'learning'],
+  },
+  {
+    id: 'curriculum',
+    titleKey: 'quick_access.menus.curriculum_departments_title',
+    descriptionKey: 'quick_access.menus.curriculum_departments_desc',
+    icon: GraduationCap,
+    href: PATHS.CURRICULUM,
+    category: 'academic',
+    tags: ['academic', 'learning'],
+  },
+  {
+    id: 'scholarships',
+    titleKey: 'quick_access.menus.scholarship_title',
+    descriptionKey: 'quick_access.menus.scholarship_desc',
+    icon: Globe,
+    href: PATHS.INTERNSHIPS,
+    category: 'academic',
+    tags: ['academic'],
+  },
+  {
+    id: 'forms',
+    titleKey: 'quick_access.menus.documents_forms_title',
+    descriptionKey: 'quick_access.menus.documents_forms_desc',
+    icon: ClipboardList,
+    href: PATHS.FORMS,
+    category: 'academic',
+    tags: ['academic', 'learning'],
+  },
+  {
+    id: 'umbrella',
+    titleKey: 'quick_access.menus.umbrella_title',
+    descriptionKey: 'quick_access.menus.umbrella_desc',
+    icon: Umbrella,
+    href: '?service=umbrella',
+    category: 'kos',
+    tags: ['kos'],
+  },
+  {
+    id: 'sanitary-pads',
+    titleKey: 'quick_access.menus.sanitary_pads_title',
+    descriptionKey: 'quick_access.menus.sanitary_pads_desc',
+    icon: Heart,
+    href: '?service=sanitary-pads',
+    category: 'kos',
+    tags: ['kos'],
+  },
+  {
+    id: 'medicine',
+    titleKey: 'quick_access.menus.medicine_title',
+    descriptionKey: 'quick_access.menus.medicine_desc',
+    icon: Pill,
+    href: '?service=medicine',
+    category: 'kos',
+    tags: ['kos'],
+  },
+  {
+    id: 'mindspace',
+    titleKey: 'quick_access.menus.mindspace_title',
+    descriptionKey: 'quick_access.menus.mindspace_desc',
+    icon: Brain,
+    href: 'https://chula.wellness.in.th/',
+    category: 'university',
+    tags: ['university', 'mental'],
+    isExternal: true,
+  },
+  {
+    id: 'health-center',
+    titleKey: 'quick_access.menus.health_center_title',
+    descriptionKey: 'quick_access.menus.health_center_desc',
+    icon: HeartHandshake,
+    href: 'https://www.chula.ac.th/about/student-life/health-services/',
+    category: 'university',
+    tags: ['university', 'mental'],
+    isExternal: true,
+  },
+  {
+    id: 'sports',
+    titleKey: 'quick_access.menus.sports_center_title',
+    descriptionKey: 'quick_access.menus.sports_center_desc',
+    icon: Dumbbell,
+    href: 'https://www.cusports.chula.ac.th/',
+    category: 'university',
+    tags: ['university'],
+    isExternal: true,
+  },
+  {
+    id: 'mental-tips',
+    titleKey: 'quick_access.menus.mental_health_title',
+    descriptionKey: 'quick_access.menus.mental_health_desc',
+    icon: Smile,
+    href: 'https://chula.wellness.in.th/',
+    category: 'university',
+    tags: ['university', 'mental'],
+    isExternal: true,
+  },
+  {
+    id: 'popbus',
+    titleKey: 'quick_access.menus.cu_pop_bus_title',
+    descriptionKey: 'quick_access.menus.cu_pop_bus_desc',
+    icon: Bus,
+    href: 'https://www.chula.ac.th/about/student-life/cu-pop-bus/',
+    category: 'university',
+    tags: ['university'],
+    isExternal: true,
+  },
+  {
+    id: 'learning-center',
+    titleKey: 'quick_access.menus.innovation_center_title',
+    descriptionKey: 'quick_access.menus.innovation_center_desc',
+    icon: Lightbulb,
+    href: 'https://lic.chula.ac.th/',
+    category: 'university',
+    tags: ['university'],
+    isExternal: true,
+  },
 ];
 
 const SIDEBAR_ITEMS = [
-  { id: 'all',        labelKey: 'student_services.sidebar.all', tag: 'all' },
-  { id: 'general',    labelKey: 'student_services.sidebar.general',  tag: 'general' },
-  { id: 'academic',   labelKey: 'student_services.sidebar.academic', tag: 'academic' },
-  { id: 'learning',   labelKey: 'student_services.sidebar.learning', tag: 'learning' },
-  { id: 'kos',        labelKey: 'student_services.sidebar.kos', tag: 'kos' },
-  { id: 'mental',     labelKey: 'student_services.sidebar.mental',      tag: 'mental' },
-  { id: 'university', labelKey: 'student_services.sidebar.university', tag: 'university' },
+  { id: 'all', labelKey: 'student_services.sidebar.all', tag: 'all' },
+  {
+    id: 'general',
+    labelKey: 'student_services.sidebar.general',
+    tag: 'general',
+  },
+  {
+    id: 'academic',
+    labelKey: 'student_services.sidebar.academic',
+    tag: 'academic',
+  },
+  {
+    id: 'learning',
+    labelKey: 'student_services.sidebar.learning',
+    tag: 'learning',
+  },
+  { id: 'kos', labelKey: 'student_services.sidebar.kos', tag: 'kos' },
+  { id: 'mental', labelKey: 'student_services.sidebar.mental', tag: 'mental' },
+  {
+    id: 'university',
+    labelKey: 'student_services.sidebar.university',
+    tag: 'university',
+  },
 ];
 
 interface ModalContentDetails {
@@ -70,7 +252,9 @@ interface ModalContentDetails {
   medsKey?: string;
 }
 
-function getModalContentConfig(serviceName: string): ModalContentDetails | null {
+function getModalContentConfig(
+  serviceName: string,
+): ModalContentDetails | null {
   switch (serviceName) {
     case 'umbrella':
       return {
@@ -179,9 +363,15 @@ function BentoCard({ service }: { service: ServiceItem }) {
           <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-4 flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <div className="flex -space-x-2 shrink-0">
-                <div className="w-7 h-7 rounded-full bg-pink-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">A</div>
-                <div className="w-7 h-7 rounded-full bg-purple-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">B</div>
-                <div className="w-7 h-7 rounded-full bg-indigo-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">C</div>
+                <div className="w-7 h-7 rounded-full bg-pink-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">
+                  A
+                </div>
+                <div className="w-7 h-7 rounded-full bg-purple-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">
+                  B
+                </div>
+                <div className="w-7 h-7 rounded-full bg-indigo-300 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold font-sans">
+                  C
+                </div>
               </div>
               <span className="text-[12px] text-gray-400 font-medium font-sans truncate max-w-[150px]">
                 {t('student_services.bento.joined_count')}
@@ -220,16 +410,24 @@ function BentoCard({ service }: { service: ServiceItem }) {
             <div className="relative flex flex-col gap-4 mt-5 pl-1.5 font-sans min-w-0">
               <div className="absolute left-[13px] top-2 bottom-2 w-[2px] bg-amber-200/50 z-0" />
               <div className="flex items-center gap-3 relative z-10 min-w-0">
-                <div className="w-[18px] h-[18px] rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">✓</div>
+                <div className="w-[18px] h-[18px] rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                  ✓
+                </div>
                 <div className="min-w-0">
-                  <p className="text-[12px] font-bold text-gray-700 leading-none truncate">{t('student_services.bento.submit_blue_card')}</p>
+                  <p className="text-[12px] font-bold text-gray-700 leading-none truncate">
+                    {t('student_services.bento.submit_blue_card')}
+                  </p>
                   <p className="text-[9px] text-gray-400">12 มิ.ย. 2026</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 relative z-10 min-w-0">
-                <div className="w-[18px] h-[18px] rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">✓</div>
+                <div className="w-[18px] h-[18px] rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                  ✓
+                </div>
                 <div className="min-w-0">
-                  <p className="text-[12px] font-bold text-gray-700 leading-none truncate">{t('student_services.bento.advisor_approved')}</p>
+                  <p className="text-[12px] font-bold text-gray-700 leading-none truncate">
+                    {t('student_services.bento.advisor_approved')}
+                  </p>
                   <p className="text-[9px] text-gray-400">14 มิ.ย. 2026</p>
                 </div>
               </div>
@@ -239,8 +437,12 @@ function BentoCard({ service }: { service: ServiceItem }) {
                   ●
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[12px] font-bold text-amber-700 leading-none truncate">{t('student_services.bento.processing_registrar')}</p>
-                  <p className="text-[9px] text-amber-500/80">{t('student_services.bento.pending')}</p>
+                  <p className="text-[12px] font-bold text-amber-700 leading-none truncate">
+                    {t('student_services.bento.processing_registrar')}
+                  </p>
+                  <p className="text-[9px] text-amber-500/80">
+                    {t('student_services.bento.pending')}
+                  </p>
                 </div>
               </div>
             </div>
@@ -279,18 +481,24 @@ function BentoCard({ service }: { service: ServiceItem }) {
             <div className="space-y-2 mt-4 text-[13px] font-sans min-w-0">
               <div className="flex items-center gap-2 text-gray-600 min-w-0">
                 <span className="shrink-0">🕒</span>
-                <span className="truncate">{t('student_services.bento.open_hours')}</span>
+                <span className="truncate">
+                  {t('student_services.bento.open_hours')}
+                </span>
               </div>
               <div className="flex items-center gap-2 text-gray-600 min-w-0">
                 <span className="shrink-0">📍</span>
-                <span className="truncate">{t('student_services.bento.location_chula9')}</span>
+                <span className="truncate">
+                  {t('student_services.bento.location_chula9')}
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-rose-50 border border-rose-100 text-rose-700 px-3 py-2 rounded-lg mt-3 w-fit max-w-full">
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
                 </span>
-                <span className="font-bold truncate">{t('student_services.bento.emergency_hotline')}</span>
+                <span className="font-bold truncate">
+                  {t('student_services.bento.emergency_hotline')}
+                </span>
               </div>
             </div>
           </div>
@@ -328,11 +536,18 @@ function BentoCard({ service }: { service: ServiceItem }) {
           </div>
           <div className="mt-2 w-full">
             <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-              <div className="h-full bg-indigo-600 rounded-full transition-all duration-500" style={{ width: '77%' }} />
+              <div
+                className="h-full bg-indigo-600 rounded-full transition-all duration-500"
+                style={{ width: '77%' }}
+              />
             </div>
             <div className="flex justify-between items-center mt-1 text-[11px] text-gray-400 font-sans flex-wrap gap-2">
-              <span className="truncate">{t('student_services.bento.collected_credits')}</span>
-              <span className="truncate">{t('student_services.bento.required_credits')}</span>
+              <span className="truncate">
+                {t('student_services.bento.collected_credits')}
+              </span>
+              <span className="truncate">
+                {t('student_services.bento.required_credits')}
+              </span>
             </div>
           </div>
         </div>
@@ -360,11 +575,15 @@ function BentoCard({ service }: { service: ServiceItem }) {
             </div>
             <div className="flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-250/50 text-[11px] font-bold px-2 py-1 rounded-full font-sans shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="whitespace-nowrap">{t('student_services.bento.umbrellas_available')}</span>
+              <span className="whitespace-nowrap">
+                {t('student_services.bento.umbrellas_available')}
+              </span>
             </div>
           </div>
           <div className="flex items-center justify-between text-[11px] text-gray-400 font-sans mt-2 flex-wrap gap-2">
-            <span className="truncate max-w-[200px] md:max-w-none">{t('student_services.bento.kos_room')}</span>
+            <span className="truncate max-w-[200px] md:max-w-none">
+              {t('student_services.bento.kos_room')}
+            </span>
             <span className="text-pink-600 font-bold group-hover:translate-x-1 transition-transform shrink-0">
               {t('student_services.bento.borrow_umbrella_online')}
             </span>
@@ -397,8 +616,12 @@ function BentoCard({ service }: { service: ServiceItem }) {
             </span>
           </div>
           <div className="flex items-center justify-between text-[12px] text-gray-650 font-sans bg-amber-50/40 p-2 rounded-lg border border-amber-100/30 mt-2 min-w-0 flex-wrap gap-2">
-            <span className="truncate max-w-[200px] md:max-w-[280px]">{t('student_services.bento.recent_article')}</span>
-            <span className="text-[10px] text-gray-400 shrink-0">{t('student_services.bento.read_time')}</span>
+            <span className="truncate max-w-[200px] md:max-w-[280px]">
+              {t('student_services.bento.recent_article')}
+            </span>
+            <span className="text-[10px] text-gray-400 shrink-0">
+              {t('student_services.bento.read_time')}
+            </span>
           </div>
         </div>
       );
@@ -426,12 +649,20 @@ function BentoCard({ service }: { service: ServiceItem }) {
           </div>
           <div className="flex gap-3 text-[11px] text-gray-600 font-sans mt-2 flex-wrap md:flex-nowrap">
             <div className="flex-1 bg-white border border-teal-100/60 hover:border-teal-300 p-2 rounded-lg flex items-center justify-between transition-colors shadow-sm min-w-0">
-              <span className="truncate text-gray-700">{t('student_services.bento.general_form')}</span>
-              <span className="teal-650 font-bold shrink-0 ml-1">{t('student_services.bento.download')}</span>
+              <span className="truncate text-gray-700">
+                {t('student_services.bento.general_form')}
+              </span>
+              <span className="teal-650 font-bold shrink-0 ml-1">
+                {t('student_services.bento.download')}
+              </span>
             </div>
             <div className="flex-1 bg-white border border-teal-100/60 hover:border-teal-300 p-2 rounded-lg flex items-center justify-between transition-colors shadow-sm min-w-0">
-              <span className="truncate text-gray-700">{t('student_services.bento.withdraw_form')}</span>
-              <span className="teal-650 font-bold shrink-0 ml-1">{t('student_services.bento.download')}</span>
+              <span className="truncate text-gray-700">
+                {t('student_services.bento.withdraw_form')}
+              </span>
+              <span className="teal-650 font-bold shrink-0 ml-1">
+                {t('student_services.bento.download')}
+              </span>
             </div>
           </div>
         </div>
@@ -464,7 +695,9 @@ function BentoCard({ service }: { service: ServiceItem }) {
               <span className="block text-[10px] font-bold text-purple-500 uppercase tracking-wider mb-0.5 truncate">
                 {t('student_services.bento.today_quote')}
               </span>
-              <p className="break-words line-clamp-4">{t('student_services.bento.quote_content')}</p>
+              <p className="break-words line-clamp-4">
+                {t('student_services.bento.quote_content')}
+              </p>
             </div>
           </div>
           <div className="border-t border-gray-100 pt-3 mt-4">
@@ -475,7 +708,8 @@ function BentoCard({ service }: { service: ServiceItem }) {
         </div>
       );
 
-    default: { // 1x1 Standard Cards
+    default: {
+      // 1x1 Standard Cards
       const getColorConfig = (id: string) => {
         switch (id) {
           case 'saved':
@@ -542,17 +776,61 @@ function BentoCard({ service }: { service: ServiceItem }) {
       // Provide custom titles and short subtexts to fit the 1x1 cells perfectly
       const getDisplayInfoKeys = (id: string) => {
         switch (id) {
-          case 'saved': return { titleKey: 'student_services.bento.saved.title', descKey: 'student_services.bento.saved.desc' };
-          case 'professors': return { titleKey: 'student_services.bento.professors.title', descKey: 'student_services.bento.professors.desc' };
-          case 'curriculum': return { titleKey: 'student_services.bento.curriculum.title', descKey: 'student_services.bento.curriculum.desc' };
-          case 'scholarships': return { titleKey: 'student_services.bento.scholarships.title', descKey: 'student_services.bento.scholarships.desc' };
-          case 'sanitary-pads': return { titleKey: 'student_services.bento.pads.title', descKey: 'student_services.bento.pads.desc' };
-          case 'medicine': return { titleKey: 'student_services.bento.medicine.title', descKey: 'student_services.bento.medicine.desc' };
-          case 'sports': return { titleKey: 'student_services.bento.sports.title', descKey: 'student_services.bento.sports.desc' };
-          case 'mental-tips': return { titleKey: 'student_services.bento.mental_tips.title', descKey: 'student_services.bento.mental_tips.desc' };
-          case 'popbus': return { titleKey: 'student_services.bento.popbus.title', descKey: 'student_services.bento.popbus.desc' };
-          case 'learning-center': return { titleKey: 'student_services.bento.learning_center.title', descKey: 'student_services.bento.learning_center.desc' };
-          default: return { titleKey: service.titleKey, descKey: service.descriptionKey };
+          case 'saved':
+            return {
+              titleKey: 'student_services.bento.saved.title',
+              descKey: 'student_services.bento.saved.desc',
+            };
+          case 'professors':
+            return {
+              titleKey: 'student_services.bento.professors.title',
+              descKey: 'student_services.bento.professors.desc',
+            };
+          case 'curriculum':
+            return {
+              titleKey: 'student_services.bento.curriculum.title',
+              descKey: 'student_services.bento.curriculum.desc',
+            };
+          case 'scholarships':
+            return {
+              titleKey: 'student_services.bento.scholarships.title',
+              descKey: 'student_services.bento.scholarships.desc',
+            };
+          case 'sanitary-pads':
+            return {
+              titleKey: 'student_services.bento.pads.title',
+              descKey: 'student_services.bento.pads.desc',
+            };
+          case 'medicine':
+            return {
+              titleKey: 'student_services.bento.medicine.title',
+              descKey: 'student_services.bento.medicine.desc',
+            };
+          case 'sports':
+            return {
+              titleKey: 'student_services.bento.sports.title',
+              descKey: 'student_services.bento.sports.desc',
+            };
+          case 'mental-tips':
+            return {
+              titleKey: 'student_services.bento.mental_tips.title',
+              descKey: 'student_services.bento.mental_tips.desc',
+            };
+          case 'popbus':
+            return {
+              titleKey: 'student_services.bento.popbus.title',
+              descKey: 'student_services.bento.popbus.desc',
+            };
+          case 'learning-center':
+            return {
+              titleKey: 'student_services.bento.learning_center.title',
+              descKey: 'student_services.bento.learning_center.desc',
+            };
+          default:
+            return {
+              titleKey: service.titleKey,
+              descKey: service.descriptionKey,
+            };
         }
       };
 
@@ -564,7 +842,9 @@ function BentoCard({ service }: { service: ServiceItem }) {
           className={`col-span-1 row-span-1 ${colors.bg} hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border rounded-2xl p-4 flex flex-col justify-between cursor-pointer group min-w-0`}
         >
           <div className="flex items-center justify-between">
-            <div className={`p-2 rounded-xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0`}>
+            <div
+              className={`p-2 rounded-xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0`}
+            >
               <Icon size={24} />
             </div>
             <span className="text-[10px] font-bold text-gray-400 font-sans tracking-wide uppercase shrink-0">
@@ -603,8 +883,12 @@ export default function StudentServicesPage2() {
   const filteredServices = SERVICES_DATA.filter((service) => {
     const matchesSearch =
       t(service.titleKey).toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t(service.descriptionKey).toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      t(service.descriptionKey)
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      service.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
     return matchesSearch;
   });
 
@@ -621,11 +905,17 @@ export default function StudentServicesPage2() {
     <div className="w-full bg-[#FFF] flex flex-col min-h-screen relative">
       <div className="flex-1 w-full bg-white flex flex-col pt-12 pb-16">
         <div className="max-w-[1282px] w-full mx-auto px-4 lg:px-6 flex-1 flex flex-col">
-          <SectionHeading title={t('student_services.title') + " (Bento Grid)"} description={t('student_services.desc')} />
+          <SectionHeading
+            title={t('student_services.title') + ' (Bento Grid)'}
+            description={t('student_services.desc')}
+          />
 
           <div className="mt-8 pb-8 w-full">
             <div className="relative max-w-full">
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#DE5D8F] pointer-events-none" />
+              <Search
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#DE5D8F] pointer-events-none"
+              />
               <input
                 type="text"
                 placeholder={t('student_services.search_placeholder')}
@@ -634,7 +924,10 @@ export default function StudentServicesPage2() {
                 className="w-full pl-12 pr-10 py-3 rounded-full border border-[#8B8B8C] bg-white text-[16px] font-[ChulaCharasNew] text-[#DE5D8F] placeholder:text-[#DE5D8F] focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 transition-all"
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8B8B8C] hover:text-[#DE5D8F] cursor-pointer transition-colors border-none bg-transparent">
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8B8B8C] hover:text-[#DE5D8F] cursor-pointer transition-colors border-none bg-transparent"
+                >
                   <X size={16} />
                 </button>
               )}
@@ -653,8 +946,8 @@ export default function StudentServicesPage2() {
                         setSelectedFilter(item.tag);
                       }}
                       className={`text-left text-[19px] font-bold font-[ChulaCharasNew] transition-all duration-200 cursor-pointer w-full py-2 bg-transparent focus:outline-none border-none ${
-                        isActive 
-                          ? 'text-[#DE5D8F]' 
+                        isActive
+                          ? 'text-[#DE5D8F]'
                           : 'text-gray-500 hover:text-[#DE5D8F]/80'
                       }`}
                     >
@@ -674,8 +967,8 @@ export default function StudentServicesPage2() {
                       key={item.id}
                       onClick={() => setSelectedFilter(item.tag)}
                       className={`py-2 text-[16px] font-bold transition-all whitespace-nowrap snap-center cursor-pointer font-[ChulaCharasNew] border-none bg-transparent focus:outline-none ${
-                        isActive 
-                          ? 'text-[#DE5D8F]' 
+                        isActive
+                          ? 'text-[#DE5D8F]'
                           : 'text-gray-500 hover:text-[#DE5D8F]/80'
                       }`}
                     >
@@ -722,10 +1015,15 @@ export default function StudentServicesPage2() {
           >
             <div className="bg-[#F5CDDC] px-6 py-4 flex items-center justify-between border-b border-[#D0D0D1]">
               <h3 className="text-[20px] font-bold text-[#404041] font-[ChulaCharasNew] flex items-center gap-3 truncate pr-4">
-                {ModalIcon && <ModalIcon className="text-[#DE5D8F] shrink-0" size={24} />}
+                {ModalIcon && (
+                  <ModalIcon className="text-[#DE5D8F] shrink-0" size={24} />
+                )}
                 <span className="truncate">{t(modalData.titleKey)}</span>
               </h3>
-              <button onClick={closeModal} className="text-[#404041] hover:text-[#DE5D8F] transition-colors p-1.5 rounded-full hover:bg-white/50 cursor-pointer border-none bg-transparent">
+              <button
+                onClick={closeModal}
+                className="text-[#404041] hover:text-[#DE5D8F] transition-colors p-1.5 rounded-full hover:bg-white/50 cursor-pointer border-none bg-transparent"
+              >
                 <X size={20} />
               </button>
             </div>
@@ -733,27 +1031,37 @@ export default function StudentServicesPage2() {
               <div className="space-y-4 text-[#404041] leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
                 <p className="break-words">{t(modalData.descKey)}</p>
                 <div>
-                  <strong className="text-[#DE5D8F] block mb-1 break-words">{t(modalData.locationLabelKey)}</strong>
+                  <strong className="text-[#DE5D8F] block mb-1 break-words">
+                    {t(modalData.locationLabelKey)}
+                  </strong>
                   <p className="break-words">{t(modalData.locationKey)}</p>
                 </div>
                 {modalData.timeLabelKey && modalData.timeKey && (
                   <div>
-                    <strong className="text-[#DE5D8F] block mb-1 break-words">{t(modalData.timeLabelKey)}</strong>
+                    <strong className="text-[#DE5D8F] block mb-1 break-words">
+                      {t(modalData.timeLabelKey)}
+                    </strong>
                     <p className="break-words">{t(modalData.timeKey)}</p>
                   </div>
                 )}
                 {modalData.medsLabelKey && modalData.medsKey && (
                   <div>
-                    <strong className="text-[#DE5D8F] block mb-1 break-words">{t(modalData.medsLabelKey)}</strong>
+                    <strong className="text-[#DE5D8F] block mb-1 break-words">
+                      {t(modalData.medsLabelKey)}
+                    </strong>
                     <p className="break-words">{t(modalData.medsKey)}</p>
                   </div>
                 )}
                 {modalData.rulesLabelKey && modalData.rulesKeys && (
                   <div>
-                    <strong className="text-[#DE5D8F] block mb-1 break-words">{t(modalData.rulesLabelKey)}</strong>
+                    <strong className="text-[#DE5D8F] block mb-1 break-words">
+                      {t(modalData.rulesLabelKey)}
+                    </strong>
                     <ul className="list-disc pl-5 space-y-1">
                       {modalData.rulesKeys.map((rKey, i) => (
-                        <li key={i} className="break-words">{t(rKey)}</li>
+                        <li key={i} className="break-words">
+                          {t(rKey)}
+                        </li>
                       ))}
                     </ul>
                   </div>

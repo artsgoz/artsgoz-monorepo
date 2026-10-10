@@ -8,15 +8,6 @@
     },
     {
       "path": "./apps/frontend"
-    },
-    {
-      "path": "./apps/kb"
-    },
-    {
-      "path": "./apps/kb-api-e2e"
-    },
-    {
-      "path": "./apps/kb-api"
     }
   ]
 }

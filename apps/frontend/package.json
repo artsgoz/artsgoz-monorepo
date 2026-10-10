@@ -1,8 +1,8 @@
 {
-  "name": "@org/frontend",
+  "name": "@artsgoz/frontend",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@org/design-system": "workspace:*"
+    "@artsgoz/design-system": "workspace:*"
   }
 }

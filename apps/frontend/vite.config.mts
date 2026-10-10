@@ -10,7 +10,7 @@ export default defineConfig(() => ({
     host: 'localhost',
   },
   optimizeDeps: {
-    exclude: ['@org/design-system'],
+    exclude: ['@artsgoz/design-system'],
   },
   preview: {
     port: 4200,
