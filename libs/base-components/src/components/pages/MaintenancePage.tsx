@@ -20,8 +20,13 @@ export default function MaintenancePage() {
             Dec 25, 2026
           </a>
         </p>
-        <a href="#" className="underline underline-offset-4">
-          Instagram @artsgoz
+        <a
+          href="https://www.instagram.com/arts_goz#"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-4"
+        >
+          Instagram @arts_goz
         </a>
       </div>
     </section>
