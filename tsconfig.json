@@ -7,7 +7,7 @@
       "path": "./apps/backoffice"
     },
     {
-      "path": "./apps/frontend"
+      "path": "./apps/artsgoz-frontend"
     },
     {
       "path": "./apps/aksornsara-frontend"

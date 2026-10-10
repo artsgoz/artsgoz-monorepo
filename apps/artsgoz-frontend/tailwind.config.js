@@ -1,4 +1,4 @@
-// apps/frontend/tailwind.config.js
+// apps/artsgoz-frontend/tailwind.config.js
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
 

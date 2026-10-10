@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "frontend",
-      "public": "apps/frontend/dist",
+      "public": "apps/artsgoz-frontend/dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
@@ -14,7 +14,7 @@
     },
     {
       "target": "frontend-staging",
-      "public": "apps/frontend/dist",
+      "public": "apps/artsgoz-frontend/dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },

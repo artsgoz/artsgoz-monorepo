@@ -253,13 +253,13 @@ importers:
 
   apps/aksornsara-frontend: {}
 
-  apps/backoffice: {}
-
-  apps/frontend:
+  apps/artsgoz-frontend:
     dependencies:
       '@artsgoz/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
+
+  apps/backoffice: {}
 
   packages/design-system:
     dependencies:
