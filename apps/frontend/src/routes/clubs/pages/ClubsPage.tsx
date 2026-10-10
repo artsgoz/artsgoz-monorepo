@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { SectionHeading } from '@org/design-system';
+import { SectionHeading } from '@artsgoz/design-system';
 import { ClubSelector, ClubDetail } from '../../../features/clubs/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 

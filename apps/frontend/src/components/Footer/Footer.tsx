@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { logoImg } from '@org/design-system';
+import { logoImg } from '@artsgoz/design-system';
 import { SOCIAL_LINKS, FOOTER_COLUMNS } from './footerData.js';
 import { FooterColumn } from './FooterColumn.js';
 import { FooterSocialLink } from './FooterSocialLink.js';

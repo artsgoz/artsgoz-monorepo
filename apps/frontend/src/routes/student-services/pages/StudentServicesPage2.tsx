@@ -24,7 +24,7 @@ import {
   Compass,
 } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
-import { SectionHeading, Button } from '@org/design-system';
+import { SectionHeading, Button } from '@artsgoz/design-system';
 import { PATHS } from '../../paths';
 import { Footer } from '../../../components/Footer/index.js';
 

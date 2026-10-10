@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { logoImg, MobileStudentProfileCard, MobileManageAccountCard } from '@org/design-system';
+import {
+  logoImg,
+  MobileStudentProfileCard,
+  MobileManageAccountCard,
+} from '@artsgoz/design-system';
 import { PATHS } from '../../routes/paths.js';
 import { DesktopMenu } from './DesktopMenu.js';
 import { NavActions } from './NavActions.js';
@@ -11,7 +15,9 @@ export function Navbar() {
   // TODO: ในอนาคตเมื่อเชื่อมต่อฐานข้อมูล ให้เปลี่ยนไปดึงและเก็บข้อมูลโปรไฟล์ผู้ใช้จริงผ่าน API/AuthContext
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false);
-  const [mobileProfileView, setMobileProfileView] = useState<'profile' | 'manage'>('profile');
+  const [mobileProfileView, setMobileProfileView] = useState<
+    'profile' | 'manage'
+  >('profile');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -30,8 +36,6 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll, true);
   }, []);
 
-
-
   const handleLogin = () => {
     // TODO: เชื่อมต่อ API ล็อกอินจริง (เช่น นำ Token ที่ได้รับหลังการตรวจสอบผ่าน SSO ไปเช็คกับระบบฐานข้อมูล)
     setIsLoggedIn(true);
@@ -48,8 +52,8 @@ export function Navbar() {
       {/* Background layer: transparent at top, white glassmorphism when scrolled */}
       <div
         className={`absolute inset-0 bg-white transition-all duration-300 ease-in-out z-0 ${
-          isScrolled 
-            ? 'bg-opacity-80 backdrop-blur-md shadow-[0_2px_10px_0_rgba(0,0,0,0.05)] border-b border-gray-150/70' 
+          isScrolled
+            ? 'bg-opacity-80 backdrop-blur-md shadow-[0_2px_10px_0_rgba(0,0,0,0.05)] border-b border-gray-150/70'
             : 'bg-opacity-0 shadow-none border-b border-transparent'
         }`}
       />
@@ -116,7 +120,9 @@ export function Navbar() {
               <MobileManageAccountCard
                 onBack={() => setMobileProfileView('profile')}
                 onEditClick={() => console.log('Mobile: Edit profile clicked')}
-                onAvatarUpload={() => console.log('Mobile: Avatar upload clicked')}
+                onAvatarUpload={() =>
+                  console.log('Mobile: Avatar upload clicked')
+                }
               />
             )}
           </div>

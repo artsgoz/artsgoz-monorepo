@@ -1,8 +1,21 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { SectionHeading, SearchInput, Pagination, Button } from '@org/design-system';
-import { Search, SlidersHorizontal, ArrowRight, Feather, Timer, Bookmark, BookmarkX } from 'lucide-react';
+import {
+  SectionHeading,
+  SearchInput,
+  Pagination,
+  Button,
+} from '@artsgoz/design-system';
+import {
+  Search,
+  SlidersHorizontal,
+  ArrowRight,
+  Feather,
+  Timer,
+  Bookmark,
+  BookmarkX,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArticleCard,
@@ -34,7 +47,7 @@ const MOCK_SAVED_INTERNSHIPS = [
     authorKey: 'articles.saved_internships.intern2.author',
     date: '15/05/69',
     tagsKeys: ['articles.tags.hybrid', 'articles.tags.allowance'],
-  }
+  },
 ];
 
 const MOCK_SAVED_REVIEWS = [
@@ -46,7 +59,7 @@ const MOCK_SAVED_REVIEWS = [
     excerptKey: 'articles.saved_reviews.review1.excerpt',
     categoryKey: 'articles.saved_reviews.review1.category',
     authorKey: 'articles.saved_reviews.review1.author',
-    date: '10/05/69'
+    date: '10/05/69',
   },
   {
     id: 'rev-02',
@@ -56,8 +69,8 @@ const MOCK_SAVED_REVIEWS = [
     excerptKey: 'articles.saved_reviews.review2.excerpt',
     categoryKey: 'articles.saved_reviews.review2.category',
     authorKey: 'articles.saved_reviews.review2.author',
-    date: '02/05/69'
-  }
+    date: '02/05/69',
+  },
 ];
 
 // Helper to parse Thai date (e.g. '28/05/69' -> timestamp)
@@ -76,7 +89,7 @@ function SavedArticleCard({
   article,
   onUnbookmark,
 }: {
-  article: typeof MOCK_ARTICLES[0];
+  article: (typeof MOCK_ARTICLES)[0];
   onUnbookmark: () => void;
 }) {
   const { t } = useTranslation();
@@ -104,7 +117,6 @@ function SavedArticleCard({
 
       {/* Info Content */}
       <div className="flex-1 p-6 flex flex-col justify-between gap-4 min-w-0">
-        
         {/* Header line: Title / Category / Bookmark */}
         <div className="flex justify-between items-start gap-4">
           <div className="flex-1 flex flex-col gap-2 min-w-0">
@@ -138,7 +150,9 @@ function SavedArticleCard({
           <div className="flex items-center gap-4 flex-wrap">
             <span className="flex items-center gap-1.5 min-w-0 truncate max-w-[150px] md:max-w-none">
               <Feather size={14} className="text-gray-350 shrink-0" />
-              <span className="truncate">{t('articles.written_by', { author })}</span>
+              <span className="truncate">
+                {t('articles.written_by', { author })}
+              </span>
             </span>
             <span className="flex items-center gap-1.5 whitespace-nowrap">
               <Timer size={14} className="text-gray-350 shrink-0" />
@@ -150,7 +164,6 @@ function SavedArticleCard({
             <ArrowRight size={14} />
           </span>
         </div>
-
       </div>
     </div>
   );
@@ -168,13 +181,16 @@ export default function ArticlesPage() {
 
   // Sync state from URL parameters
   const searchQuery = searchParams.get('search') || '';
-  const selectedCategory = searchParams.get('category') || 'articles.categories.all';
+  const selectedCategory =
+    searchParams.get('category') || 'articles.categories.all';
   const currentPage = Number(searchParams.get('page')) || 1;
   const isSavedTab = searchParams.get('tab') === 'saved';
 
   // State for Saved Items page
   const [savedSearchQuery, setSavedSearchQuery] = useState('');
-  const [savedTab, setSavedTab] = useState<'articles' | 'internships' | 'reviews'>('articles');
+  const [savedTab, setSavedTab] = useState<
+    'articles' | 'internships' | 'reviews'
+  >('articles');
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('bookmarked_articles');
@@ -184,8 +200,12 @@ export default function ArticlesPage() {
     }
   });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>('newest');
-  const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>('newest');
+  const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>(
+    'newest',
+  );
+  const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>(
+    'newest',
+  );
 
   const handleUnbookmark = (id: string) => {
     try {
@@ -199,7 +219,9 @@ export default function ArticlesPage() {
 
   // Filter and Sort Saved Articles
   const savedArticles = useMemo(() => {
-    let list = MOCK_ARTICLES.filter((article) => bookmarkedIds.includes(article.id));
+    let list = MOCK_ARTICLES.filter((article) =>
+      bookmarkedIds.includes(article.id),
+    );
 
     if (savedSearchQuery.trim() !== '') {
       const query = savedSearchQuery.trim().toLowerCase();
@@ -207,24 +229,28 @@ export default function ArticlesPage() {
         (article) =>
           t(article.title).toLowerCase().includes(query) ||
           t(article.excerpt).toLowerCase().includes(query) ||
-          t(article.author).toLowerCase().includes(query)
+          t(article.author).toLowerCase().includes(query),
       );
     }
 
     if (sortBySavedDate === 'newest') {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id)
+        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id),
       );
     } else {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id)
+        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id),
       );
     }
 
     if (sortByPostDate === 'newest') {
-      list = [...list].sort((a, b) => parseThaiDate(b.date) - parseThaiDate(a.date));
+      list = [...list].sort(
+        (a, b) => parseThaiDate(b.date) - parseThaiDate(a.date),
+      );
     } else if (sortByPostDate === 'oldest') {
-      list = [...list].sort((a, b) => parseThaiDate(a.date) - parseThaiDate(b.date));
+      list = [...list].sort(
+        (a, b) => parseThaiDate(a.date) - parseThaiDate(b.date),
+      );
     }
 
     return list;
@@ -243,7 +269,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -258,7 +284,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -268,7 +294,7 @@ export default function ArticlesPage() {
         prev.set('page', String(page));
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -280,7 +306,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -288,7 +314,8 @@ export default function ArticlesPage() {
   const filteredArticles = useMemo(() => {
     return MOCK_ARTICLES.filter((article) => {
       const matchesCategory =
-        selectedCategory === 'articles.categories.all' || article.category === selectedCategory;
+        selectedCategory === 'articles.categories.all' ||
+        article.category === selectedCategory;
 
       const query = searchQuery.trim().toLowerCase();
       const matchesSearch =
@@ -306,7 +333,7 @@ export default function ArticlesPage() {
   const currentArticles = useMemo(() => {
     return filteredArticles.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
-      currentPage * ITEMS_PER_PAGE
+      currentPage * ITEMS_PER_PAGE,
     );
   }, [filteredArticles, currentPage]);
 
@@ -316,11 +343,14 @@ export default function ArticlesPage() {
       <>
         <div className="bg-white min-h-screen">
           <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full py-12 md:py-20 flex flex-col gap-10">
-            
             {/* Header Title Section */}
             <div className="flex flex-col gap-6 w-full relative">
               <div className="flex items-center gap-4">
-                <Bookmark size={40} className="text-[#DE5D8F] shrink-0" fill="#DE5D8F" />
+                <Bookmark
+                  size={40}
+                  className="text-[#DE5D8F] shrink-0"
+                  fill="#DE5D8F"
+                />
                 <h1 className="text-[36px] md:text-[48px] font-bold text-[#404041] font-serif leading-none">
                   {t('articles.saved_title')}
                 </h1>
@@ -336,13 +366,15 @@ export default function ArticlesPage() {
                     onChange={(e) => setSavedSearchQuery(e.target.value)}
                   />
                 </div>
-                
+
                 {/* Filter Popover Toggle */}
                 <div className="relative w-full md:w-auto self-stretch md:self-auto flex">
                   <button
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                     className={`flex items-center justify-center gap-2.5 px-6 h-[52px] rounded-[10px] border border-gray-250 font-serif text-[15px] font-bold transition-all cursor-pointer w-full md:w-auto ${
-                      isFilterOpen ? 'bg-[#FCEFF4] text-[#DE5D8F] border-[#E992B4]' : 'bg-white hover:bg-gray-50 text-gray-600'
+                      isFilterOpen
+                        ? 'bg-[#FCEFF4] text-[#DE5D8F] border-[#E992B4]'
+                        : 'bg-white hover:bg-gray-50 text-gray-600'
                     }`}
                   >
                     <SlidersHorizontal size={16} />
@@ -364,7 +396,9 @@ export default function ArticlesPage() {
 
                         {/* Date Saved Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('articles.date_saved')}</span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">
+                            {t('articles.date_saved')}
+                          </span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -374,7 +408,9 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_newest')}</span>
+                              <span className="text-[14px] font-serif">
+                                {t('articles.sort_newest')}
+                              </span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -384,14 +420,18 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_oldest')}</span>
+                              <span className="text-[14px] font-serif">
+                                {t('articles.sort_oldest')}
+                              </span>
                             </label>
                           </div>
                         </div>
 
                         {/* Date Posted Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('articles.date_posted')}</span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">
+                            {t('articles.date_posted')}
+                          </span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -401,7 +441,9 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_newest')}</span>
+                              <span className="text-[14px] font-serif">
+                                {t('articles.sort_newest')}
+                              </span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -411,7 +453,9 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">{t('articles.sort_oldest')}</span>
+                              <span className="text-[14px] font-serif">
+                                {t('articles.sort_oldest')}
+                              </span>
                             </label>
                           </div>
                         </div>
@@ -426,7 +470,9 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('articles')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'articles' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'articles'
+                      ? 'text-[#DE5D8F]'
+                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
                   {t('articles.tab_articles')}
@@ -440,7 +486,9 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('internships')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'internships' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'internships'
+                      ? 'text-[#DE5D8F]'
+                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
                   {t('articles.tab_internships')}
@@ -454,7 +502,9 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('reviews')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'reviews' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'reviews'
+                      ? 'text-[#DE5D8F]'
+                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
                   {t('articles.tab_reviews')}
@@ -470,10 +520,9 @@ export default function ArticlesPage() {
 
             {/* ── Saved Items Lists ── */}
             <div className="flex flex-col gap-6 w-full items-center">
-              
               {/* Tab 1: Articles */}
-              {savedTab === 'articles' && (
-                savedArticles.length > 0 ? (
+              {savedTab === 'articles' &&
+                (savedArticles.length > 0 ? (
                   <div className="flex flex-col gap-6 w-full items-center">
                     {savedArticles.map((article) => (
                       <SavedArticleCard
@@ -499,8 +548,7 @@ export default function ArticlesPage() {
                       {t('articles.explore_articles')}
                     </button>
                   </div>
-                )
-              )}
+                ))}
 
               {/* Tab 2: Internships (Mock Data) */}
               {savedTab === 'internships' && (
@@ -512,21 +560,40 @@ export default function ArticlesPage() {
                     >
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex flex-col gap-1.5 min-w-0">
-                          <span className="text-[13px] font-bold text-[#DE5D8F] font-serif truncate">{intern.company}</span>
-                          <h3 className="text-[20px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">{t(intern.roleKey)}</h3>
+                          <span className="text-[13px] font-bold text-[#DE5D8F] font-serif truncate">
+                            {intern.company}
+                          </span>
+                          <h3 className="text-[20px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">
+                            {t(intern.roleKey)}
+                          </h3>
                           <div className="flex flex-wrap gap-2 mt-1">
                             {intern.tagsKeys.map((tagKey, i) => (
-                              <span key={i} className="px-2 py-0.5 text-[11px] font-bold text-gray-500 bg-gray-100 rounded-sm font-sans">{t(tagKey)}</span>
+                              <span
+                                key={i}
+                                className="px-2 py-0.5 text-[11px] font-bold text-gray-500 bg-gray-100 rounded-sm font-sans"
+                              >
+                                {t(tagKey)}
+                              </span>
                             ))}
                           </div>
                         </div>
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">{t(intern.categoryKey)}</span>
+                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">
+                          {t(intern.categoryKey)}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif">
                         <div className="flex items-center gap-4">
-                          <span>{t('articles.period_label', { period: t(intern.periodKey) })}</span>
+                          <span>
+                            {t('articles.period_label', {
+                              period: t(intern.periodKey),
+                            })}
+                          </span>
                         </div>
-                        <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
+                        <a
+                          href="#"
+                          onClick={(e) => e.preventDefault()}
+                          className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0"
+                        >
                           {t('articles.more_details')}
                           <ArrowRight size={14} />
                         </a>
@@ -546,20 +613,34 @@ export default function ArticlesPage() {
                     >
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex flex-col gap-1.5 min-w-0">
-                          <span className="text-[13px] font-bold text-gray-400 font-serif truncate">{rev.company} • {t(rev.roleKey)}</span>
+                          <span className="text-[13px] font-bold text-gray-400 font-serif truncate">
+                            {rev.company} • {t(rev.roleKey)}
+                          </span>
                           <p className="text-[15px] text-[#404041] font-serif leading-relaxed line-clamp-2 mt-1 break-words">
                             &ldquo;{t(rev.excerptKey)}&rdquo;
                           </p>
                         </div>
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">{t(rev.categoryKey)}</span>
+                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">
+                          {t(rev.categoryKey)}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
                         <div className="flex items-center gap-3 flex-wrap">
-                          <span>{t('articles.written_by_author', { author: t(rev.authorKey) })}</span>
+                          <span>
+                            {t('articles.written_by_author', {
+                              author: t(rev.authorKey),
+                            })}
+                          </span>
                           <span>•</span>
-                          <span>{t('articles.published_at', { date: rev.date })}</span>
+                          <span>
+                            {t('articles.published_at', { date: rev.date })}
+                          </span>
                         </div>
-                        <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
+                        <a
+                          href="#"
+                          onClick={(e) => e.preventDefault()}
+                          className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0"
+                        >
                           {t('articles.read_full_review')}
                           <ArrowRight size={14} />
                         </a>
@@ -568,7 +649,6 @@ export default function ArticlesPage() {
                   ))}
                 </div>
               )}
-
             </div>
 
             {/* Bottom CTA to redirect back to standard Articles view */}
@@ -587,7 +667,6 @@ export default function ArticlesPage() {
                 <ArrowRight size={18} />
               </Button>
             </div>
-
           </div>
         </div>
         <Footer />
@@ -600,7 +679,6 @@ export default function ArticlesPage() {
     <>
       <div className="bg-white min-h-screen">
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full py-12 md:py-16 flex flex-col gap-8">
-
           {/* Page Title */}
           <SectionHeading
             title={t('articles.section_title')}
@@ -656,9 +734,12 @@ export default function ArticlesPage() {
                 {t('articles.no_results_title')}
               </h3>
               <p className="text-gray-500 max-w-md text-[16px] font-serif break-words">
-                {t('articles.no_results_desc', { query: searchQuery || t(selectedCategory) })}
+                {t('articles.no_results_desc', {
+                  query: searchQuery || t(selectedCategory),
+                })}
               </p>
-              {(searchQuery || selectedCategory !== 'articles.categories.all') && (
+              {(searchQuery ||
+                selectedCategory !== 'articles.categories.all') && (
                 <Button
                   onClick={handleClearFilters}
                   variant="primary"

@@ -1,6 +1,6 @@
 import { Plus, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { SectionHeading, Button } from '@org/design-system';
+import { SectionHeading, Button } from '@artsgoz/design-system';
 import { FeatureCard } from './FeatureCard.js';
 import { QUICK_ACCESS_MENUS } from '../constants.js';
 
@@ -14,20 +14,25 @@ interface QuickAccessSectionProps {
   onDeleteMenu?: (index: number) => void;
 }
 
-export function QuickAccessSection({ 
+export function QuickAccessSection({
   hideHeading = false,
   showActionButtons = true,
   menus = QUICK_ACCESS_MENUS,
   isManageMode = false,
-  onDeleteMenu
+  onDeleteMenu,
 }: QuickAccessSectionProps) {
   const { t } = useTranslation();
   return (
     <section className="w-full flex flex-col">
       {!hideHeading && (
-        <SectionHeading title={t('quick_access.section_title')} description={t('quick_access.section_desc')} />
+        <SectionHeading
+          title={t('quick_access.section_title')}
+          description={t('quick_access.section_desc')}
+        />
       )}
-      <div className={`flex flex-col gap-2 w-full ${!hideHeading ? 'mt-6' : ''}`}>
+      <div
+        className={`flex flex-col gap-2 w-full ${!hideHeading ? 'mt-6' : ''}`}
+      >
         {/* 3-column × 2-row grid matching wireframe */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
           {menus.map((feature, idx) => (

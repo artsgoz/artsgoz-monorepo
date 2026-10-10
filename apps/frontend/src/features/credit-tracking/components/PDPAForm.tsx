@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@org/design-system';
+import { Button } from '@artsgoz/design-system';
 
 interface PDPAFormProps {
   onConfirm: () => void;
@@ -32,7 +32,10 @@ export function PDPAForm({ onConfirm }: PDPAFormProps) {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-6"
+      >
         {/* Checkbox Group */}
         <label className="flex items-center gap-3 cursor-pointer group text-[18px] font-bold text-[#404041] max-w-full">
           <input

@@ -1,4 +1,4 @@
-import { Chip } from '@org/design-system';
+import { Chip } from '@artsgoz/design-system';
 import { useTranslation } from 'react-i18next';
 
 interface CategoryFilterBarProps {

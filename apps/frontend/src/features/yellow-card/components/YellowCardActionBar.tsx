@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Sparkles } from 'lucide-react';
-import { Button } from '@org/design-system';
+import { Button } from '@artsgoz/design-system';
 
 interface YellowCardActionBarProps {
   onImport: () => void;
   onProcess: () => void;
 }
 
-export function YellowCardActionBar({ onImport, onProcess }: YellowCardActionBarProps) {
+export function YellowCardActionBar({
+  onImport,
+  onProcess,
+}: YellowCardActionBarProps) {
   const { t } = useTranslation();
 
   return (

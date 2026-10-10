@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@org/design-system';
+import { Button } from '@artsgoz/design-system';
 
 interface PDPAFormProps {
   onConfirm: () => void;
@@ -24,15 +24,14 @@ export function PDPAForm({ onConfirm }: PDPAFormProps) {
       </h2>
 
       <div className="text-[#404041] text-[16px] md:text-[18px] font-normal leading-relaxed space-y-4 mb-8">
-        <p className="indent-8 text-justify">
-          {t('yellow_card.pdpa.desc1')}
-        </p>
-        <p className="indent-8 text-justify">
-          {t('yellow_card.pdpa.desc2')}
-        </p>
+        <p className="indent-8 text-justify">{t('yellow_card.pdpa.desc1')}</p>
+        <p className="indent-8 text-justify">{t('yellow_card.pdpa.desc2')}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-6"
+      >
         {/* Checkbox Group */}
         <label className="flex items-center gap-3 cursor-pointer group text-[18px] font-bold text-[#404041]">
           <input

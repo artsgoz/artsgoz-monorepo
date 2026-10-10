@@ -1,7 +1,15 @@
 import { useNavigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Folder, Hand, Briefcase, Building2, User } from 'lucide-react';
-import { Button, MobileSidebar } from '@org/design-system';
+import {
+  Menu,
+  X,
+  Folder,
+  Hand,
+  Briefcase,
+  Building2,
+  User,
+} from 'lucide-react';
+import { Button, MobileSidebar } from '@artsgoz/design-system';
 import { NAV_ITEMS } from './navConfig.js';
 import { LanguageSwitcher } from '../LanguageSwitcher/index.js';
 import { PATHS } from '../../routes/paths.js';

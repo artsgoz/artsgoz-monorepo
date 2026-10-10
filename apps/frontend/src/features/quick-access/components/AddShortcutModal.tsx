@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@org/design-system';
+import { Button } from '@artsgoz/design-system';
 import { X, HelpCircle } from 'lucide-react';
 import { ICON_MAP, ALL_EXISTING_SERVICES } from '../constants.js';
 import { FeatureMenu } from '../types.js';
@@ -9,17 +9,28 @@ interface AddShortcutModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentMenus: FeatureMenu[];
-  onAdd: (menu: { title: string; description: string; iconName: string; href: string; isExternal?: boolean }) => void;
+  onAdd: (menu: {
+    title: string;
+    description: string;
+    iconName: string;
+    href: string;
+    isExternal?: boolean;
+  }) => void;
 }
 
-export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddShortcutModalProps) {
+export function AddShortcutModal({
+  isOpen,
+  onClose,
+  currentMenus,
+  onAdd,
+}: AddShortcutModalProps) {
   const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Filter out services that are already added as shortcuts
   const availableServices = ALL_EXISTING_SERVICES.filter((service) => {
     return !currentMenus.some(
-      (menu) => menu.title === service.title || menu.href === service.href
+      (menu) => menu.title === service.title || menu.href === service.href,
     );
   });
 
@@ -33,7 +44,7 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
 
   const selectedService = availableServices[selectedIndex];
   const IconComponent = selectedService
-    ? (ICON_MAP[selectedService.iconName] || HelpCircle)
+    ? ICON_MAP[selectedService.iconName] || HelpCircle
     : HelpCircle;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -53,13 +64,15 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fade-in">
-      <div 
+      <div
         className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 max-w-[500px] w-full shadow-2xl relative flex flex-col max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
-          <span className="font-serif text-[20px] sm:text-[22px] font-bold text-gray-900">{t('quick_access.modal.title')}</span>
+          <span className="font-serif text-[20px] sm:text-[22px] font-bold text-gray-900">
+            {t('quick_access.modal.title')}
+          </span>
           <button
             type="button"
             onClick={onClose}
@@ -75,7 +88,9 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
             <div className="w-16 h-16 rounded-full bg-[#fceff4] text-[#de5d8f] flex items-center justify-center mb-4">
               <HelpCircle size={32} />
             </div>
-            <h4 className="font-serif text-[18px] font-bold text-gray-800">{t('quick_access.modal.empty_title')}</h4>
+            <h4 className="font-serif text-[18px] font-bold text-gray-800">
+              {t('quick_access.modal.empty_title')}
+            </h4>
             <p className="text-[14px] text-gray-500 mt-2 max-w-xs leading-relaxed">
               {t('quick_access.modal.empty_desc')}
             </p>
@@ -92,7 +107,8 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="font-serif text-[14px] font-bold text-gray-700">
-                {t('quick_access.modal.select_label')} <span className="text-red-500">*</span>
+                {t('quick_access.modal.select_label')}{' '}
+                <span className="text-red-500">*</span>
               </label>
               <select
                 value={selectedIndex}
@@ -110,7 +126,9 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
             {selectedService && (
               /* Live Preview Card */
               <div className="flex flex-col items-center justify-center p-6 rounded-xl border border-dashed border-[#DE5D8F]/30 bg-[#fceff4]/20 text-center select-none animate-in fade-in zoom-in-95 duration-200">
-                <span className="text-[11px] font-bold text-[#DE5D8F] uppercase tracking-widest mb-3">{t('quick_access.modal.preview_label')}</span>
+                <span className="text-[11px] font-bold text-[#DE5D8F] uppercase tracking-widest mb-3">
+                  {t('quick_access.modal.preview_label')}
+                </span>
                 <div className="w-16 h-16 rounded-full bg-white border border-gray-100 flex items-center justify-center shadow-sm mb-3">
                   <IconComponent size={36} className="text-[#E992B4]" />
                 </div>
@@ -122,7 +140,9 @@ export function AddShortcutModal({ isOpen, onClose, currentMenus, onAdd }: AddSh
                 </p>
                 <div className="flex items-center gap-1.5 mt-4">
                   <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide bg-gray-100 px-2 py-0.5 rounded border border-gray-150 font-mono">
-                    {(selectedService as any).isExternal ? t('quick_access.modal.link_type_external') : t('quick_access.modal.link_type_internal')}
+                    {(selectedService as any).isExternal
+                      ? t('quick_access.modal.link_type_external')
+                      : t('quick_access.modal.link_type_internal')}
                   </span>
                 </div>
               </div>
