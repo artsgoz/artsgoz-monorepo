@@ -3,7 +3,7 @@ locals {
   environment = "dev"
 
   hosting_sites = {
-    aksornsara-frontend = "artsgoz-aksornsara-web-frontend-develop"
+    aksornsara-frontend = "artsgoz-aksornsara-web-frontend-develop-85a05"
   }
 
   required_services = toset([

@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "artsgoz-aksornsara-web-develop-tfstate"
-    prefix = "env/dev"
+    bucket = "artsgoz-aksornsara-web-staging-tfstate"
+    prefix = "env/staging"
   }
 }

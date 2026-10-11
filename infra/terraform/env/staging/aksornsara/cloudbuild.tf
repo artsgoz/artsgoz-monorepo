@@ -46,12 +46,12 @@ module "cloud_build" {
   location                      = var.cloud_build_repository.location
   connection_name               = var.cloud_build_repository.connection_name
   repository_name               = var.cloud_build_repository.repository_name
-  branch                        = "^develop$"
+  branch                        = "^staging$"
   environment                   = local.environment
   application_triggers          = local.application_triggers
   terraform_deployer_account_id = "terraform-deployer"
-  terraform_root                = "infra/terraform/env/dev/aksornsara"
-  terraform_var_file            = "dev.tfvars"
+  terraform_root                = "infra/terraform/env/staging/aksornsara"
+  terraform_var_file            = "staging.tfvars"
   state_bucket_name             = "${local.project_id}-tfstate"
   plan_bucket_name              = "${local.project_id}-terraform-plans"
   plan_bucket_location          = var.region

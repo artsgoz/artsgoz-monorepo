@@ -1,9 +1,9 @@
 locals {
-  project_id  = "artsgoz-aksornsara-web-develop"
-  environment = "dev"
+  project_id  = "artsgoz-aksornsara-web-staging"
+  environment = "staging"
 
   hosting_sites = {
-    aksornsara-frontend = "artsgoz-aksornsara-web-frontend-develop"
+    aksornsara-frontend = "artsgoz-aksornsara-web-frontend-staging"
   }
 
   required_services = toset([
@@ -142,7 +142,7 @@ module "storage" {
       location = var.region
       public   = true
       cors_origins = [
-        "https://dev.aksornsara.artsgoz.com",
+        "https://staging.aksornsara.artsgoz.com",
         "http://localhost:4202",
       ]
     }
