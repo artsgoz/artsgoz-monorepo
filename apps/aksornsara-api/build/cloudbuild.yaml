@@ -5,7 +5,7 @@ steps:
     args: ['-c', 'corepack pnpm install --frozen-lockfile']
     dir: '.'
 
-  # Build Aksornsara API
+  # Build Aksornsara API!
   - name: 'node:22'
     entrypoint: 'bash'
     args:
