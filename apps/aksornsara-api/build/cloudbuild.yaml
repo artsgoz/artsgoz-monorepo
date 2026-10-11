@@ -1,26 +1,12 @@
 steps:
-  # Install monorepo dependencies
-  - name: 'node:22'
-    entrypoint: 'bash'
-    args: ['-c', 'corepack pnpm install --frozen-lockfile']
-    dir: '.'
-
-  # Build Aksornsara API!
-  - name: 'node:22'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        corepack pnpm exec nx build @artsgoz/aksornsara-api
-
-  # Deploy Aksornsara API
+  # App Hosting builds the API remotely from the uploaded source.
   - name: 'node:22'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         npm install -g firebase-tools
-        firebase --debug deploy \
+        firebase deploy \
           --only apphosting:aksornsara-api \
           --project "$PROJECT_ID"
 
