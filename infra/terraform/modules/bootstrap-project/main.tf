@@ -1,30 +1,37 @@
 terraform {
-  required_version = ">= 1.6.0"
-
   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = "~>7.0"
+      source = "hashicorp/google"
     }
   }
 }
 
-provider "google" {
-  project = var.project_id
-  region  = var.region
+variable "project_id" {
+  description = "GCP project to bootstrap."
+  type        = string
+}
+
+variable "environment" {
+  description = "Environment label applied to bootstrap resources."
+  type        = string
+}
+
+variable "region" {
+  description = "Region for the Terraform state bucket."
+  type        = string
+}
+
+variable "secret_ids" {
+  description = "Secret Manager secrets to create without secret versions."
+  type        = set(string)
+  default     = []
 }
 
 locals {
-  state_bucket_name = coalesce(
-    var.state_bucket_name,
-    "${var.project_id}-tfstate",
-  )
-
-  bootstrap_services = toset([
+  services = toset([
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
-    "cloudtasks.googleapis.com",
     "developerconnect.googleapis.com",
     "firebase.googleapis.com",
     "firebaseapphosting.googleapis.com",
@@ -36,18 +43,30 @@ locals {
     "serviceusage.googleapis.com",
     "storage.googleapis.com",
   ])
+
+  terraform_deployer_roles = toset([
+    "roles/artifactregistry.admin",
+    "roles/cloudbuild.builds.editor",
+    "roles/firebase.admin",
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountUser",
+    "roles/logging.logWriter",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/serviceusage.serviceUsageAdmin",
+    "roles/storage.admin",
+  ])
 }
 
 module "project_services" {
-  source = "../modules/project-services"
+  source = "../project-services"
 
   project_id = var.project_id
-  services   = local.bootstrap_services
+  services   = local.services
 }
 
 resource "google_storage_bucket" "terraform_state" {
   project  = var.project_id
-  name     = local.state_bucket_name
+  name     = "${var.project_id}-tfstate"
   location = var.region
 
   force_destroy               = false
@@ -69,31 +88,22 @@ resource "google_storage_bucket" "terraform_state" {
 
 resource "google_service_account" "terraform_deployer" {
   project      = var.project_id
-  account_id   = var.terraform_deployer_account_id
+  account_id   = "terraform-deployer"
   display_name = "Terraform deployer (${var.environment})"
-  description  = "CI/CD identity used to plan and apply Terraform for the ${var.environment} environment."
 
   depends_on = [module.project_services]
 }
 
 resource "google_project_iam_member" "terraform_deployer" {
-  for_each = var.terraform_deployer_project_roles
+  for_each = local.terraform_deployer_roles
 
   project = var.project_id
   role    = each.value
   member  = "serviceAccount:${google_service_account.terraform_deployer.email}"
 }
 
-resource "google_project_iam_member" "bootstrap_operator" {
-  for_each = var.bootstrap_operator_principal == null ? toset([]) : var.bootstrap_operator_project_roles
-
-  project = var.project_id
-  role    = each.value
-  member  = var.bootstrap_operator_principal
-}
-
 module "secrets" {
-  source = "../modules/secret-manager"
+  source = "../secret-manager"
 
   project_id = var.project_id
   secret_ids = var.secret_ids
@@ -101,27 +111,14 @@ module "secrets" {
   depends_on = [module.project_services]
 }
 
-output "environment" {
-  description = "Environment bootstrapped by this configuration."
-  value       = var.environment
-}
-
-output "project_id" {
-  description = "GCP project bootstrapped by this configuration."
-  value       = var.project_id
-}
-
 output "terraform_state_bucket" {
-  description = "GCS bucket that stores Terraform state for this environment."
-  value       = google_storage_bucket.terraform_state.name
+  value = google_storage_bucket.terraform_state.name
 }
 
 output "terraform_deployer_service_account_email" {
-  description = "Service account email for the CI/CD Terraform deployer."
-  value       = google_service_account.terraform_deployer.email
+  value = google_service_account.terraform_deployer.email
 }
 
 output "secret_names" {
-  description = "Secret Manager resource names keyed by secret ID."
-  value       = module.secrets.secret_names
+  value = module.secrets.secret_names
 }

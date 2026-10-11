@@ -28,7 +28,7 @@
     "artsgoz-aksornsara-web-develop": {
       "hosting": {
         "aksornsara-frontend": [
-          "artsgoz-aksornsara-web-develop"
+          "artsgoz-aksornsara-web-frontend-develop"
         ]
       }
     }

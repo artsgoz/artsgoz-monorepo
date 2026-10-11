@@ -56,3 +56,11 @@ vite.config.*.timestamp*
 # Firebase local cache
 .firebase/
 .vercel
+
+# Terraform local data and state
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+infra/terraform/bootstrap/.terraform.lock.hcl
+infra/terraform/bootstrap/*/backend.tf
