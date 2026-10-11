@@ -54,6 +54,16 @@ resource "google_firebase_hosting_custom_domain" "environment" {
   wait_dns_verification = false
 }
 
+resource "google_firebase_hosting_custom_domain" "frontend_redirect" {
+  provider = google-beta
+
+  project               = local.project_id
+  site_id               = google_firebase_hosting_site.environment["artsgoz-frontend"].site_id
+  custom_domain         = "artsgoz.com"
+  redirect_target       = google_firebase_hosting_custom_domain.environment["artsgoz-frontend"].custom_domain
+  wait_dns_verification = false
+}
+
 module "iam" {
   source = "../../../modules/iam"
 
@@ -74,7 +84,7 @@ module "storage" {
       location = var.region
       public   = true
       cors_origins = [
-        "https://artsgoz.com",
+        "https://www.artsgoz.com",
         "https://backoffice.artsgoz.com",
       ]
     }
@@ -103,6 +113,16 @@ output "firebase_hosting_custom_domains" {
       ownership_state      = domain.ownership_state
       required_dns_updates = domain.required_dns_updates
     }
+  }
+}
+
+output "firebase_hosting_redirect_domain" {
+  value = {
+    domain               = google_firebase_hosting_custom_domain.frontend_redirect.custom_domain
+    redirect_target      = google_firebase_hosting_custom_domain.frontend_redirect.redirect_target
+    host_state           = google_firebase_hosting_custom_domain.frontend_redirect.host_state
+    ownership_state      = google_firebase_hosting_custom_domain.frontend_redirect.ownership_state
+    required_dns_updates = google_firebase_hosting_custom_domain.frontend_redirect.required_dns_updates
   }
 }
 
