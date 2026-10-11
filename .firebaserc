@@ -1,27 +1,34 @@
 {
   "projects": {
-    "default": "chula-artsgoz-website"
+    "default": "chula-artsgoz-website",
+    "artsgoz-develop": "artsgoz-artsgoz-web-develop",
+    "aksornsara-develop": "artsgoz-aksornsara-web-develop"
   },
   "targets": {
     "chula-artsgoz-website": {
       "hosting": {
-        "frontend": [
+        "artsgoz-frontend": [
           "artsgoz-frontend"
         ],
-        "backoffice": [
+        "artsgoz-backoffice": [
           "artsgoz-backoffice"
+        ]
+      }
+    },
+    "artsgoz-artsgoz-web-develop": {
+      "hosting": {
+        "artsgoz-frontend": [
+          "artsgoz-artsgoz-web-frontend-develop"
         ],
-        "frontend-staging": [
-          "artsgoz-frontend-staging"
-        ],
-        "backoffice-staging": [
-          "artsgoz-backoffice-staging"
-        ],
-        "kb": [
-          "artsgoz-kb"
-        ],
-        "kb-staging": [
-          "artsgoz-kb-staging"
+        "artsgoz-backoffice": [
+          "artsgoz-artsgoz-web-backoffice-develop"
+        ]
+      }
+    },
+    "artsgoz-aksornsara-web-develop": {
+      "hosting": {
+        "aksornsara-frontend": [
+          "artsgoz-aksornsara-web-develop"
         ]
       }
     }
