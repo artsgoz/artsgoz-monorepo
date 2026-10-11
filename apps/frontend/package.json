@@ -1,8 +1,0 @@
-{
-  "name": "@org/frontend",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "@org/design-system": "workspace:*"
-  }
-}
