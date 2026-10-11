@@ -99,7 +99,6 @@ module "iam" {
     "roles/secretmanager.secretAccessor",
     "roles/storage.objectViewer",
   ]
-
   depends_on = [module.project_services]
 }
 

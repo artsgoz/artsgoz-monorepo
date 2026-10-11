@@ -39,6 +39,7 @@ variable "firebase_deployer_project_roles" {
     "roles/cloudbuild.builds.builder",
     "roles/firebase.admin",
     "roles/logging.logWriter",
+    "roles/storage.objectAdmin",
   ]
 }
 
