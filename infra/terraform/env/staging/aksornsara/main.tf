@@ -95,6 +95,8 @@ module "iam" {
   project_id                     = local.project_id
   api_runtime_service_account_id = "firebase-app-hosting-compute"
   api_runtime_project_roles = [
+    "roles/developerconnect.readTokenAccessor",
+    "roles/firebase.sdkAdminServiceAgent",
     "roles/firebaseapphosting.computeRunner",
     "roles/secretmanager.secretAccessor",
     "roles/storage.objectViewer",
