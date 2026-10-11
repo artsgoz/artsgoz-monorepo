@@ -1,7 +1,7 @@
 region = "asia-southeast1"
 
 hosting_custom_domains = {
-  artsgoz-frontend   = "artsgoz.com"
+  artsgoz-frontend   = "www.artsgoz.com"
   artsgoz-backoffice = "backoffice.artsgoz.com"
 }
 
