@@ -4,7 +4,7 @@ export default function MaintenancePage() {
   return (
     <section className="flex flex-col p-6 items-center justify-center min-h-screen h-full bg-stone-50">
       <div className="flex flex-col font-maintenance max-w-[400px] text-stone-600">
-        <ArtsgozTechSquadLogo className="h-auto w-full max-w-48" />
+        {/* <ArtsgozTechSquadLogo className="h-auto w-full max-w-48" /> */}
         <h1 className="text-4xl font-semibold pb-2">
           Curating something special for you.
         </h1>
