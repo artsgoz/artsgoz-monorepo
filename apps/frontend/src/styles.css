@@ -1,6 +1,0 @@
-@import 'tailwindcss';
-@import '../../../packages/design-system/src/lib/design-system.css';
-
-/* nx-tailwind-sources:start */
-@source "../../../packages/design-system";
-/* nx-tailwind-sources:end */

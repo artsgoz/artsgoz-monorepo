@@ -1,12 +1,12 @@
 {
-  "name": "@org/design-system",
+  "name": "@artsgoz/design-system",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "main": "./src/index.tsx",
   "exports": {
     ".": {
-      "@org/source": "./src/index.tsx",
+      "@artsgoz/source": "./src/index.tsx",
       "default": "./src/index.tsx"
     }
   },
