@@ -1,0 +1,12 @@
+# Copy this file to a per-environment file outside version control, then change
+# the values. Any environment name is supported; it is not limited to dev/prod.
+environment = "staging"
+project_id  = "artsgoz"
+region      = "asia-southeast1"
+
+# The user that will perform the one-time local application apply. Bootstrap
+# grants this principal Firebase Admin and Service Usage Admin by default.
+bootstrap_operator_principal = "user:name@example.com"
+
+# Set this only when adopting an existing bucket or a different naming scheme.
+# state_bucket_name = "my-globally-unique-terraform-state-bucket"

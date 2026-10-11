@@ -1,0 +1,5 @@
+# Copy this file to backend.tf only after the first local apply has created the
+# state bucket. Backend settings cannot refer to Terraform variables or outputs.
+terraform {
+  backend "gcs" {}
+}
