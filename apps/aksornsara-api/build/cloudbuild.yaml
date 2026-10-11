@@ -20,7 +20,7 @@ steps:
       - '-c'
       - |
         npm install -g firebase-tools
-        firebase deploy \
+        firebase --debug deploy \
           --only apphosting:aksornsara-api \
           --project "$PROJECT_ID"
 
