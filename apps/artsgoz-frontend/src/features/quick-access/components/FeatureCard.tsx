@@ -51,13 +51,13 @@ export function FeatureCard({
   const content = (
     <div className="relative z-10 flex flex-col items-center justify-center w-full">
       <IconComponent
-        size={isLarge ? 64 : 44}
+        size={isLarge ? 56 : 38}
         strokeWidth={isLarge ? 1.25 : 1.5}
-        className="text-[#E992B4] transition-colors duration-200"
+        className="text-[#E992B4] transition-colors duration-200 shrink-0"
       />
       <span
         className={`text-[#404041] font-bold font-serif leading-tight text-center max-w-full line-clamp-2 mt-2 ${
-          isLarge ? 'text-[20px] md:text-[24px]' : 'text-[16px] md:text-[18px]'
+          isLarge ? 'text-[18px] sm:text-[20px] md:text-[24px]' : 'text-[14px] sm:text-[16px] md:text-[18px]'
         }`}
       >
         {title}
@@ -80,10 +80,10 @@ export function FeatureCard({
     ref: cardRef as any,
     onMouseMove: handleMouseMove,
     onMouseLeave: handleMouseLeave,
-    className: `group relative flex flex-col items-center justify-center w-full rounded-lg border border-[#D0D0D1]/60 bg-white overflow-hidden p-6 text-center cursor-pointer ${
+    className: `group relative flex flex-col items-center justify-center w-full rounded-lg border border-[#D0D0D1]/60 bg-white overflow-hidden p-3.5 sm:p-5 md:p-6 text-center cursor-pointer ${
       isLarge
-        ? 'h-full min-h-[350px] md:min-h-[394px] shadow-[2px_3px_12px_0_rgba(0,0,0,0.15)]'
-        : 'h-[195px] shadow-[2px_3px_8px_0_rgba(0,0,0,0.12)]'
+        ? 'h-full min-h-[300px] sm:min-h-[350px] md:min-h-[394px] shadow-[2px_3px_12px_0_rgba(0,0,0,0.15)]'
+        : 'h-[160px] sm:h-[180px] md:h-[195px] shadow-[2px_3px_8px_0_rgba(0,0,0,0.12)]'
     }`,
     style: {
       transition: 'transform 0.15s ease-out, box-shadow 0.2s ease, border-color 0.2s ease',

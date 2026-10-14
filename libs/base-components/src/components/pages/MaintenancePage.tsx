@@ -1,4 +1,3 @@
-import { ArtsgozTechSquadLogo } from '../branding';
 
 export default function MaintenancePage() {
   return (

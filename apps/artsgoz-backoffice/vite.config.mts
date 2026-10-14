@@ -10,6 +10,9 @@ export default defineConfig(() => ({
     port: 4200,
     host: 'localhost',
   },
+  optimizeDeps: {
+    exclude: ['@artsgoz/design-system', '@artsgoz/yellow-card-shared', '@org/design-system', '@org/yellow-card-shared'],
+  },
   preview: {
     port: 4200,
     host: 'localhost',
@@ -20,6 +23,22 @@ export default defineConfig(() => ({
       '@base-components': resolve(
         import.meta.dirname,
         '../../libs/base-components/src/index.ts',
+      ),
+      '@artsgoz/yellow-card-shared': resolve(
+        import.meta.dirname,
+        '../../packages/yellow-card-shared/src/index.ts',
+      ),
+      '@artsgoz/design-system': resolve(
+        import.meta.dirname,
+        '../../packages/design-system/src/index.tsx',
+      ),
+      '@org/yellow-card-shared': resolve(
+        import.meta.dirname,
+        '../../packages/yellow-card-shared/src/index.ts',
+      ),
+      '@org/design-system': resolve(
+        import.meta.dirname,
+        '../../packages/design-system/src/index.tsx',
       ),
     },
   },

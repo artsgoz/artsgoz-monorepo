@@ -1,0 +1,209 @@
+import { useState } from 'react';
+import {
+  Search,
+  Share2,
+  Mail,
+  Link2,
+  TrendingUp,
+} from 'lucide-react';
+import { SaraniyakornLayout } from './SaraniyakornLayout';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface TrafficSource {
+  id: number;
+  icon: React.ElementType;
+  label: string;
+  visits: number;
+  change: number;
+}
+
+// ─── Mock Data ────────────────────────────────────────────────────────────────
+
+const TRAFFIC_SOURCES: TrafficSource[] = [
+  { id: 1, icon: Search,  label: 'Organic Search',  visits: 12450, change: 8.2  },
+  { id: 2, icon: Link2,   label: 'Direct',           visits: 5820,  change: 3.1  },
+  { id: 3, icon: Share2,  label: 'Social Media',     visits: 4105,  change: -1.5 },
+  { id: 4, icon: Mail,    label: 'Email Campaigns',  visits: 2217,  change: 15.4 },
+];
+
+const CHART_LABELS = ['อา.', 'จ.', 'อ.', 'พุธ', 'พฤ.', 'ศ.', 'ส.'];
+const CHART_VALUES = [800, 2400, 1500, 3800, 2100, 4200, 3200];
+
+// ─── Area Chart ───────────────────────────────────────────────────────────────
+
+function AreaChart() {
+  const W = 480;
+  const H = 180;
+  const PAD_LEFT = 40;
+  const PAD_BOTTOM = 28;
+  const MAX_VAL = 5000;
+  const innerW = W - PAD_LEFT - 8;
+  const innerH = H - PAD_BOTTOM;
+  const Y_LABELS = [0, '1k', '2k', '3k', '4k', '5k'];
+  const xStep = innerW / (CHART_VALUES.length - 1);
+
+  const pts = CHART_VALUES.map((v, i) => ({
+    x: PAD_LEFT + i * xStep,
+    y: innerH - (v / MAX_VAL) * innerH,
+  }));
+
+  function smoothPath(points: { x: number; y: number }[]) {
+    if (points.length < 2) return '';
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const cp1x = (points[i].x + points[i + 1].x) / 2;
+      const cp1y = points[i].y;
+      const cp2x = (points[i].x + points[i + 1].x) / 2;
+      const cp2y = points[i + 1].y;
+      d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${points[i + 1].x} ${points[i + 1].y}`;
+    }
+    return d;
+  }
+
+  const linePath = smoothPath(pts);
+  const areaPath = linePath + ` L ${pts[pts.length - 1].x} ${innerH} L ${pts[0].x} ${innerH} Z`;
+
+  return (
+    <svg width={W} height={H} style={{ overflow: 'visible' }}>
+      {Y_LABELS.map((label, i) => {
+        const y = innerH - (i / (Y_LABELS.length - 1)) * innerH;
+        return (
+          <g key={i}>
+            <line x1={PAD_LEFT} x2={W - 8} y1={y} y2={y} stroke="#DFDFE0" strokeWidth={1} />
+            <text x={PAD_LEFT - 6} y={y + 4} textAnchor="end" fill="#9E9E9E" fontSize={10} fontFamily="Inter, sans-serif">
+              {label}
+            </text>
+          </g>
+        );
+      })}
+      <defs>
+        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#E992B4" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#E992B4" stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+      <path d={areaPath} fill="url(#areaGrad)" />
+      <path d={linePath} fill="none" stroke="#E992B4" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
+      {pts.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r={4} fill="#E992B4" stroke="#fff" strokeWidth={2} />
+      ))}
+      {CHART_LABELS.map((label, i) => (
+        <text key={i} x={PAD_LEFT + i * xStep} y={H - 6} textAnchor="middle" fill="#9E9E9E" fontSize={10} fontFamily="Inter, sans-serif">
+          {label}
+        </text>
+      ))}
+    </svg>
+  );
+}
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
+
+type TimeFilter = 'วันนี้' | '7 วันล่าสุด' | '30 วันล่าสุด';
+
+export function TrafficPage() {
+  const [filter, setFilter] = useState<TimeFilter>('7 วันล่าสุด');
+  const filterOptions: TimeFilter[] = ['วันนี้', '7 วันล่าสุด', '30 วันล่าสุด'];
+
+  return (
+    <SaraniyakornLayout>
+      {/* ── Header: title + time filter ── */}
+      <div className="flex items-center justify-between" style={{ marginBottom: 24, maxWidth: 900 }}>
+        <h1 className="font-bold text-[#1A1C1C]" style={{ fontSize: 40, lineHeight: '52px', margin: 0 }}>
+          ยอดการเข้าชม
+        </h1>
+        <div
+          className="flex items-center rounded-full overflow-hidden"
+          style={{ border: '1px solid #DFDFE0', backgroundColor: '#F7F8F9' }}
+        >
+          {filterOptions.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              onClick={() => setFilter(opt)}
+              className="font-bold cursor-pointer border-none transition-all"
+              style={{
+                fontSize: 13,
+                padding: '6px 16px',
+                borderRadius: 9999,
+                backgroundColor: filter === opt ? '#E992B4' : 'transparent',
+                color: filter === opt ? '#fff' : '#6D6D6D',
+              }}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col" style={{ gap: 24, maxWidth: 900 }}>
+
+        {/* ── Traffic Trend Card ── */}
+        <div className="bg-white rounded-[12px] p-6 flex flex-col gap-6"
+          style={{ boxShadow: '0px 4px 24px 0px rgba(0,0,0,0.07)' }}>
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-[8px] flex items-center justify-center shrink-0"
+                style={{ backgroundColor: '#FCEFF4' }}>
+                <TrendingUp size={18} color="#9E4266" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-bold text-black" style={{ fontSize: 18, lineHeight: '26px' }}>แนวโน้มผู้เข้าชม</span>
+                <span style={{ fontSize: 13, color: '#6D6D6D' }}>7 วันล่าสุด</span>
+              </div>
+            </div>
+            <div className="flex flex-col items-end">
+              <span className="font-bold text-black" style={{ fontSize: 32, lineHeight: '40px', fontFamily: 'Hanken Grotesk, Inter, sans-serif' }}>
+                24,592
+              </span>
+              <span className="font-bold" style={{ fontSize: 13, color: '#64A93C' }}>↑ +12.5%</span>
+            </div>
+          </div>
+          <div style={{ width: '100%', overflowX: 'auto' }}>
+            <AreaChart />
+          </div>
+        </div>
+
+        {/* ── Traffic Sources Table ── */}
+        <div className="bg-white rounded-[12px] overflow-hidden"
+          style={{ boxShadow: '0px 4px 24px 0px rgba(0,0,0,0.07)' }}>
+          <div className="flex items-center gap-3 px-6 py-5" style={{ borderBottom: '1px solid #DFDFE0' }}>
+            <div className="w-9 h-9 rounded-[8px] flex items-center justify-center shrink-0" style={{ backgroundColor: '#FCEFF4' }}>
+              <Share2 size={16} color="#9E4266" />
+            </div>
+            <span className="font-bold text-black" style={{ fontSize: 20, lineHeight: '28px' }}>แหล่งที่มาของ Traffic</span>
+          </div>
+          <div className="grid px-6 py-3" style={{ gridTemplateColumns: '1fr 160px 140px', backgroundColor: '#F7F8F9' }}>
+            {['แหล่งที่มา', 'จำนวนเข้าชม', 'อัตราการเติบโต'].map((col, i) => (
+              <span key={i} className="font-bold text-[#6D6D6D]"
+                style={{ fontSize: 13, textAlign: i === 0 ? 'left' : 'center' }}>
+                {col}
+              </span>
+            ))}
+          </div>
+          {TRAFFIC_SOURCES.map((src, idx) => (
+            <div key={src.id} className="grid items-center px-6 py-4 hover:bg-[#FAFAFA] transition-colors"
+              style={{ gridTemplateColumns: '1fr 160px 140px', borderTop: idx > 0 ? '1px solid #DFDFE0' : 'none' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-[6px] flex items-center justify-center shrink-0" style={{ backgroundColor: '#F7F8F9' }}>
+                  <src.icon size={15} color="#6D6D6D" />
+                </div>
+                <span className="font-bold text-black" style={{ fontSize: 15 }}>{src.label}</span>
+              </div>
+              <span className="font-bold text-black text-center" style={{ fontSize: 16 }}>
+                {src.visits.toLocaleString()}
+              </span>
+              <span className="font-bold text-center"
+                style={{ fontSize: 15, color: src.change >= 0 ? '#64A93C' : '#E05252' }}>
+                {src.change >= 0 ? '+' : ''}{src.change}%
+              </span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </SaraniyakornLayout>
+  );
+}
+
+export default TrafficPage;
