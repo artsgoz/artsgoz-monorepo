@@ -39,37 +39,37 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'locker',
     title: 'บริการเช่าล็อกเกอร์ปี 69',
     url: 'https://forms.gle/syWp9tfDqt8SXg189',
-    icon: <Lock className="w-5 h-5 text-[#404041]" />,
+    icon: <Lock className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'umbrella-return',
     title: 'คืนร่มก.อศ. 69',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSeMW432M187ZYhetQPyQqkbHHoRpnwjVN6oLUR9rn5AMpsXVw/viewform',
-    icon: <Umbrella className="w-5 h-5 text-[#0165F8]" />,
+    icon: <Umbrella className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'umbrella-borrow',
     title: 'ยืมร่มก.อศ. 69',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSfOOmV07Ay8UOs41nuGj3Bcm6x8YEWNe3Kcc7ul9FHc4D_KRA/viewform',
-    icon: <Umbrella className="w-5 h-5 text-[#64A93C]" />,
+    icon: <Umbrella className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'sairahas',
     title: 'ลงทะเบียนกิจกรรมสายรหัสคล้องจิต เพื่อนพ้องนิสิตอักษรศาสตร์ 2569 (Arts Sairahas 2026)',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSefrfdiXP8-_KmfX10ge0lhiO7t0m0Kp7UW4sTHwKUWH0qP4A/viewform',
-    icon: <Users className="w-5 h-5 text-[#8B5CF6]" />,
+    icon: <Users className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'activity-survey',
     title: 'แบบสอบถามความต้องการในการจัดกิจกรรมภายในคณะอักษรศาสตร์',
     url: 'https://forms.gle/F7dMaREkg856fzzh9',
-    icon: <FileText className="w-5 h-5 text-[#F8C135]" />,
+    icon: <FileText className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'openchat-94',
     title: 'Openchat for Arts CU 94',
     url: 'https://line.me/ti/g2/tq6Y6MCkWOhkaDEZCZVNeGwWLxe66zkW0iKpgw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
-    icon: <MessageCircle className="w-5 h-5 text-[#06C755]" />,
+    icon: <MessageCircle className="w-5 h-5 text-[#D23976]" />,
   },
 
   // ── 2. งานประชาสัมพันธ์/กิจกรรม ก.อศ. ───────────────────────
@@ -83,7 +83,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'pr-form',
     title: 'ฟอร์มกรอกเพื่อขอประชาสัมพันธ์ในช่องทางของ ก.อศ.',
     url: 'https://airtable.com/appaWGKhYblYtwjmo/shrQKYnnyhVKLq3Pr',
-    icon: <Megaphone className="w-5 h-5 text-[#DE5D8F]" />,
+    icon: <Megaphone className="w-5 h-5 text-[#D23976]" />,
   },
 
   // ── 3. รวมฟอร์มสำหรับเพื่อนนิสิต ─────────────────────────────
@@ -97,25 +97,25 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'water-mbk',
     title: 'ขอเบิกใช้น้ำ MBK กับทาง อบจ.',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSfhIiMb2W1RTt0oUUVUtzjdp4sD9Q51SzI7ePoM0Hd56_7MKQ/closedform',
-    icon: <FileText className="w-5 h-5 text-[#0165F8]" />,
+    icon: <FileText className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'harassment-report',
     title: 'ฟอร์มร้องเรียนเหตุการณ์ที่เกี่ยวกับการคุกคามทางเพศสำหรับนิสิตอักษรศาสตร์ (Sexual Harassment Report)',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSc43bz4bf8QXb_HikJ0bUWt4NKWxkSEinZWDJ8J31izOIgNHw/viewform?usp=sf_link',
-    icon: <AlertCircle className="w-5 h-5 text-[#EA234F]" />,
+    icon: <AlertCircle className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'hoa-mc',
     title: 'แบบฟอร์มการขอพิธีกร HOA 69',
     url: 'https://docs.google.com/spreadsheets/d/1NgsRvADD3sDFlapd53RWAfDRImb82IN69uYImt3Bzzs/edit?gid=0#gid=0',
-    icon: <FileText className="w-5 h-5 text-[#64A93C]" />,
+    icon: <FileText className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'general-issues',
     title: 'ฟอร์มแจ้งปัญหาทั่วไปภายในคณะสำหรับนิสิตอักษรศาสตร์',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLScSRMsEHAJzdFOKWwuKtJiK5L8rZhFcNlirRkIm7NT40wTiVg/viewform',
-    icon: <HelpCircle className="w-5 h-5 text-[#6366F1]" />,
+    icon: <HelpCircle className="w-5 h-5 text-[#D23976]" />,
   },
 
   // ── 4. ช่องทางติดต่อ ก.อศ. ──────────────────────────────────
@@ -129,31 +129,31 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'official-web',
     title: 'เว็บไซต์คณะกรรมการนิสิตอักษรศาสตร์ (ก.อศ.)',
     url: 'https://www.arts.chula.ac.th/goz',
-    icon: <Globe className="w-5 h-5 text-[#0165F8]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'fb-goz',
     title: 'Facebook: คณะกรรมการนิสิตอักษรศาสตร์ จุฬาฯ ก.อศ.',
     url: 'http://www.facebook.com/artsgozcu',
-    icon: <Globe className="w-5 h-5 text-[#1877F2]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'twitter-goz',
     title: 'Twitter (X): @arts_goz',
     url: 'https://twitter.com/arts_goz?s=21&t=kxPgl5cuSlInPDEAMlqYtw',
-    icon: <Globe className="w-5 h-5 text-[#404041]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'ig-goz',
     title: 'Instagram: @arts_goz',
     url: 'http://www.instagram.com/arts_goz',
-    icon: <Globe className="w-5 h-5 text-[#E1306C]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'discord-goz',
     title: 'Discord: Arts Chula Community 💞',
     url: 'https://discord.gg/2QrmYg88a9',
-    icon: <MessageCircle className="w-5 h-5 text-[#5865F2]" />,
+    icon: <MessageCircle className="w-5 h-5 text-[#D23976]" />,
   },
 
   // ── 5. GOZ Projects ─────────────────────────────────────────
@@ -167,25 +167,25 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'article-kru',
     title: '[บทความสัปดาห์ไหว้ครู] ความสัมพันธ์ “ครู-ศิษย์” : เมื่อศิษย์เคารพ “ติวเตอร์” กับ “ครู” ไม่เท่ากัน',
     url: 'https://artsgoz.vercel.app/lookup/180823_1',
-    icon: <BookOpen className="w-5 h-5 text-[#404041]" />,
+    icon: <BookOpen className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'manud-yt',
     title: 'มนุดโรงบาล x ArtsCU x MDCU | EP.1 มนุษย์รักษามนุษย์',
     url: 'https://www.youtube.com/watch?v=LEbPxnCf68s&list=PLMJIZ95mFtZs47Bp3gslJ1nUi-AXnvCmP',
-    icon: <YoutubeIcon className="w-5 h-5 text-[#EA234F]" />,
+    icon: <YoutubeIcon className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'artsmor',
     title: 'A(RTS)mor: หลากรสเรื่องรักฉบับอักษรศาสตร์',
     url: 'http://www.linktr.ee/artsmor',
-    icon: <Globe className="w-5 h-5 text-[#404041]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
   {
     id: 'artsfem',
     title: 'Arts F(E)M: เข้าใจสตรีผ่านมิติอักษรศาสตร์',
     url: 'http://www.linktr.ee/artsfem',
-    icon: <Globe className="w-5 h-5 text-[#404041]" />,
+    icon: <Globe className="w-5 h-5 text-[#D23976]" />,
   },
 ];
 
@@ -204,7 +204,7 @@ export function LinktreeMiniScreen() {
       {/* Clean Rectangular Card Container matching Design System */}
       <div className="w-full h-[580px] sm:h-[620px] rounded-[16px] border border-[#ECECEC] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
         
-        {/* Header with Artsgoz Logo & Action Icons only (no divider line, no text) */}
+        {/* Header with Artsgoz Logo & Action Icons (Copy & Open Full Link keep grey) */}
         <div className="shrink-0 p-4 sm:p-5 border-b border-[#ECECEC] bg-white flex items-center justify-between gap-3">
           <img
             src={logoImg}
@@ -212,7 +212,7 @@ export function LinktreeMiniScreen() {
             className="h-8 sm:h-9 w-auto object-contain shrink-0"
           />
 
-          {/* Action icons: copylink icon and arrow icon to open full link */}
+          {/* Action icons at the top: neutral grey (ยกเว้นอันข้างบน) */}
           <div className="flex items-center gap-1">
             <button
               type="button"
@@ -242,7 +242,7 @@ export function LinktreeMiniScreen() {
         </div>
 
         {/* Scrollable Rectangular Links Viewport */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-2.5 [scrollbar-width:thin] [scrollbar-color:#D0D0D1_transparent]">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-1 [scrollbar-width:thin] [scrollbar-color:#D0D0D1_transparent]">
           {LINKTREE_ITEMS.map((item) => {
             if (item.isHeader) {
               return (
@@ -263,19 +263,19 @@ export function LinktreeMiniScreen() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full bg-white hover:bg-[#F7F8F9] border border-[#ECECEC] hover:border-[#D0D0D1] rounded-[8px] p-3.5 flex items-center justify-between gap-3 transition-colors duration-150 text-left cursor-pointer"
+                className="group w-full bg-transparent hover:bg-[#F7F8F9] rounded-[8px] py-2.5 px-3 flex items-center justify-between gap-3 transition-colors duration-150 text-left cursor-pointer"
               >
                 <div className="flex items-center gap-3.5 min-w-0">
-                  {/* Bare icon without surrounding box */}
-                  <div className="shrink-0 flex items-center justify-center">
-                    {item.icon || <Globe className="w-5 h-5 text-[#404041]" />}
+                  {/* Bare icon in Pink (#D23976) */}
+                  <div className="shrink-0 flex items-center justify-center text-[#D23976]">
+                    {item.icon || <Globe className="w-5 h-5 text-[#D23976]" />}
                   </div>
                   <span className="text-[13px] sm:text-[14px] font-serif font-bold text-[#404041] group-hover:text-black transition-colors leading-snug line-clamp-2">
                     {item.title}
                   </span>
                 </div>
 
-                <ExternalLink className="w-4 h-4 text-[#99999A] group-hover:text-[#404041] shrink-0 transition-colors" />
+                <ExternalLink className="w-4 h-4 text-[#D23976]/60 group-hover:text-[#D23976] shrink-0 transition-colors" />
               </a>
             );
           })}
