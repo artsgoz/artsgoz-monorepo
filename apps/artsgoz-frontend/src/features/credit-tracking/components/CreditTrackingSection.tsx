@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { AcademicProfile, Subject, CategoryProgress } from '../types.js';
-import { MOCK_SUBJECTS, CATEGORIES_CONFIG, MAJOR_OPTIONS, MINOR_OPTIONS, CURRICULUM_OPTIONS } from '../constants.js';
+import { CATEGORIES_CONFIG, MAJOR_OPTIONS, MINOR_OPTIONS, CURRICULUM_OPTIONS } from '../constants.js';
 import { DropdownMenuContainer } from './DropdownMenuContainer.js';
 import { PDPAForm } from './PDPAForm.js';
 import { ProfileSetupForm } from './ProfileSetupForm.js';
@@ -11,10 +11,12 @@ import { PlannerView } from './PlannerView.js';
 import { AcademicTrackerNavBar, type ActiveTab } from './AcademicTrackerNavBar.js';
 import { SummaryView } from './SummaryView.js';
 
+import { generateSubjectsForProfile } from '../utils/subjectGenerator.js';
+
 type AppStep = 'pdpa' | 'setup' | 'dashboard';
 
 export function CreditTrackingSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
   const [step, setStep] = useState<AppStep>(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -61,26 +63,44 @@ export function CreditTrackingSection() {
     }
     return '';
   });
+
   const [subjects, setSubjects] = useState<Subject[]>(() => {
     if (typeof window !== 'undefined') {
       try {
-        const savedSubjects = localStorage.getItem('tracker_subjects');
-        if (savedSubjects) {
-          const parsed = JSON.parse(savedSubjects) as Subject[];
-          const merged = [...parsed];
-          MOCK_SUBJECTS.forEach((mock) => {
-            if (!merged.some((s) => s.code === mock.code)) {
-              merged.push(mock);
-            }
-          });
-          return merged;
+        const savedProfile = localStorage.getItem('tracker_profile');
+        const parsedProfile = savedProfile ? JSON.parse(savedProfile) : null;
+        if (parsedProfile?.major) {
+          const generated = generateSubjectsForProfile(parsedProfile.major, parsedProfile.minor || '');
+          const savedSubjects = localStorage.getItem('tracker_subjects');
+          if (savedSubjects) {
+            const parsed = JSON.parse(savedSubjects) as Subject[];
+            const merged = [...parsed];
+            generated.forEach((gen) => {
+              if (!merged.some((s) => s.code === gen.code)) {
+                merged.push(gen);
+              }
+            });
+            return merged;
+          }
+          return generated;
         }
       } catch (e) {
         console.error('Failed to load tracker_subjects', e);
       }
     }
-    return MOCK_SUBJECTS;
+    return generateSubjectsForProfile('credit_tracking.majors.thai', '');
   });
+
+  const [storageError, setStorageError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleError = (e: Event) => {
+      const customEvent = e as CustomEvent<{ message: string }>;
+      setStorageError(customEvent.detail?.message || 'ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบการตั้งค่าเบราว์เซอร์');
+    };
+    window.addEventListener('localstorage-error', handleError);
+    return () => window.removeEventListener('localstorage-error', handleError);
+  }, []);
 
   // Save states helper
   const saveState = (newStep: AppStep, newProfile: AcademicProfile | null, newSubjects: Subject[]) => {
@@ -94,6 +114,7 @@ export function CreditTrackingSection() {
       localStorage.setItem('tracker_subjects', JSON.stringify(newSubjects));
     } catch (e) {
       console.error('Failed to save tracker state', e);
+      setStorageError('ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบการตั้งค่าเบราว์เซอร์');
     }
   };
 
@@ -103,9 +124,11 @@ export function CreditTrackingSection() {
   };
 
   const handleConfirmSetup = (setupProfile: AcademicProfile) => {
+    const newSubjects = generateSubjectsForProfile(setupProfile.major, setupProfile.minor);
     setProfile(setupProfile);
+    setSubjects(newSubjects);
     setStep('dashboard');
-    saveState('dashboard', setupProfile, subjects);
+    saveState('dashboard', setupProfile, newSubjects);
   };
 
   const handleToggleSubject = (id: string) => {
@@ -130,16 +153,23 @@ export function CreditTrackingSection() {
 
   const handleUpdateMajor = (newMajor: string) => {
     if (!profile) return;
-    const nextProfile = { ...profile, major: newMajor };
+    const newMajorKey = newMajor.replace(/^credit_tracking\./, '').replace(/^majors\./, '');
+    const currentMinorKey = profile.minor ? profile.minor.replace(/^credit_tracking\./, '').replace(/^minors\./, '') : '';
+    const nextMinor = (newMajorKey && currentMinorKey === newMajorKey) ? 'minors.none' : profile.minor;
+    const nextProfile = { ...profile, major: newMajor, minor: nextMinor };
+    const nextSubjects = generateSubjectsForProfile(newMajor, nextMinor);
     setProfile(nextProfile);
-    saveState(step, nextProfile, subjects);
+    setSubjects(nextSubjects);
+    saveState(step, nextProfile, nextSubjects);
   };
 
   const handleUpdateMinor = (newMinor: string) => {
     if (!profile) return;
     const nextProfile = { ...profile, minor: newMinor };
+    const nextSubjects = generateSubjectsForProfile(profile.major, newMinor);
     setProfile(nextProfile);
-    saveState(step, nextProfile, subjects);
+    setSubjects(nextSubjects);
+    saveState(step, nextProfile, nextSubjects);
   };
 
   const handleUpdateCurriculum = (newCurriculum: string) => {
@@ -200,45 +230,53 @@ export function CreditTrackingSection() {
   }
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-4 md:px-8 py-10 md:py-16 font-[ChulaCharasNew] select-none min-w-0">
+    <div className="w-full max-w-[1280px] mx-auto px-4 md:px-8 py-10 md:py-16 font-[ChulaCharasNew] min-w-0">
       {/* Top Header Section with profile display */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-24 min-w-0">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 sm:mb-16 lg:mb-24 min-w-0">
         <div className="min-w-0">
-          <h1 className="text-black text-[36px] font-bold leading-none mb-2 truncate">{t('credit_tracking.title')}</h1>
-          <h2 className="text-[#6D6D6D] text-[20px] font-medium truncate">{t('credit_tracking.subtitle')}</h2>
+          <h1 className="text-black text-[28px] sm:text-[36px] font-bold leading-none mb-2 truncate">{t('title')}</h1>
+          <h2 className="text-[#6D6D6D] text-[16px] sm:text-[20px] font-medium truncate">{t('subtitle')}</h2>
         </div>
 
         {/* Selected Major/Minor/Curriculum details */}
-        <div className="flex flex-col sm:flex-row flex-wrap gap-8 items-end min-w-0">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-8 items-start sm:items-end min-w-0 w-full sm:w-auto">
           <DropdownMenuContainer
             id="select-major"
-            label={t('credit_tracking.profile.major_label')}
+            label={t('profile.major_label')}
             value={profile.major}
             options={MAJOR_OPTIONS}
-            placeholder="credit_tracking.profile.select_major"
+            placeholder="profile.select_major"
             onChange={handleUpdateMajor}
+            width={220}
           />
           <DropdownMenuContainer
             id="select-minor"
-            label={t('credit_tracking.profile.minor_label')}
+            label={t('profile.minor_label')}
             value={profile.minor}
-            options={MINOR_OPTIONS}
-            placeholder="credit_tracking.profile.select_minor"
+            options={MINOR_OPTIONS.filter(opt => {
+              if (opt === 'profile.select_minor' || opt === 'minors.none') return true;
+              const currentMajorKey = profile.major ? profile.major.replace(/^credit_tracking\./, '').replace(/^majors\./, '') : '';
+              const minorKey = opt.replace(/^credit_tracking\./, '').replace(/^minors\./, '');
+              return minorKey !== currentMajorKey;
+            })}
+            placeholder="profile.select_minor"
             onChange={handleUpdateMinor}
+            width={220}
           />
           <DropdownMenuContainer
             id="select-curriculum"
-            label={t('credit_tracking.profile.curriculum_label')}
+            label={t('profile.curriculum_label')}
             value={profile.curriculum}
             options={CURRICULUM_OPTIONS}
-            placeholder="credit_tracking.profile.select_curriculum"
+            placeholder="profile.select_curriculum"
             onChange={handleUpdateCurriculum}
+            width={220}
           />
         </div>
       </div>
 
       {/* Credit Summary */}
-      <div className="w-full flex justify-center mt-[54px] mb-[78px]">
+      <div className="w-full flex justify-center mt-6 sm:mt-[54px] mb-8 sm:mb-[78px]">
         <CreditsSummaryCard progressList={progressList} />
       </div>
 
@@ -270,6 +308,20 @@ export function CreditTrackingSection() {
           />
         )}
       </div>
+
+      {storageError && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#DE5D8F] text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-3 font-[ChulaCharasNew] text-[15px] font-bold">
+          <span>{storageError}</span>
+          <button
+            type="button"
+            onClick={() => setStorageError(null)}
+            className="text-white hover:opacity-80 font-bold ml-2 border-none bg-transparent cursor-pointer text-lg leading-none"
+            aria-label="Dismiss error"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   );
 }

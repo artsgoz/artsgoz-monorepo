@@ -11,6 +11,7 @@ interface ArticleCardProps {
   date: string;
   category: string;
   imageUrl?: string;
+  compact?: boolean;
   onBookmarkChange?: (id: string, bookmarked: boolean) => void;
 }
 
@@ -21,9 +22,10 @@ export function ArticleCard({
   date,
   category,
   imageUrl,
+  compact = false,
   onBookmarkChange,
 }: ArticleCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const navigate = useNavigate();
   const [isBookmarked, setIsBookmarked] = useState(() => {
     try {
@@ -66,178 +68,170 @@ export function ArticleCard({
   const translatedAuthor = t(author);
   const translatedCategory = t(category);
 
+  // Compact variant for "อ่านต่อ" (Read More) 4-column row
+  if (compact) {
+    return (
+      <div
+        onClick={() => navigate(`/articles/${id}`)}
+        className="
+          snap-start shrink-0 relative overflow-hidden
+          bg-[#F7F8F9] rounded-[16px]
+          border border-gray-100 shadow-xs
+          cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-300
+          w-full flex flex-col p-3.5 gap-3
+        "
+      >
+        <div className="w-full h-[180px] sm:h-[200px] rounded-[12px] overflow-hidden">
+          <img
+            src={imageUrl || mockImage}
+            alt={translatedTitle}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover pointer-events-none"
+          />
+        </div>
+
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-serif font-bold text-[11px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-2.5 py-1 whitespace-nowrap truncate">
+            {translatedCategory}
+          </span>
+          <button
+            type="button"
+            onClick={handleBookmarkToggle}
+            aria-label="Bookmark article"
+            className="w-7 h-7 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
+          >
+            <Bookmark
+              size={14}
+              fill={isBookmarked ? '#fff' : 'none'}
+              stroke="#fff"
+              strokeWidth={2}
+            />
+          </button>
+        </div>
+
+        <h4 className="font-serif text-[15px] sm:text-[16px] font-bold leading-[22px] text-black line-clamp-2 break-words">
+          {translatedTitle}
+        </h4>
+
+        <div className="flex flex-col gap-0.5 text-[12px] font-serif font-bold text-[#6D6D6D]">
+          <span className="truncate">{t('written_by', { author: translatedAuthor })}</span>
+          <span className="text-[#99999A]">{t('published', { date })}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       onClick={() => navigate(`/articles/${id}`)}
       className="
         snap-start shrink-0 relative overflow-hidden
         bg-[#F7F8F9] rounded-[16px]
-        shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.05)]
+        border border-gray-100 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.06)]
         cursor-pointer
-        hover:shadow-lg hover:scale-[1.02] transition-all duration-300
-        w-[315px] h-[391px]
-        lg:w-[530px] lg:h-[356px]
+        hover:shadow-lg hover:scale-[1.01] transition-all duration-300
+        w-full max-w-[530px]
       "
     >
-      {/* === MOBILE LAYOUT (< lg): fully absolute, Figma spec === */}
+      {/* === MOBILE & TABLET LAYOUT (< xl) === */}
+      <div className="flex flex-col p-4 w-full xl:hidden gap-3">
+        {/* Cover Image */}
+        <div className="w-full h-[220px] rounded-[12px] overflow-hidden">
+          <img
+            src={imageUrl || mockImage}
+            alt={translatedTitle}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover pointer-events-none"
+          />
+        </div>
 
-      {/* Image: x:18, y:16, w:277, h:260, borderRadius:12px */}
-      <div className="
-        absolute top-[16px] left-[18px]
-        w-[277px] h-[260px] rounded-[12px] overflow-hidden
-        lg:hidden
-      ">
-        <img
-          src={imageUrl || mockImage}
-          alt={translatedTitle}
-          className="w-full h-full object-cover pointer-events-none"
-        />
-      </div>
+        {/* Category badge + Bookmark row */}
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-serif font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3 py-1 whitespace-nowrap">
+            {translatedCategory}
+          </span>
+          <button
+            type="button"
+            onClick={handleBookmarkToggle}
+            aria-label="Bookmark article"
+            className="w-8 h-8 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
+          >
+            <Bookmark
+              size={16}
+              fill={isBookmarked ? '#fff' : 'none'}
+              stroke="#fff"
+              strokeWidth={2}
+            />
+          </button>
+        </div>
 
-      {/* Title + Author/Date block: x:24, y:289, w:164 */}
-      <div className="
-        absolute left-[24px] top-[289px]
-        w-[164px] flex flex-col gap-[4px]
-        lg:hidden
-      ">
-        <h3 className="
-          font-serif text-[16px] font-bold leading-[24px]
-          text-black line-clamp-2 overflow-hidden text-ellipsis break-words w-full
-        ">
+        {/* Title */}
+        <h3 className="font-serif text-[18px] font-bold leading-[24px] text-black line-clamp-2 break-words">
           {translatedTitle}
         </h3>
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-serif text-[14px] font-bold leading-[20px] text-[#6D6D6D] whitespace-nowrap overflow-hidden text-ellipsis">
-            {t('articles.written_by', { author: translatedAuthor })}
+
+        {/* Author / Date */}
+        <div className="flex flex-col gap-0.5 pt-1 border-t border-gray-200/60">
+          <span className="font-serif text-[13px] font-bold text-[#6D6D6D] truncate">
+            {t('written_by', { author: translatedAuthor })}
           </span>
-          <span className="font-serif text-[14px] font-bold leading-[20px] text-[#99999A] whitespace-nowrap">
-            {t('articles.published', { date })}
+          <span className="font-serif text-[12px] font-bold text-[#99999A]">
+            {t('published', { date })}
           </span>
         </div>
       </div>
 
-      {/* Category badge + Bookmark: x:188, y:289 */}
-      <div className="
-        absolute left-[188px] top-[289px]
-        flex flex-row items-center gap-[9px]
-        lg:hidden
-      ">
-        {/* Category badge: bg #FCEFF4, text #DE5D8F, 12px bold, padding 12px 24px, height 33px, borderRadius 11px */}
-        <span
-          className="font-serif font-bold text-[12px] leading-[18px] text-[#DE5D8F] whitespace-nowrap"
-          style={{
-            backgroundColor: '#FCEFF4',
-            borderRadius: '11px',
-            padding: '7px 12px',
-            height: '33px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          {translatedCategory}
-        </span>
-        {/* Bookmark button: bg #F8C135, 32×32, borderRadius 8px */}
-        <button
-          type="button"
-          onClick={handleBookmarkToggle}
-          aria-label="Bookmark article"
-          style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '8px',
-            backgroundColor: '#F8C135',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            flexShrink: 0,
-          }}
-        >
-          <Bookmark
-            size={16}
-            fill={isBookmarked ? '#fff' : 'none'}
-            stroke="#fff"
-            strokeWidth={2}
+      {/* === DESKTOP LAYOUT (>= xl) === */}
+      <div className="hidden xl:flex flex-row p-[22px] gap-[24px] h-[356px] w-full items-stretch">
+        {/* Image left panel */}
+        <div className="w-[248px] h-[312px] rounded-[12px] overflow-hidden shrink-0">
+          <img
+            src={imageUrl || mockImage}
+            alt={translatedTitle}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover pointer-events-none"
           />
-        </button>
-      </div>
+        </div>
 
-      {/* === DESKTOP LAYOUT (>= lg): absolutely positioned === */}
+        {/* Right Info Section */}
+        <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
+          {/* Top row: Category badge + Bookmark */}
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-serif font-bold text-[12px] leading-[18px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3 py-1.5 whitespace-nowrap">
+              {translatedCategory}
+            </span>
+            <button
+              type="button"
+              onClick={handleBookmarkToggle}
+              aria-label="Bookmark article"
+              className="w-9 h-9 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
+            >
+              <Bookmark
+                size={18}
+                fill={isBookmarked ? '#fff' : 'none'}
+                stroke="#fff"
+                strokeWidth={2}
+              />
+            </button>
+          </div>
 
-      {/* Image left panel */}
-      <div className="
-        hidden lg:block
-        absolute left-[32px] top-[22px]
-        w-[248px] h-[312px] rounded-[12px] overflow-hidden
-      ">
-        <img
-          src={imageUrl || mockImage}
-          alt={translatedTitle}
-          className="w-full h-full object-cover pointer-events-none"
-        />
-      </div>
+          {/* Title */}
+          <h3 className="font-serif text-[20px] font-bold leading-[28px] text-black line-clamp-3 break-words my-auto">
+            {translatedTitle}
+          </h3>
 
-      {/* Category chip + Bookmark — top right on desktop */}
-      <div className="hidden lg:flex absolute right-[22px] top-[22px] gap-[8px] items-center z-10">
-        <span
-          className="font-serif font-bold text-[12px] leading-[18px] text-[#DE5D8F] whitespace-nowrap"
-          style={{
-            backgroundColor: '#FCEFF4',
-            borderRadius: '11px',
-            padding: '7px 12px',
-            height: '33px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          {translatedCategory}
-        </span>
-        <button
-          type="button"
-          onClick={handleBookmarkToggle}
-          aria-label="Bookmark article"
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '8px',
-            backgroundColor: '#F8C135',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            flexShrink: 0,
-          }}
-        >
-          <Bookmark
-            size={18}
-            fill={isBookmarked ? '#fff' : 'none'}
-            stroke="#fff"
-            strokeWidth={2}
-          />
-        </button>
-      </div>
-
-      {/* Text content — right panel on desktop */}
-      <div className="
-        hidden lg:flex flex-col gap-[17px] items-start
-        absolute w-[194px] left-[304px] top-[107px]
-      ">
-        <h3 className="
-          overflow-hidden text-ellipsis line-clamp-3
-          font-serif text-[20px] font-bold leading-[28px]
-          text-black break-words w-full h-[84px]
-        ">
-          {translatedTitle}
-        </h3>
-        <div className="bg-[rgba(255,255,255,0.26)] flex flex-col gap-[4px] items-start justify-center py-[4px] px-[12px] w-full rounded-[8px] overflow-hidden text-ellipsis">
-          <span className="font-serif text-[14px] text-[#6D6D6D] font-bold leading-[20px] whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            {t('articles.written_by', { author: translatedAuthor })}
-          </span>
-          <span className="font-serif text-[14px] text-[#99999A] font-bold leading-[20px] whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            {t('articles.published', { date })}
-          </span>
+          {/* Author and Date in subtle container */}
+          <div className="bg-white/70 rounded-[8px] p-2.5 flex flex-col gap-1 border border-gray-100">
+            <span className="font-serif text-[14px] text-[#6D6D6D] font-bold leading-[20px] truncate">
+              {t('written_by', { author: translatedAuthor })}
+            </span>
+            <span className="font-serif text-[13px] text-[#99999A] font-bold leading-[18px] truncate">
+              {t('published', { date })}
+            </span>
+          </div>
         </div>
       </div>
     </div>

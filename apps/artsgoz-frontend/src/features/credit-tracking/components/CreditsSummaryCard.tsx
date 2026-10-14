@@ -6,7 +6,7 @@ interface CreditsSummaryCardProps {
 }
 
 export function CreditsSummaryCard({ progressList }: CreditsSummaryCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
   const totalCompleted = progressList.reduce((sum, item) => sum + item.completed, 0);
   const totalRequired = progressList.reduce((sum, item) => sum + item.required, 0);
 
@@ -46,9 +46,15 @@ export function CreditsSummaryCard({ progressList }: CreditsSummaryCardProps) {
     color: '#000000',
   };
 
+  const translateKey = (key: string): string => {
+    if (!key) return '';
+    const cleanKey = key.replace(/^credit_tracking\./, '');
+    return t(cleanKey);
+  };
+
   return (
     <div
-      className="select-none max-w-full overflow-x-auto"
+      className="max-w-full overflow-x-auto"
       style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
     >
       {/* Rounded wrapper clips the table corners */}
@@ -59,11 +65,11 @@ export function CreditsSummaryCard({ progressList }: CreditsSummaryCardProps) {
             <tr>
               {progressList.map((item) => (
                 <th key={item.category} style={{ ...cellHeaderStyle, borderRight: BORDER }}>
-                  {t(item.category)}
+                  {translateKey(item.category)}
                 </th>
               ))}
               {/* Total header */}
-              <th style={{ ...totalHeaderStyle }}>{t('credit_tracking.total')}</th>
+              <th style={{ ...totalHeaderStyle }}>{t('total')}</th>
             </tr>
           </thead>
 

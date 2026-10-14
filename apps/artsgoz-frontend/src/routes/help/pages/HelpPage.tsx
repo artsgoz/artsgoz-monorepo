@@ -2,12 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import {
-  Chip,
-  SearchInput,
-  Button,
-  AccordionItem,
-} from '@artsgoz/design-system';
+import { Chip, SearchInput, Button, AccordionItem } from '@artsgoz/design-system';
+import { Footer } from '../../../components/Footer/index.js';
 
 // Assets
 import linkTreeImg from '../../../assets/link_tree.png';
@@ -26,61 +22,36 @@ interface FAQItem {
  * Components must call t(faq.questionKey) and t(faq.answerKey) to render.
  */
 const FAQ_DATA: FAQItem[] = [
-  {
-    id: 'faq-1',
-    category: 'general',
-    questionKey: 'help.faq.faq_1_question',
-    answerKey: 'help.faq.faq_1_answer',
-  },
-  {
-    id: 'faq-2',
-    category: 'registration',
-    questionKey: 'help.faq.faq_2_question',
-    answerKey: 'help.faq.faq_2_answer',
-  },
-  {
-    id: 'faq-3',
-    category: 'tracker',
-    questionKey: 'help.faq.faq_3_question',
-    answerKey: 'help.faq.faq_3_answer',
-  },
-  {
-    id: 'faq-4',
-    category: 'website',
-    questionKey: 'help.faq.faq_4_question',
-    answerKey: 'help.faq.faq_4_answer',
-  },
-  {
-    id: 'faq-5',
-    category: 'general',
-    questionKey: 'help.faq.faq_5_question',
-    answerKey: 'help.faq.faq_5_answer',
-  },
+  { id: 'faq-1', category: 'general',      questionKey: 'help.faq.faq_1_question', answerKey: 'help.faq.faq_1_answer' },
+  { id: 'faq-2', category: 'registration', questionKey: 'help.faq.faq_2_question', answerKey: 'help.faq.faq_2_answer' },
+  { id: 'faq-3', category: 'tracker',      questionKey: 'help.faq.faq_3_question', answerKey: 'help.faq.faq_3_answer' },
+  { id: 'faq-4', category: 'website',      questionKey: 'help.faq.faq_4_question', answerKey: 'help.faq.faq_4_answer' },
+  { id: 'faq-5', category: 'general',      questionKey: 'help.faq.faq_5_question', answerKey: 'help.faq.faq_5_answer' },
 ];
 
 const CATEGORIES = [
-  { value: 'all', labelKey: 'help.categories.all' },
-  { value: 'general', labelKey: 'help.categories.general' },
+  { value: 'all',          labelKey: 'help.categories.all' },
+  { value: 'general',      labelKey: 'help.categories.general' },
   { value: 'registration', labelKey: 'help.categories.registration' },
-  { value: 'tracker', labelKey: 'help.categories.tracker' },
-  { value: 'website', labelKey: 'help.categories.website' },
+  { value: 'tracker',      labelKey: 'help.categories.tracker' },
+  { value: 'website',      labelKey: 'help.categories.website' },
 ] as const;
 
 export default function HelpPage() {
-  const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation('help');
+  const [searchQuery, setSearchQuery]     = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId]       = useState<string | null>(null);
 
   // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [question, setQuestion] = useState('');
+  const [isModalOpen, setIsModalOpen]   = useState(false);
+  const [name, setName]                 = useState('');
+  const [email, setEmail]               = useState('');
+  const [question, setQuestion]         = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const toggleAccordion = (id: string) =>
-    setExpandedId((prev) => (prev === id ? null : id));
+    setExpandedId(prev => (prev === id ? null : id));
 
   const handleModalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +67,7 @@ export default function HelpPage() {
   };
 
   // Filter by category and search — compare against translated text
-  const filteredFAQs = FAQ_DATA.filter((faq) => {
+  const filteredFAQs = FAQ_DATA.filter(faq => {
     const matchesCategory =
       selectedCategory === 'all' || faq.category === selectedCategory;
     const translatedQ = t(faq.questionKey).toLowerCase();
@@ -110,42 +81,44 @@ export default function HelpPage() {
   return (
     <div className="w-full bg-white min-h-screen font-[ChulaCharasNew]">
       {/* ── Main content ──────────────────────────────────────────── */}
-      <div className="max-w-[1280px] mx-auto px-6 md:px-16 pt-10 pb-16">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-16 pt-8 sm:pt-10 pb-16">
+
         {/* Row: left image  |  right FAQ section */}
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-6 sm:gap-8 lg:gap-12">
+
           {/* ── LEFT: Link Tree image ────────────────────────────── */}
-          <div className="w-full lg:w-[40%] shrink-0 flex flex-col gap-6">
-            <h1 className="text-[40px] lg:text-[48px] font-bold text-[#404041] leading-[1.2] font-serif">
-              {t('help.title')}
+          <div className="w-full lg:w-[40%] shrink-0 flex flex-col gap-4 sm:gap-6">
+            <h1 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#404041] leading-[1.2] font-serif">
+              {t('title')}
             </h1>
-            <div className="w-full aspect-[521/679] rounded-[20px] overflow-hidden border border-[#ECECEC] shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-[#FDF8FA]/10">
-              <img
-                src={linkTreeImg}
-                alt={t('help.image_alt')}
-                className="w-full h-full object-cover select-none"
+            <div className="w-full aspect-[521/679] max-h-[260px] sm:max-h-[380px] lg:max-h-none rounded-[16px] sm:rounded-[20px] overflow-hidden border border-[#ECECEC] shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-[#FDF8FA]/10">
+              <img 
+                src={linkTreeImg} 
+                alt={t('image_alt')} 
+                className="w-full h-full object-cover select-none" 
               />
             </div>
           </div>
 
           {/* ── RIGHT: Search + Chips + FAQ + Button ─────────────── */}
           <div className="w-full lg:flex-1 flex flex-col gap-0 pt-0 lg:pt-1">
-            <h2 className="text-[32px] lg:text-[40px] font-bold text-[#404041] leading-[1.2] font-serif mb-6 mt-6 lg:mt-0">
-              {t('help.faq_title')}
+            <h2 className="text-[26px] sm:text-[32px] lg:text-[40px] font-bold text-[#404041] leading-[1.2] font-serif mb-4 sm:mb-6 mt-4 sm:mt-6 lg:mt-0">
+              {t('faq_title')}
             </h2>
 
             {/* Search Field */}
             <div className="mb-4">
               <SearchInput
                 size="lg"
-                placeholder={t('help.search_placeholder')}
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
               />
             </div>
 
             {/* Filter Categories */}
             <div className="flex flex-row justify-start items-end gap-5 flex-wrap mb-8">
-              {CATEGORIES.map((cat) => (
+              {CATEGORIES.map(cat => (
                 <Chip
                   key={cat.value}
                   size="large"
@@ -165,7 +138,7 @@ export default function HelpPage() {
             <div className="flex flex-col">
               <AnimatePresence initial={false}>
                 {filteredFAQs.length > 0 ? (
-                  filteredFAQs.map((faq) => {
+                  filteredFAQs.map(faq => {
                     const isExpanded = expandedId === faq.id;
                     return (
                       <AccordionItem
@@ -185,7 +158,7 @@ export default function HelpPage() {
                   <div className="flex flex-col items-center justify-center py-10 text-center">
                     <Search size={36} className="text-gray-300 mb-3" />
                     <p className="text-gray-500 text-[18px]">
-                      {t('help.no_results')}
+                      {t('no_results')}
                     </p>
                   </div>
                 )}
@@ -199,10 +172,11 @@ export default function HelpPage() {
                 variant="primary"
                 className="font-serif shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
               >
-                {t('help.send_question_btn')}
+                {t('send_question_btn')}
                 <Send size={16} />
               </Button>
             </div>
+
           </div>
         </div>
       </div>
@@ -233,10 +207,10 @@ export default function HelpPage() {
               </button>
 
               <h3 className="text-2xl font-bold text-gray-800 mb-2 font-[ChulaCharasNew]">
-                {t('help.modal.title')}
+                {t('modal.title')}
               </h3>
               <p className="text-gray-500 text-[15px] mb-6 font-[ChulaCharasNew]">
-                {t('help.modal.subtitle')}
+                {t('modal.subtitle')}
               </p>
 
               {submitSuccess ? (
@@ -246,65 +220,45 @@ export default function HelpPage() {
                   className="flex flex-col items-center justify-center py-8 text-center"
                 >
                   <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-500 mb-4">
-                    <svg
-                      className="w-8 h-8"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={3}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-800 mb-1 font-[ChulaCharasNew]">
-                    {t('help.modal.success_title')}
-                  </h4>
-                  <p className="text-gray-500 text-[15px] font-[ChulaCharasNew]">
-                    {t('help.modal.success_subtitle')}
-                  </p>
+                  <h4 className="text-xl font-bold text-gray-800 mb-1 font-[ChulaCharasNew]">{t('modal.success_title')}</h4>
+                  <p className="text-gray-500 text-[15px] font-[ChulaCharasNew]">{t('modal.success_subtitle')}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleModalSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">
-                      {t('help.modal.name_label')}
-                    </label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.name_label')}</label>
                     <input
                       type="text"
                       required
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={t('help.modal.name_placeholder')}
+                      onChange={e => setName(e.target.value)}
+                      placeholder={t('modal.name_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] font-[ChulaCharasNew]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">
-                      {t('help.modal.email_label')}
-                    </label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.email_label')}</label>
                     <input
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={t('help.modal.email_placeholder')}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder={t('modal.email_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] font-[ChulaCharasNew]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">
-                      {t('help.modal.question_label')}
-                    </label>
+                    <label className="block text-[15px] font-bold text-gray-700 mb-1.5 font-[ChulaCharasNew]">{t('modal.question_label')}</label>
                     <textarea
                       required
                       rows={4}
                       value={question}
-                      onChange={(e) => setQuestion(e.target.value)}
-                      placeholder={t('help.modal.question_placeholder')}
+                      onChange={e => setQuestion(e.target.value)}
+                      placeholder={t('modal.question_placeholder')}
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] resize-none font-[ChulaCharasNew]"
                     />
                   </div>
@@ -313,7 +267,7 @@ export default function HelpPage() {
                     variant="primary"
                     className="w-full mt-2 font-serif shadow-md"
                   >
-                    {t('help.modal.submit_btn')}
+                    {t('modal.submit_btn')}
                   </Button>
                 </form>
               )}
@@ -321,6 +275,8 @@ export default function HelpPage() {
           </div>
         )}
       </AnimatePresence>
+
+      <Footer />
     </div>
   );
 }

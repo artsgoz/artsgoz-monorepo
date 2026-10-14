@@ -7,11 +7,8 @@ interface YellowCardActionBarProps {
   onProcess: () => void;
 }
 
-export function YellowCardActionBar({
-  onImport,
-  onProcess,
-}: YellowCardActionBarProps) {
-  const { t } = useTranslation();
+export function YellowCardActionBar({ onImport, onProcess }: YellowCardActionBarProps) {
+  const { t } = useTranslation('yellow_card');
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 min-w-0 w-full">
@@ -23,7 +20,7 @@ export function YellowCardActionBar({
         className="font-[ChulaCharasNew] text-[16px] px-5 h-[48px] rounded-[8px]"
       >
         <Sparkles size={18} />
-        {t('yellow_card.action_bar.import_btn')}
+        {t('action_bar.import_btn')}
       </Button>
 
       {/* Process Button */}
@@ -33,7 +30,7 @@ export function YellowCardActionBar({
         variant="primary"
         className="font-[ChulaCharasNew] text-[17px] px-8 h-[48px] rounded-[8px] shrink-0"
       >
-        {t('yellow_card.action_bar.process_btn')}
+        {t('action_bar.process_btn')}
       </Button>
     </div>
   );

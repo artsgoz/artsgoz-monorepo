@@ -13,7 +13,7 @@ export function GradeReportPaperAction({
   onUpdate,
   onDelete,
 }: GradeReportPaperActionProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
   const gradeOptions = ['', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'S', 'U'];
   const isCompleted = subject.grade !== '';
 
@@ -42,7 +42,7 @@ export function GradeReportPaperAction({
             ? 'bg-white border-[#8B8B8C] text-black'
             : 'border-[#D0D0D1] bg-white hover:border-[#DE5D8F]'
         }`}
-        aria-label={isCompleted ? t('yellow_card.grade_report.unmark') : t('yellow_card.grade_report.mark')}
+        aria-label={isCompleted ? t('grade_report.unmark') : t('grade_report.mark')}
       >
         {isCompleted && <Check size={12} strokeWidth={3} className="text-black" />}
       </button>
@@ -74,7 +74,7 @@ export function GradeReportPaperAction({
         onChange={(e) => onUpdate({ ...subject, semester: e.target.value })}
         placeholder="....."
         className="w-full text-black bg-transparent text-[16px] placeholder:text-[#BBBBBB] border-b border-transparent hover:border-[#D0D0D1]/40 focus:border-[#DE5D8F] focus:outline-none focus:ring-0 px-1 py-0.5 transition-all text-center"
-        aria-label={t('yellow_card.grade_report.term_year')}
+        aria-label={t('grade_report.term_year')}
       />
 
       {/* Credits */}
@@ -93,7 +93,7 @@ export function GradeReportPaperAction({
           value={subject.grade}
           onChange={(e) => onUpdate({ ...subject, grade: e.target.value })}
           className="w-full text-black bg-transparent font-normal text-[16px] border-b border-transparent hover:border-[#D0D0D1]/40 focus:border-[#DE5D8F] focus:outline-none focus:ring-0 px-1 py-0.5 transition-all text-center cursor-pointer appearance-none bg-white"
-          aria-label={t('yellow_card.grade_report.grade')}
+          aria-label={t('grade_report.grade')}
         >
           {gradeOptions.map((opt) => (
             <option key={opt} value={opt} className="bg-white text-black font-normal">

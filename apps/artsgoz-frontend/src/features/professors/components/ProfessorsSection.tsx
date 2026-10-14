@@ -14,7 +14,7 @@ import { FilterDropdown } from './FilterDropdown.js';
 import { ProfessorPagination } from './ProfessorPagination.js';
 
 export function ProfessorsSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,9 +38,12 @@ export function ProfessorsSection() {
       const matchesDept =
         departmentFilter === 'professors.departments.all' || prof.departmentKey === departmentFilter;
 
-      return matchesSearch && matchesDept;
+      const matchesStatus =
+        statusFilter === 'professors.status.all' || prof.statusKey === statusFilter;
+
+      return matchesSearch && matchesDept && matchesStatus;
     });
-  }, [searchQuery, departmentFilter, t]);
+  }, [searchQuery, departmentFilter, statusFilter, t]);
 
   const totalPages = Math.max(1, Math.ceil(filteredProfessors.length / PROFESSORS_PER_PAGE));
 
@@ -70,15 +73,11 @@ export function ProfessorsSection() {
   const isDetailOpen = selectedProfessor !== null;
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-8">
+    <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-8">
       <h1
-        className="font-[ChulaCharasNew] text-[#000000] truncate max-w-full"
+        className="font-[ChulaCharasNew] text-[#000000] truncate max-w-full mt-6 sm:mt-[74px] mb-[22px] font-bold leading-tight"
         style={{
           fontSize: isDetailOpen ? '24px' : '32px',
-          fontWeight: 700,
-          marginTop: '74px',
-          marginBottom: '22px',
-          lineHeight: 1.25,
         }}
       >
         {t('professors.title')}
@@ -87,11 +86,9 @@ export function ProfessorsSection() {
       <div className={`flex gap-0 ${isDetailOpen ? 'items-start flex-col lg:flex-row' : 'flex-col'}`}>
         {/* LEFT COLUMN — search + filters + list + pagination */}
         <div
-          className="flex flex-col min-w-0"
+          className={`flex flex-col min-w-0 ${isDetailOpen ? 'w-full lg:w-[434px] shrink-0' : 'w-full'}`}
           style={{
-            width: isDetailOpen ? '434px' : '100%',
             maxWidth: '100%',
-            flexShrink: 0,
           }}
         >
           <ProfessorSearchBar
@@ -117,6 +114,48 @@ export function ProfessorsSection() {
               onChange={(v) => { setStatusFilter(v); setCurrentPage(1); }}
             />
           </div>
+
+          {(departmentFilter !== 'professors.departments.all' || statusFilter !== 'professors.status.all') && (
+            <div className={`flex items-center gap-2 mt-2 flex-wrap ${isDetailOpen ? 'justify-start' : 'justify-end'}`}>
+              {departmentFilter !== 'professors.departments.all' && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[13px] font-bold bg-[#FCF0F4] text-[#DE5D8F] border border-[#F5CDDC]">
+                  {t(departmentFilter)}
+                  <button
+                    type="button"
+                    onClick={() => { setDepartmentFilter('professors.departments.all'); setCurrentPage(1); }}
+                    className="hover:opacity-75 cursor-pointer border-none bg-transparent text-[#DE5D8F] font-bold text-sm leading-none p-0 ml-0.5"
+                    aria-label="Remove department filter"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {statusFilter !== 'professors.status.all' && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[13px] font-bold bg-[#FCF0F4] text-[#DE5D8F] border border-[#F5CDDC]">
+                  {t(statusFilter)}
+                  <button
+                    type="button"
+                    onClick={() => { setStatusFilter('professors.status.all'); setCurrentPage(1); }}
+                    className="hover:opacity-75 cursor-pointer border-none bg-transparent text-[#DE5D8F] font-bold text-sm leading-none p-0 ml-0.5"
+                    aria-label="Remove status filter"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  setDepartmentFilter('professors.departments.all');
+                  setStatusFilter('professors.status.all');
+                  setCurrentPage(1);
+                }}
+                className="text-[12px] text-[#6D6D6D] hover:text-[#DE5D8F] underline cursor-pointer border-none bg-transparent ml-1"
+              >
+                {t('clear_search')}
+              </button>
+            </div>
+          )}
 
           <div
             className={`flex flex-col mt-[16px] min-w-0 ${!isDetailOpen ? 'mx-auto' : 'w-full'}`}
@@ -161,11 +200,7 @@ export function ProfessorsSection() {
         {/* RIGHT COLUMN — detail panel (only visible in STATE 2) */}
         {isDetailOpen && (
           <div
-            className="flex-1 ml-0 w-full lg:w-auto"
-            style={{
-              paddingLeft: '24px',
-              marginTop: '-74px',
-            }}
+            className="flex-1 ml-0 w-full lg:w-auto mt-6 lg:mt-[-74px] pl-0 lg:pl-[24px]"
           >
             {selectedProfessor && (
               <ProfessorDetailPanel professor={selectedProfessor} onBack={handleBack} />

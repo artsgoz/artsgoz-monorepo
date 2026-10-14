@@ -7,7 +7,7 @@ import { DocumentPagination } from './DocumentPagination.js';
 import { DOCUMENT_CATEGORIES } from '../types.js';
 
 export function DocumentSearchSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
