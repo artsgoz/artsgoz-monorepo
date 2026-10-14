@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Chip, SearchInput, Button, AccordionItem } from '@artsgoz/design-system';
 import { Footer } from '../../../components/Footer/index.js';
 
-// Assets
-import linkTreeImg from '../../../assets/link_tree.png';
+import { LinktreeMiniScreen } from '../components/LinktreeMiniScreen';
 
 interface FAQItem {
   id: string;
@@ -22,19 +21,19 @@ interface FAQItem {
  * Components must call t(faq.questionKey) and t(faq.answerKey) to render.
  */
 const FAQ_DATA: FAQItem[] = [
-  { id: 'faq-1', category: 'general',      questionKey: 'help.faq.faq_1_question', answerKey: 'help.faq.faq_1_answer' },
-  { id: 'faq-2', category: 'registration', questionKey: 'help.faq.faq_2_question', answerKey: 'help.faq.faq_2_answer' },
-  { id: 'faq-3', category: 'tracker',      questionKey: 'help.faq.faq_3_question', answerKey: 'help.faq.faq_3_answer' },
-  { id: 'faq-4', category: 'website',      questionKey: 'help.faq.faq_4_question', answerKey: 'help.faq.faq_4_answer' },
-  { id: 'faq-5', category: 'general',      questionKey: 'help.faq.faq_5_question', answerKey: 'help.faq.faq_5_answer' },
+  { id: 'faq-1', category: 'general',      questionKey: 'faq.faq_1_question', answerKey: 'faq.faq_1_answer' },
+  { id: 'faq-2', category: 'registration', questionKey: 'faq.faq_2_question', answerKey: 'faq.faq_2_answer' },
+  { id: 'faq-3', category: 'tracker',      questionKey: 'faq.faq_3_question', answerKey: 'faq.faq_3_answer' },
+  { id: 'faq-4', category: 'website',      questionKey: 'faq.faq_4_question', answerKey: 'faq.faq_4_answer' },
+  { id: 'faq-5', category: 'general',      questionKey: 'faq.faq_5_question', answerKey: 'faq.faq_5_answer' },
 ];
 
 const CATEGORIES = [
-  { value: 'all',          labelKey: 'help.categories.all' },
-  { value: 'general',      labelKey: 'help.categories.general' },
-  { value: 'registration', labelKey: 'help.categories.registration' },
-  { value: 'tracker',      labelKey: 'help.categories.tracker' },
-  { value: 'website',      labelKey: 'help.categories.website' },
+  { value: 'all',          labelKey: 'categories.all' },
+  { value: 'general',      labelKey: 'categories.general' },
+  { value: 'registration', labelKey: 'categories.registration' },
+  { value: 'tracker',      labelKey: 'categories.tracker' },
+  { value: 'website',      labelKey: 'categories.website' },
 ] as const;
 
 export default function HelpPage() {
@@ -86,18 +85,12 @@ export default function HelpPage() {
         {/* Row: left image  |  right FAQ section */}
         <div className="flex flex-col lg:flex-row lg:items-start gap-6 sm:gap-8 lg:gap-12">
 
-          {/* ── LEFT: Link Tree image ────────────────────────────── */}
-          <div className="w-full lg:w-[40%] shrink-0 flex flex-col gap-4 sm:gap-6">
+          {/* ── LEFT: Link Tree Interactive Mini-Screen ──────────── */}
+          <div className="w-full lg:w-[42%] shrink-0 flex flex-col gap-4 sm:gap-6">
             <h1 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#404041] leading-[1.2] font-serif">
               {t('title')}
             </h1>
-            <div className="w-full aspect-[521/679] max-h-[260px] sm:max-h-[380px] lg:max-h-none rounded-[16px] sm:rounded-[20px] overflow-hidden border border-[#ECECEC] shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-[#FDF8FA]/10">
-              <img 
-                src={linkTreeImg} 
-                alt={t('image_alt')} 
-                className="w-full h-full object-cover select-none" 
-              />
-            </div>
+            <LinktreeMiniScreen />
           </div>
 
           {/* ── RIGHT: Search + Chips + FAQ + Button ─────────────── */}
