@@ -201,8 +201,8 @@ export function LinktreeMiniScreen() {
 
   return (
     <div className="w-full flex flex-col">
-      {/* Clean Rectangular Card Container matching Design System */}
-      <div className="w-full h-[580px] sm:h-[620px] rounded-[16px] border border-[#ECECEC] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+      {/* Clean Rectangular Card Container matching Design System (No Shadow) */}
+      <div className="w-full h-[580px] sm:h-[620px] rounded-[16px] border border-[#ECECEC] bg-white overflow-hidden flex flex-col">
         
         {/* Header with Artsgoz Logo & Action Icons (Copy & Open Full Link keep grey) */}
         <div className="shrink-0 p-4 sm:p-5 border-b border-[#ECECEC] bg-white flex items-center justify-between gap-3">
@@ -280,11 +280,6 @@ export function LinktreeMiniScreen() {
             );
           })}
         </div>
-      </div>
-
-      {/* Caption hint below */}
-      <div className="flex items-center gap-1.5 mt-2.5 text-xs text-[#6D6D6D] font-serif">
-        <span>สามารถเลื่อนสกอร์และคลิกเปิดแต่ละลิงก์ได้โดยตรง</span>
       </div>
     </div>
   );
