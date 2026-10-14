@@ -13,11 +13,8 @@ import {
   BookOpen,
   Share2,
   CheckCircle2,
-  Sparkles,
-  Wifi,
-  Battery,
-  ShieldCheck,
 } from 'lucide-react';
+import { logoImg } from '@artsgoz/design-system';
 
 function YoutubeIcon({ className }: { className?: string }) {
   return (
@@ -55,7 +52,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'umbrella-borrow',
     title: 'ยืมร่มก.อศ. 69',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSfOOmV07Ay8UOs41nuGj3Bcm6x8YEWNe3Kcc7ul9FHc4D_KRA/viewform',
-    icon: <Umbrella className="w-4 h-4 text-[#10B981]" />,
+    icon: <Umbrella className="w-4 h-4 text-[#64A93C]" />,
   },
   {
     id: 'sairahas',
@@ -68,7 +65,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'activity-survey',
     title: 'แบบสอบถามความต้องการในการจัดกิจกรรมภายในคณะอักษรศาสตร์',
     url: 'https://forms.gle/F7dMaREkg856fzzh9',
-    icon: <FileText className="w-4 h-4 text-[#F59E0B]" />,
+    icon: <FileText className="w-4 h-4 text-[#F8C135]" />,
   },
   {
     id: 'openchat-94',
@@ -89,7 +86,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'pr-form',
     title: 'ฟอร์มกรอกเพื่อขอประชาสัมพันธ์ในช่องทางของ ก.อศ.',
     url: 'https://airtable.com/appaWGKhYblYtwjmo/shrQKYnnyhVKLq3Pr',
-    icon: <Megaphone className="w-4 h-4 text-[#EC4899]" />,
+    icon: <Megaphone className="w-4 h-4 text-[#DE5D8F]" />,
   },
 
   // ── 3. รวมฟอร์มสำหรับเพื่อนนิสิต ─────────────────────────────
@@ -103,20 +100,20 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'water-mbk',
     title: 'ขอเบิกใช้น้ำ MBK กับทาง อบจ.',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSfhIiMb2W1RTt0oUUVUtzjdp4sD9Q51SzI7ePoM0Hd56_7MKQ/closedform',
-    icon: <FileText className="w-4 h-4 text-[#0284C7]" />,
+    icon: <FileText className="w-4 h-4 text-[#0165F8]" />,
   },
   {
     id: 'harassment-report',
     title: 'ฟอร์มร้องเรียนเหตุการณ์ที่เกี่ยวกับการคุกคามทางเพศสำหรับนิสิตอักษรศาสตร์ (Sexual Harassment Report)',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSc43bz4bf8QXb_HikJ0bUWt4NKWxkSEinZWDJ8J31izOIgNHw/viewform?usp=sf_link',
-    icon: <AlertCircle className="w-4 h-4 text-[#EF4444]" />,
+    icon: <AlertCircle className="w-4 h-4 text-[#EA234F]" />,
     badge: 'ความปลอดภัย',
   },
   {
     id: 'hoa-mc',
     title: 'แบบฟอร์มการขอพิธีกร HOA 69',
     url: 'https://docs.google.com/spreadsheets/d/1NgsRvADD3sDFlapd53RWAfDRImb82IN69uYImt3Bzzs/edit?gid=0#gid=0',
-    icon: <FileText className="w-4 h-4 text-[#10B981]" />,
+    icon: <FileText className="w-4 h-4 text-[#64A93C]" />,
   },
   {
     id: 'general-issues',
@@ -136,7 +133,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'official-web',
     title: 'เว็บไซต์คณะกรรมการนิสิตอักษรศาสตร์ (ก.อศ.)',
     url: 'https://www.arts.chula.ac.th/goz',
-    icon: <Globe className="w-4 h-4 text-[#3B82F6]" />,
+    icon: <Globe className="w-4 h-4 text-[#0165F8]" />,
   },
   {
     id: 'fb-goz',
@@ -148,7 +145,7 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'twitter-goz',
     title: 'Twitter (X): @arts_goz',
     url: 'https://twitter.com/arts_goz?s=21&t=kxPgl5cuSlInPDEAMlqYtw',
-    icon: <Globe className="w-4 h-4 text-[#000000]" />,
+    icon: <Globe className="w-4 h-4 text-[#404041]" />,
   },
   {
     id: 'ig-goz',
@@ -180,20 +177,20 @@ const LINKTREE_ITEMS: LinkItem[] = [
     id: 'manud-yt',
     title: 'มนุดโรงบาล x ArtsCU x MDCU | EP.1 มนุษย์รักษามนุษย์',
     url: 'https://www.youtube.com/watch?v=LEbPxnCf68s&list=PLMJIZ95mFtZs47Bp3gslJ1nUi-AXnvCmP',
-    icon: <YoutubeIcon className="w-4 h-4 text-[#FF0000]" />,
+    icon: <YoutubeIcon className="w-4 h-4 text-[#EA234F]" />,
     badge: 'YouTube',
   },
   {
     id: 'artsmor',
     title: 'A(RTS)mor: หลากรสเรื่องรักฉบับอักษรศาสตร์',
     url: 'http://www.linktr.ee/artsmor',
-    icon: <Sparkles className="w-4 h-4 text-[#EC4899]" />,
+    icon: <Globe className="w-4 h-4 text-[#DE5D8F]" />,
   },
   {
     id: 'artsfem',
     title: 'Arts F(E)M: เข้าใจสตรีผ่านมิติอักษรศาสตร์',
     url: 'http://www.linktr.ee/artsfem',
-    icon: <Sparkles className="w-4 h-4 text-[#A855F7]" />,
+    icon: <Globe className="w-4 h-4 text-[#8B5CF6]" />,
   },
 ];
 
@@ -208,173 +205,122 @@ export function LinktreeMiniScreen() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Device frame container */}
-      <div className="w-full max-w-[380px] sm:max-w-[400px] lg:max-w-[420px] rounded-[44px] p-3 sm:p-3.5 bg-gradient-to-b from-[#2A2B37] via-[#1E1F29] to-[#15161E] shadow-[0_20px_50px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.08)] border-4 border-[#3D3E4F]">
+    <div className="w-full flex flex-col">
+      {/* Clean Rectangular Card Container matching Design System */}
+      <div className="w-full h-[580px] sm:h-[620px] rounded-[16px] border border-[#ECECEC] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
         
-        {/* Screen Bezel */}
-        <div className="relative w-full h-[580px] sm:h-[620px] rounded-[34px] overflow-hidden bg-gradient-to-b from-[#2b1664] via-[#1b1042] to-[#11092b] flex flex-col shadow-inner">
-          
-          {/* Top Status Bar & Dynamic Island */}
-          <div className="shrink-0 h-11 px-6 flex items-center justify-between text-white/90 text-xs font-medium z-20 select-none bg-black/15 backdrop-blur-sm">
-            <span className="tracking-tight text-[12px] font-semibold">9:41</span>
-            
-            {/* Dynamic Island / Speaker Pill */}
-            <div className="w-24 h-5 bg-black rounded-full flex items-center justify-center gap-1.5 shadow-md">
-              <div className="w-2 h-2 rounded-full bg-[#1c1c24] border border-white/10" />
-              <div className="w-1.5 h-1.5 rounded-full bg-[#052b48]" />
-            </div>
-
-            <div className="flex items-center gap-1.5 opacity-90">
-              <Wifi className="w-3.5 h-3.5" />
-              <Battery className="w-4 h-4" />
-            </div>
-          </div>
-
-          {/* Mini Browser Bar */}
-          <div className="shrink-0 mx-3 my-1 px-3 py-1.5 bg-white/10 hover:bg-white/15 transition-colors rounded-full flex items-center justify-between text-[11px] text-white/80 border border-white/10 backdrop-blur-md">
-            <div className="flex items-center gap-1.5 truncate">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span className="font-mono tracking-tight text-white/90 truncate">linktr.ee/artsgoz</span>
-            </div>
-            <a
-              href="https://linktr.ee/artsgoz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-[10px] font-medium transition-all shrink-0 ml-1"
-              title="เปิดในแท็บใหม่"
-            >
-              <span>เปิดเต็มจอ</span>
-              <ExternalLink className="w-2.5 h-2.5" />
-            </a>
-          </div>
-
-          {/* Scrollable Mini-Screen Viewport */}
-          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 scroll-smooth [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.2)_transparent]">
-            
-            {/* Profile Header */}
-            <div className="flex flex-col items-center text-center pt-2 pb-3">
-              {/* Avatar with glow and ring */}
-              <div className="relative mb-3 group">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#D23976] via-[#A855F7] to-[#0165F8] opacity-75 blur-[6px] group-hover:opacity-100 transition-opacity" />
-                <img
-                  src="https://ugc.production.linktr.ee/8023f976-11d0-497c-97f5-24f421f615c2_Untitled-design.png"
-                  alt="Artsgoz Profile"
-                  className="relative w-20 h-20 rounded-full object-cover border-2 border-white shadow-md bg-white"
-                  onError={(e) => {
-                    // Fallback to stylized SVG placeholder if blocked
-                    (e.target as HTMLImageElement).src =
-                      'https://linktr.ee/og/image/artsgoz.jpg';
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  className="absolute bottom-0 right-0 p-1.5 rounded-full bg-white text-[#1C205D] shadow-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                  title="คัดลอกลิงก์"
-                  aria-label="Share Linktree"
-                >
-                  {copied ? (
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Share2 className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-
-              {/* Title & Badge */}
-              <div className="flex items-center gap-1.5 mb-1">
-                <h2 className="text-[17px] font-bold text-white tracking-tight">
-                  @artsgoz
-                </h2>
-                <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-[#D23976] text-white">
-                  Official
-                </span>
-              </div>
-
-              {/* Description */}
-              <p className="text-[11px] text-white/80 max-w-[280px] leading-relaxed font-light">
-                คณะกรรมการนิสิตอักษรศาสตร์ (ก.อศ.) จุฬาฯ
-                <br />
-                <span className="opacity-75 text-[10px]">The Arts Student Committee, CU</span>
+        {/* Header with Artsgoz Logo & Clean Typography */}
+        <div className="shrink-0 p-4 sm:p-5 border-b border-[#ECECEC] bg-white flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <img
+              src={logoImg}
+              alt="Arts GOZ Logo"
+              className="h-8 sm:h-9 w-auto object-contain shrink-0"
+            />
+            <div className="h-7 w-[1px] bg-[#ECECEC] shrink-0" />
+            <div className="min-w-0">
+              <h2 className="font-serif font-bold text-[#404041] text-[16px] sm:text-[18px] leading-tight truncate">
+                Linktree @artsgoz
+              </h2>
+              <p className="font-serif text-[12px] text-[#6D6D6D] leading-tight truncate">
+                ศูนย์รวมลิงก์และบริการ ก.อศ.
               </p>
             </div>
+          </div>
 
-            {/* Links List */}
-            <div className="space-y-2.5 pb-6">
-              {LINKTREE_ITEMS.map((item) => {
-                if (item.isHeader) {
-                  return (
-                    <div
-                      key={item.id}
-                      className="pt-3 pb-1 px-1 flex items-center gap-2 select-none"
-                    >
-                      <div className="h-[1px] flex-1 bg-white/20" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-pink-300">
-                        {item.title}
-                      </span>
-                      <div className="h-[1px] flex-1 bg-white/20" />
-                    </div>
-                  );
-                }
+          <a
+            href="https://linktr.ee/artsgoz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] border border-[#ECECEC] bg-[#F7F8F9] hover:bg-[#FCEFF4] hover:border-[#E992B4] text-[#404041] hover:text-[#D23976] text-xs font-serif font-bold transition-all shrink-0 cursor-pointer"
+            title="เปิดในแท็บใหม่"
+          >
+            <span>เปิดเต็มจอ</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
 
-                return (
-                  <a
-                    key={item.id}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-white/95 hover:bg-white text-[#1C205D] rounded-[18px] py-2.5 px-3.5 flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.2)] hover:scale-[1.015] active:scale-[0.985] transition-all duration-200 group text-left border border-white/40"
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                      <div className="w-7 h-7 rounded-full bg-[#F5F6FA] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                        {item.icon || <Globe className="w-4 h-4 text-[#D23976]" />}
-                      </div>
-                      <span className="text-[12px] font-semibold leading-snug line-clamp-2 text-[#2D2B52] group-hover:text-[#D23976] transition-colors">
-                        {item.title}
-                      </span>
-                    </div>
+        {/* Scrollable Rectangular Links Viewport */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-2.5 [scrollbar-width:thin] [scrollbar-color:#D0D0D1_transparent]">
+          {LINKTREE_ITEMS.map((item) => {
+            if (item.isHeader) {
+              return (
+                <div
+                  key={item.id}
+                  className="pt-3 pb-1 flex items-center gap-2 select-none"
+                >
+                  <span className="font-serif text-[13px] font-bold tracking-wide text-[#D23976]">
+                    {item.title}
+                  </span>
+                  <div className="h-[1px] flex-1 bg-[#ECECEC]" />
+                </div>
+              );
+            }
 
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      {item.badge && (
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-pink-100 text-[#D23976]">
-                          {item.badge}
-                        </span>
-                      )}
-                      <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#D23976] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-
-            {/* Bottom Linktree footer */}
-            <div className="pt-2 pb-4 text-center">
+            return (
               <a
-                href="https://linktr.ee/artsgoz"
+                key={item.id}
+                href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[11px] text-white/70 hover:text-white transition-colors py-1 px-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+                className="group w-full bg-white hover:bg-[#FCEFF4]/40 border border-[#ECECEC] hover:border-[#E992B4] rounded-[8px] p-3 flex items-center justify-between gap-3 transition-all duration-150 text-left cursor-pointer"
               >
-                <span>เปิด Linktree ของ ก.อศ. ทั้งหมด</span>
-                <ExternalLink className="w-3 h-3" />
+                <div className="flex items-center gap-3 min-w-0">
+                  {/* Square icon box */}
+                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F8F9] border border-[#ECECEC] group-hover:bg-[#FCEFF4] group-hover:border-[#F5CDDC] flex items-center justify-center shrink-0 transition-colors">
+                    {item.icon || <Globe className="w-4 h-4 text-[#D23976]" />}
+                  </div>
+                  <span className="text-[13px] sm:text-[14px] font-serif font-bold text-[#404041] group-hover:text-[#D23976] transition-colors leading-snug line-clamp-2">
+                    {item.title}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  {item.badge && (
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-[4px] bg-[#FCEFF4] text-[#D23976] border border-[#F5CDDC]">
+                      {item.badge}
+                    </span>
+                  )}
+                  <ExternalLink className="w-3.5 h-3.5 text-[#99999A] group-hover:text-[#D23976] transition-colors" />
+                </div>
               </a>
-            </div>
+            );
+          })}
+        </div>
+
+        {/* Footer with link & copy button */}
+        <div className="shrink-0 p-3 px-4 border-t border-[#ECECEC] bg-[#F7F8F9] flex items-center justify-between text-xs text-[#6D6D6D] font-serif">
+          <div className="flex items-center gap-1.5 truncate">
+            <span className="w-2 h-2 rounded-full bg-[#64A93C] shrink-0" />
+            <span className="text-[#6D6D6D] truncate">linktr.ee/artsgoz</span>
           </div>
 
-          {/* Home Indicator Swipe Bar */}
-          <div className="shrink-0 h-5 flex items-center justify-center bg-black/20 backdrop-blur-sm">
-            <div className="w-28 h-1 bg-white/40 rounded-full" />
-          </div>
+          <button
+            type="button"
+            onClick={handleShare}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] border border-[#ECECEC] bg-white hover:bg-[#FCEFF4] hover:border-[#E992B4] text-[#6D6D6D] hover:text-[#D23976] transition-colors cursor-pointer shrink-0"
+          >
+            {copied ? (
+              <>
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#64A93C]" />
+                <span className="text-[#64A93C] font-bold">คัดลอกแล้ว</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5" />
+                <span>แชร์ลิงก์</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Helpful scroll & click hint caption below device */}
-      <div className="flex items-center gap-1.5 mt-3 text-xs text-[#71717A]">
-        <Sparkles className="w-3.5 h-3.5 text-[#D23976]" />
+      {/* Caption hint below */}
+      <div className="flex items-center gap-1.5 mt-2.5 text-xs text-[#6D6D6D] font-serif">
         <span>สามารถเลื่อนสกอร์และคลิกเปิดแต่ละลิงก์ได้โดยตรง</span>
       </div>
     </div>
   );
 }
+
 export default LinktreeMiniScreen;
