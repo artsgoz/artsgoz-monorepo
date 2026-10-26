@@ -1,27 +1,60 @@
 import type { Subject, SubjectCategory } from './types.js';
 
 export const MAJOR_OPTIONS = [
-  'credit_tracking.profile.select_major',
-  'credit_tracking.majors.english',
-  'credit_tracking.majors.thai',
-  'credit_tracking.majors.history',
-  'credit_tracking.majors.philosophy',
-  'credit_tracking.majors.geography',
+  'profile.select_major',
+  'majors.thai',
+  'majors.english',
+  'majors.history',
+  'majors.geography',
+  'majors.information_studies',
+  'majors.philosophy',
+  'majors.dramatic_arts',
+  'majors.south_asian_languages',
+  'majors.chinese',
+  'majors.japanese',
+  'majors.korean',
+  'majors.french',
+  'majors.german',
+  'majors.spanish',
+  'majors.italian',
+  'majors.russian',
+  'majors.world_literature',
+  'majors.language_technology',
 ];
 
 export const MINOR_OPTIONS = [
-  'credit_tracking.profile.select_minor',
-  'credit_tracking.majors.english',
-  'credit_tracking.majors.thai',
-  'credit_tracking.majors.history',
-  'credit_tracking.majors.philosophy',
-  'credit_tracking.minors.none',
+  'profile.select_minor',
+  'minors.none',
+  'minors.vietnamese',
+  'minors.arabic',
+  'minors.portuguese',
+  'minors.linguistics',
+  'minors.comparative_literature',
+  'minors.khmer',
+  'minors.editorial_studies',
+  'minors.thai',
+  'minors.english',
+  'minors.history',
+  'minors.geography',
+  'minors.information_studies',
+  'minors.philosophy',
+  'minors.dramatic_arts',
+  'minors.south_asian_languages',
+  'minors.chinese',
+  'minors.japanese',
+  'minors.korean',
+  'minors.french',
+  'minors.german',
+  'minors.spanish',
+  'minors.italian',
+  'minors.russian',
+  'minors.world_literature',
 ];
 
 export const CURRICULUM_OPTIONS = [
-  'credit_tracking.profile.select_curriculum',
-  'credit_tracking.curriculums.cur2565',
-  'credit_tracking.curriculums.cur2568',
+  'profile.select_curriculum',
+  'curriculums.cur2565',
+  'curriculums.cur2568',
 ];
 
 export const MOCK_SUBJECTS: Subject[] = [
@@ -235,9 +268,9 @@ export const MOCK_SUBJECTS: Subject[] = [
 ];
 
 export const CATEGORIES_CONFIG: { category: SubjectCategory; required: number }[] = [
-  { category: 'credit_tracking.categories.basic', required: 27 },
-  { category: 'credit_tracking.categories.general', required: 30 },
-  { category: 'credit_tracking.categories.free', required: 6 },
-  { category: 'credit_tracking.categories.major', required: 48 },
-  { category: 'credit_tracking.categories.minor', required: 18 },
+  { category: 'categories.basic', required: 27 },
+  { category: 'categories.general', required: 30 },
+  { category: 'categories.free', required: 6 },
+  { category: 'categories.major', required: 48 },
+  { category: 'categories.minor', required: 18 },
 ];

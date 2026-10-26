@@ -14,7 +14,7 @@ The monorepo contains the following workspace projects:
 
 1. **`@org/frontend`** (`apps/frontend`): The main public-facing client application.
 2. **`@org/backoffice`** (`apps/backoffice`): The admin panel / backoffice application.
-3. **`@artsgoz/design-system`** (`packages/design-system`): A shared custom UI component library consumed by both applications.
+3. **`@artsgoz/design-system`** (`libs/design-system`): A shared custom UI component library consumed by both applications.
 
 ---
 
@@ -57,7 +57,7 @@ features/my-feature/
 
 ### 3. Using the Shared Design System
 
-Always check `packages/design-system/src/lib/components/` first before building new UI components. Import them from `@artsgoz/design-system`:
+Always check `libs/design-system/src/lib/components/` first before building new UI components. Import them from `@artsgoz/design-system`:
 
 ```tsx
 import {

@@ -1,30 +1,18 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import {
-  SectionHeading,
-  SearchInput,
-  Pagination,
-  Button,
-} from '@artsgoz/design-system';
-import {
-  Search,
-  SlidersHorizontal,
-  ArrowRight,
-  Feather,
-  Timer,
-  Bookmark,
-  BookmarkX,
-} from 'lucide-react';
+import { SearchInput, Pagination, Button } from '@artsgoz/design-system';
+import { Search, SlidersHorizontal, ArrowRight, Feather, Timer, Bookmark, BookmarkX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArticleCard,
   CategoryFilterBar,
   MOCK_ARTICLES,
+  AKSORNSARA_CATEGORIES,
 } from '../../../features/articles/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 8;
 
 // Mock Saved Data for Internships & Reviews with i18n keys
 const MOCK_SAVED_INTERNSHIPS = [
@@ -47,7 +35,7 @@ const MOCK_SAVED_INTERNSHIPS = [
     authorKey: 'articles.saved_internships.intern2.author',
     date: '15/05/69',
     tagsKeys: ['articles.tags.hybrid', 'articles.tags.allowance'],
-  },
+  }
 ];
 
 const MOCK_SAVED_REVIEWS = [
@@ -59,7 +47,7 @@ const MOCK_SAVED_REVIEWS = [
     excerptKey: 'articles.saved_reviews.review1.excerpt',
     categoryKey: 'articles.saved_reviews.review1.category',
     authorKey: 'articles.saved_reviews.review1.author',
-    date: '10/05/69',
+    date: '10/05/69'
   },
   {
     id: 'rev-02',
@@ -69,8 +57,8 @@ const MOCK_SAVED_REVIEWS = [
     excerptKey: 'articles.saved_reviews.review2.excerpt',
     categoryKey: 'articles.saved_reviews.review2.category',
     authorKey: 'articles.saved_reviews.review2.author',
-    date: '02/05/69',
-  },
+    date: '02/05/69'
+  }
 ];
 
 // Helper to parse Thai date (e.g. '28/05/69' -> timestamp)
@@ -84,15 +72,15 @@ const parseThaiDate = (dateStr: string) => {
   }
 };
 
-// Premium Horizontal Saved Card Component
+// Premium Horizontal Saved Card Component matching Figma Desktop & Mobile Bookmark spec
 function SavedArticleCard({
   article,
   onUnbookmark,
 }: {
-  article: (typeof MOCK_ARTICLES)[0];
+  article: typeof MOCK_ARTICLES[0];
   onUnbookmark: () => void;
 }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const navigate = useNavigate();
 
   const title = t(article.title);
@@ -103,10 +91,10 @@ function SavedArticleCard({
   return (
     <div
       onClick={() => navigate(`/articles/${article.id}`)}
-      className="w-full max-w-[1056px] rounded-2xl border border-gray-200 bg-white hover:bg-[#FDF8FA]/30 hover:border-[#E992B4]/40 shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col md:flex-row cursor-pointer group"
+      className="w-full max-w-[1056px] rounded-2xl border border-gray-200 bg-white hover:bg-[#FDF8FA]/30 hover:border-[#E992B4]/40 shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-row items-center p-3.5 sm:p-4 md:p-0 cursor-pointer group gap-3 sm:gap-4 md:gap-0"
     >
-      {/* Cover Image */}
-      <div className="w-full md:w-[280px] lg:w-[320px] aspect-[4/3] md:aspect-auto h-[200px] md:h-auto shrink-0 overflow-hidden relative">
+      {/* Desktop Cover Image (left) */}
+      <div className="hidden md:block md:w-[280px] lg:w-[320px] h-[220px] shrink-0 overflow-hidden relative">
         <img
           src={article.imageUrl}
           alt={title}
@@ -116,19 +104,23 @@ function SavedArticleCard({
       </div>
 
       {/* Info Content */}
-      <div className="flex-1 p-6 flex flex-col justify-between gap-4 min-w-0">
-        {/* Header line: Title / Category / Bookmark */}
-        <div className="flex justify-between items-start gap-4">
-          <div className="flex-1 flex flex-col gap-2 min-w-0">
-            <h3 className="text-[20px] md:text-[22px] lg:text-[24px] font-bold text-[#404041] font-serif leading-snug group-hover:text-[#DE5D8F] transition-colors line-clamp-1 break-words">
+      <div className="flex-1 md:p-6 flex flex-col justify-between gap-2 sm:gap-3 min-w-0">
+        
+        {/* Header line: Title / Excerpt */}
+        <div className="flex justify-between items-start gap-2">
+          <div className="flex-1 flex flex-col gap-1 min-w-0">
+            <h3 className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-bold text-[#404041] font-serif leading-snug group-hover:text-[#DE5D8F] transition-colors line-clamp-1 break-words">
               {title}
             </h3>
-            <p className="text-[14px] md:text-[15px] text-gray-500 font-serif leading-relaxed line-clamp-2 break-words">
+            <span className="text-[12px] sm:text-[13px] font-bold text-[#6D6D6D] font-serif truncate">
+              {t('written_by', { author })}
+            </span>
+            <p className="text-[12px] sm:text-[14px] text-gray-500 font-serif leading-relaxed line-clamp-2 break-words">
               {excerpt}
             </p>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden md:flex items-center gap-2 shrink-0">
             <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif whitespace-nowrap">
               {category}
             </span>
@@ -145,52 +137,77 @@ function SavedArticleCard({
           </div>
         </div>
 
-        {/* Bottom line: Author, Date, and Read CTA */}
-        <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
+        {/* Mobile Category Chip + Bookmark Row */}
+        <div className="flex md:hidden items-center justify-between gap-2 pt-1 border-t border-gray-100">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 text-[11px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif whitespace-nowrap">
+              {category}
+            </span>
+            <span className="text-[11px] text-gray-400 font-serif">
+              {article.date}
+            </span>
+          </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onUnbookmark();
+            }}
+            className="w-7 h-7 rounded-md bg-[#F8C135] text-white flex items-center justify-center hover:bg-[#DE5D8F] transition-colors cursor-pointer border-none shrink-0"
+            aria-label="Remove bookmark"
+          >
+            <Bookmark size={13} fill="white" />
+          </button>
+        </div>
+
+        {/* Desktop Bottom line: Author, Date, and Read CTA */}
+        <div className="hidden md:flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
           <div className="flex items-center gap-4 flex-wrap">
             <span className="flex items-center gap-1.5 min-w-0 truncate max-w-[150px] md:max-w-none">
               <Feather size={14} className="text-gray-350 shrink-0" />
-              <span className="truncate">
-                {t('articles.written_by', { author })}
-              </span>
+              <span className="truncate">{t('written_by', { author })}</span>
             </span>
             <span className="flex items-center gap-1.5 whitespace-nowrap">
               <Timer size={14} className="text-gray-350 shrink-0" />
-              {t('articles.published', { date: article.date })}
+              {t('published', { date: article.date })}
             </span>
           </div>
           <span className="flex items-center gap-1 text-[#DE5D8F] font-bold group-hover:translate-x-1 transition-transform shrink-0">
-            {t('articles.read_more')}
+            {t('read_more')}
             <ArrowRight size={14} />
           </span>
         </div>
+
+      </div>
+
+      {/* Mobile Square Thumbnail (right) matching Figma Mobile Bookmark */}
+      <div className="w-[84px] h-[84px] sm:w-[100px] sm:h-[100px] md:hidden shrink-0 rounded-xl overflow-hidden relative border border-gray-150 bg-gray-100">
+        <img
+          src={article.imageUrl}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
   );
 }
 
 export default function ArticlesPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('articles');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const CATEGORIES = useMemo(() => {
-    const cats = Array.from(new Set(MOCK_ARTICLES.map((a) => a.category)));
-    return ['articles.categories.all', ...cats];
-  }, []);
+  const CATEGORIES = AKSORNSARA_CATEGORIES;
 
   // Sync state from URL parameters
   const searchQuery = searchParams.get('search') || '';
-  const selectedCategory =
-    searchParams.get('category') || 'articles.categories.all';
+  const selectedCategory = searchParams.get('category') || 'categories.all';
   const currentPage = Number(searchParams.get('page')) || 1;
   const isSavedTab = searchParams.get('tab') === 'saved';
 
   // State for Saved Items page
   const [savedSearchQuery, setSavedSearchQuery] = useState('');
-  const [savedTab, setSavedTab] = useState<
-    'articles' | 'internships' | 'reviews'
-  >('articles');
+  const [savedTab, setSavedTab] = useState<'articles' | 'internships' | 'reviews'>('articles');
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('bookmarked_articles');
@@ -200,12 +217,8 @@ export default function ArticlesPage() {
     }
   });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>(
-    'newest',
-  );
-  const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>(
-    'newest',
-  );
+  const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>('newest');
+  const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>('newest');
 
   const handleUnbookmark = (id: string) => {
     try {
@@ -219,9 +232,7 @@ export default function ArticlesPage() {
 
   // Filter and Sort Saved Articles
   const savedArticles = useMemo(() => {
-    let list = MOCK_ARTICLES.filter((article) =>
-      bookmarkedIds.includes(article.id),
-    );
+    let list = MOCK_ARTICLES.filter((article) => bookmarkedIds.includes(article.id));
 
     if (savedSearchQuery.trim() !== '') {
       const query = savedSearchQuery.trim().toLowerCase();
@@ -229,28 +240,24 @@ export default function ArticlesPage() {
         (article) =>
           t(article.title).toLowerCase().includes(query) ||
           t(article.excerpt).toLowerCase().includes(query) ||
-          t(article.author).toLowerCase().includes(query),
+          t(article.author).toLowerCase().includes(query)
       );
     }
 
     if (sortBySavedDate === 'newest') {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id),
+        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id)
       );
     } else {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id),
+        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id)
       );
     }
 
     if (sortByPostDate === 'newest') {
-      list = [...list].sort(
-        (a, b) => parseThaiDate(b.date) - parseThaiDate(a.date),
-      );
+      list = [...list].sort((a, b) => parseThaiDate(b.date) - parseThaiDate(a.date));
     } else if (sortByPostDate === 'oldest') {
-      list = [...list].sort(
-        (a, b) => parseThaiDate(a.date) - parseThaiDate(b.date),
-      );
+      list = [...list].sort((a, b) => parseThaiDate(a.date) - parseThaiDate(b.date));
     }
 
     return list;
@@ -269,14 +276,14 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true },
+      { replace: true }
     );
   };
 
   const handleCategorySelect = (category: string) => {
     setSearchParams(
       (prev) => {
-        if (category && category !== 'articles.categories.all') {
+        if (category && category !== 'categories.all') {
           prev.set('category', category);
         } else {
           prev.delete('category');
@@ -284,7 +291,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true },
+      { replace: true }
     );
   };
 
@@ -294,7 +301,7 @@ export default function ArticlesPage() {
         prev.set('page', String(page));
         return prev;
       },
-      { replace: true },
+      { replace: true }
     );
   };
 
@@ -306,7 +313,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true },
+      { replace: true }
     );
   };
 
@@ -314,8 +321,7 @@ export default function ArticlesPage() {
   const filteredArticles = useMemo(() => {
     return MOCK_ARTICLES.filter((article) => {
       const matchesCategory =
-        selectedCategory === 'articles.categories.all' ||
-        article.category === selectedCategory;
+        selectedCategory === 'categories.all' || article.category === selectedCategory;
 
       const query = searchQuery.trim().toLowerCase();
       const matchesSearch =
@@ -333,7 +339,7 @@ export default function ArticlesPage() {
   const currentArticles = useMemo(() => {
     return filteredArticles.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
-      currentPage * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
     );
   }, [filteredArticles, currentPage]);
 
@@ -343,16 +349,13 @@ export default function ArticlesPage() {
       <>
         <div className="bg-white min-h-screen">
           <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full py-12 md:py-20 flex flex-col gap-10">
+            
             {/* Header Title Section */}
             <div className="flex flex-col gap-6 w-full relative">
               <div className="flex items-center gap-4">
-                <Bookmark
-                  size={40}
-                  className="text-[#DE5D8F] shrink-0"
-                  fill="#DE5D8F"
-                />
+                <Bookmark size={40} className="text-[#DE5D8F] shrink-0" fill="#DE5D8F" />
                 <h1 className="text-[36px] md:text-[48px] font-bold text-[#404041] font-serif leading-none">
-                  {t('articles.saved_title')}
+                  {t('saved_title')}
                 </h1>
               </div>
 
@@ -361,24 +364,22 @@ export default function ArticlesPage() {
                 <div className="flex-1 w-full">
                   <SearchInput
                     size="lg"
-                    placeholder={t('articles.search_saved_placeholder')}
+                    placeholder={t('search_saved_placeholder')}
                     value={savedSearchQuery}
                     onChange={(e) => setSavedSearchQuery(e.target.value)}
                   />
                 </div>
-
+                
                 {/* Filter Popover Toggle */}
                 <div className="relative w-full md:w-auto self-stretch md:self-auto flex">
                   <button
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                     className={`flex items-center justify-center gap-2.5 px-6 h-[52px] rounded-[10px] border border-gray-250 font-serif text-[15px] font-bold transition-all cursor-pointer w-full md:w-auto ${
-                      isFilterOpen
-                        ? 'bg-[#FCEFF4] text-[#DE5D8F] border-[#E992B4]'
-                        : 'bg-white hover:bg-gray-50 text-gray-600'
+                      isFilterOpen ? 'bg-[#FCEFF4] text-[#DE5D8F] border-[#E992B4]' : 'bg-white hover:bg-gray-50 text-gray-600'
                     }`}
                   >
                     <SlidersHorizontal size={16} />
-                    {t('articles.filter')}
+                    {t('filter')}
                   </button>
 
                   <AnimatePresence>
@@ -391,14 +392,12 @@ export default function ArticlesPage() {
                         className="absolute right-0 top-[60px] w-full md:w-[360px] p-6 bg-white border border-gray-200 rounded-2xl shadow-xl z-40 flex flex-col gap-6"
                       >
                         <h4 className="font-bold text-[18px] text-[#404041] font-serif border-b border-gray-100 pb-2">
-                          {t('articles.filter_and_sort')}
+                          {t('filter_and_sort')}
                         </h4>
 
                         {/* Date Saved Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">
-                            {t('articles.date_saved')}
-                          </span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('date_saved')}</span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -408,9 +407,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">
-                                {t('articles.sort_newest')}
-                              </span>
+                              <span className="text-[14px] font-serif">{t('sort_newest')}</span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -420,18 +417,14 @@ export default function ArticlesPage() {
                                 onChange={() => setSortBySavedDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">
-                                {t('articles.sort_oldest')}
-                              </span>
+                              <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
                             </label>
                           </div>
                         </div>
 
                         {/* Date Posted Sort */}
                         <div className="flex flex-col gap-3">
-                          <span className="text-[15px] font-bold text-gray-500 font-serif">
-                            {t('articles.date_posted')}
-                          </span>
+                          <span className="text-[15px] font-bold text-gray-500 font-serif">{t('date_posted')}</span>
                           <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -441,9 +434,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('newest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">
-                                {t('articles.sort_newest')}
-                              </span>
+                              <span className="text-[14px] font-serif">{t('sort_newest')}</span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
                               <input
@@ -453,9 +444,7 @@ export default function ArticlesPage() {
                                 onChange={() => setSortByPostDate('oldest')}
                                 className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
                               />
-                              <span className="text-[14px] font-serif">
-                                {t('articles.sort_oldest')}
-                              </span>
+                              <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
                             </label>
                           </div>
                         </div>
@@ -470,12 +459,10 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('articles')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'articles'
-                      ? 'text-[#DE5D8F]'
-                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'articles' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_articles')}
+                  {t('tab_articles')}
                   {savedTab === 'articles' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -486,12 +473,10 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('internships')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'internships'
-                      ? 'text-[#DE5D8F]'
-                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'internships' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_internships')}
+                  {t('tab_internships')}
                   {savedTab === 'internships' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -502,12 +487,10 @@ export default function ArticlesPage() {
                 <button
                   onClick={() => setSavedTab('reviews')}
                   className={`pb-3 font-serif text-[18px] md:text-[20px] font-bold cursor-pointer relative transition-colors duration-200 focus:outline-none border-none bg-transparent ${
-                    savedTab === 'reviews'
-                      ? 'text-[#DE5D8F]'
-                      : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
+                    savedTab === 'reviews' ? 'text-[#DE5D8F]' : 'text-[#AEAEAE] hover:text-[#7A7A7A]'
                   }`}
                 >
-                  {t('articles.tab_reviews')}
+                  {t('tab_reviews')}
                   {savedTab === 'reviews' && (
                     <motion.div
                       layoutId="savedTabUnderline"
@@ -520,9 +503,10 @@ export default function ArticlesPage() {
 
             {/* ── Saved Items Lists ── */}
             <div className="flex flex-col gap-6 w-full items-center">
+              
               {/* Tab 1: Articles */}
-              {savedTab === 'articles' &&
-                (savedArticles.length > 0 ? (
+              {savedTab === 'articles' && (
+                savedArticles.length > 0 ? (
                   <div className="flex flex-col gap-6 w-full items-center">
                     {savedArticles.map((article) => (
                       <SavedArticleCard
@@ -536,19 +520,20 @@ export default function ArticlesPage() {
                   <div className="flex flex-col items-center justify-center py-20 text-center bg-[#FDF8FA]/30 border border-dashed border-pink-200 rounded-[24px] w-full px-4">
                     <BookmarkX size={64} className="text-pink-300 mb-4" />
                     <h3 className="text-[20px] font-bold text-gray-700 font-serif mb-2">
-                      {t('articles.no_saved_articles')}
+                      {t('no_saved_articles')}
                     </h3>
                     <p className="text-gray-400 max-w-sm text-[15px] font-serif mb-6 leading-relaxed">
-                      {t('articles.no_saved_articles_desc')}
+                      {t('no_saved_articles_desc')}
                     </p>
                     <button
                       onClick={() => navigate('/articles')}
                       className="px-6 py-2.5 bg-[#E992B4] hover:bg-[#DE5D8F] text-white font-bold rounded-xl transition-all cursor-pointer active:scale-95 font-serif text-[15px] border-none"
                     >
-                      {t('articles.explore_articles')}
+                      {t('explore_articles')}
                     </button>
                   </div>
-                ))}
+                )
+              )}
 
               {/* Tab 2: Internships (Mock Data) */}
               {savedTab === 'internships' && (
@@ -560,41 +545,22 @@ export default function ArticlesPage() {
                     >
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex flex-col gap-1.5 min-w-0">
-                          <span className="text-[13px] font-bold text-[#DE5D8F] font-serif truncate">
-                            {intern.company}
-                          </span>
-                          <h3 className="text-[20px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">
-                            {t(intern.roleKey)}
-                          </h3>
+                          <span className="text-[13px] font-bold text-[#DE5D8F] font-serif truncate">{intern.company}</span>
+                          <h3 className="text-[20px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">{t(intern.roleKey)}</h3>
                           <div className="flex flex-wrap gap-2 mt-1">
                             {intern.tagsKeys.map((tagKey, i) => (
-                              <span
-                                key={i}
-                                className="px-2 py-0.5 text-[11px] font-bold text-gray-500 bg-gray-100 rounded-sm font-sans"
-                              >
-                                {t(tagKey)}
-                              </span>
+                              <span key={i} className="px-2 py-0.5 text-[11px] font-bold text-gray-500 bg-gray-100 rounded-sm font-sans">{t(tagKey)}</span>
                             ))}
                           </div>
                         </div>
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">
-                          {t(intern.categoryKey)}
-                        </span>
+                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">{t(intern.categoryKey)}</span>
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif">
                         <div className="flex items-center gap-4">
-                          <span>
-                            {t('articles.period_label', {
-                              period: t(intern.periodKey),
-                            })}
-                          </span>
+                          <span>{t('period_label', { period: t(intern.periodKey) })}</span>
                         </div>
-                        <a
-                          href="#"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0"
-                        >
-                          {t('articles.more_details')}
+                        <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
+                          {t('more_details')}
                           <ArrowRight size={14} />
                         </a>
                       </div>
@@ -613,35 +579,21 @@ export default function ArticlesPage() {
                     >
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex flex-col gap-1.5 min-w-0">
-                          <span className="text-[13px] font-bold text-gray-400 font-serif truncate">
-                            {rev.company} • {t(rev.roleKey)}
-                          </span>
+                          <span className="text-[13px] font-bold text-gray-400 font-serif truncate">{rev.company} • {t(rev.roleKey)}</span>
                           <p className="text-[15px] text-[#404041] font-serif leading-relaxed line-clamp-2 mt-1 break-words">
                             &ldquo;{t(rev.excerptKey)}&rdquo;
                           </p>
                         </div>
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">
-                          {t(rev.categoryKey)}
-                        </span>
+                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-serif shrink-0 whitespace-nowrap">{t(rev.categoryKey)}</span>
                       </div>
                       <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
                         <div className="flex items-center gap-3 flex-wrap">
-                          <span>
-                            {t('articles.written_by_author', {
-                              author: t(rev.authorKey),
-                            })}
-                          </span>
+                          <span>{t('written_by_author', { author: t(rev.authorKey) })}</span>
                           <span>•</span>
-                          <span>
-                            {t('articles.published_at', { date: rev.date })}
-                          </span>
+                          <span>{t('published_at', { date: rev.date })}</span>
                         </div>
-                        <a
-                          href="#"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0"
-                        >
-                          {t('articles.read_full_review')}
+                        <a href="#" onClick={(e) => e.preventDefault()} className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0">
+                          {t('read_full_review')}
                           <ArrowRight size={14} />
                         </a>
                       </div>
@@ -649,6 +601,7 @@ export default function ArticlesPage() {
                   ))}
                 </div>
               )}
+
             </div>
 
             {/* Bottom CTA to redirect back to standard Articles view */}
@@ -663,10 +616,11 @@ export default function ArticlesPage() {
                 variant="primary"
                 className="px-8 h-[58px] rounded-xl font-serif text-[16px]"
               >
-                {t('articles.go_to_articles')}
+                {t('go_to_articles')}
                 <ArrowRight size={18} />
               </Button>
             </div>
+
           </div>
         </div>
         <Footer />
@@ -678,24 +632,39 @@ export default function ArticlesPage() {
   return (
     <>
       <div className="bg-white min-h-screen">
-        <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full py-12 md:py-16 flex flex-col gap-8">
+        <div className="max-w-[1120px] mx-auto px-4 sm:px-6 w-full py-8 md:py-14 flex flex-col gap-8">
+
           {/* Page Title */}
-          <SectionHeading
-            title={t('articles.section_title')}
-            description={t('articles.section_desc')}
-          />
+          <h1 className="text-[28px] sm:text-[34px] md:text-[36px] font-bold text-black font-serif leading-tight">
+            {t('section_title')}
+          </h1>
 
-          {/* Search + Category Filter */}
-          <div className="flex flex-col gap-4 w-full">
-            {/* Full-content-width lg search bar */}
-            <SearchInput
-              size="lg"
-              placeholder={t('articles.search_placeholder')}
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
+          {/* Search + Filter Button + Category Filter */}
+          <div className="flex flex-col gap-5 w-full">
+            <div className="flex items-center gap-3 w-full">
+              <div className="flex-1">
+                <SearchInput
+                  size="lg"
+                  placeholder={t('search_placeholder')}
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (selectedCategory !== 'categories.all' || searchQuery) {
+                    handleClearFilters();
+                  }
+                }}
+                className="w-[52px] md:w-[55px] h-[52px] md:h-[55px] rounded-[14px] bg-[#DE5D8F] text-white hover:bg-[#CA5582] transition-colors flex items-center justify-center shrink-0 cursor-pointer shadow-sm border-none"
+                aria-label="Filter"
+              >
+                <SlidersHorizontal size={22} />
+              </button>
+            </div>
 
-            {/* Category chips as its own component */}
+            {/* Category chips */}
             <CategoryFilterBar
               categories={CATEGORIES}
               selectedCategory={selectedCategory}
@@ -703,9 +672,9 @@ export default function ArticlesPage() {
             />
           </div>
 
-          {/* Articles Grid */}
+          {/* Articles Grid (2 columns on desktop, 1 on mobile) */}
           {currentArticles.length > 0 ? (
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 w-full justify-items-center xl:justify-items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full justify-items-center">
               {currentArticles.map((article) => (
                 <ArticleCard
                   key={article.id}
@@ -731,21 +700,18 @@ export default function ArticlesPage() {
             <div className="flex flex-col items-center justify-center py-20 px-4 text-center bg-[#F7F8F9] rounded-[24px] border border-dashed border-gray-300 w-full">
               <Search size={64} className="text-gray-300 mb-4" />
               <h3 className="text-[20px] font-bold text-gray-700 font-serif mb-2">
-                {t('articles.no_results_title')}
+                {t('no_results_title')}
               </h3>
               <p className="text-gray-500 max-w-md text-[16px] font-serif break-words">
-                {t('articles.no_results_desc', {
-                  query: searchQuery || t(selectedCategory),
-                })}
+                {t('no_results_desc', { query: searchQuery || t(selectedCategory) })}
               </p>
-              {(searchQuery ||
-                selectedCategory !== 'articles.categories.all') && (
+              {(searchQuery || selectedCategory !== 'categories.all') && (
                 <Button
                   onClick={handleClearFilters}
                   variant="primary"
                   className="mt-6 px-6 py-2.5 h-[42px] rounded-[9999px] font-serif text-[14px]"
                 >
-                  {t('articles.clear_filters')}
+                  {t('clear_filters')}
                 </Button>
               )}
             </div>

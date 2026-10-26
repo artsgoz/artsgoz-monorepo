@@ -1,49 +1,59 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAgenda } from '../hooks/useAgenda.js';
-import { UpcomingEventsCard } from './UpcomingEventsCard.js';
-import { CalendarCard } from './CalendarCard.js';
+import { buildAgendaData } from '../hooks/useAgenda.js';
+import { TodayFocusPanel } from './TodayFocusPanel.js';
+import { MiniCalendarPanel } from './MiniCalendarPanel.js';
 
 /**
- * AgendaWidgets — composes UpcomingEventsCard + CalendarCard.
- * Owns the selectedDate state and supplies data from useAgenda.
- * To connect with Google Calendar: update useAgenda to fetch real data.
+ * AgendaWidgets — owns month/date state, composes the two Figma calendar panels with transparent card backgrounds.
  */
 export function AgendaWidgets() {
-  const { daysOfWeek, calendarDays, eventsByDate, upcomingEvents, getDayLabel } = useAgenda();
-  const { t } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState<number>(17);
+  const { t } = useTranslation('home');
+
+  const now = new Date();
+  const [displayYear, setDisplayYear] = useState(now.getFullYear());
+  const [displayMonth, setDisplayMonth] = useState(now.getMonth() + 1);
+  const [selectedDate, setSelectedDate] = useState(now.getDate());
+
+  const prevMonth = useCallback(() => {
+    setDisplayMonth((m) => {
+      if (m === 1) { setDisplayYear((y) => y - 1); return 12; }
+      return m - 1;
+    });
+  }, [setDisplayMonth, setDisplayYear]);
+
+  const nextMonth = useCallback(() => {
+    setDisplayMonth((m) => {
+      if (m === 12) { setDisplayYear((y) => y + 1); return 1; }
+      return m + 1;
+    });
+  }, [setDisplayMonth, setDisplayYear]);
+
+  const data = buildAgendaData(displayYear, displayMonth, selectedDate, prevMonth, nextMonth, setSelectedDate);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-x-12 lg:gap-x-12 gap-y-8 lg:gap-y-12 w-full items-start">
-      {/* Header and Description: Top Right on desktop, top on mobile */}
-      <div className="lg:col-start-2 lg:row-start-1">
-        <div className="flex flex-col gap-1 select-none">
-          <h2 className="font-serif text-[40px] lg:text-[48px] font-bold leading-[1.2] text-[#404041]">
-            {t('agenda.title')}
-          </h2>
-          <p className="font-serif text-[16px] leading-[24px] text-[#6D6D6D]">
-            {t('agenda.description')}
-          </p>
+    <div className="w-full flex flex-col gap-8 select-none relative">
+      {/* Section Header */}
+      <div className="flex flex-col gap-2 relative z-10">
+        <h2 className="font-serif text-[40px] lg:text-[48px] font-bold leading-[1.15] text-[#303030]">
+          {t('agenda.title')}
+        </h2>
+        <p className="font-serif text-[16px] leading-[26px] text-[#818181]">
+          {t('agenda.description')}
+        </p>
+      </div>
+
+      {/* Two-Panel Grid with 2 TRANSPARENT cards matching Figma #8000:45262 */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6 lg:gap-8 items-stretch relative z-10">
+        {/* Left Card: Today Focus + Events List */}
+        <div className="border-2 border-[#303030] rounded-[6px] bg-transparent overflow-hidden min-h-[513px] flex flex-col">
+          <TodayFocusPanel data={data} />
         </div>
-      </div>
 
-      {/* Upcoming Events: Left Column on desktop, middle on mobile */}
-      <div className="lg:col-start-1 lg:row-start-1 lg:row-span-2">
-        <UpcomingEventsCard events={upcomingEvents} />
-      </div>
-
-      {/* Calendar Card: Bottom Right on desktop, bottom on mobile */}
-      <div className="lg:col-start-2 lg:row-start-2">
-        <CalendarCard
-          daysOfWeek={daysOfWeek}
-          calendarDays={calendarDays}
-          eventsByDate={eventsByDate}
-          selectedDate={selectedDate}
-          onSelectDate={setSelectedDate}
-          getDayLabel={getDayLabel}
-          monthLabel={t('agenda.month_label')}
-        />
+        {/* Right Card: Mini Calendar */}
+        <div className="border-2 border-[#303030] rounded-[6px] bg-transparent overflow-hidden min-h-[513px] flex flex-col">
+          <MiniCalendarPanel data={data} />
+        </div>
       </div>
     </div>
   );

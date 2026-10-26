@@ -5,6 +5,7 @@ export interface Professor {
   email: string;
   abbreviationKey: string;
   departmentKey: string;
+  statusKey: string;
   locationKey: string;
   achievementsKeys: string[];
   qualificationsKeys: string[];

@@ -12,8 +12,9 @@ export { AccordionItem } from './lib/components/AccordionItem/index.js';
 import logoImg from './lib/assets/logo_goz_horizontal.ico';
 import cuLogoImg from './lib/assets/CU_logo.ico';
 import logoGozVertical from './lib/assets/logo_goz_vertical.ico';
+import legacyLogo from './lib/assets/LegacyLogo.svg';
 
-export { logoImg, cuLogoImg, logoGozVertical };
+export { logoImg, cuLogoImg, logoGozVertical, legacyLogo };
 export { LoginDropdown } from './lib/components/LoginDropdown/index.js';
 export { MobileSidebar } from './lib/components/MobileSidebar/index.js';
 export { SavedArticleHeader } from './lib/components/SavedArticleHeader/index.js';

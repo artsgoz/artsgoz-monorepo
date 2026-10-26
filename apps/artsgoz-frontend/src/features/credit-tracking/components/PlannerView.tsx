@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Plus, Trash2, Check, X, Sparkles } from 'lucide-react';
 import type { Subject, SubjectCategory, AcademicProfile } from '../types.js';
 import { SystemBanner } from '../../../components/SystemBanner/index.js';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getMajorGroups, getMinorGroups, getGroupLabel } from '../utils/subjectGenerator.js';
 
 interface PlannerViewProps {
   subjects: Subject[];
@@ -22,7 +23,7 @@ export function PlannerView({
   profile,
   onConfirmPlan,
 }: PlannerViewProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
 
   // Collapse/Expand state for sub-groups (defaults to expanded unless false)
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
@@ -40,9 +41,16 @@ export function PlannerView({
   // Active custom subject deletion confirmation ID state
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
+  // Translation key helper to strip any legacy credit_tracking. prefix
+  const translateKey = (key: string): string => {
+    if (!key) return '';
+    const cleanKey = key.replace(/^credit_tracking\./, '');
+    return t(cleanKey);
+  };
+
   // Add custom subject modal states
   const [showAddModal, setShowAddModal] = useState(false);
-  const [targetCategory, setTargetCategory] = useState<SubjectCategory>('credit_tracking.categories.general');
+  const [targetCategory, setTargetCategory] = useState<SubjectCategory>('categories.general');
   const [targetGroup, setTargetGroup] = useState('');
   const [courseCode, setCourseCode] = useState('');
   const [courseNameTh, setCourseNameTh] = useState('');
@@ -53,58 +61,30 @@ export function PlannerView({
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [successBanner, setSuccessBanner] = useState<string | null>(null);
 
-  // Group helper
+  // Group helper – subjects now store the canonical group key directly
   const getSubjectGroup = (subject: Subject): string => {
-    if (subject.group) return subject.group;
-
-    if (subject.category === 'credit_tracking.categories.basic') {
-      if (subject.code === '2201111' || subject.code === '2201121') {
-        return 'credit_tracking.planner.groups.basic.g1';
-      }
-      if (subject.code === '2201112' || subject.code === '2201122') {
-        return 'credit_tracking.planner.groups.basic.g2';
-      }
-      if (subject.code === '2201211') {
-        return 'credit_tracking.planner.groups.basic.g3';
-      }
-      if (subject.code === '2201221') {
-        return 'credit_tracking.planner.groups.basic.g4';
-      }
-      return 'credit_tracking.planner.groups.basic.g5';
+    if (subject.group) return subject.group.replace(/^credit_tracking\./, '');
+    if (subject.category === 'categories.basic' || subject.category === 'credit_tracking.categories.basic') {
+      return 'planner.groups.basic.g1';
     }
-    if (subject.category === 'credit_tracking.categories.general') {
-      return 'credit_tracking.planner.groups.general.g1';
+    if (subject.category === 'categories.general' || subject.category === 'credit_tracking.categories.general') {
+      return 'planner.groups.general.g1';
     }
-    if (subject.category === 'credit_tracking.categories.free') {
-      return 'credit_tracking.planner.groups.free.g1';
+    if (subject.category === 'categories.free' || subject.category === 'credit_tracking.categories.free') {
+      return 'planner.groups.free.g1';
     }
-    if (subject.category === 'credit_tracking.categories.major') {
-      if (subject.code === '2202231' || subject.code === '2202232') {
-        return 'credit_tracking.planner.groups.major.g1';
-      }
-      if (subject.code === '2202311' || subject.code === '2202312') {
-        return 'credit_tracking.planner.groups.major.g2';
-      }
-      return 'credit_tracking.planner.groups.major.g3';
+    if (subject.category === 'categories.major' || subject.category === 'credit_tracking.categories.major') {
+      return 'major-compulsory';
     }
-    if (subject.category === 'credit_tracking.categories.minor') {
-      if (subject.code === '2209111' || subject.code === '2209211') {
-        return 'credit_tracking.planner.groups.minor.g1';
-      }
-      return 'credit_tracking.planner.groups.minor.g2';
+    if (subject.category === 'categories.minor' || subject.category === 'credit_tracking.categories.minor') {
+      return 'minor-compulsory';
     }
     return '';
   };
 
-  const getGroupSubhead = (groupName: string): string => {
-    if (groupName === 'credit_tracking.planner.groups.general.g1') {
-      return 'credit_tracking.planner.subheads.general';
-    }
-    if (groupName === 'credit_tracking.planner.groups.free.g1') {
-      return 'credit_tracking.planner.subheads.free';
-    }
-    return '';
-  };
+  // Dynamically derive major/minor groups from loaded subjects
+  const dynamicMajorGroups = useMemo(() => getMajorGroups(subjects), [subjects]);
+  const dynamicMinorGroups = useMemo(() => getMinorGroups(subjects), [subjects]);
 
   const toggleGroup = (groupName: string) => {
     setExpandedGroups((prev) => {
@@ -138,7 +118,7 @@ export function PlannerView({
   const handleSaveCourse = (e: React.FormEvent) => {
     e.preventDefault();
     if (!courseCode.trim() || !courseNameTh.trim()) {
-      alert(t('credit_tracking.planner.fill_alert'));
+      alert(t('planner.fill_alert'));
       return;
     }
 
@@ -160,7 +140,7 @@ export function PlannerView({
 
   const handleConfirmAction = () => {
     setShowConfirmModal(false);
-    setSuccessBanner(t('credit_tracking.planner.success_banner'));
+    setSuccessBanner(t('planner.success_banner'));
     setTimeout(() => setSuccessBanner(null), 4000);
     if (onConfirmPlan) {
       setTimeout(() => {
@@ -170,64 +150,52 @@ export function PlannerView({
   };
 
   const getCategoryCredits = (cat: SubjectCategory): string => {
-    if (cat === 'credit_tracking.categories.basic') return t('credit_tracking.curriculum.credits_val', { count: 27 });
-    if (cat === 'credit_tracking.categories.general') return t('credit_tracking.curriculum.credits_val', { count: 30 });
-    if (cat === 'credit_tracking.categories.free') return t('credit_tracking.curriculum.credits_val', { count: 6 });
-    if (cat === 'credit_tracking.categories.major') return t('credit_tracking.curriculum.credits_val', { count: 48 });
-    if (cat === 'credit_tracking.categories.minor') return t('credit_tracking.curriculum.credits_val', { count: 18 });
+    const cleanCat = cat.replace(/^credit_tracking\./, '');
+    if (cleanCat === 'categories.basic') return t('curriculum.credits_val', { count: 27 });
+    if (cleanCat === 'categories.general') return t('curriculum.credits_val', { count: 30 });
+    if (cleanCat === 'categories.free') return t('curriculum.credits_val', { count: 6 });
+    if (cleanCat === 'categories.major') return t('curriculum.credits_val', { count: 48 });
+    if (cleanCat === 'categories.minor') return t('curriculum.credits_val', { count: 18 });
     return '';
   };
 
   const leftSections: { category: SubjectCategory; instructionsKeys?: string[]; groups: string[] }[] = [
     {
-      category: 'credit_tracking.categories.basic',
+      category: 'categories.basic',
       instructionsKeys: [
-        'credit_tracking.planner.instructions.basic1',
-        'credit_tracking.planner.instructions.basic2',
+        'planner.instructions.basic1',
+        'planner.instructions.basic2',
       ],
-      groups: [
-        'credit_tracking.planner.groups.basic.g1',
-        'credit_tracking.planner.groups.basic.g2',
-        'credit_tracking.planner.groups.basic.g3',
-        'credit_tracking.planner.groups.basic.g4',
-        'credit_tracking.planner.groups.basic.g5',
-      ],
+      groups: ['planner.groups.basic.g1'],
     },
     {
-      category: 'credit_tracking.categories.general',
-      groups: [
-        'credit_tracking.planner.groups.general.g1',
-      ],
+      category: 'categories.general',
+      groups: ['planner.groups.general.g1'],
     },
     {
-      category: 'credit_tracking.categories.free',
-      groups: ['credit_tracking.planner.groups.free.g1'],
+      category: 'categories.free',
+      groups: ['planner.groups.free.g1'],
     },
   ];
 
   const rightSections: { category: SubjectCategory; groups: string[] }[] = [
     {
-      category: 'credit_tracking.categories.major',
-      groups: [
-        'credit_tracking.planner.groups.major.g1',
-        'credit_tracking.planner.groups.major.g2',
-        'credit_tracking.planner.groups.major.g3',
-      ],
+      category: 'categories.major',
+      groups: dynamicMajorGroups.length > 0 ? dynamicMajorGroups : ['major-compulsory', 'major-specified', 'major-specialized'],
     },
     {
-      category: 'credit_tracking.categories.minor',
-      groups: [
-        'credit_tracking.planner.groups.minor.g1',
-        'credit_tracking.planner.groups.minor.g2',
-      ],
+      category: 'categories.minor',
+      groups: dynamicMinorGroups.length > 0 ? dynamicMinorGroups : ['minor-compulsory', 'minor-elective'],
     },
   ];
 
   const canAddCustom = (category: SubjectCategory, group: string): boolean => {
-    if (category === 'credit_tracking.categories.general') return true;
-    if (category === 'credit_tracking.categories.free') return true;
-    if (category === 'credit_tracking.categories.major' && (group.includes('g2') || group.includes('g3'))) return true;
-    if (category === 'credit_tracking.categories.minor' && group.includes('g2')) return true;
+    if (category === 'categories.general' || category === 'credit_tracking.categories.general') return true;
+    if (category === 'categories.free' || category === 'credit_tracking.categories.free') return true;
+    if ((category === 'categories.major' || category === 'credit_tracking.categories.major') &&
+        (group === 'major-specified' || group === 'major-specialized' || group === 'major-elective' || group === 'major-required-elective')) return true;
+    if ((category === 'categories.minor' || category === 'credit_tracking.categories.minor') &&
+        (group === 'minor-elective' || group === 'minor-required-elective')) return true;
     return false;
   };
 
@@ -238,7 +206,7 @@ export function PlannerView({
   };
 
   const getSubjectRemark = (sub: Subject): string => {
-    if (sub.isCustom) return t('credit_tracking.planner.custom_remark');
+    if (sub.isCustom) return t('planner.custom_remark');
     return '';
   };
 
@@ -258,7 +226,7 @@ export function PlannerView({
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 min-w-0 flex-1">
             <div className="flex flex-col min-w-0">
               <span className="text-[#D52048] text-[16px] font-bold leading-snug break-words">
-                {t(sub.nameKey)}
+                {sub.nameKey}
               </span>
               <span className="text-[#EA6D24] text-[14px] italic mt-0.5 font-bold truncate">
                 {getSubjectRemark(sub)}
@@ -271,7 +239,7 @@ export function PlannerView({
                 onClick={() => setDeletingId(null)}
                 className="flex items-center justify-center bg-[#A6CE8F] hover:bg-[#92b87c] text-[#000000] rounded-[8px] h-[36px] px-4 text-[14px] font-bold transition-colors cursor-pointer border-none"
               >
-                {t('credit_tracking.planner.btn_cancel')}
+                {t('planner.btn_cancel')}
               </button>
               <button
                 type="button"
@@ -282,7 +250,7 @@ export function PlannerView({
                 className="flex items-center justify-center bg-[#EE4F72] hover:bg-[#d94363] text-white rounded-[8px] h-[36px] px-4 gap-1.5 text-[14px] font-bold transition-colors cursor-pointer border-none"
               >
                 <Trash2 size={14} />
-                <span>{t('credit_tracking.planner.btn_delete')}</span>
+                <span>{t('planner.btn_delete')}</span>
               </button>
             </div>
           </div>
@@ -313,7 +281,7 @@ export function PlannerView({
 
         <div className="flex flex-col min-w-0">
           <span className="text-black text-[16px] font-normal leading-snug break-words">
-            {t(sub.nameKey)}
+            {sub.nameKey}
           </span>
           <span className="text-[#EA6D24] text-[15px] italic mt-0.5 truncate">
             {getSubjectRemark(sub)}
@@ -329,7 +297,7 @@ export function PlannerView({
               type="button"
               onClick={() => setDeletingId(sub.id)}
               className="text-[#6D6D6D] hover:text-[#EE4F72] cursor-pointer transition-colors p-0.5 mt-0.5 border-none bg-transparent"
-              aria-label={t('credit_tracking.planner.btn_delete')}
+              aria-label={t('planner.btn_delete')}
             >
               <Trash2 size={16} />
             </button>
@@ -340,7 +308,7 @@ export function PlannerView({
   };
 
   return (
-    <div className="w-full font-[ChulaCharasNew] select-none pb-20 text-black min-w-0">
+    <div className="w-full font-[ChulaCharasNew] pb-20 text-black min-w-0">
       {/* Success Banner Notification */}
       {successBanner && (
         <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 shadow-lg animate-fade-in min-w-[320px] md:min-w-[480px]">
@@ -355,8 +323,8 @@ export function PlannerView({
       {/* Top Controller Row */}
       <div className="w-full flex flex-col md:flex-row md:items-center justify-between border-b border-[#D0D0D1]/30 pb-6 mb-8 gap-4 min-w-0">
         <div className="min-w-0">
-          <h3 className="text-black text-[28px] font-bold truncate">{t('credit_tracking.planner.title')}</h3>
-          <p className="text-[#6D6D6D] text-[18px] break-words">{t('credit_tracking.planner.desc')}</p>
+          <h3 className="text-black text-[28px] font-bold truncate">{t('planner.title')}</h3>
+          <p className="text-[#6D6D6D] text-[18px] break-words">{t('planner.desc')}</p>
         </div>
 
         <button
@@ -364,7 +332,7 @@ export function PlannerView({
           onClick={() => setShowConfirmModal(true)}
           className="flex items-center justify-center bg-[#64A93C] hover:bg-[#528f2e] text-white rounded-[8px] h-[52px] px-8 gap-2 text-[16px] font-bold shadow-md cursor-pointer transition-all shrink-0 border-none"
         >
-          <span>{t('credit_tracking.planner.confirm_info')}</span>
+          <span>{t('planner.confirm_info')}</span>
         </button>
       </div>
 
@@ -373,9 +341,9 @@ export function PlannerView({
         {/* Left Column */}
         <div className="w-full xl:w-[518px] flex flex-col gap-8 shrink-0 min-w-0">
           <div className="w-full h-[60px] bg-[#E992B4] rounded-[8px] px-5 flex items-end justify-between pb-3">
-            <span className="text-[#000000] text-[18px] font-bold truncate pr-2">{t('credit_tracking.curriculum.title')}</span>
+            <span className="text-[#000000] text-[18px] font-bold truncate pr-2">{t('curriculum.title')}</span>
             <span className="text-[#000000] text-[16px] font-bold shrink-0">
-              {t('credit_tracking.planner.total_credits', { credits: getColTotalCredits(['credit_tracking.categories.basic', 'credit_tracking.categories.general', 'credit_tracking.categories.free']) })}
+              {t('planner.total_credits', { credits: getColTotalCredits(['categories.basic', 'categories.general', 'categories.free', 'credit_tracking.categories.basic', 'credit_tracking.categories.general', 'credit_tracking.categories.free']) })}
             </span>
           </div>
 
@@ -384,7 +352,7 @@ export function PlannerView({
             <div key={sec.category} className="w-full flex flex-col gap-6 min-w-0">
               {/* Soft Pink Header */}
               <div className="w-full h-[60px] bg-[#F5CDDC] rounded-[8px] px-5 flex items-end justify-between pb-3">
-                <span className="text-black text-[18px] font-bold truncate pr-2">{t(sec.category)}</span>
+                <span className="text-black text-[18px] font-bold truncate pr-2">{translateKey(sec.category)}</span>
                 <span className="text-black text-[18px] font-bold shrink-0">
                   {getCategoryCredits(sec.category)}
                 </span>
@@ -395,7 +363,7 @@ export function PlannerView({
                 {sec.instructionsKeys && (
                   <div className="flex flex-col gap-2 text-black text-[16px] leading-relaxed">
                     {sec.instructionsKeys.map((instKey) => (
-                      <p key={instKey} className="break-words">{t(instKey)}</p>
+                      <p key={instKey} className="break-words">{translateKey(instKey)}</p>
                     ))}
                   </div>
                 )}
@@ -414,7 +382,7 @@ export function PlannerView({
                         className="flex items-center justify-between cursor-pointer py-3 hover:opacity-80 transition-opacity"
                       >
                         <span className="text-[16px] font-bold text-black flex-1 pr-4 break-words">
-                          {t(group)}
+                          {getGroupLabel(group)}
                         </span>
                         <ChevronDown
                           size={20}
@@ -433,20 +401,15 @@ export function PlannerView({
                             className="w-full overflow-hidden"
                           >
                             <div className="w-full mt-2 flex flex-col pb-3 min-w-0">
-                              {getGroupSubhead(group) && (
-                                <p className="text-[#000000] text-[16px] leading-relaxed mb-4 pr-2 break-words">
-                                  {t(getGroupSubhead(group))}
-                                </p>
-                              )}
 
                               {groupSubjects.length > 0 && (
                                 <div className="w-full flex flex-col min-w-0 overflow-auto">
                                   {/* Header row */}
                                   <div className="grid grid-cols-[20px_90px_1fr_60px] gap-x-6 items-center text-black font-bold text-[16px] pb-2 border-b border-[#D0D0D1]/30 min-w-[320px]">
                                     <span></span>
-                                    <span className="text-left">{t('credit_tracking.planner.col_code')}</span>
-                                    <span className="text-left">{t('credit_tracking.planner.col_name')}</span>
-                                    <span className="text-right">{t('credit_tracking.planner.col_credits')}</span>
+                                    <span className="text-left">{t('planner.col_code')}</span>
+                                    <span className="text-left">{t('planner.col_name')}</span>
+                                    <span className="text-right">{t('planner.col_credits')}</span>
                                   </div>
 
                                   {/* Subject Rows */}
@@ -458,7 +421,7 @@ export function PlannerView({
 
                               {groupSubjects.length === 0 && (
                                 <p className="text-center text-[#99999A] py-3 text-[14px] italic break-words">
-                                  {t('credit_tracking.planner.empty_group')}
+                                  {t('planner.empty_group')}
                                 </p>
                               )}
 
@@ -468,7 +431,7 @@ export function PlannerView({
                                   type="button"
                                   onClick={() => openAddCourse(sec.category, group)}
                                   className="w-[48px] h-[48px] bg-[#E992B4] hover:bg-[#DE5D8F] text-white rounded-full flex items-center justify-center cursor-pointer transition-all shadow-md mx-auto mt-4 border-none"
-                                  title={t('credit_tracking.planner.add_course_title')}
+                                  title={t('planner.add_course_title')}
                                 >
                                   <Plus size={24} />
                                 </button>
@@ -489,10 +452,10 @@ export function PlannerView({
         <div className="w-full xl:w-[518px] flex flex-col gap-8 shrink-0 min-w-0">
           <div className="w-full h-[60px] bg-[#E992B4] rounded-[8px] px-5 flex items-end justify-between pb-3">
             <span className="text-[#000000] text-[18px] font-bold truncate pr-2">
-              {t('credit_tracking.profile.major_label')}: {profile.major && profile.major !== 'credit_tracking.profile.select_major' ? t(profile.major) : t('credit_tracking.majors.default')}
+              {t('profile.major_label')}: {profile.major && profile.major !== 'profile.select_major' && profile.major !== 'credit_tracking.profile.select_major' ? translateKey(profile.major) : t('majors.default')}
             </span>
             <span className="text-[#000000] text-[16px] font-bold shrink-0">
-              {t('credit_tracking.planner.total_credits', { credits: getColTotalCredits(['credit_tracking.categories.major', 'credit_tracking.categories.minor']) })}
+              {t('planner.total_credits', { credits: getColTotalCredits(['categories.major', 'categories.minor', 'credit_tracking.categories.major', 'credit_tracking.categories.minor']) })}
             </span>
           </div>
 
@@ -500,7 +463,7 @@ export function PlannerView({
           {rightSections.map((sec) => (
             <div key={sec.category} className="w-full flex flex-col gap-6 min-w-0">
               <div className="w-full h-[60px] bg-[#F5CDDC] rounded-[8px] px-5 flex items-end justify-between pb-3">
-                <span className="text-black text-[18px] font-bold truncate pr-2">{t(sec.category)}</span>
+                <span className="text-black text-[18px] font-bold truncate pr-2">{translateKey(sec.category)}</span>
                 <span className="text-black text-[18px] font-bold shrink-0">
                   {getCategoryCredits(sec.category)}
                 </span>
@@ -521,7 +484,7 @@ export function PlannerView({
                         className="flex items-center justify-between cursor-pointer py-3 hover:opacity-80 transition-opacity"
                       >
                         <span className="text-[16px] font-bold text-black flex-1 pr-4 break-words">
-                          {t(group)}
+                          {getGroupLabel(group)}
                         </span>
                         <ChevronDown
                           size={20}
@@ -540,20 +503,15 @@ export function PlannerView({
                             className="w-full overflow-hidden"
                           >
                             <div className="w-full mt-2 flex flex-col pb-3 min-w-0">
-                              {getGroupSubhead(group) && (
-                                <p className="text-[#000000] text-[16px] leading-relaxed mb-4 pr-2 break-words">
-                                  {t(getGroupSubhead(group))}
-                                </p>
-                              )}
 
                               {groupSubjects.length > 0 && (
                                 <div className="w-full flex flex-col min-w-0 overflow-auto">
                                   {/* Header row */}
                                   <div className="grid grid-cols-[20px_90px_1fr_60px] gap-x-6 items-center text-black font-bold text-[16px] pb-2 border-b border-[#D0D0D1]/30 min-w-[320px]">
                                     <span></span>
-                                    <span className="text-left">{t('credit_tracking.planner.col_code')}</span>
-                                    <span className="text-left">{t('credit_tracking.planner.col_name')}</span>
-                                    <span className="text-right">{t('credit_tracking.planner.col_credits')}</span>
+                                    <span className="text-left">{t('planner.col_code')}</span>
+                                    <span className="text-left">{t('planner.col_name')}</span>
+                                    <span className="text-right">{t('planner.col_credits')}</span>
                                   </div>
 
                                   {/* Subject Rows */}
@@ -565,7 +523,7 @@ export function PlannerView({
 
                               {groupSubjects.length === 0 && (
                                 <p className="text-center text-[#99999A] py-3 text-[14px] italic break-words">
-                                  {t('credit_tracking.planner.empty_group')}
+                                  {t('planner.empty_group')}
                                 </p>
                               )}
 
@@ -575,7 +533,7 @@ export function PlannerView({
                                   type="button"
                                   onClick={() => openAddCourse(sec.category, group)}
                                   className="w-[48px] h-[48px] bg-[#E992B4] hover:bg-[#DE5D8F] text-white rounded-full flex items-center justify-center cursor-pointer transition-all shadow-md mx-auto mt-4 border-none"
-                                  title={t('credit_tracking.planner.add_course_title')}
+                                  title={t('planner.add_course_title')}
                                 >
                                   <Plus size={24} />
                                 </button>
@@ -596,11 +554,11 @@ export function PlannerView({
       {/* Add Custom Subject Overlay Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs font-[ChulaCharasNew]">
-          <div className="bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-2xl p-6 md:p-8 max-w-[500px] w-full select-none text-black">
+          <div className="bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-2xl p-6 md:p-8 max-w-[500px] w-full text-black">
             <div className="flex items-center justify-between border-b border-[#D0D0D1]/20 pb-4 mb-6">
               <h3 className="text-[22px] font-bold flex items-center gap-2 text-[#DE5D8F] truncate">
                 <Sparkles size={20} />
-                <span>{t('credit_tracking.planner.add_course_title')}</span>
+                <span>{t('planner.add_course_title')}</span>
               </h3>
               <button
                 type="button"
@@ -613,33 +571,33 @@ export function PlannerView({
 
             <form onSubmit={handleSaveCourse} className="space-y-4">
               <div className="flex flex-col gap-1.5 min-w-0">
-                <label className="text-[14px] font-bold text-[#6D6D6D]">{t('credit_tracking.planner.selected_group_label')}</label>
+                <label className="text-[14px] font-bold text-[#6D6D6D]">{t('planner.selected_group_label')}</label>
                 <div className="bg-[#F7F8F9] px-3 py-2.5 rounded-[8px] text-[15px] font-bold text-black border border-[#D0D0D1]/30 truncate">
-                  {t(targetGroup)}
+                  {getGroupLabel(targetGroup)}
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="modal-course-code" className="text-[14px] font-bold text-[#6D6D6D]">{t('credit_tracking.planner.course_code_label')} *</label>
+                <label htmlFor="modal-course-code" className="text-[14px] font-bold text-[#6D6D6D]">{t('planner.course_code_label')} *</label>
                 <input
                   type="text"
                   id="modal-course-code"
                   value={courseCode}
                   onChange={(e) => setCourseCode(e.target.value)}
-                  placeholder={t('credit_tracking.planner.placeholder_code')}
+                  placeholder={t('planner.placeholder_code')}
                   required
                   className="w-full border border-[#D0D0D1] hover:border-[#DE5D8F]/50 focus:border-[#DE5D8F] focus:ring-1 focus:ring-[#DE5D8F] rounded-[8px] px-3 h-[42px] outline-none text-[16px] transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="modal-course-name-th" className="text-[14px] font-bold text-[#6D6D6D]">{t('credit_tracking.planner.course_name_th_label')} *</label>
+                <label htmlFor="modal-course-name-th" className="text-[14px] font-bold text-[#6D6D6D]">{t('planner.course_name_th_label')} *</label>
                 <input
                   type="text"
                   id="modal-course-name-th"
                   value={courseNameTh}
                   onChange={(e) => setCourseNameTh(e.target.value)}
-                  placeholder={t('credit_tracking.planner.placeholder_name')}
+                  placeholder={t('planner.placeholder_name')}
                   required
                   className="w-full border border-[#D0D0D1] hover:border-[#DE5D8F]/50 focus:border-[#DE5D8F] focus:ring-1 focus:ring-[#DE5D8F] rounded-[8px] px-3 h-[42px] outline-none text-[16px] transition-all"
                 />
@@ -647,7 +605,7 @@ export function PlannerView({
 
               <div className="flex gap-4">
                 <div className="flex-1 flex flex-col gap-1.5">
-                  <label htmlFor="modal-course-credits" className="text-[14px] font-bold text-[#6D6D6D]">{t('credit_tracking.planner.col_credits')}</label>
+                  <label htmlFor="modal-course-credits" className="text-[14px] font-bold text-[#6D6D6D]">{t('planner.col_credits')}</label>
                   <select
                     id="modal-course-credits"
                     value={courseCredits}
@@ -663,21 +621,21 @@ export function PlannerView({
                 </div>
 
                 <div className="flex-1 flex flex-col gap-1.5">
-                  <label htmlFor="modal-course-semester" className="text-[14px] font-bold text-[#6D6D6D]">{t('credit_tracking.planner.semester_label')}</label>
+                  <label htmlFor="modal-course-semester" className="text-[14px] font-bold text-[#6D6D6D]">{t('planner.semester_label')}</label>
                   <select
                     id="modal-course-semester"
                     value={courseSemester}
                     onChange={(e) => setCourseSemester(e.target.value)}
                     className="w-full border border-[#D0D0D1] hover:border-[#DE5D8F]/50 focus:border-[#DE5D8F] focus:ring-1 focus:ring-[#DE5D8F] rounded-[8px] px-3 h-[42px] outline-none text-[16px] transition-all bg-white"
                   >
-                    <option value="1">{t('credit_tracking.planner.semesters.1')}</option>
-                    <option value="2">{t('credit_tracking.planner.semesters.2')}</option>
-                    <option value="3">{t('credit_tracking.planner.semesters.3')}</option>
-                    <option value="4">{t('credit_tracking.planner.semesters.4')}</option>
-                    <option value="5">{t('credit_tracking.planner.semesters.5')}</option>
-                    <option value="6">{t('credit_tracking.planner.semesters.6')}</option>
-                    <option value="7">{t('credit_tracking.planner.semesters.7')}</option>
-                    <option value="8">{t('credit_tracking.planner.semesters.8')}</option>
+                    <option value="1">{t('planner.semesters.1')}</option>
+                    <option value="2">{t('planner.semesters.2')}</option>
+                    <option value="3">{t('planner.semesters.3')}</option>
+                    <option value="4">{t('planner.semesters.4')}</option>
+                    <option value="5">{t('planner.semesters.5')}</option>
+                    <option value="6">{t('planner.semesters.6')}</option>
+                    <option value="7">{t('planner.semesters.7')}</option>
+                    <option value="8">{t('planner.semesters.8')}</option>
                   </select>
                 </div>
               </div>
@@ -688,13 +646,13 @@ export function PlannerView({
                   onClick={() => setShowAddModal(false)}
                   className="px-5 h-[42px] rounded-[8px] font-bold text-[#6D6D6D] hover:text-black transition-colors cursor-pointer border-none bg-transparent"
                 >
-                  {t('credit_tracking.planner.cancel')}
+                  {t('planner.cancel')}
                 </button>
                 <button
                   type="submit"
                   className="bg-[#E992B4] hover:bg-[#DE5D8F] text-white font-bold px-6 h-[42px] rounded-[8px] shadow-sm transition-colors cursor-pointer border-none"
                 >
-                  {t('credit_tracking.planner.save')}
+                  {t('planner.save')}
                 </button>
               </div>
             </form>
@@ -705,10 +663,10 @@ export function PlannerView({
       {/* Confirmation modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs font-[ChulaCharasNew]">
-          <div className="bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-2xl p-6 md:p-8 max-w-[480px] w-full select-none text-black">
-            <h3 className="text-black text-[22px] font-bold mb-4">{t('credit_tracking.planner.confirm_modal_title')}</h3>
+          <div className="bg-white border border-[#D0D0D1]/30 rounded-[16px] shadow-2xl p-6 md:p-8 max-w-[480px] w-full text-black">
+            <h3 className="text-black text-[22px] font-bold mb-4">{t('planner.confirm_modal_title')}</h3>
             <p className="text-[#6D6D6D] text-[16px] leading-relaxed mb-6">
-              {t('credit_tracking.planner.confirm_modal_desc')}
+              {t('planner.confirm_modal_desc')}
             </p>
             <div className="flex items-center justify-end gap-3">
               <button
@@ -716,14 +674,14 @@ export function PlannerView({
                 onClick={() => setShowConfirmModal(false)}
                 className="px-5 h-[42px] rounded-[8px] font-bold text-[#6D6D6D] hover:text-black transition-colors cursor-pointer border-none bg-transparent"
               >
-                {t('credit_tracking.planner.cancel')}
+                {t('planner.cancel')}
               </button>
               <button
                 type="button"
                 onClick={handleConfirmAction}
                 className="bg-[#64A93C] hover:bg-[#528f2e] text-white font-bold px-6 h-[42px] rounded-[8px] shadow-md transition-colors cursor-pointer border-none"
               >
-                {t('credit_tracking.planner.confirm')}
+                {t('planner.confirm')}
               </button>
             </div>
           </div>
