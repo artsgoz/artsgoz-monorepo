@@ -1,13 +1,15 @@
 import { Article } from './types';
 import ArticleBannerMock from '../../assets/ArticleBannerMock.jpg';
 
-export const SARANIYAKORN_CATEGORIES = [
+export const AKSORNSARA_CATEGORIES = [
   'categories.all',
   'categories.general',
   'categories.literature',
   'categories.society',
   'categories.festival',
 ];
+
+export const SARANIYAKORN_CATEGORIES = AKSORNSARA_CATEGORIES;
 
 export const MOCK_ARTICLES: Article[] = [
   {

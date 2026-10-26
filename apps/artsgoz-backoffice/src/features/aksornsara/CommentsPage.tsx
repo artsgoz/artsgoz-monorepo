@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Trash2, Link2 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 interface CommentItem {
   id: number;
@@ -75,9 +75,9 @@ export function CommentsPage() {
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={true}
-      onBack={() => navigate('/saraniyakorn')}
+      onBack={() => navigate('/aksornsara')}
       searchValue={search}
       onSearchChange={setSearch}
     >
@@ -234,7 +234,7 @@ export function CommentsPage() {
           )}
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }
 

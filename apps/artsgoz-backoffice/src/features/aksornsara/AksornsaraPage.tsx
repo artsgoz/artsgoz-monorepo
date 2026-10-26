@@ -9,7 +9,7 @@ import {
   MoreHorizontal,
   Bell,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -163,13 +163,13 @@ function TopCategoryCard({ onClick }: TopCategoryCardProps) {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
-export function SaraniyakornPage() {
+export function AksornsaraPage() {
   const [search, setSearch] = useState('');
   const BAR_MAX_H = 180;
   const navigate = useNavigate();
 
   return (
-    <SaraniyakornLayout showBackButton={false} searchValue={search} onSearchChange={setSearch}>
+    <AksornsaraLayout showBackButton={false} searchValue={search} onSearchChange={setSearch}>
       <div className="w-full flex flex-col gap-8" style={{ maxWidth: 1100 }}>
 
         {/* ── Dashboard Header ── */}
@@ -203,10 +203,10 @@ export function SaraniyakornPage() {
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 w-full"
         >
-          <MetricCard label="ยอดเข้าชมทั้งหมด" value="125.4k" badge="12%" iconBg="#F5CDDC" icon={Eye} onClick={() => navigate('/saraniyakorn/traffic')} />
-          <TopCategoryCard onClick={() => navigate('/saraniyakorn/categories')} />
-          <MetricCard label="บทความที่เผยแพร่แล้ว" value="42" iconBg="#F5CDDC" icon={FileText} onClick={() => navigate('/saraniyakorn/published-articles')} />
-          <MetricCard label="คอมเมนต์ใหม่" value="85" badge="8%" iconBg="#FCEFF4" icon={MessageSquare} onClick={() => navigate('/saraniyakorn/comments')} />
+          <MetricCard label="ยอดเข้าชมทั้งหมด" value="125.4k" badge="12%" iconBg="#F5CDDC" icon={Eye} onClick={() => navigate('/aksornsara/traffic')} />
+          <TopCategoryCard onClick={() => navigate('/aksornsara/categories')} />
+          <MetricCard label="บทความที่เผยแพร่แล้ว" value="42" iconBg="#F5CDDC" icon={FileText} onClick={() => navigate('/aksornsara/published-articles')} />
+          <MetricCard label="คอมเมนต์ใหม่" value="85" badge="8%" iconBg="#FCEFF4" icon={MessageSquare} onClick={() => navigate('/aksornsara/comments')} />
         </div>
 
         {/* ── Bottom content row ── */}
@@ -326,7 +326,7 @@ export function SaraniyakornPage() {
                 {[
                   { label: 'ชื่อบทความ', align: 'left' as const, onClick: undefined as (() => void) | undefined },
                   { label: 'สถานะ', align: 'center' as const, onClick: undefined as (() => void) | undefined },
-                  { label: 'ยอดเข้าชม', align: 'center' as const, onClick: () => navigate('/saraniyakorn/traffic') },
+                  { label: 'ยอดเข้าชม', align: 'center' as const, onClick: () => navigate('/aksornsara/traffic') },
                   { label: '', align: 'center' as const, onClick: undefined as (() => void) | undefined },
                 ].map((col, i) => (
                   <div
@@ -355,7 +355,7 @@ export function SaraniyakornPage() {
                 <div
                   key={art.id}
                   className="grid items-center hover:bg-[#FAFAFA] transition-colors cursor-pointer"
-                  onClick={() => navigate('/saraniyakorn/articles')}
+                  onClick={() => navigate('/aksornsara/articles')}
                   style={{
                     gridTemplateColumns: '1fr 132px 102px 110px',
                     borderTop: idx > 0 ? '1px solid #DFDFE0' : 'none',
@@ -404,7 +404,7 @@ export function SaraniyakornPage() {
                       className="p-2 rounded-full hover:bg-[#F0F0F0] cursor-pointer border-none bg-transparent transition-colors"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate('/saraniyakorn/articles');
+                        navigate('/aksornsara/articles');
                       }}
                     >
                       <MoreHorizontal size={16} color="#6D6D6D" />
@@ -431,7 +431,7 @@ export function SaraniyakornPage() {
               <span
                 className="font-bold text-[#6D6D6D] cursor-pointer hover:text-[#9E4266] transition-colors"
                 style={{ fontSize: 14 }}
-                onClick={() => navigate('/saraniyakorn/activities')}
+                onClick={() => navigate('/aksornsara/activities')}
               >
                 ดูทั้งหมด
               </span>
@@ -443,7 +443,7 @@ export function SaraniyakornPage() {
                 <div
                   key={item.id}
                   className="flex gap-3 cursor-pointer group"
-                  onClick={() => navigate('/saraniyakorn/activities')}
+                  onClick={() => navigate('/aksornsara/activities')}
                 >
                   <div className="flex flex-col items-center" style={{ width: 32 }}>
                     <div
@@ -482,8 +482,9 @@ export function SaraniyakornPage() {
 
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }
 
-export default SaraniyakornPage;
+export { AksornsaraPage as SaraniyakornPage };
+export default AksornsaraPage;

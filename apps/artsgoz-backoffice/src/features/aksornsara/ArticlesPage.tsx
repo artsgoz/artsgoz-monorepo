@@ -3,7 +3,7 @@ import {
   ChevronDown,
   Check,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 import articleThumb from '../../assets/article_thumb.png';
 
 interface ArticleItem {
@@ -81,7 +81,7 @@ export function ArticlesPage() {
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={false}
       searchValue={search}
       onSearchChange={setSearch}
@@ -549,6 +549,6 @@ export function ArticlesPage() {
           </span>
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }

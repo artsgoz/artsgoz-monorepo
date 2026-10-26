@@ -21,7 +21,7 @@ import {
   Bookmark,
   Share2,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 export function CreateArticlePage() {
   const navigate = useNavigate();
@@ -120,12 +120,12 @@ export function CreateArticlePage() {
     setShowPublishModal(false);
     showToast('เผยแพร่บทความสำเร็จแล้ว!');
     setTimeout(() => {
-      navigate('/saraniyakorn/published-articles');
+      navigate('/aksornsara/published-articles');
     }, 1200);
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={false}
       showTopSearchBar={false}
     >
@@ -414,7 +414,7 @@ export function CreateArticlePage() {
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => navigate('/saraniyakorn/articles')}
+                onClick={() => navigate('/aksornsara/articles')}
                 className="w-9 h-9 rounded-full bg-white border border-[#DFDFE0] flex items-center justify-center cursor-pointer hover:bg-[#FCEFF4] transition-colors"
                 title="ย้อนกลับ"
               >
@@ -926,6 +926,6 @@ export function CreateArticlePage() {
           </div>
         </div>
       )}
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }

@@ -9,7 +9,7 @@ module.exports = {
       __dirname,
       '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}',
     ),
-    join(__dirname, '../../packages/design-system/src/**/*.{ts,tsx}'),
+    join(__dirname, '../../libs/design-system/src/**/*.{ts,tsx}'),
 
     ...createGlobPatternsForDependencies(__dirname),
   ],

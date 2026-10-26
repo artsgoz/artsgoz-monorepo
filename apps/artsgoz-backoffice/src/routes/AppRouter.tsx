@@ -1,15 +1,15 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router';
 import { PATHS } from './paths';
 import YellowCardBackofficePage from '../features/yellow-card/YellowCardBackofficePage';
-import SaraniyakornPage from '../features/saraniyakorn/SaraniyakornPage';
-import TrafficPage from '../features/saraniyakorn/TrafficPage';
-import CategoriesPage from '../features/saraniyakorn/CategoriesPage';
-import { ArticlesPage } from '../features/saraniyakorn/ArticlesPage';
-import { PublishedArticlesPage } from '../features/saraniyakorn/PublishedArticlesPage';
-import { CreateArticlePage } from '../features/saraniyakorn/CreateArticlePage';
-import CommentsPage from '../features/saraniyakorn/CommentsPage';
-import ActivitiesPage from '../features/saraniyakorn/ActivitiesPage';
-import { AccountSettingsPage } from '../features/saraniyakorn/AccountSettingsPage';
+import AksornsaraPage from '../features/aksornsara/AksornsaraPage';
+import TrafficPage from '../features/aksornsara/TrafficPage';
+import CategoriesPage from '../features/aksornsara/CategoriesPage';
+import { ArticlesPage } from '../features/aksornsara/ArticlesPage';
+import { PublishedArticlesPage } from '../features/aksornsara/PublishedArticlesPage';
+import { CreateArticlePage } from '../features/aksornsara/CreateArticlePage';
+import CommentsPage from '../features/aksornsara/CommentsPage';
+import ActivitiesPage from '../features/aksornsara/ActivitiesPage';
+import { AccountSettingsPage } from '../features/aksornsara/AccountSettingsPage';
 import { AdminDashboardPage } from '../features/goz-admin/AdminDashboardPage';
 import { AdminAuditLogPage } from '../features/goz-admin/AdminAuditLogPage';
 import { AdminReviewsPage } from '../features/goz-admin/AdminReviewsPage';
@@ -18,7 +18,7 @@ import { AdminUsersPage } from '../features/goz-admin/AdminUsersPage';
 const router = createBrowserRouter([
   {
     path: PATHS.ROOT,
-    element: <Navigate to={PATHS.SARANIYAKORN} replace />,
+    element: <Navigate to={PATHS.AKSORNSARA} replace />,
   },
   {
     path: PATHS.DASHBOARD.ROOT,
@@ -49,40 +49,49 @@ const router = createBrowserRouter([
     element: <YellowCardBackofficePage />,
   },
   {
-    path: PATHS.SARANIYAKORN,
-    element: <SaraniyakornPage />,
+    path: PATHS.AKSORNSARA,
+    element: <AksornsaraPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_TRAFFIC,
+    path: PATHS.AKSORNSARA_TRAFFIC,
     element: <TrafficPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_CATEGORIES,
+    path: PATHS.AKSORNSARA_CATEGORIES,
     element: <CategoriesPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_ARTICLES,
+    path: PATHS.AKSORNSARA_ARTICLES,
     element: <ArticlesPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_PUBLISHED_ARTICLES,
+    path: PATHS.AKSORNSARA_PUBLISHED_ARTICLES,
     element: <PublishedArticlesPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_CREATE,
+    path: PATHS.AKSORNSARA_CREATE,
     element: <CreateArticlePage />,
   },
   {
-    path: PATHS.SARANIYAKORN_COMMENTS,
+    path: PATHS.AKSORNSARA_COMMENTS,
     element: <CommentsPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_ACTIVITIES,
+    path: PATHS.AKSORNSARA_ACTIVITIES,
     element: <ActivitiesPage />,
   },
   {
-    path: PATHS.SARANIYAKORN_SETTINGS,
+    path: PATHS.AKSORNSARA_SETTINGS,
     element: <AccountSettingsPage />,
+  },
+  // Legacy /saraniyakorn route aliases redirecting to /aksornsara
+  {
+    path: '/saraniyakorn',
+    element: <Navigate to={PATHS.AKSORNSARA} replace />,
+  },
+  {
+    path: '/saraniyakorn/*',
+    element: <Navigate to={PATHS.AKSORNSARA} replace />,
   },
 ]);
 

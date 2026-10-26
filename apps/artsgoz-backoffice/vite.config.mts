@@ -26,19 +26,19 @@ export default defineConfig(() => ({
       ),
       '@artsgoz/yellow-card-shared': resolve(
         import.meta.dirname,
-        '../../packages/yellow-card-shared/src/index.ts',
+        '../../libs/yellow-card-shared/src/index.ts',
       ),
       '@artsgoz/design-system': resolve(
         import.meta.dirname,
-        '../../packages/design-system/src/index.tsx',
+        '../../libs/design-system/src/index.tsx',
       ),
       '@org/yellow-card-shared': resolve(
         import.meta.dirname,
-        '../../packages/yellow-card-shared/src/index.ts',
+        '../../libs/yellow-card-shared/src/index.ts',
       ),
       '@org/design-system': resolve(
         import.meta.dirname,
-        '../../packages/design-system/src/index.tsx',
+        '../../libs/design-system/src/index.tsx',
       ),
     },
   },

@@ -1,4 +1,4 @@
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 // ─── Figma node 7786:39493 exact data ─────────────────────────────────────────
 
@@ -23,7 +23,7 @@ const TRENDING_ARTICLES = [
 
 export function CategoriesPage() {
   return (
-    <SaraniyakornLayout>
+    <AksornsaraLayout>
       <div className="flex flex-col">
         {/* ════ MAIN HEADER (Figma Node 7786:39497) ════ */}
         <div style={{ marginBottom: 24 }}>
@@ -296,7 +296,7 @@ export function CategoriesPage() {
 
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }
 

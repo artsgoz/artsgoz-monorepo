@@ -10,7 +10,7 @@ import {
   Eye,
   EyeOff,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 import catAvatar from '../../assets/cat_avatar.png';
 import articleThumb from '../../assets/article_thumb.png';
 
@@ -96,7 +96,7 @@ export function AccountSettingsPage() {
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={false}
       showTopSearchBar={false}
     >
@@ -116,7 +116,7 @@ export function AccountSettingsPage() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => navigate('/saraniyakorn')}
+            onClick={() => navigate('/aksornsara')}
             className="w-9 h-9 rounded-full bg-white border border-[#DFDFE0] flex items-center justify-center cursor-pointer hover:bg-[#FCEFF4] transition-colors"
             title="ย้อนกลับ"
           >
@@ -632,7 +632,7 @@ export function AccountSettingsPage() {
                           ) : (
                             <button
                               type="button"
-                              onClick={() => navigate('/saraniyakorn/create')}
+                              onClick={() => navigate('/aksornsara/create')}
                               className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#FCEFF4] text-[#1A1C1C] hover:text-[#DE5D8F] border-none bg-transparent cursor-pointer transition-colors"
                               title="แก้ไขร่างบทความ"
                             >
@@ -649,6 +649,6 @@ export function AccountSettingsPage() {
           </div>
         )}
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }

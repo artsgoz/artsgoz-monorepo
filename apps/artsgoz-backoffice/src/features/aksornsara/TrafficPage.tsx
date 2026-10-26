@@ -6,9 +6,10 @@ import {
   Link2,
   TrendingUp,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
+
 
 interface TrafficSource {
   id: number;
@@ -106,7 +107,7 @@ export function TrafficPage() {
   const filterOptions: TimeFilter[] = ['วันนี้', '7 วันล่าสุด', '30 วันล่าสุด'];
 
   return (
-    <SaraniyakornLayout>
+    <AksornsaraLayout>
       {/* ── Header: title + time filter ── */}
       <div className="flex items-center justify-between" style={{ marginBottom: 24, maxWidth: 900 }}>
         <h1 className="font-bold text-[#1A1C1C]" style={{ fontSize: 40, lineHeight: '52px', margin: 0 }}>
@@ -202,7 +203,7 @@ export function TrafficPage() {
         </div>
 
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }
 

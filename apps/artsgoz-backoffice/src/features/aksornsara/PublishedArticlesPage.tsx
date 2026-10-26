@@ -6,7 +6,7 @@ import {
   SlidersHorizontal,
   Check,
 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 interface Article {
   id: number;
@@ -138,9 +138,9 @@ export function PublishedArticlesPage() {
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={true}
-      onBack={() => navigate('/saraniyakorn')}
+      onBack={() => navigate('/aksornsara')}
       searchValue={search}
       onSearchChange={setSearch}
     >
@@ -651,6 +651,6 @@ export function PublishedArticlesPage() {
           </span>
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }

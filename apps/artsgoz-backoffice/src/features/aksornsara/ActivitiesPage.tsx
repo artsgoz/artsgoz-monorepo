@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Radio, MessageSquare, Link2 } from 'lucide-react';
-import { SaraniyakornLayout } from './SaraniyakornLayout';
+import { AksornsaraLayout } from './AksornsaraLayout';
 
 interface ActivityItem {
   id: number;
@@ -84,9 +84,9 @@ export function ActivitiesPage() {
   };
 
   return (
-    <SaraniyakornLayout
+    <AksornsaraLayout
       showBackButton={true}
-      onBack={() => navigate('/saraniyakorn')}
+      onBack={() => navigate('/aksornsara')}
       searchValue={search}
       onSearchChange={setSearch}
     >
@@ -237,7 +237,7 @@ export function ActivitiesPage() {
           )}
         </div>
       </div>
-    </SaraniyakornLayout>
+    </AksornsaraLayout>
   );
 }
 

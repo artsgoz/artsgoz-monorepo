@@ -36,47 +36,52 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
       id: 'dashboard',
       icon: LayoutDashboard,
       label: 'Dashboard',
-      path: '/saraniyakorn',
+      path: '/aksornsara',
       isActive: (pathname: string) =>
+        pathname === '/aksornsara' ||
+        pathname === '/aksornsara/traffic' ||
+        pathname === '/aksornsara/categories' ||
+        pathname === '/aksornsara/comments' ||
+        pathname === '/aksornsara/activities' ||
+        pathname === '/aksornsara/published-articles' ||
         pathname === '/saraniyakorn' ||
-        pathname === '/saraniyakorn/traffic' ||
-        pathname === '/saraniyakorn/categories' ||
-        pathname === '/saraniyakorn/comments' ||
-        pathname === '/saraniyakorn/activities' ||
-        pathname === '/saraniyakorn/published-articles',
+        pathname.startsWith('/saraniyakorn/'),
     },
     {
       id: 'articles',
       icon: BookOpenText,
       label: 'All Articles',
-      path: '/saraniyakorn/articles',
-      isActive: (pathname: string) => pathname === '/saraniyakorn/articles',
+      path: '/aksornsara/articles',
+      isActive: (pathname: string) =>
+        pathname === '/aksornsara/articles' || pathname === '/saraniyakorn/articles',
     },
     {
       id: 'create',
       icon: Plus,
       label: 'Create New',
-      path: '/saraniyakorn/create',
-      isActive: (pathname: string) => pathname === '/saraniyakorn/create',
+      path: '/aksornsara/create',
+      isActive: (pathname: string) =>
+        pathname === '/aksornsara/create' || pathname === '/saraniyakorn/create',
     },
     {
       id: 'settings',
       icon: Settings,
       label: 'Settings',
-      path: '/saraniyakorn/settings',
-      isActive: (pathname: string) => pathname === '/saraniyakorn/settings',
+      path: '/aksornsara/settings',
+      isActive: (pathname: string) =>
+        pathname === '/aksornsara/settings' || pathname === '/saraniyakorn/settings',
     },
   ];
 
   return (
     <div className="flex flex-col h-full justify-between" style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}>
       <div className="flex flex-col" style={{ gap: 42 }}>
-        {/* Brand — full word บทความสาราณียากร all equal */}
+        {/* Brand — full word บทความอักษรสาร all equal */}
         <div
           className="flex items-center px-6 cursor-pointer select-none"
           style={{ height: 46 }}
           onClick={() => {
-            navigate('/saraniyakorn');
+            navigate('/aksornsara');
             onItemClick?.();
           }}
         >
@@ -201,7 +206,7 @@ function TopSearchBar({ value, onChange, placeholder = 'ค้นหา...' }: T
 
 // ─── Layout Shell ─────────────────────────────────────────────────────────────
 
-interface SaraniyakornLayoutProps {
+export interface AksornsaraLayoutProps {
   children: ReactNode;
   showBackButton?: boolean;
   onBack?: () => void;
@@ -211,7 +216,9 @@ interface SaraniyakornLayoutProps {
   showTopSearchBar?: boolean;
 }
 
-export function SaraniyakornLayout({
+export type SaraniyakornLayoutProps = AksornsaraLayoutProps;
+
+export function AksornsaraLayout({
   children,
   showBackButton = true,
   onBack,
@@ -219,7 +226,7 @@ export function SaraniyakornLayout({
   onSearchChange,
   searchPlaceholder = 'ค้นหา...',
   showTopSearchBar = true,
-}: SaraniyakornLayoutProps) {
+}: AksornsaraLayoutProps) {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -256,16 +263,16 @@ export function SaraniyakornLayout({
           </button>
           <span
             className="font-bold text-[#1A1C1C] text-[18px] cursor-pointer"
-            onClick={() => navigate('/saraniyakorn')}
+            onClick={() => navigate('/aksornsara')}
           >
-            บทความสาราณียากร
+            บทความอักษรสาร
           </span>
         </div>
 
         {showBackButton && (
           <button
             type="button"
-            onClick={onBack || (() => navigate('/saraniyakorn'))}
+            onClick={onBack || (() => navigate('/aksornsara'))}
             className="w-8 h-8 rounded-full border border-[#D6C1C7] bg-white flex items-center justify-center cursor-pointer"
             title="ย้อนกลับ"
           >
@@ -311,7 +318,7 @@ export function SaraniyakornLayout({
             {showBackButton && (
               <button
                 type="button"
-                onClick={onBack || (() => navigate('/saraniyakorn'))}
+                onClick={onBack || (() => navigate('/aksornsara'))}
                 className="hidden md:flex items-center justify-center cursor-pointer shrink-0 transition-colors hover:bg-[#FCEFF4]"
                 style={{
                   width: 41,
@@ -345,4 +352,5 @@ export function SaraniyakornLayout({
   );
 }
 
-export default SaraniyakornLayout;
+export { AksornsaraLayout as SaraniyakornLayout };
+export default AksornsaraLayout;

@@ -8,7 +8,7 @@ import {
   ArticleCard,
   CategoryFilterBar,
   MOCK_ARTICLES,
-  SARANIYAKORN_CATEGORIES,
+  AKSORNSARA_CATEGORIES,
 } from '../../../features/articles/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 
@@ -197,7 +197,7 @@ export default function ArticlesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const CATEGORIES = SARANIYAKORN_CATEGORIES;
+  const CATEGORIES = AKSORNSARA_CATEGORIES;
 
   // Sync state from URL parameters
   const searchQuery = searchParams.get('search') || '';
