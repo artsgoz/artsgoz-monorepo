@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import { MaintenancePage } from '@base-components';
 import App from './app/app';
 import { IS_MAINTENANCE_MODE } from './config/maintenance';
+import { AuthProvider } from './auth/auth-context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -12,7 +13,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      {IS_MAINTENANCE_MODE ? <MaintenancePage /> : <App />}
+      {IS_MAINTENANCE_MODE ? (
+        <MaintenancePage />
+      ) : (
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      )}
     </BrowserRouter>
   </StrictMode>,
 );
