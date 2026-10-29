@@ -6,8 +6,12 @@ locals {
       filename              = "apps/aksornsara-frontend/build/cloudbuild.yaml"
       service_account_email = module.iam.firebase_deployer_service_account_email
       substitutions = {
-        _API_BASE_URL     = local.api_base_url
-        _MAINTENANCE_MODE = tostring(var.frontend_maintenance_mode)
+        _API_BASE_URL         = local.api_base_url
+        _MAINTENANCE_MODE     = tostring(var.frontend_maintenance_mode)
+        _FIREBASE_API_KEY     = tostring(var.firebase_api_key)
+        _FIREBASE_AUTH_DOMAIN = tostring(var.firebase_auth_domain)
+        _FIREBASE_PROJECT_ID  = tostring(var.firebase_project_id)
+        _FIREBASE_APP_ID      = tostring(var.firebase_app_id)
       }
       included_files = [
         "apps/aksornsara-frontend/**",
