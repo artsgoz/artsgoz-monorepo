@@ -7,9 +7,11 @@ overrides:
   js-yaml: '>=4.2.0'
   multer: '>=2.2.0'
 allowBuilds:
+  '@firebase/util': true
   '@parcel/watcher': true
   '@swc/core': true
   esbuild: true
   less: true
   nx: true
+  protobufjs: true
   unrs-resolver: true

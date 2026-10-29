@@ -65,3 +65,11 @@ crash.log
 infra/terraform/bootstrap/.terraform.lock.hcl
 infra/terraform/bootstrap/*/backend.tf
 tfplan
+
+# Nx cache and internal worker files
+.nx/
+.nx-cli/
+
+# Standard node/pnpm fields
+node_modules/
+.pnpm-store/
