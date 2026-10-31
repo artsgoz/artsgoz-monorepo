@@ -14,6 +14,9 @@ export default defineConfig(() => ({
     port: 4200,
     host: 'localhost',
   },
+  optimizeDeps: {
+    exclude: ['@artsgoz/design-system'],
+  },
   plugins: [react()],
   resolve: {
     alias: {
@@ -21,12 +24,12 @@ export default defineConfig(() => ({
         import.meta.dirname,
         '../../libs/base-components/src/index.ts',
       ),
+      '@artsgoz/design-system': resolve(
+        import.meta.dirname,
+        '../../libs/design-system/src/index.tsx',
+      ),
     },
   },
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [],
-  // },
   build: {
     outDir: './dist',
     emptyOutDir: true,

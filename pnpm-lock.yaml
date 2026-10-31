@@ -293,7 +293,11 @@ importers:
 
   apps/aksornsara-api-e2e: {}
 
-  apps/aksornsara-frontend: {}
+  apps/aksornsara-frontend:
+    dependencies:
+      '@artsgoz/design-system':
+        specifier: workspace:*
+        version: link:../../libs/design-system
 
   apps/artsgoz-backoffice:
     dependencies:
