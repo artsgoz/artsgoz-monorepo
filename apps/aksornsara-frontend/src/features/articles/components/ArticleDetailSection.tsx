@@ -89,10 +89,15 @@ export function ArticleDetailSection() {
 
         {/* ── Top Hero Poster ── */}
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px] aspect-[3/4] rounded-[16px] overflow-hidden shadow-lg border border-gray-100 bg-gray-50">
+          <div className="w-full max-w-[360px] sm:max-w-[440px] md:max-w-[500px] aspect-square rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50">
             <img
               src={article.imageUrl || ArticleBannerMock}
               alt={article.title}
+              loading="eager"
+              decoding="async"
+              onError={(e) => {
+                e.currentTarget.src = ArticleBannerMock;
+              }}
               className="w-full h-full object-cover"
             />
           </div>

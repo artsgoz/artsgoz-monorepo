@@ -85,12 +85,15 @@ export function ArticleCard({
           w-full flex flex-col p-3.5 gap-3
         "
       >
-        <div className="w-full h-[180px] sm:h-[200px] rounded-[12px] overflow-hidden">
+        <div className="w-full h-[180px] sm:h-[200px] rounded-[12px] overflow-hidden bg-gray-100">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              e.currentTarget.src = mockImage;
+            }}
             className="w-full h-full object-cover pointer-events-none"
           />
         </div>
@@ -141,12 +144,15 @@ export function ArticleCard({
       {/* === MOBILE & TABLET LAYOUT (< xl) === */}
       <div className="flex flex-col p-4 w-full xl:hidden gap-3">
         {/* Cover Image */}
-        <div className="w-full h-[220px] rounded-[12px] overflow-hidden">
+        <div className="w-full h-[220px] rounded-[12px] overflow-hidden bg-gray-100">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              e.currentTarget.src = mockImage;
+            }}
             className="w-full h-full object-cover pointer-events-none"
           />
         </div>
@@ -190,12 +196,15 @@ export function ArticleCard({
       {/* === DESKTOP LAYOUT (>= xl) === */}
       <div className="hidden xl:flex flex-row p-[22px] gap-[24px] h-[356px] w-full items-stretch">
         {/* Image left panel */}
-        <div className="w-[248px] h-[312px] rounded-[12px] overflow-hidden shrink-0">
+        <div className="w-[248px] h-[312px] rounded-[12px] overflow-hidden shrink-0 bg-gray-100">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              e.currentTarget.src = mockImage;
+            }}
             className="w-full h-full object-cover pointer-events-none"
           />
         </div>

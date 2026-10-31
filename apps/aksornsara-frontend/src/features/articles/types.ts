@@ -9,6 +9,7 @@ export interface ArticleSummary {
   url: string;
   readTime: string;
   imageUrl?: string;
+  coverImage?: string;
   href?: string;
 }
 
