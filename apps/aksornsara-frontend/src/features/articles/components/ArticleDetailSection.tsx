@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { ArrowLeft, Bookmark, ExternalLink, Clock, Feather, Edit3, Image } from 'lucide-react';
+import { ArrowLeft, Bookmark, ExternalLink, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '@artsgoz/design-system';
 import { getArticleDetail, ARTICLES_SUMMARY, ArticleBannerMock } from '../constants.js';
@@ -142,6 +142,18 @@ export function ArticleDetailSection() {
           {/* Author and Published Info */}
           <div className="text-[14px] sm:text-[15px] font-serif font-bold text-[#6D6D6D] flex flex-wrap items-center gap-2 pt-1">
             <span>{t('written_by', { author: article.author })}</span>
+            {article.proofreader && (
+              <>
+                <span>•</span>
+                <span>พิสูจน์อักษร: {article.proofreader}</span>
+              </>
+            )}
+            {article.illustrator && (
+              <>
+                <span>•</span>
+                <span>ภาพประกอบ: {article.illustrator}</span>
+              </>
+            )}
             <span>|</span>
             <span className="text-[#99999A]">สาราณียกร ฉบับปี {article.year}</span>
           </div>
@@ -162,55 +174,20 @@ export function ArticleDetailSection() {
           )}
         </article>
 
-        {/* ── Editorial Credits Box ── */}
-        <div className="w-full bg-[#FDF8FA] border border-[#F5CDDC] rounded-2xl p-6 sm:p-8 flex flex-col gap-4">
-          <h3 className="font-serif font-bold text-[18px] sm:text-[20px] text-[#404041] border-b border-[#F5CDDC]/60 pb-3">
-            กองบรรณาธิการและผู้จัดทำบทความ
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-[14px] sm:text-[15px] font-serif">
-            <div className="flex items-start gap-2.5">
-              <Feather size={18} className="text-[#DE5D8F] shrink-0 mt-0.5" />
-              <div className="flex flex-col">
-                <span className="text-gray-400 text-[12px] font-bold">เนื้อหา / เขียนโดย</span>
-                <span className="text-[#404041] font-bold">{article.author}</span>
-              </div>
-            </div>
-
-            {article.proofreader && (
-              <div className="flex items-start gap-2.5">
-                <Edit3 size={18} className="text-[#DE5D8F] shrink-0 mt-0.5" />
-                <div className="flex flex-col">
-                  <span className="text-gray-400 text-[12px] font-bold">พิสูจน์อักษร</span>
-                  <span className="text-[#404041] font-bold">{article.proofreader}</span>
-                </div>
-              </div>
-            )}
-
-            {article.illustrator && (
-              <div className="flex items-start gap-2.5">
-                <Image size={18} className="text-[#DE5D8F] shrink-0 mt-0.5" />
-                <div className="flex flex-col">
-                  <span className="text-gray-400 text-[12px] font-bold">ภาพ / ภาพประกอบ</span>
-                  <span className="text-[#404041] font-bold">{article.illustrator}</span>
-                </div>
-              </div>
-            )}
+        {/* ── Link to Original Article on Aksornsara.com ── */}
+        {article.url && (
+          <div className="flex items-center justify-end w-full pt-2">
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1.5 text-[14px] sm:text-[15px] font-serif font-bold text-[#DE5D8F] hover:text-[#CA5582] hover:underline transition-colors"
+            >
+              <span>อ่านบทความต้นฉบับบน Aksornsara.com</span>
+              <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </div>
-
-          {article.url && (
-            <div className="pt-2 border-t border-[#F5CDDC]/40 flex justify-end">
-              <a
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[13px] font-serif font-bold text-[#DE5D8F] hover:underline"
-              >
-                <span>เปิดอ่านบนเว็บไซต์ต้นฉบับ Aksornsara.com</span>
-                <ExternalLink size={14} />
-              </a>
-            </div>
-          )}
-        </div>
+        )}
 
         {/* ── References Section ("รายการอ้างอิง") ── */}
         {article.references && article.references.length > 0 && (
