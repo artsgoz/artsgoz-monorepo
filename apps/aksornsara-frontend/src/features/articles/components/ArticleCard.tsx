@@ -64,9 +64,13 @@ export function ArticleCard({
     }
   };
 
-  const translatedTitle = t(title);
-  const translatedAuthor = t(author);
-  const translatedCategory = t(category);
+  const translatedTitle = title.startsWith('mock.') ? t(title) : title;
+  const translatedAuthor = author.startsWith('mock.') ? t(author) : author;
+  const translatedCategory = category.startsWith('categories.')
+    ? t(category)
+    : /^\d{4}$/.test(category)
+      ? `ปี ${category}`
+      : category;
 
   // Compact variant for "อ่านต่อ" (Read More) 4-column row
   if (compact) {

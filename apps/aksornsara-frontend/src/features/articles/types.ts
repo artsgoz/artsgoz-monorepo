@@ -1,11 +1,22 @@
-export interface Article {
+export interface ArticleSummary {
   id: string;
   title: string;
-  excerpt: string;
-  imageUrl: string;
+  year: string;
   date: string;
-  href: string;
   author: string;
+  excerpt: string;
   category: string;
-  content?: string[];
+  url: string;
+  readTime: string;
+  imageUrl?: string;
+  href?: string;
 }
+
+export interface ArticleDetail extends ArticleSummary {
+  proofreader?: string;
+  illustrator?: string;
+  references: string[];
+  content: string[];
+}
+
+export type Article = ArticleDetail;
