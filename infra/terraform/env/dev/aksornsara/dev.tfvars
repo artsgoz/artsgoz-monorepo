@@ -4,7 +4,7 @@ hosting_custom_domains = {
   aksornsara-frontend = "dev.aksornsara.artsgoz.com"
 }
 api_custom_domain         = "dev.api.aksornsara.artsgoz.com"
-frontend_maintenance_mode = true
+frontend_maintenance_mode = false
 firebase_api_key          = "AIzaSyAS-GTc1ZsZ4XZSLmFFqwU1oxdU1DUYnf0"
 firebase_auth_domain      = "artsgoz-aksornsara-web-develop.firebaseapp.com"
 firebase_project_id       = "artartsgoz-aksornsara-web-develop"
