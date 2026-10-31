@@ -80,7 +80,7 @@ export function ArticleCard({
         className="
           snap-start shrink-0 relative overflow-hidden
           bg-[#F7F8F9] rounded-[16px]
-          border border-gray-100 shadow-xs
+          shadow-[0px_2px_4px_-2px_rgba(0,0,0,0.05),0px_4px_6px_-1px_rgba(0,0,0,0.1)]
           cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-300
           w-full flex flex-col p-3.5 gap-3
         "
@@ -135,10 +135,10 @@ export function ArticleCard({
       className="
         snap-start shrink-0 relative overflow-hidden
         bg-[#F7F8F9] rounded-[16px]
-        border border-gray-100 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.06)]
+        shadow-[0px_2px_4px_-2px_rgba(0,0,0,0.05),0px_4px_6px_-1px_rgba(0,0,0,0.1)]
         cursor-pointer
         hover:shadow-lg hover:scale-[1.01] transition-all duration-300
-        w-full max-w-[530px]
+        w-full max-w-[512px]
       "
     >
       {/* === MOBILE & TABLET LAYOUT (< xl) === */}
@@ -159,17 +159,17 @@ export function ArticleCard({
 
         {/* Category badge + Bookmark row */}
         <div className="flex items-center justify-between gap-2">
-          <span className="font-serif font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3 py-1 whitespace-nowrap">
+          <span className="font-serif font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 whitespace-nowrap">
             {translatedCategory}
           </span>
           <button
             type="button"
             onClick={handleBookmarkToggle}
             aria-label="Bookmark article"
-            className="w-8 h-8 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
+            className="w-9 h-9 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
           >
             <Bookmark
-              size={16}
+              size={18}
               fill={isBookmarked ? '#fff' : 'none'}
               stroke="#fff"
               strokeWidth={2}
@@ -183,7 +183,7 @@ export function ArticleCard({
         </h3>
 
         {/* Author / Date */}
-        <div className="flex flex-col gap-0.5 pt-1 border-t border-gray-200/60">
+        <div className="flex flex-col gap-0.5 pt-1">
           <span className="font-serif text-[13px] font-bold text-[#6D6D6D] truncate">
             {t('written_by', { author: translatedAuthor })}
           </span>
@@ -193,10 +193,10 @@ export function ArticleCard({
         </div>
       </div>
 
-      {/* === DESKTOP LAYOUT (>= xl) === */}
-      <div className="hidden xl:flex flex-row p-[22px] gap-[24px] h-[356px] w-full items-stretch">
-        {/* Image left panel */}
-        <div className="w-[248px] h-[312px] rounded-[12px] overflow-hidden shrink-0 bg-gray-100">
+      {/* === DESKTOP LAYOUT (>= xl) - Figma Spec blog banner (new) === */}
+      <div className="hidden xl:block relative h-[356px] w-[512px]">
+        {/* IMG_8324 1 (left: 32px, top: 22px, width: 248px, height: 312px) */}
+        <div className="absolute left-[32px] top-[22px] w-[248px] h-[312px] rounded-[12px] overflow-hidden bg-gray-100">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
@@ -209,39 +209,41 @@ export function ArticleCard({
           />
         </div>
 
-        {/* Right Info Section */}
-        <div className="flex-1 flex flex-col justify-between py-1 min-w-0">
-          {/* Top row: Category badge + Bookmark */}
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-serif font-bold text-[12px] leading-[18px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3 py-1.5 whitespace-nowrap">
-              {translatedCategory}
-            </span>
-            <button
-              type="button"
-              onClick={handleBookmarkToggle}
-              aria-label="Bookmark article"
-              className="w-9 h-9 rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
-            >
-              <Bookmark
-                size={18}
-                fill={isBookmarked ? '#fff' : 'none'}
-                stroke="#fff"
-                strokeWidth={2}
-              />
-            </button>
-          </div>
+        {/* Frame 6160: Category banner + Bookmark button (right: 22px, top: 22px, height: 40px, gap: 8px) */}
+        <div className="absolute right-[22px] top-[22px] h-[40px] flex items-center gap-[8px]">
+          {/* System banner */}
+          <span className="h-[40px] px-5 bg-[#FCEFF4] text-[#DE5D8F] rounded-[11px] font-serif font-bold text-[14px] flex items-center justify-center whitespace-nowrap">
+            {translatedCategory}
+          </span>
+          {/* icon button */}
+          <button
+            type="button"
+            onClick={handleBookmarkToggle}
+            aria-label="Bookmark article"
+            className="w-[40px] h-[40px] rounded-[8px] bg-[#F8C135] flex items-center justify-center shrink-0 cursor-pointer border-none text-white hover:bg-[#DE5D8F] transition-colors"
+          >
+            <Bookmark
+              size={20}
+              fill={isBookmarked ? '#fff' : 'none'}
+              stroke="#fff"
+              strokeWidth={2}
+            />
+          </button>
+        </div>
 
+        {/* text container (left: 304px, top: 107px, width: 194px, gap: 17px) */}
+        <div className="absolute left-[304px] top-[107px] w-[194px] flex flex-col gap-[17px]">
           {/* Title */}
-          <h3 className="font-serif text-[20px] font-bold leading-[28px] text-black line-clamp-3 break-words my-auto">
+          <h3 className="font-serif text-[20px] font-bold leading-[28px] text-black line-clamp-3 break-words m-0">
             {translatedTitle}
           </h3>
 
-          {/* Author and Date in subtle container */}
-          <div className="bg-white/70 rounded-[8px] p-2.5 flex flex-col gap-1 border border-gray-100">
-            <span className="font-serif text-[14px] text-[#6D6D6D] font-bold leading-[20px] truncate">
+          {/* author / date */}
+          <div className="flex flex-col justify-center items-start py-1 gap-1 rounded-[8px] bg-[rgba(255,255,255,0.26)]">
+            <span className="font-serif text-[14px] font-bold leading-[20px] text-[#6D6D6D] truncate w-full">
               {t('written_by', { author: translatedAuthor })}
             </span>
-            <span className="font-serif text-[13px] text-[#99999A] font-bold leading-[18px] truncate">
+            <span className="font-serif text-[14px] font-bold leading-[20px] text-[#99999A] truncate w-full">
               {t('published', { date })}
             </span>
           </div>
