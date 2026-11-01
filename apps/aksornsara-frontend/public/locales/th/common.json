@@ -1,6 +1,8 @@
 {
   "navbar": {
     "home": "หน้าหลัก",
+    "articles": "หน้าบทความ",
+    "saved": "ที่บันทึกไว้",
     "about": "เกี่ยวกับ ก.อศ.",
     "student_services": "บริการนิสิต",
     "curriculum": "หลักสูตร",

@@ -1,6 +1,8 @@
 {
   "navbar": {
     "home": "Home",
+    "articles": "Articles",
+    "saved": "Saved",
     "about": "About GOZ",
     "student_services": "Student Services",
     "curriculum": "Curriculum",

@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Folder, Hand, Briefcase, Building2, User } from 'lucide-react';
+import { Menu, X, BookOpen, Bookmark, User } from 'lucide-react';
 import { Button, MobileSidebar } from '@artsgoz/design-system';
 import { NAV_ITEMS } from './navConfig.js';
 import { LanguageSwitcher } from '../LanguageSwitcher/index.js';
@@ -43,24 +43,31 @@ export function MobileMenuPanel({
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('common');
-  const isActive = (path: string) => location.pathname === path;
 
-  // Map icons based on nav item path (stable key — not the label which is now a translation key)
-  const getIconByPath = (path: string) => {
-    switch (path) {
-      case PATHS.ROOT:
-        return <Folder size={20} className="text-gray-400 shrink-0" />;
-      case PATHS.STUDENT_SERVICES:
-        return <Hand size={20} className="text-gray-400 shrink-0" />;
-      case PATHS.HELP:
-        return <Briefcase size={20} className="text-gray-400 shrink-0" />;
-      case PATHS.INTERNSHIPS:
-        return <Building2 size={20} className="text-gray-400 shrink-0" />;
-      case '#':
-        return <User size={20} className="text-gray-400 shrink-0" />;
-      default:
-        return <Folder size={20} className="text-gray-400 shrink-0" />;
+  const isActive = (path: string) => {
+    const isItemSaved = path.includes('tab=saved');
+    const searchParams = new URLSearchParams(location.search);
+    const currentIsSaved = searchParams.get('tab') === 'saved';
+
+    if (isItemSaved) {
+      return currentIsSaved;
     }
+
+    return (
+      !currentIsSaved &&
+      (location.pathname === PATHS.ROOT || location.pathname.startsWith(PATHS.ARTICLES))
+    );
+  };
+
+  // Map icons based on nav item path
+  const getIconByPath = (path: string) => {
+    if (path.includes('tab=saved')) {
+      return <Bookmark size={20} className="text-gray-400 shrink-0" />;
+    }
+    if (path === '#') {
+      return <User size={20} className="text-gray-400 shrink-0" />;
+    }
+    return <BookOpen size={20} className="text-gray-400 shrink-0" />;
   };
 
   // Generate dynamic items based on login status
