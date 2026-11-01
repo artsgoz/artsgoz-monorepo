@@ -140,13 +140,15 @@ export function CreateArticlePage() {
     const category = selectedCats[0] || 'ปี 2026';
 
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
+    const finalTitle = title.trim() || 'บทความฉบับร่าง';
+    const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
 
     if (editId) {
       articlesService.update(editId, {
-        title,
+        title: finalTitle,
         contentHtml: content,
         excerpt: cleanExcerpt,
-        author,
+        author: finalAuthor,
         proofreader,
         illustrator,
         category,
@@ -159,10 +161,10 @@ export function CreateArticlePage() {
       showToast('บันทึกร่างบทความเรียบร้อยแล้ว');
     } else {
       const created = articlesService.create({
-        title,
+        title: finalTitle,
         contentHtml: content,
         excerpt: cleanExcerpt,
-        author,
+        author: finalAuthor,
         proofreader,
         illustrator,
         category,
@@ -183,13 +185,15 @@ export function CreateArticlePage() {
     const category = selectedCats[0] || 'ปี 2026';
 
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
+    const finalTitle = title.trim() || 'บทความใหม่ไม่มีชื่อ';
+    const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
 
     if (editId) {
       articlesService.update(editId, {
-        title,
+        title: finalTitle,
         contentHtml: content,
         excerpt: cleanExcerpt,
-        author,
+        author: finalAuthor,
         proofreader,
         illustrator,
         category,
@@ -201,10 +205,10 @@ export function CreateArticlePage() {
       });
     } else {
       articlesService.create({
-        title,
+        title: finalTitle,
         contentHtml: content,
         excerpt: cleanExcerpt,
-        author,
+        author: finalAuthor,
         proofreader,
         illustrator,
         category,

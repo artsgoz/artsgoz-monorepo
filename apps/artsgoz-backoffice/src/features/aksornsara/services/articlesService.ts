@@ -25,7 +25,7 @@ export interface BackofficeArticle {
   isNewlyCreated?: boolean;
 }
 
-const STORAGE_KEY = 'aksornsara_backoffice_articles_v3';
+const STORAGE_KEY = 'aksornsara_backoffice_session_articles';
 
 export class ArticlesService {
   private static instance: ArticlesService;
@@ -44,18 +44,25 @@ export class ArticlesService {
 
   private load(): void {
     try {
-      // Clear legacy storage key if exists to ensure clean real numbers
-      localStorage.removeItem('aksornsara_backoffice_articles');
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as BackofficeArticle[];
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          this.articles = parsed;
-          return;
+      // Clean up legacy localStorage keys
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localStorage.removeItem('aksornsara_backoffice_articles');
+        localStorage.removeItem('aksornsara_backoffice_articles_v3');
+      }
+
+      // Check sessionStorage (per session; cleared when browser/tab is closed)
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        const stored = sessionStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as BackofficeArticle[];
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            this.articles = parsed;
+            return;
+          }
         }
       }
     } catch (e) {
-      console.warn('Failed to load articles from localStorage, using defaults', e);
+      console.warn('Failed to load articles from sessionStorage, using defaults', e);
     }
 
     // Initialize from rawArticles (All 169 historical archive articles are published, views start at 0)
@@ -99,9 +106,11 @@ export class ArticlesService {
 
   private save(): void {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.articles));
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(this.articles));
+      }
     } catch (e) {
-      console.error('Failed to save articles to localStorage', e);
+      console.error('Failed to save articles to sessionStorage', e);
     }
   }
 

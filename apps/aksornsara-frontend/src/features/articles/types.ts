@@ -16,8 +16,9 @@ export interface ArticleSummary {
 export interface ArticleDetail extends ArticleSummary {
   proofreader?: string;
   illustrator?: string;
-  references: string[];
-  content: string[];
+  references?: string[];
+  content?: string[];
+  contentHtml?: string;
 }
 
 export type Article = ArticleDetail;

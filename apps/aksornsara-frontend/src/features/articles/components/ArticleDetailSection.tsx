@@ -1,19 +1,42 @@
 import { useState, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useParams, useNavigate, useSearchParams } from 'react-router';
 import { ArrowLeft, Bookmark, ExternalLink, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '@artsgoz/design-system';
-import { getArticleDetail, ARTICLES_SUMMARY, ArticleBannerMock } from '../constants.js';
+import {
+  getArticleDetail,
+  ARTICLES_SUMMARY,
+  ArticleBannerMock,
+  saveMockArticleToSession,
+} from '../constants.js';
 import { ArticleCard } from './ArticleCard.js';
 
 export function ArticleDetailSection() {
   const { t } = useTranslation('articles');
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const article = useMemo(() => {
+    // If mock data is passed in URL query param from backoffice, ingest and return
+    const mockDataStr = searchParams.get('mock');
+    if (mockDataStr) {
+      try {
+        const parsed = JSON.parse(decodeURIComponent(mockDataStr));
+        if (parsed && parsed.id) {
+          saveMockArticleToSession(parsed);
+          return {
+            ...parsed,
+            imageUrl: parsed.imageUrl || parsed.coverImage || ArticleBannerMock,
+            href: `/articles/${parsed.id}`,
+          };
+        }
+      } catch (err) {
+        console.warn('Failed to parse mock article from URL', err);
+      }
+    }
     return (id ? getArticleDetail(id) : undefined) || getArticleDetail('art-001');
-  }, [id]);
+  }, [id, searchParams]);
 
   const [isBookmarked, setIsBookmarked] = useState(() => {
     try {
@@ -161,7 +184,12 @@ export function ArticleDetailSection() {
 
         {/* ── Article Body Text ── */}
         <article className="flex flex-col gap-6 w-full text-[16px] md:text-[18px] leading-[32px] text-[#2B2B2B] font-serif">
-          {article.content && article.content.length > 0 ? (
+          {article.contentHtml ? (
+            <div
+              className="tiptap-content flex flex-col gap-4 font-serif"
+              dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+            />
+          ) : article.content && article.content.length > 0 ? (
             article.content.map((paragraph, index) => (
               <p key={index} className="indent-8 text-justify break-words">
                 {paragraph}

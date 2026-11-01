@@ -439,7 +439,12 @@ export function PublishedArticlesPage() {
                           </button>
 
                           <a
-                            href={article.url || `http://localhost:4201/articles/${article.id}`}
+                            href={
+                              article.url ||
+                              `http://localhost:4201/articles/${article.id}?mock=${encodeURIComponent(
+                                JSON.stringify(article)
+                              )}`
+                            }
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-[6px] hover:bg-gray-100 text-gray-500 hover:text-black transition-colors"
