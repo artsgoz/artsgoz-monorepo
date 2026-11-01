@@ -99,7 +99,7 @@ export function ArticleCard({
         </div>
 
         <div className="flex items-center justify-between gap-2">
-          <span className="font-serif font-bold text-[11px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-2.5 py-1 whitespace-nowrap truncate">
+          <span className="font-sans font-bold text-[11px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-2.5 py-1 whitespace-nowrap truncate" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
             {translatedCategory}
           </span>
           <button
@@ -159,7 +159,7 @@ export function ArticleCard({
 
         {/* Category badge + Bookmark row */}
         <div className="flex items-center justify-between gap-2">
-          <span className="font-serif font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 whitespace-nowrap">
+          <span className="font-sans font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
             {translatedCategory}
           </span>
           <button
@@ -212,7 +212,7 @@ export function ArticleCard({
         {/* Frame 6160: Category banner + Bookmark button (right: 22px, top: 22px, height: 40px, gap: 8px) */}
         <div className="absolute right-[22px] top-[22px] h-[40px] flex items-center gap-[8px]">
           {/* System banner */}
-          <span className="h-[40px] px-5 bg-[#FCEFF4] text-[#DE5D8F] rounded-[11px] font-serif font-bold text-[14px] flex items-center justify-center whitespace-nowrap">
+          <span className="h-[40px] px-5 bg-[#FCEFF4] text-[#DE5D8F] rounded-[11px] font-sans font-bold text-[14px] flex items-center justify-center whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
             {translatedCategory}
           </span>
           {/* icon button */}
