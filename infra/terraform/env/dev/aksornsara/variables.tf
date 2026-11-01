@@ -43,6 +43,30 @@ variable "frontend_maintenance_mode" {
   default     = false
 }
 
+variable "firebase_api_key" {
+  description = "Firebase Auth API key"
+  type        = string
+  default     = "AIzaSyAS-GTc1ZsZ4XZSLmFFqwU1oxdU1DUYnf0"
+}
+
+variable "firebase_auth_domain" {
+  description = "Firebase Auth Domain"
+  type        = string
+  default     = "artsgoz-aksornsara-web-develop.firebaseapp.com"
+}
+
+variable "firebase_project_id" {
+  description = "Firebase Project ID"
+  type        = string
+  default     = "artartsgoz-aksornsara-web-develop"
+}
+
+variable "firebase_app_id" {
+  description = "Firebase App ID"
+  type        = string
+  default     = "1:680736603215:web:c1034600fd094fba153e3a"
+}
+
 variable "cloud_build_repository" {
   description = "Existing Cloud Build v2 repository connection. Null disables application triggers."
   type = object({
