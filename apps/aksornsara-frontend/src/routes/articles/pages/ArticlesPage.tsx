@@ -10,8 +10,6 @@ import {
   Timer,
   Bookmark,
   BookmarkX,
-  ChevronDown,
-  Check,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -718,74 +716,75 @@ export default function ArticlesPage() {
                 onChange={handleSearchChange}
               />
             </div>
-            <div className="relative" ref={filterDropdownRef}>
+            <div className="relative shrink-0" ref={filterDropdownRef}>
               <button
                 type="button"
                 onClick={() => setIsArticlesFilterOpen((prev) => !prev)}
-                className="h-[52px] md:h-[55px] px-4 md:px-5 rounded-[14px] text-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm border-none active:scale-95 shrink-0"
-                style={{
-                  backgroundColor: '#E992B4',
-                  fontFamily: 'ChulaCharasNew, serif',
-                  fontSize: 15,
-                  fontWeight: 700,
-                }}
-                aria-label="Filter and Sort"
-                title="ตัวกรองบทความ (เก่าไปใหม่ / ใหม่ไปเก่า)"
+                className="w-[52px] md:w-[55px] h-[52px] md:h-[55px] rounded-[14px] text-white hover:opacity-90 active:scale-95 transition-all flex items-center justify-center shrink-0 cursor-pointer shadow-sm border-none"
+                style={{ backgroundColor: '#E992B4' }}
+                aria-label={t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
+                title={t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
               >
-                <SlidersHorizontal size={18} />
-                <span className="hidden sm:inline whitespace-nowrap">
-                  {articlesSortOrder === 'newest' ? 'ใหม่ไปเก่า' : 'เก่าไปใหม่'}
-                </span>
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-200 ${isArticlesFilterOpen ? 'rotate-180' : ''}`}
-                />
+                <SlidersHorizontal size={20} />
               </button>
 
-              {isArticlesFilterOpen && (
-                <div
-                  className="absolute right-0 top-[60px] w-[210px] bg-white border border-gray-100 rounded-[14px] shadow-xl p-2 z-50 flex flex-col gap-1 font-serif"
-                  style={{
-                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
-                  }}
-                >
-                  <div className="px-3 py-1.5 text-[12px] font-bold text-gray-400 border-b border-gray-100">
-                    เรียงตามลำดับเวลา
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setArticlesSortOrder('newest');
-                      setIsArticlesFilterOpen(false);
-                      handlePageChange(1);
+              <AnimatePresence>
+                {isArticlesFilterOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-[60px] w-[260px] sm:w-[280px] p-5 bg-white border border-gray-100 rounded-[16px] shadow-xl z-50 flex flex-col gap-4 font-serif"
+                    style={{
+                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
                     }}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-[10px] text-[14px] font-bold text-left transition-colors cursor-pointer border-none ${
-                      articlesSortOrder === 'newest'
-                        ? 'bg-[#FCEFF4] text-[#DE5D8F]'
-                        : 'bg-transparent text-[#404041] hover:bg-gray-50'
-                    }`}
                   >
-                    <span>ใหม่ไปเก่า</span>
-                    {articlesSortOrder === 'newest' && <Check size={16} color="#DE5D8F" strokeWidth={2.5} />}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setArticlesSortOrder('oldest');
-                      setIsArticlesFilterOpen(false);
-                      handlePageChange(1);
-                    }}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-[10px] text-[14px] font-bold text-left transition-colors cursor-pointer border-none ${
-                      articlesSortOrder === 'oldest'
-                        ? 'bg-[#FCEFF4] text-[#DE5D8F]'
-                        : 'bg-transparent text-[#404041] hover:bg-gray-50'
-                    }`}
-                  >
-                    <span>เก่าไปใหม่</span>
-                    {articlesSortOrder === 'oldest' && <Check size={16} color="#DE5D8F" strokeWidth={2.5} />}
-                  </button>
-                </div>
-              )}
+                    <h4 className="font-bold text-[16px] sm:text-[17px] text-[#404041] border-b border-gray-100 pb-2">
+                      {t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
+                    </h4>
+
+                    {/* Date Posted Sort */}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[13px] font-bold text-gray-400">
+                        {t('date_posted', { defaultValue: 'วันที่โพสต์' })}
+                      </span>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
+                          <input
+                            type="radio"
+                            name="articlesSortOrder"
+                            checked={articlesSortOrder === 'newest'}
+                            onChange={() => {
+                              setArticlesSortOrder('newest');
+                              handlePageChange(1);
+                            }}
+                            className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
+                          />
+                          <span className="text-[14px] font-bold">
+                            {t('sort_newest', { defaultValue: 'ใหม่ที่สุด' })}
+                          </span>
+                        </label>
+                        <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
+                          <input
+                            type="radio"
+                            name="articlesSortOrder"
+                            checked={articlesSortOrder === 'oldest'}
+                            onChange={() => {
+                              setArticlesSortOrder('oldest');
+                              handlePageChange(1);
+                            }}
+                            className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
+                          />
+                          <span className="text-[14px] font-bold">
+                            {t('sort_oldest', { defaultValue: 'เก่าที่สุด' })}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
