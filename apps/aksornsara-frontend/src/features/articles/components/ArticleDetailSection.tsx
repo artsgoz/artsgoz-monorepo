@@ -190,7 +190,7 @@ export function ArticleDetailSection() {
               dangerouslySetInnerHTML={{ __html: article.contentHtml }}
             />
           ) : article.content && article.content.length > 0 ? (
-            article.content.map((paragraph, index) => (
+            article.content.map((paragraph: string, index: number) => (
               <p key={index} className="indent-8 text-justify break-words">
                 {paragraph}
               </p>
@@ -224,7 +224,7 @@ export function ArticleDetailSection() {
               {t('detail.references', { defaultValue: 'รายการอ้างอิง' })}
             </h2>
             <div className="flex flex-col gap-2.5 font-serif text-[14px] sm:text-[15px] leading-[26px] text-[#4A4A4A] pl-4 border-l-2 border-[#DE5D8F]/30">
-              {article.references.map((ref, idx) => (
+              {article.references.map((ref: string, idx: number) => (
                 <p key={idx} className="break-words">
                   {ref}
                 </p>

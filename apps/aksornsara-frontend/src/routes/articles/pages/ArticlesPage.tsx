@@ -1,16 +1,28 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { SearchInput, Pagination, Button } from '@artsgoz/design-system';
-import { Search, SlidersHorizontal, ArrowRight, Feather, Timer, Bookmark, BookmarkX } from 'lucide-react';
+import {
+  Search,
+  SlidersHorizontal,
+  ArrowRight,
+  Feather,
+  Timer,
+  Bookmark,
+  BookmarkX,
+  ChevronDown,
+  Check,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArticleCard,
   CategoryFilterBar,
   MOCK_ARTICLES,
   AKSORNSARA_CATEGORIES,
+  getArticlesSummaryList,
 } from '../../../features/articles/index.js';
 import { Footer } from '../../../components/Footer/index.js';
+import { useClickOutside } from '../../../components/Navbar/useClickOutside.js';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -224,6 +236,13 @@ export default function ArticlesPage() {
   const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>('newest');
   const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>('newest');
 
+  // Filter & Sort order for main articles view ('newest' = ใหม่ไปเก่า, 'oldest' = เก่าไปใหม่)
+  const [articlesSortOrder, setArticlesSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [isArticlesFilterOpen, setIsArticlesFilterOpen] = useState(false);
+  const filterDropdownRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(filterDropdownRef, () => setIsArticlesFilterOpen(false));
+
   const handleUnbookmark = (id: string) => {
     try {
       const updated = bookmarkedIds.filter((bid) => bid !== id);
@@ -310,6 +329,7 @@ export default function ArticlesPage() {
   };
 
   const handleClearFilters = () => {
+    setArticlesSortOrder('newest');
     setSearchParams(
       (prev) => {
         prev.delete('search');
@@ -321,9 +341,10 @@ export default function ArticlesPage() {
     );
   };
 
-  // Filter articles by category (year) + search query
+  // Filter articles by category (year) + search query, and sort by date/year ('newest' or 'oldest')
   const filteredArticles = useMemo(() => {
-    return MOCK_ARTICLES.filter((article) => {
+    const allArticles = getArticlesSummaryList();
+    const list = allArticles.filter((article) => {
       const matchesCategory =
         selectedCategory === 'all' ||
         selectedCategory === 'categories.all' ||
@@ -339,7 +360,19 @@ export default function ArticlesPage() {
 
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, selectedCategory]);
+
+    return list.sort((a, b) => {
+      const yrA = Number(a.year) || 0;
+      const yrB = Number(b.year) || 0;
+      if (articlesSortOrder === 'newest') {
+        if (yrB !== yrA) return yrB - yrA;
+        return b.id.localeCompare(a.id);
+      } else {
+        if (yrA !== yrB) return yrA - yrB;
+        return a.id.localeCompare(b.id);
+      }
+    });
+  }, [searchQuery, selectedCategory, articlesSortOrder]);
 
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
 
@@ -680,18 +713,75 @@ export default function ArticlesPage() {
                 onChange={handleSearchChange}
               />
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                if ((selectedCategory !== 'all' && selectedCategory !== 'categories.all') || searchQuery) {
-                  handleClearFilters();
-                }
-              }}
-              className="w-[52px] md:w-[55px] h-[52px] md:h-[55px] rounded-[14px] bg-[#DE5D8F] text-white hover:bg-[#CA5582] transition-colors flex items-center justify-center shrink-0 cursor-pointer shadow-sm border-none"
-              aria-label="Filter"
-            >
-              <SlidersHorizontal size={22} />
-            </button>
+            <div className="relative" ref={filterDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsArticlesFilterOpen((prev) => !prev)}
+                className="h-[52px] md:h-[55px] px-4 md:px-5 rounded-[14px] text-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm border-none active:scale-95 shrink-0"
+                style={{
+                  backgroundColor: '#E992B4',
+                  fontFamily: 'ChulaCharasNew, serif',
+                  fontSize: 15,
+                  fontWeight: 700,
+                }}
+                aria-label="Filter and Sort"
+                title="ตัวกรองบทความ (เก่าไปใหม่ / ใหม่ไปเก่า)"
+              >
+                <SlidersHorizontal size={18} />
+                <span className="hidden sm:inline whitespace-nowrap">
+                  {articlesSortOrder === 'newest' ? 'ใหม่ไปเก่า' : 'เก่าไปใหม่'}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-200 ${isArticlesFilterOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              {isArticlesFilterOpen && (
+                <div
+                  className="absolute right-0 top-[60px] w-[210px] bg-white border border-gray-100 rounded-[14px] shadow-xl p-2 z-50 flex flex-col gap-1 font-serif"
+                  style={{
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  <div className="px-3 py-1.5 text-[12px] font-bold text-gray-400 border-b border-gray-100">
+                    เรียงตามลำดับเวลา
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setArticlesSortOrder('newest');
+                      setIsArticlesFilterOpen(false);
+                      handlePageChange(1);
+                    }}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-[10px] text-[14px] font-bold text-left transition-colors cursor-pointer border-none ${
+                      articlesSortOrder === 'newest'
+                        ? 'bg-[#FCEFF4] text-[#DE5D8F]'
+                        : 'bg-transparent text-[#404041] hover:bg-gray-50'
+                    }`}
+                  >
+                    <span>ใหม่ไปเก่า</span>
+                    {articlesSortOrder === 'newest' && <Check size={16} color="#DE5D8F" strokeWidth={2.5} />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setArticlesSortOrder('oldest');
+                      setIsArticlesFilterOpen(false);
+                      handlePageChange(1);
+                    }}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-[10px] text-[14px] font-bold text-left transition-colors cursor-pointer border-none ${
+                      articlesSortOrder === 'oldest'
+                        ? 'bg-[#FCEFF4] text-[#DE5D8F]'
+                        : 'bg-transparent text-[#404041] hover:bg-gray-50'
+                    }`}
+                  >
+                    <span>เก่าไปใหม่</span>
+                    {articlesSortOrder === 'oldest' && <Check size={16} color="#DE5D8F" strokeWidth={2.5} />}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Category / Year chips */}
