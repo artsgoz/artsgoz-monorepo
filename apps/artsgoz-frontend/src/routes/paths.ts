@@ -15,4 +15,3 @@ export const PATHS = {
   CLUBS: '/clubs',
   HELP: '/help',
 } as const;
-

@@ -11,7 +11,7 @@ import {
 
 export function useYellowCardState() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
 
   // App step: pdpa agreed or not
   const [pdpaAgreed, setPdpaAgreed] = useLocalStorage<boolean>(
@@ -111,7 +111,7 @@ export function useYellowCardState() {
     try {
       const savedTrackerSubjects = localStorage.getItem(LOCAL_STORAGE_KEYS.TRACKER_SUBJECTS);
       if (!savedTrackerSubjects) {
-        alert(t('yellow_card.state.no_tracker_data'));
+        alert(t('state.no_tracker_data'));
         return;
       }
 
@@ -121,10 +121,10 @@ export function useYellowCardState() {
       );
 
       setSubjects((prev) => mergeImportedSubjects(prev, imported));
-      triggerSuccessMessage(t('yellow_card.state.import_success'), 3000);
+      triggerSuccessMessage(t('state.import_success'), 3000);
     } catch (e) {
       console.error('Failed to import tracker subjects', e);
-      alert(t('yellow_card.state.import_error'));
+      alert(t('state.import_error'));
     }
   }, [profile.studentId, setSubjects, triggerSuccessMessage, t]);
 
@@ -134,7 +134,7 @@ export function useYellowCardState() {
 
   const handleConfirmSubmit = useCallback(() => {
     setShowAdvisorModal(false);
-    triggerSuccessMessage(t('yellow_card.state.save_success'), 4000);
+    triggerSuccessMessage(t('state.save_success'), 4000);
   }, [triggerSuccessMessage, t]);
 
   const handleDismissAdvisorModal = useCallback(() => {

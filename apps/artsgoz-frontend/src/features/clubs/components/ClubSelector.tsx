@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { MOCK_CLUBS } from '../constants.js';
 
 export function ClubSelector() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('clubs');
   const [searchParams, setSearchParams] = useSearchParams();
   const activeId = searchParams.get('id') || 'club-04'; // Default to Dance Club (club-04)
   const scrollContainerRef = useRef<HTMLDivElement>(null);

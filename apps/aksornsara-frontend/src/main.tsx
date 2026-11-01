@@ -1,10 +1,13 @@
-import { StrictMode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { StrictMode, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { MaintenancePage } from '@base-components';
-import App from './app/app';
-import { IS_MAINTENANCE_MODE } from './config/maintenance';
-import { AuthProvider } from './auth/auth-context';
+import App from './app/app.js';
+import { IS_MAINTENANCE_MODE } from './config/maintenance.js';
+
+// i18n bootstrap — must be imported before App renders
+import './i18n/index.js';
+
+import './styles.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -12,14 +15,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      {IS_MAINTENANCE_MODE ? (
-        <MaintenancePage />
-      ) : (
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      )}
-    </BrowserRouter>
+    <Suspense fallback={null}>
+      {IS_MAINTENANCE_MODE ? <MaintenancePage /> : <App />}
+    </Suspense>
   </StrictMode>,
 );

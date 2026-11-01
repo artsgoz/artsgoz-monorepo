@@ -6,28 +6,28 @@ const tokenFiles = [
     name: 'primitive',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Primitive.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Primitive.json',
     ),
   },
   {
     name: 'alias',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Alias.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Alias.json',
     ),
   },
   {
     name: 'components',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Components.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Components.json',
     ),
   },
 ];
 
 const outputPath = path.join(
   __dirname,
-  '../packages/design-system/src/lib/design-system.css',
+  '../libs/design-system/src/lib/design-system.css',
 );
 
 let cssContent = `@import "tailwindcss";\n\n@theme {\n`;

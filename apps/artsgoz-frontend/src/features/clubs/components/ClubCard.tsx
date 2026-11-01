@@ -6,7 +6,7 @@ interface ClubCardProps {
 }
 
 export function ClubCard({ club }: ClubCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('clubs');
   const isLink = !!club.instagram;
   const cardClassName =
     'flex flex-col items-start w-[268px] h-[370px] pt-[230px] px-[12px] pb-[16px] gap-[10px] shrink-0 rounded-[16px] bg-[#ECECEC] bg-cover bg-no-repeat bg-center relative overflow-hidden hover:scale-[1.03] transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer';

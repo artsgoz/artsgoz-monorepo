@@ -6,7 +6,7 @@ interface FooterSocialLinkProps {
 }
 
 export function FooterSocialLink({ link }: FooterSocialLinkProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const linkProps = link.isExternal
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {};
@@ -14,11 +14,11 @@ export function FooterSocialLink({ link }: FooterSocialLinkProps) {
   return (
     <a
       href={link.href}
-      className="flex items-center gap-3.5 font-serif text-[16px] leading-[24px] font-bold text-[#DE5D8F] hover:text-pink-600 transition-colors group w-fit"
+      className="flex items-center gap-3 font-serif text-[16px] leading-[24px] font-bold text-[#DE5D8F] hover:text-[#D23976] transition-colors group w-fit"
       {...linkProps}
     >
       {link.icon}
-      <span className="underline decoration-1 underline-offset-4">{t(link.label)}</span>
+      <span>{t(link.label)}</span>
     </a>
   );
 }

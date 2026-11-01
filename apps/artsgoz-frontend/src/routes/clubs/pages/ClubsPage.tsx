@@ -5,7 +5,7 @@ import { ClubSelector, ClubDetail } from '../../../features/clubs/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 
 export default function ClubsPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('clubs');
   const [searchParams] = useSearchParams();
   const activeClubId = searchParams.get('id') || 'club-04';
 
@@ -15,8 +15,8 @@ export default function ClubsPage() {
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full py-12 md:py-16 flex flex-col gap-10">
           {/* Page Title */}
           <SectionHeading
-            title={t('clubs.page_title')}
-            description={t('clubs.page_desc')}
+            title={t('page_title')}
+            description={t('page_desc')}
           />
 
           {/* Club Selector Badge Bar */}
