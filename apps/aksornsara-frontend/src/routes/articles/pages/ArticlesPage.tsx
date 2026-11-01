@@ -235,6 +235,9 @@ export default function ArticlesPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortBySavedDate, setSortBySavedDate] = useState<'newest' | 'oldest'>('newest');
   const [sortByPostDate, setSortByPostDate] = useState<'newest' | 'oldest'>('newest');
+  const savedFilterRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(savedFilterRef, () => setIsFilterOpen(false));
 
   // Filter & Sort order for main articles view ('newest' = ใหม่ไปเก่า, 'oldest' = เก่าไปใหม่)
   const [articlesSortOrder, setArticlesSortOrder] = useState<'newest' | 'oldest'>('newest');
@@ -398,8 +401,8 @@ export default function ArticlesPage() {
             </div>
 
             {/* Search and Filters bar */}
-            <div className="flex flex-col md:flex-row gap-4 items-center w-full relative">
-              <div className="flex-1 w-full">
+            <div className="flex items-center gap-3 w-full relative">
+              <div className="flex-1">
                 <SearchInput
                   size="lg"
                   placeholder={t('search_saved_placeholder')}
@@ -409,17 +412,16 @@ export default function ArticlesPage() {
               </div>
 
               {/* Filter Popover Toggle */}
-              <div className="relative w-full md:w-auto self-stretch md:self-auto flex">
+              <div className="relative shrink-0" ref={savedFilterRef}>
                 <button
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className={`flex items-center justify-center gap-2.5 px-6 h-[52px] rounded-[10px] border border-gray-250 font-serif text-[15px] font-bold transition-all cursor-pointer w-full md:w-auto ${
-                    isFilterOpen
-                      ? 'bg-[#FCEFF4] text-[#DE5D8F] border-[#E992B4]'
-                      : 'bg-white hover:bg-gray-50 text-gray-600'
-                  }`}
+                  type="button"
+                  onClick={() => setIsFilterOpen((prev) => !prev)}
+                  className="w-[52px] md:w-[55px] h-[52px] md:h-[55px] rounded-[14px] text-white hover:opacity-90 active:scale-95 transition-all flex items-center justify-center shrink-0 cursor-pointer shadow-sm border-none"
+                  style={{ backgroundColor: '#E992B4' }}
+                  aria-label={t('filter_and_sort')}
+                  title={t('filter_and_sort')}
                 >
-                  <SlidersHorizontal size={16} />
-                  {t('filter')}
+                  <SlidersHorizontal size={20} />
                 </button>
 
                 <AnimatePresence>
@@ -428,67 +430,70 @@ export default function ArticlesPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute right-0 top-[60px] w-full md:w-[360px] p-6 bg-white border border-gray-200 rounded-2xl shadow-xl z-40 flex flex-col gap-6"
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-[60px] w-[280px] sm:w-[320px] p-5 bg-white border border-gray-100 rounded-[16px] shadow-xl z-50 flex flex-col gap-4 font-serif"
+                      style={{
+                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                      }}
                     >
-                      <h4 className="font-bold text-[18px] text-[#404041] font-serif border-b border-gray-100 pb-2">
+                      <h4 className="font-bold text-[16px] sm:text-[17px] text-[#404041] border-b border-gray-100 pb-2">
                         {t('filter_and_sort')}
                       </h4>
 
                       {/* Date Saved Sort */}
-                      <div className="flex flex-col gap-3">
-                        <span className="text-[15px] font-bold text-gray-500 font-serif">
+                      <div className="flex flex-col gap-2">
+                        <span className="text-[13px] font-bold text-gray-400">
                           {t('date_saved')}
                         </span>
-                        <div className="flex flex-col gap-2">
-                          <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
                             <input
                               type="radio"
                               name="savedDate"
                               checked={sortBySavedDate === 'newest'}
                               onChange={() => setSortBySavedDate('newest')}
-                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
+                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                             />
-                            <span className="text-[14px] font-serif">{t('sort_newest')}</span>
+                            <span className="text-[14px] font-bold">{t('sort_newest')}</span>
                           </label>
-                          <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
+                          <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
                             <input
                               type="radio"
                               name="savedDate"
                               checked={sortBySavedDate === 'oldest'}
                               onChange={() => setSortBySavedDate('oldest')}
-                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
+                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                             />
-                            <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
+                            <span className="text-[14px] font-bold">{t('sort_oldest')}</span>
                           </label>
                         </div>
                       </div>
 
                       {/* Date Posted Sort */}
-                      <div className="flex flex-col gap-3">
-                        <span className="text-[15px] font-bold text-gray-500 font-serif">
+                      <div className="flex flex-col gap-2 border-t border-gray-100 pt-3">
+                        <span className="text-[13px] font-bold text-gray-400">
                           {t('date_posted')}
                         </span>
-                        <div className="flex flex-col gap-2">
-                          <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
                             <input
                               type="radio"
                               name="postedDate"
                               checked={sortByPostDate === 'newest'}
                               onChange={() => setSortByPostDate('newest')}
-                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
+                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                             />
-                            <span className="text-[14px] font-serif">{t('sort_newest')}</span>
+                            <span className="text-[14px] font-bold">{t('sort_newest')}</span>
                           </label>
-                          <label className="flex items-center gap-3 cursor-pointer group text-gray-700 hover:text-black">
+                          <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
                             <input
                               type="radio"
                               name="postedDate"
                               checked={sortByPostDate === 'oldest'}
                               onChange={() => setSortByPostDate('oldest')}
-                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300"
+                              className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                             />
-                            <span className="text-[14px] font-serif">{t('sort_oldest')}</span>
+                            <span className="text-[14px] font-bold">{t('sort_oldest')}</span>
                           </label>
                         </div>
                       </div>
