@@ -22,26 +22,10 @@ export interface BackofficeArticle {
   visibility?: 'สาธารณะ' | 'ส่วนตัว';
   publishedAt?: string;
   updatedAt?: string;
+  isNewlyCreated?: boolean;
 }
 
-const STORAGE_KEY = 'aksornsara_backoffice_articles';
-
-// Deterministic seed helper for initial view count
-function calculateInitialViews(index: number, year: string): number {
-  const yr = parseInt(year, 10) || 2024;
-  const baseViews = (2027 - yr) * 2200;
-  const pseudoRandom = ((index * 37) % 1500) + ((index * 13) % 400);
-  return Math.max(120, baseViews + pseudoRandom);
-}
-
-// Format relative date
-function formatPublishedDate(year: string, index: number): string {
-  const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
-  const yrShort = String(parseInt(year, 10) + 43).slice(-2); // BE format
-  const month = months[index % 12];
-  const day = (index % 28) + 1;
-  return `${day} ${month} ${yrShort}`;
-}
+const STORAGE_KEY = 'aksornsara_backoffice_articles_v3';
 
 export class ArticlesService {
   private static instance: ArticlesService;
@@ -60,6 +44,8 @@ export class ArticlesService {
 
   private load(): void {
     try {
+      // Clear legacy storage key if exists to ensure clean real numbers
+      localStorage.removeItem('aksornsara_backoffice_articles');
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored) as BackofficeArticle[];
@@ -72,7 +58,7 @@ export class ArticlesService {
       console.warn('Failed to load articles from localStorage, using defaults', e);
     }
 
-    // Initialize from rawArticles
+    // Initialize from rawArticles (All 169 historical archive articles are published, views start at 0)
     this.articles = (rawArticles as Array<{
       id: string;
       title: string;
@@ -85,10 +71,7 @@ export class ArticlesService {
       readTime: string;
       coverImage?: string;
       imageUrl?: string;
-    }>).map((item, index) => {
-      const views = calculateInitialViews(index, item.year);
-      const publishedAt = formatPublishedDate(item.year, index);
-      const isDraft = index === 10 || index === 25; // 2 sample drafts
+    }>).map((item) => {
       return {
         id: item.id,
         title: item.title,
@@ -101,12 +84,13 @@ export class ArticlesService {
         readTime: item.readTime || '5 นาที',
         coverImage: item.coverImage || item.imageUrl,
         imageUrl: item.imageUrl || item.coverImage,
-        status: isDraft ? 'ร่างบทความ' : 'เผยแพร่แล้ว',
-        views,
-        publishedAt,
+        status: 'เผยแพร่แล้ว',
+        views: 0,
+        publishedAt: item.date || `ปี ${item.year}`,
         tags: [item.year ? `ปี ${item.year}` : 'บทความ', 'สาราณียกร'],
         visibility: 'สาธารณะ',
         contentHtml: `<p>${item.excerpt}</p>`,
+        isNewlyCreated: false,
       };
     });
 
@@ -139,12 +123,12 @@ export class ArticlesService {
 
     const newArticle: BackofficeArticle = {
       id: newId,
-      title: data.title || 'บทความใหม่ไม่มีชื่อ',
+      title: data.title?.trim() || 'บทความใหม่ไม่มีชื่อ',
       year: data.year || '2026',
       date: data.date || 'ปี 2026',
-      author: data.author || 'ชมรมสาราณียกร',
-      proofreader: data.proofreader || '',
-      illustrator: data.illustrator || '',
+      author: data.author?.trim() || 'ชมรมสาราณียกร',
+      proofreader: data.proofreader?.trim() || '',
+      illustrator: data.illustrator?.trim() || '',
       excerpt: data.excerpt || (data.contentHtml ? data.contentHtml.replace(/<[^>]+>/g, '').slice(0, 150) + '...' : ''),
       category: data.category || 'ปี 2026',
       url: data.url || '',
@@ -159,6 +143,7 @@ export class ArticlesService {
       visibility: data.visibility || 'สาธารณะ',
       publishedAt,
       updatedAt: now.toISOString(),
+      isNewlyCreated: true,
     };
 
     // Prepend so new article appears at the top of recent articles
@@ -199,25 +184,30 @@ export class ArticlesService {
     const categoriesSet = new Set(this.articles.map((a) => a.category).filter(Boolean));
     const totalCategories = categoriesSet.size;
 
-    // Top 5 articles sorted by views
+    // Top articles sorted by real views (only if views > 0)
     const topArticles = [...this.articles]
+      .filter((a) => (a.views || 0) > 0)
       .sort((a, b) => (b.views || 0) - (a.views || 0))
       .slice(0, 5);
 
-    // Recent 5 published articles
+    // Recent articles: only newly created/updated articles in the backoffice
     const recentArticles = [...this.articles]
-      .filter((a) => a.status === 'เผยแพร่แล้ว')
+      .filter((a) => a.isNewlyCreated)
       .slice(0, 5);
 
-    // Monthly data based on actual volume
-    const monthlyData = [
-      { month: 'JAN', count: 18, pct: 45 },
-      { month: 'FEB', count: 24, pct: 60 },
-      { month: 'MAR', count: 35, pct: 88 },
-      { month: 'APR', count: 28, pct: 70 },
-      { month: 'MAY', count: 32, pct: 80 },
-      { month: 'JUN', count: 40, pct: 100 },
-    ];
+    // Real yearly distribution across all 169 articles
+    const yearCounts: Record<string, number> = {};
+    for (const a of this.articles) {
+      const yr = a.year || '2026';
+      yearCounts[yr] = (yearCounts[yr] || 0) + 1;
+    }
+    const sortedYears = Object.keys(yearCounts).sort();
+    const maxCount = Math.max(...Object.values(yearCounts), 1);
+    const yearlyData = sortedYears.map((yr) => ({
+      year: `ปี ${yr}`,
+      count: yearCounts[yr] || 0,
+      pct: Math.round(((yearCounts[yr] || 0) / maxCount) * 100),
+    }));
 
     return {
       totalArticles,
@@ -227,7 +217,7 @@ export class ArticlesService {
       totalCategories,
       topArticles,
       recentArticles,
-      monthlyData,
+      yearlyData,
     };
   }
 }

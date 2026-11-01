@@ -493,11 +493,10 @@ export function PublishedArticlesPage() {
                     key={p}
                     type="button"
                     onClick={() => setCurrentPage(p)}
-                    className={`w-8 h-8 rounded-[6px] font-serif font-bold text-[13px] border cursor-pointer transition-colors ${
-                      currentPage === p
+                    className={`w-8 h-8 rounded-[6px] font-serif font-bold text-[13px] border cursor-pointer transition-colors ${currentPage === p
                         ? 'bg-[#DE5D8F] text-white border-[#DE5D8F]'
                         : 'bg-white text-gray-700 border-[#DFDFE0] hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     {p}
                   </button>

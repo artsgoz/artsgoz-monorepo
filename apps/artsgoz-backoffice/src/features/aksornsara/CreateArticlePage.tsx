@@ -29,27 +29,17 @@ export function CreateArticlePage() {
   // Success Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const DEFAULT_CONTENT =
-    '<p>สภาพแวดล้อมในการทำงานมีผลอย่างมากต่อประสิทธิภาพการทำงานของเรา โต๊ะทำงานที่รกและเต็มไปด้วยสิ่งของที่ไม่จำเป็นมักจะทำให้จิตใจว้าวุ่นและลดทอนสมาธิ ในทางกลับกัน การจัดโต๊ะทำงานแบบมินิมอล (Minimalist) ไม่เพียงแต่ช่วยให้พื้นที่ดูสะอาดตา แต่ยังช่วยเพิ่ม Productivity ได้อย่างไม่น่าเชื่อ</p>' +
-    '<h2>1. เริ่มต้นด้วยการ "ทิ้ง"</h2>' +
-    '<p>กฎข้อแรกของความมินิมอลคือการกำจัดสิ่งที่ไม่จำเป็น เอาของทุกอย่างออกจากโต๊ะ แล้วเลือกเก็บไว้เฉพาะสิ่งที่ต้องใช้ทุกวันจริงๆ เช่น คอมพิวเตอร์ สมุดโน้ตหนึ่งเล่ม และปากกาหนึ่งด้าม ส่วนของที่ใช้นานๆ ครั้ง ให้เก็บลงลิ้นชัก</p>' +
-    '<h2>2. ซ่อนสายไฟให้มิดชิด</h2>' +
-    '<p>สายไฟที่พันกันยุ่งเหยิงคือศัตรูตัวฉกาจของความเรียบง่าย ใช้กล่องเก็บสายไฟ หรือสายรัดเพื่อจัดระเบียบสายชาร์จและสายอุปกรณ์ต่างๆ ให้หลบสายตา จะทำให้โต๊ะดูโล่งขึ้นทันที</p>' +
-    '<blockquote>"พื้นที่ว่างบนโต๊ะทำงาน คือพื้นที่ว่างในสมองสำหรับการคิดสร้างสรรค์"</blockquote>' +
-    '<h2>3. เลือกใช้สีคุมโทน</h2>' +
-    '<p>สีมีผลต่ออารมณ์ พยายามเลือกอุปกรณ์สำนักงานที่มีสีโทนเดียวกัน หรือโทนสีกลางๆ (Neutral tones) เช่น ขาว เทา ดำ หรือสีไม้ธรรมชาติ หลีกเลี่ยงสีสันที่ฉูดฉาดเกินไปหลายๆ สีปนกัน เพราะจะทำให้ตาลายตา</p>';
-
   const initialArticle = editId ? articlesService.getById(editId) : undefined;
 
-  // Form Fields initialized from article or defaults
+  // Form Fields initialized from article or blank
   const [title, setTitle] = useState(
-    () => initialArticle?.title || '10 วิธีจัดโต๊ะทำงานแบบ Minimalist เพิ่ม Productivity'
+    () => initialArticle?.title || ''
   );
   const [content, setContent] = useState(
-    () => initialArticle?.contentHtml || (initialArticle ? `<p>${initialArticle.excerpt}</p>` : DEFAULT_CONTENT)
+    () => initialArticle?.contentHtml || (initialArticle ? `<p>${initialArticle.excerpt}</p>` : '')
   );
 
-  const [author, setAuthor] = useState(() => initialArticle?.author || 'ชมรมสาราณียกร');
+  const [author, setAuthor] = useState(() => initialArticle?.author || '');
   const [proofreader, setProofreader] = useState(() => initialArticle?.proofreader || '');
   const [illustrator, setIllustrator] = useState(() => initialArticle?.illustrator || '');
 
@@ -61,9 +51,17 @@ export function CreateArticlePage() {
 
   // Sidebar Settings
   const [visibility, setVisibility] = useState(() => initialArticle?.visibility || 'สาธารณะ');
-  const [publishDate] = useState('01/01/2569 , 10:30 AM');
+  const [publishDate] = useState(() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const yr = now.getFullYear() + 543;
+    const hours = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    return `${day}/${month}/${yr} , ${hours}:${mins}`;
+  });
 
-  // Categories
+  // Categories (Blank when creating new)
   const [categories, setCategories] = useState<{ id: string; name: string; checked: boolean }[]>(() => {
     const base = [
       { id: '1', name: 'ปี 2026', checked: false },
@@ -78,20 +76,20 @@ export function CreateArticlePage() {
       }
       return [...base, { id: 'custom', name: initialArticle.category, checked: true }];
     }
-    return base.map((c, i) => (i === 0 ? { ...c, checked: true } : c));
+    return base;
   });
   const [newCatName, setNewCatName] = useState('');
   const [showAddCatInput, setShowAddCatInput] = useState(false);
 
   // Tags
   const [tags, setTags] = useState<string[]>(
-    () => initialArticle?.tags || ['สาราณียกร', 'ปี 2026']
+    () => initialArticle?.tags || []
   );
   const [tagInput, setTagInput] = useState('');
 
   // SEO Settings
-  const [slug, setSlug] = useState(() => initialArticle?.slug || initialArticle?.id || '10-ways-minimalist-desk-productivity');
-  const [metaDesc, setMetaDesc] = useState(() => initialArticle?.excerpt || 'คำอธิบายสั้นๆ สำหรับ Google');
+  const [slug, setSlug] = useState(() => initialArticle?.slug || initialArticle?.id || '');
+  const [metaDesc, setMetaDesc] = useState(() => initialArticle?.excerpt || '');
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -589,7 +587,6 @@ export function CreateArticlePage() {
                     type="text"
                     value={proofreader}
                     onChange={(e) => setProofreader(e.target.value)}
-                    placeholder="เช่น ปัณณ์, หมั่นโถว"
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F]"
                   />
                 </div>
@@ -602,7 +599,6 @@ export function CreateArticlePage() {
                     type="text"
                     value={illustrator}
                     onChange={(e) => setIllustrator(e.target.value)}
-                    placeholder="เช่น ไหมแก้ว"
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F]"
                   />
                 </div>
@@ -620,7 +616,7 @@ export function CreateArticlePage() {
                   </label>
                   <select
                     value={visibility}
-                    onChange={(e) => setVisibility(e.target.value)}
+                    onChange={(e) => setVisibility(e.target.value as 'สาธารณะ' | 'ส่วนตัว')}
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F] bg-white cursor-pointer"
                   >
                     <option value="สาธารณะ">สาธารณะ</option>
