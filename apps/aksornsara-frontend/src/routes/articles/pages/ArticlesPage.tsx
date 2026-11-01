@@ -99,9 +99,7 @@ function SavedArticleCard({
   const excerpt = article.excerpt.startsWith('mock.') ? t(article.excerpt) : article.excerpt;
   const category = article.category.startsWith('categories.')
     ? t(article.category)
-    : /^\d{4}$/.test(article.category)
-      ? `ปี ${article.category}`
-      : article.category;
+    : article.category;
   const author = article.author.startsWith('mock.') ? t(article.author) : article.author;
 
   return (
@@ -136,7 +134,7 @@ function SavedArticleCard({
           </div>
 
           <div className="hidden md:flex items-center gap-2 shrink-0">
-            <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
+            <span className="px-3 py-1 text-[12px] font-normal text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
               {category}
             </span>
             <button
@@ -155,7 +153,7 @@ function SavedArticleCard({
         {/* Mobile Category Chip + Bookmark Row */}
         <div className="flex md:hidden items-center justify-between gap-2 pt-1 border-t border-gray-100">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 text-[11px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
+            <span className="px-2.5 py-0.5 text-[11px] font-normal text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
               {category}
             </span>
             <span className="text-[11px] text-gray-400 font-serif">

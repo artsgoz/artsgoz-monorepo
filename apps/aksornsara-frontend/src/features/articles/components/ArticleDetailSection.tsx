@@ -151,8 +151,8 @@ export function ArticleDetailSection() {
 
           {/* Badges: Category & Read Time */}
           <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="font-sans font-bold text-[13px] sm:text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 w-fit" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-              ปี {article.year}
+            <span className="font-sans font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 w-fit" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
+              {article.year}
             </span>
             {article.readTime && (
               <span className="flex items-center gap-1.5 font-serif text-[13px] font-bold text-gray-500 bg-gray-100 rounded-[11px] px-3 py-1.5">
