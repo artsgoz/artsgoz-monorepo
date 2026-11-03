@@ -1,31 +1,58 @@
+import { useMemo, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { AksornsaraLayout } from './AksornsaraLayout';
+import { articlesService } from './services/articlesService';
 
-// ─── Figma node 7786:39493 exact data ─────────────────────────────────────────
-
-const CATEGORIES = [
-  { name: 'วรรณกรรม', pct: 35, barW: 102, barColor: '#CA5582', dotColor: '#CA5582' },
-  { name: 'ภาษา',     pct: 25, barW: 73,  barColor: '#DE5D8F', dotColor: '#DE5D8F' },
-  { name: 'วัฒนธรรม', pct: 15, barW: 44,  barColor: '#E57DA5', dotColor: '#E57DA5' },
-  { name: 'ปรัชญา',   pct: 12, barW: 35,  barColor: '#E992B4', dotColor: '#E992B4' },
-  { name: 'วิจารณ์',  pct: 8,  barW: 23,  barColor: '#F0B4CB', dotColor: '#F0B4CB' },
-  { name: 'ทั่วไป',   pct: 4,  barW: 15,  barColor: '#F5CDDC', dotColor: '#F5CDDC' },
-  { name: 'อื่น ๆ',   pct: 1,  barW: 8,   barColor: '#FCEFF4', dotColor: '#FCEFF4' },
-];
-
-const TRENDING_ARTICLES = [
-  { title: 'ความงามของความไม่สมบูรณ์แบบในวรรณกรรม…', views: '12.4k', author: 'โดย อนันต์ ร.' },
-  { title: 'วิวัฒนาการของภาษาไทยในยุคดิจิทัล',       views: '9.8k',  author: 'โดย สุภาดา ด.' },
-  { title: 'ปรัชญาการใช้ชีวิตแบบMinimalist จากมุมมองเซน', views: '7.2k', author: 'โดย เขมราช ต.' },
-  { title: 'วัฒนธรรมการกิน: สะท้อนสังคมผ่านอาหารจานด่วน', views: '5.5k', author: 'โดย นภา ม.' },
-];
-
-// ─── Page Component ──────────────────────────────────────────────────────────
+const CATEGORY_COLORS: Record<string, { barColor: string; dotColor: string }> = {
+  วรรณกรรม: { barColor: '#CA5582', dotColor: '#CA5582' },
+  วิจารณ์:  { barColor: '#DE5D8F', dotColor: '#DE5D8F' },
+  ศิลปะ:    { barColor: '#E57DA5', dotColor: '#E57DA5' },
+  ปรัชญา:   { barColor: '#E992B4', dotColor: '#E992B4' },
+  ภาษา:     { barColor: '#F0B4CB', dotColor: '#F0B4CB' },
+  วัฒนธรรม: { barColor: '#F5CDDC', dotColor: '#F5CDDC' },
+  ทั่วไป:   { barColor: '#FCEFF4', dotColor: '#E992B4' },
+};
 
 export function CategoriesPage() {
+  const navigate = useNavigate();
+  const [version, setVersion] = useState(0);
+
+  useEffect(() => {
+    articlesService.syncWithApi();
+    return articlesService.subscribe(() => setVersion((v) => v + 1));
+  }, []);
+
+  const allArticles = useMemo(() => articlesService.getAll(), [version]);
+  const metrics = useMemo(() => articlesService.getMetrics(), [version]);
+
+  // Real categories data
+  const categoriesList = useMemo(() => {
+    return metrics.categoryData.map((c) => {
+      const colors = CATEGORY_COLORS[c.name] || { barColor: '#E992B4', dotColor: '#E992B4' };
+      return {
+        name: c.name,
+        count: c.count,
+        views: c.views,
+        pct: c.pct,
+        barColor: colors.barColor,
+        dotColor: colors.dotColor,
+      };
+    });
+  }, [metrics]);
+
+  // Real top-performing articles
+  const trendingArticles = useMemo(() => {
+    return [...allArticles]
+      .sort((a, b) => (b.views || 0) - (a.views || 0))
+      .slice(0, 4);
+  }, [allArticles]);
+
+  const CIRCUMFERENCE = 326.7;
+
   return (
     <AksornsaraLayout>
       <div className="flex flex-col">
-        {/* ════ MAIN HEADER (Figma Node 7786:39497) ════ */}
+        {/* ════ MAIN HEADER ════ */}
         <div style={{ marginBottom: 24 }}>
           <h1
             className="font-bold text-[#1A1C1C]"
@@ -41,32 +68,31 @@ export function CategoriesPage() {
         </div>
 
         {/* ════ MAIN 2-COLUMN CARDS LAYOUT ════ */}
-        <div className="flex items-start" style={{ gap: 24 }}>
+        <div className="flex flex-col lg:flex-row items-start" style={{ gap: 24 }}>
 
           {/* ════ LEFT CARD: Category Count Circle on LEFT, Bars on RIGHT ════ */}
           <div
-            className="shrink-0 flex flex-row items-center justify-between"
+            className="shrink-0 flex flex-col md:flex-row items-center justify-between w-full lg:w-[540px]"
             style={{
-              width: 500,
               minHeight: 608,
               borderRadius: 24,
               border: '1px solid #D4C2C2',
               backgroundColor: '#FFFFFF',
               boxShadow: '0px 4px 20px 0px rgba(0, 0, 0, 0.03)',
-              padding: '24px 28px',
+              padding: '28px',
               gap: 28,
             }}
           >
-            {/* Donut Chart Visual Representation (Moved to Left Side) */}
+            {/* Donut Chart Visual Representation */}
             <div
               className="relative flex items-center justify-center shrink-0"
               style={{
-                width: 126,
-                height: 125,
+                width: 140,
+                height: 140,
               }}
             >
               {/* SVG Ring Donut Chart */}
-              <svg width="126" height="125" viewBox="0 0 126 125" className="absolute inset-0">
+              <svg width="140" height="140" viewBox="0 0 126 125" className="absolute inset-0">
                 <circle
                   cx="63"
                   cy="62.5"
@@ -75,52 +101,31 @@ export function CategoriesPage() {
                   stroke="#E5EEFF"
                   strokeWidth="16"
                 />
-                {/* Segments matching category percentages */}
-                <circle
-                  cx="63"
-                  cy="62.5"
-                  r="52"
-                  fill="none"
-                  stroke="#CA5582"
-                  strokeWidth="16"
-                  strokeDasharray={`${326.7 * 0.35} 326.7`}
-                  strokeDashoffset="0"
-                  transform="rotate(-90 63 62.5)"
-                />
-                <circle
-                  cx="63"
-                  cy="62.5"
-                  r="52"
-                  fill="none"
-                  stroke="#DE5D8F"
-                  strokeWidth="16"
-                  strokeDasharray={`${326.7 * 0.25} 326.7`}
-                  strokeDashoffset={`${-326.7 * 0.35}`}
-                  transform="rotate(-90 63 62.5)"
-                />
-                <circle
-                  cx="63"
-                  cy="62.5"
-                  r="52"
-                  fill="none"
-                  stroke="#E57DA5"
-                  strokeWidth="16"
-                  strokeDasharray={`${326.7 * 0.15} 326.7`}
-                  strokeDashoffset={`${-326.7 * 0.60}`}
-                  transform="rotate(-90 63 62.5)"
-                />
-                <circle
-                  cx="63"
-                  cy="62.5"
-                  r="52"
-                  fill="none"
-                  stroke="#E992B4"
-                  strokeWidth="16"
-                  strokeDasharray={`${326.7 * 0.12} 326.7`}
-                  strokeDashoffset={`${-326.7 * 0.75}`}
-                  transform="rotate(-90 63 62.5)"
-                />
+                {/* Dynamically calculate segments */}
+                {(() => {
+                  let accumulatedPct = 0;
+                  return categoriesList.map((cat) => {
+                    const strokeDash = (CIRCUMFERENCE * cat.pct) / 100;
+                    const strokeOffset = -(CIRCUMFERENCE * accumulatedPct) / 100;
+                    accumulatedPct += cat.pct;
+                    return (
+                      <circle
+                        key={cat.name}
+                        cx="63"
+                        cy="62.5"
+                        r="52"
+                        fill="none"
+                        stroke={cat.barColor}
+                        strokeWidth="16"
+                        strokeDasharray={`${strokeDash} ${CIRCUMFERENCE}`}
+                        strokeDashoffset={`${strokeOffset}`}
+                        transform="rotate(-90 63 62.5)"
+                      />
+                    );
+                  });
+                })()}
               </svg>
+
               {/* Center Donut Label */}
               <div className="flex flex-col items-center justify-center text-center z-10">
                 <span
@@ -131,25 +136,30 @@ export function CategoriesPage() {
                     lineHeight: '38px',
                   }}
                 >
-                  6
+                  {metrics.totalCategories}
                 </span>
                 <span
-                  className="font-medium text-[#504444]"
+                  className="font-bold text-[#504444]"
                   style={{
-                    fontFamily: 'Loma, sans-serif',
-                    fontSize: 12,
-                    lineHeight: '12px',
+                    fontFamily: 'ChulaCharasNew, sans-serif',
+                    fontSize: 13,
+                    lineHeight: '14px',
                   }}
                 >
-                  หมวดหมู่
+                  หมวดหมู่หลัก
                 </span>
               </div>
             </div>
 
-            {/* Category Breakdown Bars (On the Right Side of Circle) */}
-            <div className="flex flex-col flex-1" style={{ gap: 16 }}>
-              {CATEGORIES.map((cat) => (
-                <div key={cat.name} className="flex flex-col" style={{ gap: 4 }}>
+            {/* Category Breakdown Bars */}
+            <div className="flex flex-col flex-1 w-full" style={{ gap: 14 }}>
+              {categoriesList.map((cat) => (
+                <div
+                  key={cat.name}
+                  onClick={() => navigate(`/aksornsara/published-articles`)}
+                  className="flex flex-col cursor-pointer group hover:opacity-90 transition-opacity"
+                  style={{ gap: 4 }}
+                >
                   <div className="flex items-center justify-between" style={{ height: 25 }}>
                     <div className="flex items-center" style={{ gap: 8 }}>
                       <div
@@ -162,7 +172,7 @@ export function CategoriesPage() {
                         }}
                       />
                       <span
-                        className="font-bold text-[#121C28]"
+                        className="font-bold text-[#121C28] group-hover:text-[#DE5D8F] transition-colors"
                         style={{
                           fontFamily: 'ChulaCharasNew, sans-serif',
                           fontSize: 18,
@@ -172,16 +182,24 @@ export function CategoriesPage() {
                         {cat.name}
                       </span>
                     </div>
-                    <span
-                      className="font-bold text-[#121C28]"
-                      style={{
-                        fontFamily: 'ChulaCharasNew, sans-serif',
-                        fontSize: 18,
-                        lineHeight: '24px',
-                      }}
-                    >
-                      {cat.pct}%
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="text-gray-500 font-serif"
+                        style={{ fontSize: 13 }}
+                      >
+                        {cat.count} บทความ
+                      </span>
+                      <span
+                        className="font-bold text-[#121C28] min-w-[36px] text-right"
+                        style={{
+                          fontFamily: 'ChulaCharasNew, sans-serif',
+                          fontSize: 16,
+                          lineHeight: '24px',
+                        }}
+                      >
+                        {cat.pct}%
+                      </span>
+                    </div>
                   </div>
                   <div
                     style={{
@@ -194,7 +212,7 @@ export function CategoriesPage() {
                   >
                     <div
                       style={{
-                        width: `${cat.pct}%`,
+                        width: `${Math.max(5, cat.pct)}%`,
                         height: 8,
                         borderRadius: 9999,
                         backgroundColor: cat.barColor,
@@ -206,20 +224,19 @@ export function CategoriesPage() {
             </div>
           </div>
 
-          {/* ════ RIGHT CARD: Trending List Card (No Underline, No Item Borders) ════ */}
+          {/* ════ RIGHT CARD: Trending Real Articles ════ */}
           <div
-            className="flex flex-col"
+            className="flex flex-col w-full lg:w-[460px]"
             style={{
-              width: 435,
-              minHeight: 689,
+              minHeight: 608,
               borderRadius: 24,
               border: '1px solid #D4C2C2',
               backgroundColor: '#FFFFFF',
               boxShadow: '0px 4px 20px 0px rgba(0, 0, 0, 0.03)',
-              padding: 24,
+              padding: 28,
             }}
           >
-            {/* Card Header (Underline removed) */}
+            {/* Card Header */}
             <div style={{ marginBottom: 20 }}>
               <h2
                 className="font-bold text-[#121C28]"
@@ -234,26 +251,22 @@ export function CategoriesPage() {
               </h2>
             </div>
 
-            {/* Articles List Container (Borders removed) */}
+            {/* Articles List Container */}
             <div className="flex flex-col">
-              {TRENDING_ARTICLES.map((article, idx) => (
+              {trendingArticles.map((article, idx) => (
                 <div
-                  key={idx}
-                  className="flex flex-col cursor-pointer hover:opacity-80 transition-opacity"
+                  key={article.id}
+                  onClick={() => navigate(`/aksornsara/create?id=${article.id}`)}
+                  className="flex flex-col cursor-pointer hover:bg-[#FFF9FB] p-3 rounded-[12px] transition-all group"
                   style={{
-                    width: '100%',
-                    minHeight: 90,
-                    borderRadius: 12,
-                    border: 'none',
-                    padding: '8px 0',
-                    marginBottom: idx < TRENDING_ARTICLES.length - 1 ? 16 : 0,
+                    marginBottom: idx < trendingArticles.length - 1 ? 12 : 0,
                   }}
                 >
                   <p
-                    className="font-bold text-[#121C28]"
+                    className="font-bold text-[#121C28] group-hover:text-[#DE5D8F] transition-colors"
                     style={{
                       fontFamily: 'ChulaCharasNew, sans-serif',
-                      fontSize: 18,
+                      fontSize: 17,
                       lineHeight: '24px',
                       margin: 0,
                       minHeight: 48,
@@ -262,11 +275,18 @@ export function CategoriesPage() {
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
                     }}
+                    title={article.title}
                   >
                     {article.title}
                   </p>
-                  <div className="flex items-center justify-between" style={{ marginTop: 8 }}>
-                    <div className="flex items-center" style={{ gap: 6 }}>
+                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="px-2 py-0.5 rounded-[6px] font-sans font-normal text-[11px] text-[#DE5D8F] bg-[#FCEFF4]"
+                        style={{ fontFamily: "'Inter', sans-serif" }}
+                      >
+                        {article.category}
+                      </span>
                       <span
                         className="font-bold text-[#504444]"
                         style={{
@@ -275,18 +295,14 @@ export function CategoriesPage() {
                           lineHeight: '20px',
                         }}
                       >
-                        👁 {article.views}
+                        👁 {article.views?.toLocaleString()} ครั้ง
                       </span>
                     </div>
                     <span
-                      className="font-bold text-[#504444]"
-                      style={{
-                        fontFamily: 'ChulaCharasNew, sans-serif',
-                        fontSize: 14,
-                        lineHeight: '20px',
-                      }}
+                      className="text-[#6D6D6D] font-serif truncate max-w-[150px] text-[13px]"
+                      title={article.author}
                     >
-                      {article.author}
+                      โดย {article.author}
                     </span>
                   </div>
                 </div>

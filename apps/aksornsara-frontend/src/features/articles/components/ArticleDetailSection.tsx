@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router';
 import { ArrowLeft, Bookmark, ExternalLink, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import {
   saveMockArticleToSession,
 } from '../constants.js';
 import { ArticleCard } from './ArticleCard.js';
+import { publicArticlesApi } from '../services/apiClient.js';
 
 export function ArticleDetailSection() {
   const { t } = useTranslation('articles');
@@ -52,6 +53,15 @@ export function ArticleDetailSection() {
   });
 
   const [readMorePage, setReadMorePage] = useState(1);
+
+  // Record real view directly to backend and analytics
+  useEffect(() => {
+    if (article?.id) {
+      publicArticlesApi.recordView(article.id).catch(() => {
+        publicArticlesApi.getArticleBySlug(article.id).catch(() => {});
+      });
+    }
+  }, [article?.id]);
 
   // Other articles for "อ่านต่อ" (prefer articles from the same year)
   const otherArticles = useMemo(() => {
@@ -152,7 +162,7 @@ export function ArticleDetailSection() {
           {/* Badges: Category & Read Time */}
           <div className="flex items-center gap-2.5 flex-wrap">
             <span className="font-sans font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 w-fit" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-              {article.year}
+              {article.category || 'ทั่วไป'}
             </span>
             {article.readTime && (
               <span className="flex items-center gap-1.5 font-serif text-[13px] font-bold text-gray-500 bg-gray-100 rounded-[11px] px-3 py-1.5">
