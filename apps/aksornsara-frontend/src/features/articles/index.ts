@@ -4,3 +4,4 @@ export { CategoryFilterBar } from './components/CategoryFilterBar.js';
 export { ArticleDetailSection } from './components/ArticleDetailSection.js';
 export * from './types.js';
 export * from './constants.js';
+export * from './services/apiClient.js';

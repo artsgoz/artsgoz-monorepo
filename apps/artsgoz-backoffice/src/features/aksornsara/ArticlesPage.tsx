@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import {
   ChevronDown,
@@ -39,6 +39,13 @@ export function ArticlesPage() {
 
   // Load articles from articlesService
   const [articlesList, setArticlesList] = useState<BackofficeArticle[]>(() => articlesService.getAll());
+
+  useEffect(() => {
+    articlesService.syncWithApi();
+    return articlesService.subscribe(() => {
+      setArticlesList(articlesService.getAll());
+    });
+  }, []);
 
   const categories = useMemo(() => {
     const set = new Set(articlesList.map((a) => a.category).filter(Boolean));
@@ -122,9 +129,6 @@ export function ArticlesPage() {
             >
               All Articles
             </h1>
-            <p className="text-gray-500 font-serif text-[15px] m-0 mt-1">
-              จัดการบทความทั้งหมด {articlesList.length} รายการ (เพิ่ม, แก้ไข, ลบ)
-            </p>
           </div>
 
           <button
@@ -133,7 +137,7 @@ export function ArticlesPage() {
             className="flex items-center gap-2 text-white font-bold cursor-pointer border-none shadow-sm hover:opacity-90 active:scale-95 transition-all font-serif"
             style={{
               fontSize: 14,
-              backgroundColor: '#DE5D8F',
+              backgroundColor: '#E992B4',
               borderRadius: 9999,
               height: 42,
               padding: '0 24px',
@@ -389,8 +393,11 @@ export function ArticlesPage() {
 
                       {/* Category */}
                       <td className="py-3 px-4">
-                        <span className="inline-block px-2.5 py-1 rounded-[6px] font-serif font-bold text-[12px] text-[#DE5D8F] bg-[#FCEFF4] whitespace-nowrap">
-                          {item.category}
+                        <span
+                          className="inline-block px-2.5 py-1 rounded-[6px] font-sans font-normal text-[12px] text-[#DE5D8F] bg-[#FCEFF4] whitespace-nowrap"
+                          style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                        >
+                          {item.category?.replace(/^ปี\s*/, '')}
                         </span>
                       </td>
 
@@ -438,9 +445,7 @@ export function ArticlesPage() {
                           <a
                             href={
                               item.url ||
-                              `http://localhost:4201/articles/${item.id}?mock=${encodeURIComponent(
-                                JSON.stringify(item)
-                              )}`
+                              `http://localhost:4200/articles/${item.id}`
                             }
                             target="_blank"
                             rel="noopener noreferrer"
@@ -507,7 +512,7 @@ export function ArticlesPage() {
                     onClick={() => setCurrentPage(p)}
                     className={`w-8 h-8 rounded-[6px] font-serif font-bold text-[13px] border cursor-pointer transition-colors ${
                       currentPage === p
-                        ? 'bg-[#DE5D8F] text-white border-[#DE5D8F]'
+                        ? 'bg-[#E992B4] text-white border-[#E992B4]'
                         : 'bg-white text-gray-700 border-[#DFDFE0] hover:bg-gray-50'
                     }`}
                   >
