@@ -3,6 +3,7 @@ import { aksornsaraApi, ArticleDto } from './apiClient';
 
 export interface BackofficeArticle {
   id: string;
+  backendId?: string;
   title: string;
   year: string;
   date: string;
@@ -32,6 +33,7 @@ export class ArticlesService {
   private static instance: ArticlesService;
   private articles: BackofficeArticle[] = [];
   private isApiConnected = false;
+  private isSyncing = false;
   private listeners: Array<() => void> = [];
 
   private constructor() {
@@ -147,44 +149,97 @@ export class ArticlesService {
   }
 
   public async syncWithApi(): Promise<void> {
+    if (this.isSyncing) return;
+    this.isSyncing = true;
     try {
-      const res = await aksornsaraApi.getArticles({ limit: 200 });
-      if (res.success && res.data && res.data.length > 0) {
+      const res = await aksornsaraApi.getArticles({ limit: 1000 });
+      const items = res.data || [];
+      if (Array.isArray(items) && items.length > 0) {
         this.isApiConnected = true;
-        // Map DTOs to BackofficeArticle
-        const apiArticles: BackofficeArticle[] = res.data.map((dto: ArticleDto) => ({
-          id: String(dto.id),
-          title: dto.title,
-          year: dto.published_at ? String(new Date(dto.published_at).getFullYear()) : '2026',
-          date: dto.published_at || 'ปี 2026',
-          author: dto.author_name || dto.writer_credit || 'ชมรมสาราณียกร',
-          proofreader: dto.proofreader_credit,
-          illustrator: dto.illustrator_credit,
-          excerpt: dto.excerpt,
-          category: dto.category_name || 'ทั่วไป',
-          url: '',
-          readTime: '5 นาที',
-          coverImage: dto.cover_image_url,
-          imageUrl: dto.cover_image_url,
-          status: dto.status === 'published' ? 'เผยแพร่แล้ว' : 'ร่างบทความ',
-          views: dto.view_count || 0,
-          contentHtml: dto.content,
-          tags: Array.isArray(dto.tags)
-            ? dto.tags.map((t: any) => (typeof t === 'string' ? t : t.name))
-            : [dto.category_name || 'ทั่วไป', 'สาราณียกร'],
-          slug: dto.slug,
-          visibility: 'สาธารณะ',
-          publishedAt: dto.published_at || undefined,
-          updatedAt: dto.updated_at,
-          isNewlyCreated: false,
-        }));
 
-        this.articles = apiArticles;
+        const backendArticles: BackofficeArticle[] = items.map((dto: ArticleDto) => {
+          const yr = dto.published_at ? String(new Date(dto.published_at).getFullYear()) : '2026';
+          const catName = dto.category_name || (dto as any).category || 'ทั่วไป';
+          const author = dto.author_name || dto.writer_credit || 'ชมรมสาราณียกร';
+          let formattedDate = `ปี ${yr}`;
+          if (dto.published_at) {
+            try {
+              const d = new Date(dto.published_at);
+              formattedDate = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear() + 543}`;
+            } catch {
+              formattedDate = `ปี ${yr}`;
+            }
+          }
+
+          return {
+            id: String(dto.slug || dto.id),
+            backendId: String(dto.id),
+            title: dto.title,
+            year: yr,
+            date: formattedDate,
+            author,
+            proofreader: dto.proofreader_credit || '',
+            illustrator: dto.illustrator_credit || '',
+            excerpt: dto.excerpt || '',
+            category: catName,
+            url: (dto as any).legacy_url || '',
+            readTime: '5 นาที',
+            coverImage: dto.cover_image_url || (dto as any).image_url,
+            imageUrl: dto.cover_image_url || (dto as any).image_url,
+            status: dto.status === 'published' ? 'เผยแพร่แล้ว' : 'ร่างบทความ',
+            views: dto.view_count || 0,
+            contentHtml: dto.content || `<p>${dto.excerpt || ''}</p>`,
+            tags: Array.isArray(dto.tags)
+              ? dto.tags.map((t: any) => (typeof t === 'string' ? t : t.name))
+              : [catName, 'สาราณียกร'],
+            slug: dto.slug,
+            visibility: (dto as any).visibility === 'private' ? 'ส่วนตัว' : 'สาธารณะ',
+            publishedAt: dto.published_at || formattedDate,
+            updatedAt: dto.updated_at,
+            isNewlyCreated: false,
+          };
+        });
+
+        // Smart merge backend articles with local state
+        const backendIdMap = new Map<string, BackofficeArticle>();
+        for (const b of backendArticles) {
+          backendIdMap.set(b.id, b);
+          if (b.backendId) backendIdMap.set(b.backendId, b);
+          if (b.slug) backendIdMap.set(b.slug, b);
+        }
+
+        this.articles = this.articles.map((local) => {
+          const found =
+            backendIdMap.get(local.id) ||
+            (local.backendId ? backendIdMap.get(local.backendId) : undefined) ||
+            (local.slug ? backendIdMap.get(local.slug) : undefined);
+
+          if (found) {
+            return {
+              ...local,
+              ...found,
+              // Keep highest live view count recorded
+              views: Math.max(local.views || 0, found.views || 0),
+            };
+          }
+          return local;
+        });
+
+        const localIds = new Set(this.articles.map((a) => a.id));
+        const localBackendIds = new Set(this.articles.map((a) => a.backendId).filter(Boolean));
+        for (const b of backendArticles) {
+          if (!localIds.has(b.id) && (!b.backendId || !localBackendIds.has(b.backendId))) {
+            this.articles.unshift(b);
+          }
+        }
+
         this.save();
+        this.notify();
       }
     } catch {
-      // Backend not yet reachable, keep using local session
       this.isApiConnected = false;
+    } finally {
+      this.isSyncing = false;
     }
   }
 
@@ -197,7 +252,7 @@ export class ArticlesService {
   }
 
   public getById(id: string): BackofficeArticle | undefined {
-    return this.articles.find((a) => a.id === id);
+    return this.articles.find((a) => a.id === id || a.backendId === id || a.slug === id);
   }
 
   public create(data: Partial<BackofficeArticle>): BackofficeArticle {
@@ -217,7 +272,7 @@ export class ArticlesService {
       proofreader: data.proofreader?.trim() || '',
       illustrator: data.illustrator?.trim() || '',
       excerpt: data.excerpt || (data.contentHtml ? data.contentHtml.replace(/<[^>]+>/g, '').slice(0, 150) + '...' : ''),
-      category: data.category || 'ปี 2026',
+      category: data.category || 'ทั่วไป',
       url: data.url || '',
       readTime: data.readTime || '5 นาที',
       coverImage: data.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
@@ -233,11 +288,12 @@ export class ArticlesService {
       isNewlyCreated: true,
     };
 
-    // Prepend locally
+    // Prepend locally & notify
     this.articles = [newArticle, ...this.articles];
     this.save();
+    this.notify();
 
-    // Background push to API if connected
+    // Async write-through to backend
     aksornsaraApi.createArticle({
       title: newArticle.title,
       slug: newArticle.slug,
@@ -246,17 +302,30 @@ export class ArticlesService {
       cover_image_url: newArticle.coverImage,
       status: newArticle.status === 'เผยแพร่แล้ว' ? 'published' : 'draft',
       writer_credit: newArticle.author,
+      author_name: newArticle.author,
       proofreader_credit: newArticle.proofreader,
       illustrator_credit: newArticle.illustrator,
-    }).catch(() => {
-      // Local fallback handled
+      category_name: newArticle.category,
+    } as any).then((res) => {
+      const item = res.data || (res as any);
+      if (item && item.id) {
+        const idx = this.articles.findIndex((a) => a.id === newArticle.id);
+        if (idx !== -1) {
+          this.articles[idx].backendId = String(item.id);
+          if (item.slug) this.articles[idx].slug = item.slug;
+          this.save();
+          this.notify();
+        }
+      }
+    }).catch((err) => {
+      console.warn('Backend create article fallback to local session:', err);
     });
 
     return newArticle;
   }
 
   public update(id: string, updates: Partial<BackofficeArticle>): BackofficeArticle | undefined {
-    const index = this.articles.findIndex((a) => a.id === id);
+    const index = this.articles.findIndex((a) => a.id === id || a.backendId === id || a.slug === id);
     if (index === -1) return undefined;
 
     this.articles[index] = {
@@ -265,29 +334,42 @@ export class ArticlesService {
       updatedAt: new Date().toISOString(),
     };
     this.save();
+    this.notify();
+
+    const target = this.articles[index];
+    const targetId = target.backendId || target.id;
 
     // Background update to API
-    aksornsaraApi.updateArticle(id, {
+    aksornsaraApi.updateArticle(targetId, {
       title: updates.title,
       content: updates.contentHtml,
       excerpt: updates.excerpt,
-      cover_image_url: updates.coverImage,
+      cover_image_url: updates.coverImage || updates.imageUrl,
       writer_credit: updates.author,
+      author_name: updates.author,
       proofreader_credit: updates.proofreader,
       illustrator_credit: updates.illustrator,
-    }).catch(() => {
-      // Local fallback handled
+      category_name: updates.category,
+      status: updates.status === 'ร่างบทความ' ? 'draft' : 'published',
+    } as any).catch((err) => {
+      console.warn('Backend update article fallback to local session:', err);
     });
 
     return this.articles[index];
   }
 
   public delete(id: string): boolean {
+    const target = this.articles.find((a) => a.id === id || a.backendId === id || a.slug === id);
+    const targetId = target ? (target.backendId || target.id) : id;
+
     const prevLen = this.articles.length;
-    this.articles = this.articles.filter((a) => a.id !== id);
+    this.articles = this.articles.filter((a) => a.id !== id && a.backendId !== id && a.slug !== id);
     if (this.articles.length !== prevLen) {
       this.save();
-      aksornsaraApi.deleteArticle(id).catch(() => {});
+      this.notify();
+      aksornsaraApi.deleteArticle(targetId).catch((err) => {
+        console.warn('Backend delete article fallback to local session:', err);
+      });
       return true;
     }
     return false;

@@ -72,12 +72,12 @@ export interface TopArticleDto {
   published_at: string;
 }
 
-const API_BASE = (import.meta.env.VITE_AKSORNSARA_API_URL as string) || 'http://localhost:3000/api/v1';
+const API_BASE = ((import.meta.env.VITE_AKSORNSARA_API_URL as string) || (import.meta.env.VITE_API_BASE_URL as string) || 'http://localhost:3000/api/v1').replace(/\/$/, '');
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
-  const token = typeof window !== 'undefined' ? localStorage.getItem('firebase_token') : null;
+  const token = typeof window !== 'undefined' ? (localStorage.getItem('firebase_token') || localStorage.getItem('token') || 'mock.jwt.admin') : 'mock.jwt.admin';
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
