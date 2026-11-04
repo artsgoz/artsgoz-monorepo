@@ -21,20 +21,6 @@ locals {
         "pnpm-workspace.yaml",
       ]
     }
-    aksornsara-api = {
-      filename              = "apps/aksornsara-api/build/cloudbuild.yaml"
-      service_account_email = module.iam.firebase_deployer_service_account_email
-      included_files = [
-        "apps/aksornsara-api/**",
-        "libs/**",
-        "firebase.json",
-        ".firebaserc",
-        "nx.json",
-        "package.json",
-        "pnpm-lock.yaml",
-        "pnpm-workspace.yaml",
-      ]
-    }
   }
 }
 

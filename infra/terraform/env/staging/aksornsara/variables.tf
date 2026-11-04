@@ -4,14 +4,8 @@ variable "region" {
   default     = "asia-southeast1"
 }
 
-variable "app_hosting_location" {
-  description = "Firebase App Hosting backend location."
-  type        = string
-  default     = "asia-east1"
-}
-
 variable "api_custom_domain" {
-  description = "Optional API hostname without scheme or path."
+  description = "Optional externally hosted API hostname used by frontend builds, without scheme or path."
   type        = string
   default     = null
   nullable    = true
