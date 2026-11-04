@@ -1,5 +1,4 @@
-region               = "asia-southeast1"
-app_hosting_location = "asia-east1"
+region = "asia-southeast1"
 hosting_custom_domains = {
   aksornsara-frontend = "staging.aksornsara.artsgoz.com"
 }

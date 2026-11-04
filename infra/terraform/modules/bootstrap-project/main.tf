@@ -34,7 +34,6 @@ locals {
     "cloudresourcemanager.googleapis.com",
     "developerconnect.googleapis.com",
     "firebase.googleapis.com",
-    "firebaseapphosting.googleapis.com",
     "firebasehosting.googleapis.com",
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
