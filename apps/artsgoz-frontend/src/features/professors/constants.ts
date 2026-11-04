@@ -7,6 +7,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'DrImjung.A@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof1.abbreviation',
     departmentKey: 'professors.departments.library_science',
+    statusKey: 'professors.status.university_employee',
     locationKey: 'professors.mock.prof1.location',
     achievementsKeys: [
       'professors.mock.prof1.achievements.0',
@@ -30,6 +31,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Somchai.J@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof2.abbreviation',
     departmentKey: 'professors.departments.thai',
+    statusKey: 'professors.status.government_officer',
     locationKey: 'professors.mock.prof2.location',
     achievementsKeys: [
       'professors.mock.prof2.achievements.0',
@@ -50,6 +52,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Wimonrat.S@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof3.abbreviation',
     departmentKey: 'professors.departments.english',
+    statusKey: 'professors.status.university_employee',
     locationKey: 'professors.mock.prof3.location',
     achievementsKeys: [
       'professors.mock.prof3.achievements.0',
@@ -68,6 +71,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Prapaporn.M@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof4.abbreviation',
     departmentKey: 'professors.departments.history',
+    statusKey: 'professors.status.government_officer',
     locationKey: 'professors.mock.prof4.location',
     achievementsKeys: [
       'professors.mock.prof4.achievements.0',
@@ -87,6 +91,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Kitti.W@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof5.abbreviation',
     departmentKey: 'professors.departments.philosophy',
+    statusKey: 'professors.status.temporary_employee',
     locationKey: 'professors.mock.prof5.location',
     achievementsKeys: [
       'professors.mock.prof5.achievements.0',
@@ -105,6 +110,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Nattha.R@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof6.abbreviation',
     departmentKey: 'professors.departments.french',
+    statusKey: 'professors.status.university_employee',
     locationKey: 'professors.mock.prof6.location',
     achievementsKeys: [
       'professors.mock.prof6.achievements.0',
@@ -123,6 +129,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Montri.S@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof7.abbreviation',
     departmentKey: 'professors.departments.drama',
+    statusKey: 'professors.status.government_officer',
     locationKey: 'professors.mock.prof7.location',
     achievementsKeys: [
       'professors.mock.prof7.achievements.0',
@@ -141,6 +148,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Penpimol.J@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof8.abbreviation',
     departmentKey: 'professors.departments.geography',
+    statusKey: 'professors.status.temporary_employee',
     locationKey: 'professors.mock.prof8.location',
     achievementsKeys: [
       'professors.mock.prof8.achievements.0',
@@ -159,6 +167,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Suwicha.N@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof9.abbreviation',
     departmentKey: 'professors.departments.library_science',
+    statusKey: 'professors.status.university_employee',
     locationKey: 'professors.mock.prof9.location',
     achievementsKeys: [
       'professors.mock.prof9.achievements.0',
@@ -177,6 +186,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Anant.B@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof10.abbreviation',
     departmentKey: 'professors.departments.german',
+    statusKey: 'professors.status.government_officer',
     locationKey: 'professors.mock.prof10.location',
     achievementsKeys: [
       'professors.mock.prof10.achievements.0',
@@ -195,6 +205,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Chanida.M@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof11.abbreviation',
     departmentKey: 'professors.departments.spanish',
+    statusKey: 'professors.status.university_employee',
     locationKey: 'professors.mock.prof11.location',
     achievementsKeys: [
       'professors.mock.prof11.achievements.0',
@@ -213,6 +224,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Watcharapol.K@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof12.abbreviation',
     departmentKey: 'professors.departments.psychology',
+    statusKey: 'professors.status.temporary_employee',
     locationKey: 'professors.mock.prof12.location',
     achievementsKeys: [
       'professors.mock.prof12.achievements.0',
@@ -231,6 +243,7 @@ export const MOCK_PROFESSORS: Professor[] = [
     email: 'Sompong.T@teacher.chula.ac.th',
     abbreviationKey: 'professors.mock.prof13.abbreviation',
     departmentKey: 'professors.departments.chinese',
+    statusKey: 'professors.status.government_officer',
     locationKey: 'professors.mock.prof13.location',
     achievementsKeys: [
       'professors.mock.prof13.achievements.0',

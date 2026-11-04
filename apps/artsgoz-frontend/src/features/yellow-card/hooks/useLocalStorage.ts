@@ -34,6 +34,13 @@ export function useLocalStorage<T>(
         });
       } catch (error) {
         console.error(`Failed to set localStorage key "${key}":`, error);
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('localstorage-error', {
+              detail: { key, message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบการตั้งค่าเบราว์เซอร์' },
+            })
+          );
+        }
       }
     },
     [key]

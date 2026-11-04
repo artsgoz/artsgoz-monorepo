@@ -82,5 +82,17 @@ export function mergeImportedSubjects(
   currentSubjects: YellowCardSubject[],
   importedSubjects: YellowCardSubject[]
 ): YellowCardSubject[] {
-  return [...currentSubjects.filter((s) => s.code || s.nameKey), ...importedSubjects];
+  const validCurrent = currentSubjects.filter((s) => s.code || s.nameKey);
+  const existingIds = new Set(validCurrent.map((s) => s.id));
+  const seenIds = new Set(existingIds);
+
+  const uniqueImported: YellowCardSubject[] = [];
+  for (const subject of importedSubjects) {
+    if (!seenIds.has(subject.id)) {
+      seenIds.add(subject.id);
+      uniqueImported.push(subject);
+    }
+  }
+
+  return [...validCurrent, ...uniqueImported];
 }

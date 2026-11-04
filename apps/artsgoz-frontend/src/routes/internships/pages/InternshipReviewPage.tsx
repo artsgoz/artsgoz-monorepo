@@ -33,7 +33,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function InternshipReviewPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('internships');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('all');
   const [sortOrder, setSortOrder] = useState('newest');
@@ -58,7 +58,7 @@ export default function InternshipReviewPage() {
         t(item.excerptKey).toLowerCase().includes(searchQuery.toLowerCase());
       const matchesTag =
         selectedTag === 'all' ||
-        t(item.languageTagKey).toLowerCase() === t(`internships.tags.${selectedTag}`).toLowerCase();
+        t(item.languageTagKey).toLowerCase() === t(`tags.${selectedTag}`).toLowerCase();
       return matchesSearch && matchesTag;
     });
     if (sortOrder === 'oldest') list = [...list].reverse();
@@ -70,24 +70,24 @@ export default function InternshipReviewPage() {
   return (
     <>
       <div className="w-full bg-white min-h-screen font-[ChulaCharasNew]">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 pt-10 pb-16">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 pt-8 sm:pt-10 pb-16">
 
           {/* ── Hero Section ── */}
-          <div className="relative flex flex-col lg:flex-row gap-8 mb-10">
+          <div className="relative flex flex-col lg:flex-row gap-6 sm:gap-8 mb-8 sm:mb-10">
 
             {/* Left: Title */}
-            <div className="lg:w-[38%] flex flex-col justify-end pb-4">
-              <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-bold text-[#404041] leading-[1.15] font-serif">
-                {t('internships.reviews.title')}
+            <div className="lg:w-[38%] flex flex-col justify-end pb-2 sm:pb-4">
+              <h1 className="text-[32px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-bold text-[#404041] leading-[1.15] font-serif">
+                {t('reviews.title')}
               </h1>
             </div>
 
             {/* Right: 3 Stacked Photo Cards */}
-            <div className="lg:flex-1 flex flex-row gap-3 h-[220px] md:h-[280px]">
+            <div className="lg:flex-1 flex flex-row gap-2 sm:gap-3 h-[140px] sm:h-[220px] md:h-[280px]">
               {HERO_IMAGES.map((img, i) => (
                 <div
                   key={i}
-                  className="flex-1 rounded-[12px] overflow-hidden relative"
+                  className="flex-1 rounded-[10px] sm:rounded-[12px] overflow-hidden relative"
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
                   {/* Pink gradient overlay */}
@@ -99,29 +99,29 @@ export default function InternshipReviewPage() {
 
           {/* ── Search & Filter Panel ── */}
           <div
-            className="rounded-[15px] p-6 md:p-8 mb-8 shadow-md"
+            className="rounded-[15px] p-4 sm:p-6 md:p-8 mb-8 shadow-md"
             style={{ backgroundColor: 'rgba(233, 146, 180, 0.2)' }}
           >
             {/* Search Bar */}
-            <div className="relative flex items-center bg-white border border-[#8B8B8C] rounded-full px-4 h-[41px] mb-5 focus-within:border-[#DE5D8F] focus-within:ring-1 focus-within:ring-[#DE5D8F] transition-all">
+            <div className="relative flex items-center bg-white border border-[#8B8B8C] rounded-full px-4 h-[41px] mb-4 sm:mb-5 focus-within:border-[#DE5D8F] focus-within:ring-1 focus-within:ring-[#DE5D8F] transition-all">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder={t('internships.reviews.search_placeholder')}
-                className="flex-1 bg-transparent text-[#404041] text-[16px] outline-none placeholder-[#99999A] font-[ChulaCharasNew]"
+                placeholder={t('reviews.search_placeholder')}
+                className="flex-1 bg-transparent text-[#404041] text-[15px] sm:text-[16px] outline-none placeholder-[#99999A] font-[ChulaCharasNew]"
               />
-              <Search size={20} className="text-[#8B8B8C] shrink-0" />
+              <Search size={18} className="text-[#8B8B8C] shrink-0" />
             </div>
 
             {/* Language Category Chips */}
-            <div className="flex flex-wrap items-center gap-2 mb-5">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-5">
               {LANGUAGE_FILTER_TAGS.map(tag => (
                 <button
                   key={tag.key}
                   type="button"
                   onClick={() => setSelectedTag(tag.key)}
-                  className={`px-4 h-[34px] rounded-full text-[14px] font-bold transition-all cursor-pointer border ${
+                  className={`px-3 sm:px-4 h-[30px] sm:h-[34px] rounded-full text-[13px] sm:text-[14px] font-bold transition-all cursor-pointer border ${
                     selectedTag === tag.key
                       ? 'bg-[#DE5D8F] text-white border-[#DE5D8F]'
                       : 'bg-white text-[#6D6D6D] border-[#D0D0D1] hover:border-[#DE5D8F] hover:text-[#DE5D8F]'
@@ -135,7 +135,7 @@ export default function InternshipReviewPage() {
             {/* Sort Row */}
             <div className="flex items-center gap-3">
               <span className="text-[14px] md:text-[16px] font-bold text-[#404041]">
-                {t('internships.sort.label')}
+                {t('sort.label')}
               </span>
               <div className="relative">
                 <button
@@ -174,10 +174,10 @@ export default function InternshipReviewPage() {
 
           {/* ── Section Title ── */}
           <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-[28px] md:text-[36px] font-bold text-[#404041] font-serif">
-              {t('internships.reviews.listing_title')}
+            <h2 className="text-[24px] sm:text-[28px] md:text-[36px] font-bold text-[#404041] font-serif">
+              {t('reviews.listing_title')}
             </h2>
-            <span className="px-3 py-1 rounded-full bg-[#FCEFF4] text-[#DE5D8F] text-[14px] font-bold">
+            <span className="px-3 py-1 rounded-full bg-[#FCEFF4] text-[#DE5D8F] text-[13px] sm:text-[14px] font-bold">
               {filteredReviews.length}
             </span>
           </div>
@@ -192,19 +192,46 @@ export default function InternshipReviewPage() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
-                  className="w-full bg-white border border-[#E6E6E6] rounded-[15px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] flex items-start p-4 md:p-6 gap-4 relative hover:border-[#DE5D8F]/30 transition-colors"
+                  className="w-full bg-white border border-[#E6E6E6] rounded-[15px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] flex flex-col sm:flex-row items-start p-4 md:p-6 gap-3 sm:gap-4 relative hover:border-[#DE5D8F]/30 transition-colors"
                 >
-                  {/* Company Logo Placeholder */}
-                  <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] shrink-0 rounded-[9px] border border-[#D6D6D6] bg-gradient-to-br from-[#FCEFF4] to-[#F5CDDC] flex items-center justify-center">
-                    <span className="text-[#DE5D8F] font-bold text-[18px] md:text-[22px] tracking-wider">
-                      {item.logoPlaceholder}
-                    </span>
+                  {/* Top Mobile Row: Logo + Position + Bookmark */}
+                  <div className="flex items-center gap-3 w-full sm:w-auto">
+                    {/* Company Logo Placeholder */}
+                    <div className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] shrink-0 rounded-[9px] border border-[#D6D6D6] bg-gradient-to-br from-[#FCEFF4] to-[#F5CDDC] flex items-center justify-center">
+                      <span className="text-[#DE5D8F] font-bold text-[16px] sm:text-[18px] md:text-[22px] tracking-wider">
+                        {item.logoPlaceholder}
+                      </span>
+                    </div>
+
+                    {/* Title + Company on mobile */}
+                    <div className="flex-1 min-w-0 sm:hidden flex flex-col gap-0.5">
+                      <h3 className="text-[16px] font-bold text-[#404041] font-serif leading-tight truncate">
+                        {t(item.positionKey)}
+                      </h3>
+                      <p className="text-[14px] font-bold text-[#636363] truncate">
+                        {t(item.companyKey)}
+                      </p>
+                    </div>
+
+                    {/* Bookmark on mobile top-right */}
+                    <div className="sm:hidden shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => toggleBookmark(item.id)}
+                        className={`w-8 h-8 rounded-[8px] flex items-center justify-center transition-colors cursor-pointer border-none ${
+                          bookmarkedIds.has(item.id) ? 'bg-[#E992B4] text-white' : 'bg-[#F7F8F9] text-[#E992B4]'
+                        }`}
+                        aria-label={bookmarkedIds.has(item.id) ? 'Remove bookmark' : 'Bookmark'}
+                      >
+                        <Bookmark size={15} fill={bookmarkedIds.has(item.id) ? 'currentColor' : 'none'} />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 min-w-0 flex flex-col gap-2">
+                  <div className="flex-1 min-w-0 flex flex-col gap-2 w-full">
                     <div className="flex items-start justify-between gap-3 flex-wrap">
-                      <div className="flex flex-col gap-0.5 min-w-0">
+                      <div className="hidden sm:flex flex-col gap-0.5 min-w-0">
                         <h3 className="text-[18px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">
                           {t(item.positionKey)}
                         </h3>
@@ -212,17 +239,17 @@ export default function InternshipReviewPage() {
                           {t(item.companyKey)}
                         </p>
                       </div>
-                      <div className="flex flex-col items-end gap-2 shrink-0">
+                      <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-start w-full sm:w-auto gap-2 shrink-0">
                         <StarRating rating={item.rating} />
-                        <span className="px-4 py-1 rounded-full bg-[#F4FDDF] text-[#404041] text-[13px] font-medium whitespace-nowrap">
+                        <span className="px-3 sm:px-4 py-0.5 sm:py-1 rounded-full bg-[#F4FDDF] text-[#404041] text-[12px] sm:text-[13px] font-medium whitespace-nowrap">
                           {t(item.languageTagKey)}
                         </span>
                       </div>
                     </div>
 
                     {/* Review Excerpt */}
-                    <div className="bg-[#F7F8F9] rounded-[10px] px-4 py-3 relative">
-                      <Quote size={16} className="text-[#DE5D8F] mb-1 opacity-60" />
+                    <div className="bg-[#F7F8F9] rounded-[10px] px-3.5 sm:px-4 py-2.5 sm:py-3 relative mt-1">
+                      <Quote size={14} className="text-[#DE5D8F] mb-1 opacity-60" />
                       <p className="text-[13px] md:text-[15px] text-[#404041] leading-relaxed line-clamp-3">
                         {t(item.excerptKey)}
                       </p>
@@ -235,11 +262,11 @@ export default function InternshipReviewPage() {
                     </div>
                   </div>
 
-                  {/* Bookmark */}
+                  {/* Bookmark on Desktop */}
                   <button
                     type="button"
                     onClick={() => toggleBookmark(item.id)}
-                    className={`w-9 h-9 rounded-[8px] flex items-center justify-center transition-colors cursor-pointer border-none shrink-0 ${
+                    className={`hidden sm:flex w-9 h-9 rounded-[8px] items-center justify-center transition-colors cursor-pointer border-none shrink-0 ${
                       bookmarkedIds.has(item.id) ? 'bg-[#E992B4] text-white' : 'bg-[#F7F8F9] text-[#E992B4]'
                     }`}
                     aria-label={bookmarkedIds.has(item.id) ? 'Remove bookmark' : 'Bookmark'}
@@ -251,7 +278,7 @@ export default function InternshipReviewPage() {
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <Search size={56} className="text-gray-300 mb-4" />
-                <p className="text-[18px] text-gray-500 font-serif">{t('internships.no_results')}</p>
+                <p className="text-[18px] text-gray-500 font-serif">{t('no_results')}</p>
               </div>
             )}
           </div>

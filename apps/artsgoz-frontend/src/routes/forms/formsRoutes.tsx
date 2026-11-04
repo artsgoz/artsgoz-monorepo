@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router';
-import { PATHS } from '../paths';
-import FormsPage from './pages/FormsPage';
-import YellowCardPage from './pages/YellowCardPage';
+import { PATHS } from '../paths.js';
+import FormsPage from './pages/FormsPage.js';
+import YellowCardPage from './pages/YellowCardPage.js';
 
 export const formsRoutes: RouteObject[] = [
   {

@@ -10,7 +10,7 @@ interface LanguageSwitcherProps {
  * Persists the user's choice to localStorage via i18next-browser-languagedetector.
  */
 export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation('common');
   const currentLang = i18n.language?.startsWith('th') ? 'th' : 'en';
 
   const toggle = () => {

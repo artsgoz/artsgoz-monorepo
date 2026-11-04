@@ -4,14 +4,8 @@ variable "region" {
   default     = "asia-southeast1"
 }
 
-variable "app_hosting_location" {
-  description = "Firebase App Hosting backend location."
-  type        = string
-  default     = "asia-east1"
-}
-
 variable "api_custom_domain" {
-  description = "Optional API hostname without scheme or path."
+  description = "Optional externally hosted API hostname used by frontend builds, without scheme or path."
   type        = string
   default     = null
   nullable    = true
@@ -41,6 +35,30 @@ variable "frontend_maintenance_mode" {
   description = "Whether the Aksornsara frontend is built in maintenance mode."
   type        = bool
   default     = false
+}
+
+variable "firebase_api_key" {
+  description = "Firebase Auth API key"
+  type        = string
+  default     = "AIzaSyAS-GTc1ZsZ4XZSLmFFqwU1oxdU1DUYnf0"
+}
+
+variable "firebase_auth_domain" {
+  description = "Firebase Auth Domain"
+  type        = string
+  default     = "artsgoz-aksornsara-web-develop.firebaseapp.com"
+}
+
+variable "firebase_project_id" {
+  description = "Firebase Project ID"
+  type        = string
+  default     = "artartsgoz-aksornsara-web-develop"
+}
+
+variable "firebase_app_id" {
+  description = "Firebase App ID"
+  type        = string
+  default     = "1:680736603215:web:c1034600fd094fba153e3a"
 }
 
 variable "cloud_build_repository" {

@@ -9,7 +9,7 @@ interface FilterDropdownProps {
 }
 
 export function FilterDropdown({ label, options, value, onChange }: FilterDropdownProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -23,28 +23,37 @@ export function FilterDropdown({ label, options, value, onChange }: FilterDropdo
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const isFiltered = Boolean(value && !value.endsWith('.all'));
+  const displayText = isFiltered ? t(value) : label;
+
   return (
     <div ref={containerRef} className="relative">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between bg-white border border-[#F5CDDC] rounded-2xl cursor-pointer"
+        className={`flex items-center justify-between border rounded-2xl cursor-pointer transition-colors ${
+          isFiltered
+            ? 'bg-[#FCF0F4] border-[#DE5D8F]'
+            : 'bg-white border-[#F5CDDC]'
+        }`}
         style={{
-          width: '170px',
+          minWidth: '170px',
+          maxWidth: '260px',
           height: '37px',
           paddingTop: '7px',
           paddingBottom: '7px',
-          paddingLeft: '20px',
-          paddingRight: '20px',
-          gap: '10px',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          gap: '8px',
         }}
+        title={displayText}
       >
         <div className="flex items-center justify-between w-full min-w-0">
           <span
             className="font-[ChulaCharasNew] text-[#DE5D8F] whitespace-nowrap overflow-hidden text-ellipsis mr-1"
-            style={{ fontSize: '16.76px', fontWeight: 700 }}
+            style={{ fontSize: '15px', fontWeight: 700 }}
           >
-            {label}
+            {displayText}
           </span>
           <svg
             width="10"

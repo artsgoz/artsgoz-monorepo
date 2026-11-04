@@ -7,19 +7,21 @@ import { calculateTotalCredits } from '../utils/yellowCardUtils.js';
 interface YellowCardColumnsProps {
   subjects: YellowCardSubject[];
   major: string;
-  onUpdateSubject: (updatedSubject: YellowCardSubject) => void;
-  onAddSubject: (groupName: string) => void;
-  onDeleteSubject: (id: string) => void;
+  readOnly?: boolean;
+  onUpdateSubject?: (updatedSubject: YellowCardSubject) => void;
+  onAddSubject?: (groupName: string) => void;
+  onDeleteSubject?: (id: string) => void;
 }
 
 export function YellowCardColumns({
   subjects,
   major,
+  readOnly = false,
   onUpdateSubject,
   onAddSubject,
   onDeleteSubject,
 }: YellowCardColumnsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
   const displayMajor = major && major !== 'เลือกวิชาเอก' && major !== 'credit_tracking.profile.select_major' 
     ? t(major) 
     : t('credit_tracking.majors.default');
@@ -39,13 +41,14 @@ export function YellowCardColumns({
           ['credit_tracking.categories.basic', 'credit_tracking.categories.general', 'credit_tracking.categories.free'].includes(
             cat.category
           )
-        ).map((catConfig) => (
+        ).map((catConfig, idx) => (
           <CurriculumTable
-            key={catConfig.category}
+            key={`${catConfig.category}-${idx}`}
             category={catConfig.category}
             requiredCredits={catConfig.requiredCredits}
             groups={catConfig.groups}
             subjects={subjects}
+            readOnly={readOnly}
             onUpdateSubject={onUpdateSubject}
             onAddSubject={onAddSubject}
             onDeleteSubject={onDeleteSubject}
@@ -67,13 +70,14 @@ export function YellowCardColumns({
         {/* Right Column Categories */}
         {CATEGORIES_CONFIG.filter((cat) =>
           ['credit_tracking.categories.major', 'credit_tracking.categories.minor'].includes(cat.category)
-        ).map((catConfig) => (
+        ).map((catConfig, idx) => (
           <CurriculumTable
-            key={catConfig.category}
+            key={`${catConfig.category}-${idx}`}
             category={catConfig.category}
             requiredCredits={catConfig.requiredCredits}
             groups={catConfig.groups}
             subjects={subjects}
+            readOnly={readOnly}
             onUpdateSubject={onUpdateSubject}
             onAddSubject={onAddSubject}
             onDeleteSubject={onDeleteSubject}

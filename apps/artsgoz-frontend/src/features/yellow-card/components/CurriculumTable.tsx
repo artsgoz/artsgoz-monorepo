@@ -2,15 +2,17 @@ import { useTranslation } from 'react-i18next';
 import type { YellowCardSubject, YellowCardCategory } from '../types.js';
 import { GradeReportInteractive } from './GradeReportInteractive.js';
 import { GradeReportPaperAction } from './GradeReportPaperAction.js';
+import { GradeReportPaperReadonly } from './GradeReportPaperReadonly.js';
 
 interface CurriculumTableProps {
   category: YellowCardCategory;
   requiredCredits: number;
   groups: string[];
   subjects: YellowCardSubject[];
-  onUpdateSubject: (updatedSubject: YellowCardSubject) => void;
-  onAddSubject: (groupName: string) => void;
-  onDeleteSubject: (id: string) => void;
+  readOnly?: boolean;
+  onUpdateSubject?: (updatedSubject: YellowCardSubject) => void;
+  onAddSubject?: (groupName: string) => void;
+  onDeleteSubject?: (id: string) => void;
 }
 
 export function CurriculumTable({
@@ -18,11 +20,12 @@ export function CurriculumTable({
   requiredCredits,
   groups,
   subjects,
+  readOnly = false,
   onUpdateSubject,
   onAddSubject,
   onDeleteSubject,
 }: CurriculumTableProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('yellow_card');
 
   const getCategoryCompletedCredits = () => {
     return subjects
@@ -38,12 +41,12 @@ export function CurriculumTable({
       <div className="w-full h-[60px] bg-[#F5CDDC] rounded-[8px] px-5 flex items-end justify-between pb-3 min-w-0 gap-4">
         <span className="text-black text-[18px] font-bold truncate">{t(category)}</span>
         <span className="text-black text-[18px] font-bold shrink-0">
-          {t('yellow_card.curriculum_table.completed_progress', { completed: completedCredits, required: requiredCredits })}
+          {t('curriculum_table.completed_progress', { completed: completedCredits, required: requiredCredits })}
         </span>
       </div>
 
-      {/* Description / Instructions under the category header bar */}
-      {category === 'credit_tracking.categories.basic' && (
+      {/* Description / Instructions under the category header bar (Interactive mode only) */}
+      {!readOnly && category === 'credit_tracking.categories.basic' && (
         <div className="text-[16px] text-[#404041] flex flex-col gap-1.5 px-5 font-bold leading-relaxed mt-1">
           <p>{t('credit_tracking.planner.instructions.basic1')}</p>
           <p>{t('credit_tracking.planner.instructions.basic2')}</p>
@@ -51,15 +54,25 @@ export function CurriculumTable({
       )}
 
       {/* Table Headers Row aligned with sub-items columns */}
-      <div className="grid grid-cols-[20px_80px_1fr_100px_52px_52px_32px] gap-2 items-center text-black font-bold text-[16px] px-5 mb-1 min-w-[320px]">
-        <span></span>
-        <span className="text-left">{t('credit_tracking.planner.col_code')}</span>
-        <span className="text-left">{t('credit_tracking.planner.col_name')}</span>
-        <span className="text-center">{t('yellow_card.grade_report.term_year')}</span>
-        <span className="text-center">{t('credit_tracking.planner.col_credits')}</span>
-        <span className="text-center">{t('yellow_card.grade_report.grade')}</span>
-        <span></span>
-      </div>
+      {readOnly ? (
+        <div className="grid grid-cols-[80px_1fr_100px_52px_52px] gap-4 items-center text-black font-bold text-[16px] px-4 mb-1 min-w-[320px]">
+          <span className="text-left">{t('credit_tracking.planner.col_code')}</span>
+          <span className="text-left">{t('credit_tracking.planner.col_name')}</span>
+          <span className="text-center">{t('grade_report.term_year')}</span>
+          <span className="text-center">{t('credit_tracking.planner.col_credits')}</span>
+          <span className="text-center">{t('grade_report.grade')}</span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-[20px_80px_1fr_100px_52px_52px_32px] gap-2 items-center text-black font-bold text-[16px] px-5 mb-1 min-w-[320px]">
+          <span></span>
+          <span className="text-left">{t('credit_tracking.planner.col_code')}</span>
+          <span className="text-left">{t('credit_tracking.planner.col_name')}</span>
+          <span className="text-center">{t('grade_report.term_year')}</span>
+          <span className="text-center">{t('credit_tracking.planner.col_credits')}</span>
+          <span className="text-center">{t('grade_report.grade')}</span>
+          <span></span>
+        </div>
+      )}
 
       {/* Render each sub-group under this category using interactive accordions */}
       <div className="flex flex-col gap-4 min-w-0">
@@ -70,20 +83,25 @@ export function CurriculumTable({
             <GradeReportInteractive
               key={groupName}
               topicName={t(groupName)}
-              onAddSubject={() => onAddSubject(groupName)}
+              readOnly={readOnly}
+              onAddSubject={onAddSubject ? () => onAddSubject(groupName) : undefined}
             >
-              {groupSubjects.map((subject) => (
-                <GradeReportPaperAction
-                  key={subject.id}
-                  subject={subject}
-                  onUpdate={onUpdateSubject}
-                  onDelete={() => onDeleteSubject(subject.id)}
-                />
-              ))}
+              {groupSubjects.map((subject) =>
+                readOnly ? (
+                  <GradeReportPaperReadonly key={subject.id} subject={subject} />
+                ) : (
+                  <GradeReportPaperAction
+                    key={subject.id}
+                    subject={subject}
+                    onUpdate={onUpdateSubject!}
+                    onDelete={() => onDeleteSubject!(subject.id)}
+                  />
+                )
+              )}
 
               {groupSubjects.length === 0 && (
                 <p className="text-center text-[#99999A] py-3 text-[14px] italic break-words px-4">
-                  {t('yellow_card.curriculum_table.empty_group')}
+                  {t('curriculum_table.empty_group')}
                 </p>
               )}
             </GradeReportInteractive>

@@ -14,7 +14,7 @@ export function ProfessorSearchBar({
   onSearch,
   mode = 'full',
 }: ProfessorSearchBarProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') onSearch();
