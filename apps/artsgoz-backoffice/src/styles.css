@@ -17,7 +17,11 @@
   --font-sans: 'ChulaCharasNew', 'Inter', 'Noto Sans Thai', sans-serif;
 }
 
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
   font-family: 'ChulaCharasNew', 'Inter', 'Noto Sans Thai', sans-serif;
 }
 
