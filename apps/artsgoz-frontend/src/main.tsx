@@ -1,11 +1,12 @@
 import { StrictMode, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
-
+import { MaintenancePage } from '@base-components';
 // i18n bootstrap — must be imported before App renders
 import './i18n/index.js';
 
 import './styles.css';
+import { IS_MAINTENANCE_MODE } from './config/maintenance';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
