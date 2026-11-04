@@ -7,7 +7,7 @@ interface UpcomingEventsCardProps {
 }
 
 export function UpcomingEventsCard({ events }: UpcomingEventsCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 md:p-8 w-full">
       {/* Card Header */}

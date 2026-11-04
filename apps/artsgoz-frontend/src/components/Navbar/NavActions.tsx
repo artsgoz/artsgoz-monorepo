@@ -19,12 +19,10 @@ interface NavActionsProps {
 
 export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [profileView, setProfileView] = useState<'profile' | 'manage'>(
-    'profile',
-  );
+  const [profileView, setProfileView] = useState<'profile' | 'manage'>('profile');
   const containerRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(containerRef, () => {
@@ -108,3 +106,4 @@ export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
     </>
   );
 }
+

@@ -8,7 +8,7 @@ interface ProfessorCardProps {
 }
 
 export function ProfessorCard({ professor, isSelected = false, onClick }: ProfessorCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   return (
     <button

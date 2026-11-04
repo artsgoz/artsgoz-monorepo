@@ -6,31 +6,66 @@ const tokenFiles = [
     name: 'primitive',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Primitive.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Primitive.json',
     ),
   },
   {
     name: 'alias',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Alias.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Alias.json',
     ),
   },
   {
     name: 'components',
     path: path.join(
       __dirname,
-      '../packages/design-system/src/lib/figma-tokens/Mode 1.Components.json',
+      '../libs/design-system/src/lib/figma-tokens/Mode 1.Components.json',
     ),
   },
 ];
 
 const outputPath = path.join(
   __dirname,
-  '../packages/design-system/src/lib/design-system.css',
+  '../libs/design-system/src/lib/design-system.css',
 );
 
-let cssContent = `@import "tailwindcss";\n\n@theme {\n`;
+let cssContent = `@import "tailwindcss";
+
+@font-face {
+  font-family: 'ChulaCharasNew';
+  src: local('ChulaCharasNew'), url('/fonts/ChulaCharasNewReg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ChulaCharasNew';
+  src: local('ChulaCharasNew Bold'), local('ChulaCharasNew-Bold'), url('/fonts/ChulaCharasNewBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chulalongkorn';
+  src: local('CHULALONGKORN'), url('/fonts/CHULALONGKORNReg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chulalongkorn';
+  src: local('CHULALONGKORN Bold'), local('CHULALONGKORN-Bold'), url('/fonts/CHULALONGKORNBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+`;
 
 function convertToCssVariables(obj, prefix = '') {
   let lines = '';

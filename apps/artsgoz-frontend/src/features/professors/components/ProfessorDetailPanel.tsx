@@ -7,7 +7,7 @@ interface ProfessorDetailPanelProps {
 }
 
 export function ProfessorDetailPanel({ professor, onBack }: ProfessorDetailPanelProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   return (
     <div
@@ -16,8 +16,7 @@ export function ProfessorDetailPanel({ professor, onBack }: ProfessorDetailPanel
     >
       {/* Back button header */}
       <div
-        className="flex items-center border-b border-[#BBBBBB] shrink-0"
-        style={{ padding: '36px 37px', minHeight: '120px' }}
+        className="flex items-center border-b border-[#BBBBBB] shrink-0 px-4 sm:px-8 py-4 sm:py-6 min-h-[64px] sm:min-h-[100px]"
       >
         <button
           type="button"
@@ -45,19 +44,16 @@ export function ProfessorDetailPanel({ professor, onBack }: ProfessorDetailPanel
       </div>
 
       {/* Content area */}
-      <div className="flex flex-col px-[37px] pb-8 min-w-0" style={{ gap: '10px' }}>
+      <div className="flex flex-col px-4 sm:px-8 pb-8 min-w-0" style={{ gap: '10px' }}>
         {/* Photo + name */}
         <div
-          className="flex items-center flex-wrap md:flex-nowrap gap-4 md:gap-[94px]"
-          style={{ minHeight: '192px', paddingTop: '10px' }}
+          className="flex items-center flex-col sm:flex-row gap-4 sm:gap-8 lg:gap-[94px] pt-4"
         >
           <div
-            className="rounded-full shrink-0 bg-[#D9D9D9]"
-            style={{ width: '192px', height: '192px' }}
+            className="rounded-full shrink-0 bg-[#D9D9D9] w-28 h-28 sm:w-36 sm:h-36 lg:w-[192px] lg:h-[192px]"
           />
           <span
-            className="font-[ChulaCharasNew] text-[#DE5D8F] break-words"
-            style={{ fontSize: '32px', fontWeight: 700, maxWidth: '100%' }}
+            className="font-[ChulaCharasNew] text-[#DE5D8F] break-words text-2xl sm:text-3xl lg:text-[32px] font-bold text-center sm:text-left max-w-full"
           >
             {t(professor.nameKey)}
           </span>
@@ -93,19 +89,17 @@ interface InfoRowProps {
 
 function InfoRow({ label, value }: InfoRowProps) {
   return (
-    <div className="flex items-start md:items-center flex-col md:flex-row gap-2 md:gap-[35px]" style={{ minHeight: '36px' }}>
-      <div className="flex items-center justify-start md:justify-center shrink-0" style={{ minWidth: '189px' }}>
+    <div className="flex items-start sm:items-center flex-col sm:flex-row gap-1 sm:gap-6 lg:gap-[35px] min-h-[36px]">
+      <div className="flex items-center justify-start sm:justify-center shrink-0 min-w-0 sm:min-w-[189px]">
         <span
-          className="font-[ChulaCharasNew] text-[#DE5D8F] font-bold break-words"
-          style={{ fontSize: '24px' }}
+          className="font-[ChulaCharasNew] text-[#DE5D8F] font-bold break-words text-lg sm:text-xl lg:text-[24px]"
         >
           {label}
         </span>
       </div>
       <div className="flex items-center flex-1 min-w-0">
         <span
-          className="font-[ChulaCharasNew] text-[#000000] break-words"
-          style={{ fontSize: '20px', fontWeight: 400 }}
+          className="font-[ChulaCharasNew] text-[#000000] break-words text-base sm:text-lg lg:text-[20px] font-normal"
         >
           {value}
         </span>
@@ -120,14 +114,13 @@ interface InfoSectionProps {
 }
 
 function InfoSection({ title, items }: InfoSectionProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('student_services');
 
   return (
     <div className="flex flex-col min-w-0" style={{ gap: '12px', marginTop: '10px' }}>
       <div className="flex items-center" style={{ minHeight: '30px' }}>
         <span
-          className="font-[ChulaCharasNew] text-[#E57DA5] break-words"
-          style={{ fontSize: '24px', fontWeight: 700 }}
+          className="font-[ChulaCharasNew] text-[#E57DA5] break-words text-lg sm:text-xl lg:text-[24px] font-bold"
         >
           {title}
         </span>
@@ -136,8 +129,7 @@ function InfoSection({ title, items }: InfoSectionProps) {
         {items.map((itemKey, index) => (
           <div key={index} className="flex items-start" style={{ minHeight: '28px' }}>
             <span
-              className="font-[ChulaCharasNew] text-[#000000] break-words"
-              style={{ fontSize: '20px', fontWeight: 400 }}
+              className="font-[ChulaCharasNew] text-[#000000] break-words text-base sm:text-lg lg:text-[20px] font-normal"
             >
               {t(itemKey)}
             </span>

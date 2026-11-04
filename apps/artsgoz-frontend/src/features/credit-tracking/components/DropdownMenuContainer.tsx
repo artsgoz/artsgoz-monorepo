@@ -8,6 +8,7 @@ interface DropdownMenuContainerProps {
   placeholder: string;
   onChange: (value: string) => void;
   id?: string;
+  width?: number | string;
 }
 
 export function DropdownMenuContainer({
@@ -17,12 +18,13 @@ export function DropdownMenuContainer({
   placeholder,
   onChange,
   id,
+  width,
 }: DropdownMenuContainerProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('credit_tracking');
   const isEmpty = !value || value === placeholder;
 
   return (
-    <div className="flex flex-col gap-[6px]" style={{ minWidth: '180px' }}>
+    <div className="flex flex-col gap-[6px]" style={{ width: width ?? undefined, minWidth: width ? undefined : '180px' }}>
       {/* Label */}
       <span
         className="text-black leading-[24px] truncate"

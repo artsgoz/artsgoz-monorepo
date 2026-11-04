@@ -5,8 +5,8 @@ hosting_custom_domains = {
   artsgoz-backoffice = "dev.backoffice.artsgoz.com"
 }
 
-frontend_maintenance_mode   = true
-backoffice_maintenance_mode = true
+frontend_maintenance_mode   = false
+backoffice_maintenance_mode = false
 
 # Enable after this repository is linked through Cloud Build v2 in this project.
 cloud_build_repository = {

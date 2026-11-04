@@ -1,15 +1,10 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Plus, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@artsgoz/design-system';
 import { HomeBanner } from '../../../features/banner-carousel/index.js';
 import { AgendaWidgets } from '../../../features/agenda/index.js';
-import {
-  QuickAccessSection,
-  useQuickAccess,
-  AddShortcutModal,
-} from '../../../features/quick-access/index.js';
+import { QuickAccessSection, useQuickAccess, AddShortcutModal } from '../../../features/quick-access/index.js';
 import { ArticlesSection } from '../../../features/articles/index.js';
 import { ClubsSection } from '../../../features/clubs/index.js';
 import { Footer } from '../../../components/Footer/index.js';
@@ -19,12 +14,7 @@ function NoiseOverlay() {
     <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.018] mix-blend-overlay">
       <svg className="w-[200%] h-[200%] absolute -top-1/2 -left-1/2 select-none pointer-events-none animate-[noiseShift_0.6s_infinite_steps(8)]">
         <filter id="noiseFilter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.8"
-            numOctaves="4"
-            stitchTiles="stitch"
-          />
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
         </filter>
         <rect width="100%" height="100%" filter="url(#noiseFilter)" />
       </svg>
@@ -49,42 +39,22 @@ function NoiseOverlay() {
 
 export function HomePage() {
   const { menus, addMenu, deleteMenu } = useQuickAccess();
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   const [isManageMode, setIsManageMode] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  const sectionTransition = {
-    duration: 1.2,
-    ease: [0.16, 1, 0.3, 1] as const, // Premium custom cubic bezier easing
-  };
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 40, filter: 'blur(16px)' },
-    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-  };
-
   return (
-    <div className="mt-[-65px] lg:mt-[-81px] pt-[65px] lg:pt-[81px] w-full bg-background-default overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col">
-      {/* Section 1: Hero Banner — full viewport height */}
-      <motion.div
-        initial={{ opacity: 0, filter: 'blur(12px)' }}
-        animate={{ opacity: 1, filter: 'blur(0px)' }}
-        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-[calc(100vh-65px)] lg:h-[calc(100vh-81px)] bg-white shrink-0 relative overflow-hidden"
-      >
+    <div className="mt-[-65px] lg:mt-[-81px] pt-[65px] lg:pt-[81px] w-full bg-white overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col">
+      {/* Section 1: Hero Banner — Responsive height */}
+      <div className="w-full h-[280px] sm:h-[400px] md:h-[520px] lg:h-[80vh] bg-gray-200 shrink-0 relative overflow-hidden">
         <HomeBanner />
         <NoiseOverlay />
-      </motion.div>
+      </div>
 
       {/* Section 2: บริการนิสิต — Left: title+description, Right: 3×2 QuickAccess grid */}
-      <motion.div
+      <div 
         id="student-services-section"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-        transition={sectionTransition}
-        className="w-full bg-white mt-8 lg:mt-16 py-16 md:py-24 lg:py-32 scroll-mt-[85px] lg:scroll-mt-[105px] relative overflow-hidden"
+        className="w-full bg-white mt-4 sm:mt-8 lg:mt-16 py-10 sm:py-16 md:py-24 lg:py-32 scroll-mt-[85px] lg:scroll-mt-[105px] relative overflow-hidden"
       >
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full flex flex-col gap-8 relative z-10">
           <div className="w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-24">
@@ -99,9 +69,9 @@ export function HomePage() {
             </div>
             {/* Right: Quick Access cards grid */}
             <div className="flex-1 min-w-0">
-              <QuickAccessSection
-                hideHeading
-                showActionButtons={false}
+              <QuickAccessSection 
+                hideHeading 
+                showActionButtons={false} 
                 menus={menus}
                 isManageMode={isManageMode}
                 onDeleteMenu={deleteMenu}
@@ -111,14 +81,14 @@ export function HomePage() {
           {/* Action buttons spanning full width under both columns */}
           <div className="flex flex-row justify-end items-center gap-4 mt-4 w-full border-t border-gray-100 pt-6">
             {isManageMode ? (
-              <Button
+              <Button 
                 onClick={() => setIsManageMode(false)}
                 className="flex items-center gap-2 bg-[#de5d8f] hover:bg-[#ca5582] text-white border-none active:scale-95 transition-all"
               >
                 {t('home.done')}
               </Button>
             ) : (
-              <Button
+              <Button 
                 onClick={() => setIsManageMode(true)}
                 variant="outline"
                 className="flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all"
@@ -127,7 +97,7 @@ export function HomePage() {
                 {t('home.manage_menu')}
               </Button>
             )}
-            <Button
+            <Button 
               onClick={() => setIsAddModalOpen(true)}
               variant="outline"
               className="flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all"
@@ -138,52 +108,31 @@ export function HomePage() {
           </div>
         </div>
         <NoiseOverlay />
-      </motion.div>
+      </div>
 
       {/* Section 3: ปฏิทินกิจกรรมและกำหนดการ */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-        transition={sectionTransition}
-        className="w-full bg-[var(--blog-banner-background-color-default,#F7F8F9)] py-16 md:py-24 lg:py-32 relative overflow-hidden"
-      >
+      <div className="w-full bg-white py-10 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden">
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full relative z-10">
           <AgendaWidgets />
         </div>
         <NoiseOverlay />
-      </motion.div>
+      </div>
 
       {/* Section 4: Articles (White Band) */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-        transition={sectionTransition}
-        className="w-full bg-white py-16 md:py-24 lg:py-32 relative overflow-hidden"
-      >
+      <div className="w-full bg-white py-10 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden">
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full relative z-10">
           <ArticlesSection />
         </div>
         <NoiseOverlay />
-      </motion.div>
+      </div>
 
-      {/* Section 5: Clubs (Light Gray Band) */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-        transition={sectionTransition}
-        className="w-full bg-[var(--blog-banner-background-color-default,#F7F8F9)] py-16 md:py-24 lg:py-32 relative overflow-hidden"
-      >
+      {/* Section 5: Clubs */}
+      <div className="w-full bg-white py-10 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden">
         <div className="max-w-[1282px] mx-auto px-4 lg:px-6 w-full relative z-10">
           <ClubsSection />
         </div>
         <NoiseOverlay />
-      </motion.div>
+      </div>
 
       {/* Section 6: Footer */}
       <div className="w-full">
@@ -191,7 +140,7 @@ export function HomePage() {
       </div>
 
       {/* Add Shortcut dialog popup */}
-      <AddShortcutModal
+      <AddShortcutModal 
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
         currentMenus={menus}

@@ -5,6 +5,11 @@ export interface AcademicProfile {
 }
 
 export type SubjectCategory =
+  | 'categories.basic'
+  | 'categories.general'
+  | 'categories.free'
+  | 'categories.major'
+  | 'categories.minor'
   | 'credit_tracking.categories.basic'
   | 'credit_tracking.categories.general'
   | 'credit_tracking.categories.free'
