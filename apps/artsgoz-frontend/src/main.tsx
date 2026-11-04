@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Suspense fallback={null}>
-      <App />
+      {IS_MAINTENANCE_MODE ? <MaintenancePage /> : <App />}
     </Suspense>
   </StrictMode>,
 );
