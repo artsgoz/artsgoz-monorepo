@@ -36,7 +36,10 @@ export function ArticleDetailSection() {
         console.warn('Failed to parse mock article from URL', err);
       }
     }
-    return (id ? getArticleDetail(id) : undefined) || getArticleDetail('art-001');
+    if (id) {
+      return getArticleDetail(id);
+    }
+    return getArticleDetail('art-001');
   }, [id, searchParams]);
 
   const [isBookmarked, setIsBookmarked] = useState(() => {
@@ -104,7 +107,25 @@ export function ArticleDetailSection() {
   };
 
   if (!article) {
-    return null;
+    return (
+      <div
+        className="w-full bg-white min-h-[60vh] flex flex-col items-center justify-center p-8 text-center"
+        style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+      >
+        <h2 className="text-[28px] font-bold text-[#1A1C1C] m-0">ไม่พบบทความที่คุณค้นหา</h2>
+        <p className="text-[#6D6D6D] text-[16px] mt-2 mb-6">
+          บทความนี้อาจยังไม่ได้รับการเผยแพร่ หรือ URL อาจไม่ถูกต้อง
+        </p>
+        <button
+          type="button"
+          onClick={() => navigate('/articles')}
+          className="px-6 py-2.5 rounded-full bg-[#E992B4] text-white font-bold cursor-pointer hover:opacity-90 border-none transition-all shadow-xs"
+          style={{ fontSize: 16 }}
+        >
+          {t('detail.back_to_articles', { defaultValue: 'กลับไปหน้ารวมบทความ' })}
+        </button>
+      </div>
+    );
   }
 
   return (

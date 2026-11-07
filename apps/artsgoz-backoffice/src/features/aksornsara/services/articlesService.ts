@@ -12,6 +12,8 @@ export interface BackofficeArticle {
   illustrator?: string;
   excerpt: string;
   category: string;
+  categories?: string[];
+  metaDescription?: string;
   url?: string;
   readTime: string;
   coverImage?: string;
@@ -140,11 +142,16 @@ export class ArticlesService {
 
   private save(): void {
     try {
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(this.articles));
+      if (typeof window !== 'undefined') {
+        if (window.sessionStorage) {
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(this.articles));
+        }
+        if (window.localStorage) {
+          localStorage.setItem('aksornsara_backoffice_articles_shared', JSON.stringify(this.articles));
+        }
       }
     } catch (e) {
-      console.error('Failed to save articles to sessionStorage', e);
+      console.error('Failed to save articles to storage', e);
     }
   }
 
@@ -255,6 +262,15 @@ export class ArticlesService {
     return this.articles.find((a) => a.id === id || a.backendId === id || a.slug === id);
   }
 
+  public isSlugTaken(slug: string, excludeId?: string): boolean {
+    const normalized = slug.trim().toLowerCase();
+    if (!normalized) return false;
+    return this.articles.some((a) => {
+      if (excludeId && (a.id === excludeId || a.backendId === excludeId)) return false;
+      return a.slug?.trim().toLowerCase() === normalized;
+    });
+  }
+
   public create(data: Partial<BackofficeArticle>): BackofficeArticle {
     const nextNumber = this.articles.length + 1;
     const newId = `art-${String(nextNumber).padStart(3, '0')}`;
@@ -272,7 +288,9 @@ export class ArticlesService {
       proofreader: data.proofreader?.trim() || '',
       illustrator: data.illustrator?.trim() || '',
       excerpt: data.excerpt || (data.contentHtml ? data.contentHtml.replace(/<[^>]+>/g, '').slice(0, 150) + '...' : ''),
-      category: data.category || 'ทั่วไป',
+      category: data.category || (data.categories?.[0]) || 'ทั่วไป',
+      categories: data.categories && data.categories.length > 0 ? data.categories : [data.category || 'ทั่วไป'],
+      metaDescription: data.metaDescription || '',
       url: data.url || '',
       readTime: data.readTime || '5 นาที',
       coverImage: data.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
@@ -333,6 +351,13 @@ export class ArticlesService {
       ...updates,
       updatedAt: new Date().toISOString(),
     };
+    if (updates.categories && updates.categories.length > 0) {
+      this.articles[index].categories = updates.categories;
+      this.articles[index].category = updates.categories[0];
+    }
+    if (updates.metaDescription !== undefined) {
+      this.articles[index].metaDescription = updates.metaDescription;
+    }
     this.save();
     this.notify();
 

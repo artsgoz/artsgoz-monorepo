@@ -43,17 +43,64 @@ export const AKSORNSARA_YEARS = [
 ] as const;
 
 export const getMockArticlesFromSession = (): ArticleDetail[] => {
-  if (typeof window === 'undefined' || !window.sessionStorage) return [];
+  if (typeof window === 'undefined') return [];
+  const articles: ArticleDetail[] = [];
+  const seenIds = new Set<string>();
+
   try {
-    const raw = sessionStorage.getItem('aksornsara_mock_articles');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
+    if (window.sessionStorage) {
+      const raw = sessionStorage.getItem('aksornsara_mock_articles');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          for (const item of parsed) {
+            if (item && item.id && !seenIds.has(item.id)) {
+              articles.push(item);
+              seenIds.add(item.id);
+            }
+          }
+        }
+      }
     }
   } catch (e) {
     console.warn('Failed to parse mock articles from sessionStorage', e);
   }
-  return [];
+
+  // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008)
+  try {
+    if (window.localStorage) {
+      const sharedRaw = localStorage.getItem('aksornsara_backoffice_articles_shared');
+      if (sharedRaw) {
+        const parsed = JSON.parse(sharedRaw);
+        if (Array.isArray(parsed)) {
+          for (const item of parsed) {
+            if (item && item.id && !seenIds.has(item.id) && item.status === 'เผยแพร่แล้ว') {
+              articles.push({
+                id: item.id,
+                title: item.title,
+                year: item.year || '2026',
+                date: item.date || 'ปี 2026',
+                author: item.author || 'ชมรมสาราณียกร',
+                excerpt: item.excerpt || '',
+                category: item.category || 'ทั่วไป',
+                tags: item.tags || [item.category || 'ทั่วไป', 'สาราณียกร'],
+                url: item.url || '',
+                readTime: item.readTime || '5 นาที',
+                imageUrl: item.coverImage || item.imageUrl || ArticleBannerMock,
+                contentHtml: item.contentHtml || `<p>${item.excerpt}</p>`,
+                slug: item.slug,
+              } as any);
+              seenIds.add(item.id);
+            }
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to parse shared articles from localStorage', e);
+  }
+
+  return articles;
 };
 
 export const saveMockArticleToSession = (article: ArticleDetail): void => {
@@ -88,7 +135,7 @@ export const getArticlesSummaryList = (): ArticleSummary[] => {
     readTime: m.readTime || '5 นาที',
     imageUrl: m.imageUrl || m.coverImage || ArticleBannerMock,
     coverImage: m.coverImage || m.imageUrl || ArticleBannerMock,
-    href: `/articles/${m.id}`,
+    href: `/articles/${(m as any).slug || m.id}`,
   }));
 
   const baseSummaries: ArticleSummary[] = (
@@ -105,21 +152,36 @@ export const getArticlesSummaryList = (): ArticleSummary[] => {
 export const ARTICLES_SUMMARY: ArticleSummary[] = getArticlesSummaryList();
 export const MOCK_ARTICLES = ARTICLES_SUMMARY;
 
-export const getArticleDetail = (id: string): ArticleDetail | undefined => {
-  // 1. Check session mock articles first
+export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined => {
+  if (!idOrSlug) return undefined;
+  const normalized = idOrSlug.trim().toLowerCase();
+
+  // 1. Check session & shared articles (TAX-008: match by id or slug)
   const mocks = getMockArticlesFromSession();
-  const foundMock = mocks.find((m) => m.id === id);
+  const foundMock = mocks.find(
+    (m) =>
+      m.id.toLowerCase() === normalized ||
+      ((m as any).slug && String((m as any).slug).toLowerCase() === normalized)
+  );
   if (foundMock) {
     return {
       ...foundMock,
       imageUrl: foundMock.imageUrl || foundMock.coverImage || ArticleBannerMock,
-      href: `/articles/${foundMock.id}`,
+      href: `/articles/${(foundMock as any).slug || foundMock.id}`,
     };
   }
 
-  // 2. Check static JSON archive data
+  // 2. Check static JSON archive data (match by id or slug)
   const details = articlesDetailData as Record<string, ArticleDetail>;
-  const article = details[id];
+  let article = details[idOrSlug];
+  if (!article) {
+    article = Object.values(details).find(
+      (a) =>
+        a.id.toLowerCase() === normalized ||
+        ((a as any).slug && String((a as any).slug).toLowerCase() === normalized)
+    );
+  }
+
   if (!article) return undefined;
   return {
     ...article,

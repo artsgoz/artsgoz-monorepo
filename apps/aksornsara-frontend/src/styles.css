@@ -28,3 +28,34 @@ body, button, input, select, textarea {
 .font-inter {
   font-family: 'Inter', 'Noto Sans Thai', sans-serif;
 }
+
+/* TipTap rich text styles (ART-004, ART-007) */
+.tiptap-content ul {
+  list-style-type: disc !important;
+  padding-left: 1.75rem !important;
+  margin: 0.75rem 0 !important;
+}
+
+.tiptap-content ol {
+  list-style-type: decimal !important;
+  padding-left: 1.75rem !important;
+  margin: 0.75rem 0 !important;
+}
+
+.tiptap-content li {
+  margin-bottom: 0.25rem !important;
+  display: list-item !important;
+}
+
+.tiptap-content p {
+  min-height: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.tiptap-content blockquote {
+  border-left: 3px solid #DE5D8F;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #6D6D6D;
+  font-style: italic;
+}

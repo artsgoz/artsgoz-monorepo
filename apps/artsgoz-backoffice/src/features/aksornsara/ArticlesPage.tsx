@@ -110,6 +110,22 @@ export function ArticlesPage() {
     setDeleteTarget(null);
   };
 
+  const getArticleViewUrl = (item: BackofficeArticle) => {
+    const slugOrId = item.slug || item.id;
+    if (item.url && item.url.startsWith('http')) return item.url;
+    const envUrl = (import.meta as any).env?.VITE_FRONTEND_URL;
+    if (envUrl) {
+      return `${envUrl.replace(/\/$/, '')}/articles/${slugOrId}`;
+    }
+    if (typeof window !== 'undefined') {
+      if (window.location.hostname.includes('backoffice')) {
+        const feHost = window.location.hostname.replace('backoffice', 'aksornsara');
+        return `${window.location.protocol}//${feHost}/articles/${slugOrId}`;
+      }
+    }
+    return `http://localhost:4200/articles/${slugOrId}`;
+  };
+
   return (
     <AksornsaraLayout
       showBackButton={false}
@@ -441,12 +457,9 @@ export function ArticlesPage() {
                             <PenSquare size={16} />
                           </button>
 
-                          {/* View button */}
+                          {/* View button (TAX-008: dynamic frontend link) */}
                           <a
-                            href={
-                              item.url ||
-                              `http://localhost:4200/articles/${item.id}`
-                            }
+                            href={getArticleViewUrl(item)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-[6px] hover:bg-gray-100 text-gray-500 hover:text-black transition-colors"
