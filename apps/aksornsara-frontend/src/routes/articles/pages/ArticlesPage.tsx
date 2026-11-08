@@ -149,7 +149,7 @@ function SavedArticleCard({
 
         {/* author / date bar */}
         <div
-          className="h-[38px] md:h-[42px] px-[10px] py-[5px] rounded-[8px] flex items-center gap-[11px]"
+          className="h-[38px] md:h-[42px] px-[10px] py-[5px] rounded-[8px] flex items-center gap-[8px] sm:gap-[11px] max-w-full overflow-hidden"
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.26)',
             backdropFilter: 'blur(4px)',
@@ -445,7 +445,7 @@ export default function ArticlesPage() {
 
             {/* Right Column: Frame 6463 (Filter Card) */}
             <div
-              className="w-full sm:w-[432px] h-[175px] bg-white rounded-[16px] p-[16px_32px] flex flex-col justify-between shrink-0"
+              className="w-full sm:w-[432px] min-h-[175px] h-auto sm:h-[175px] bg-white rounded-[16px] p-4 sm:p-[16px_32px] flex flex-col justify-between shrink-0"
               style={{
                 boxShadow: '0px 25px 50px -12px rgba(0, 0, 0, 0.25)',
               }}

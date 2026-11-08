@@ -92,6 +92,31 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
   // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008, F-DTL-024)
   try {
     if (window.localStorage) {
+      // 1. Process URL sync param if passed from Backoffice "ดูหน้าบ้าน"
+      if (typeof window !== 'undefined' && window.location.search) {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const syncRaw = params.get('sync_article');
+          if (syncRaw) {
+            const decoded = JSON.parse(decodeURIComponent(escape(atob(syncRaw))));
+            if (decoded && decoded.id) {
+              const currentShared: any[] = JSON.parse(
+                localStorage.getItem('aksornsara_backoffice_articles_shared') || '[]'
+              );
+              const existingIdx = currentShared.findIndex((a) => a.id === decoded.id);
+              if (existingIdx >= 0) {
+                currentShared[existingIdx] = decoded;
+              } else {
+                currentShared.unshift(decoded);
+              }
+              localStorage.setItem('aksornsara_backoffice_articles_shared', JSON.stringify(currentShared));
+            }
+          }
+        } catch (syncErr) {
+          console.warn('Failed to parse sync_article param', syncErr);
+        }
+      }
+
       const sharedRaw = localStorage.getItem('aksornsara_backoffice_articles_shared');
       if (sharedRaw) {
         const parsed = JSON.parse(sharedRaw);

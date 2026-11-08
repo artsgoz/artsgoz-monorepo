@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  ExternalLink,
 } from 'lucide-react';
 import { AksornsaraLayout } from './AksornsaraLayout';
 import { articlesService } from './services/articlesService';
@@ -630,7 +631,7 @@ export function PublishedArticlesPage() {
                         {formatThaiShortDate(article.publishedAt || article.date)}
                       </td>
 
-                      {/* Views */}
+                      {/* Views & Live Link */}
                       <td
                         className="px-6 py-2 text-center"
                         style={{
@@ -641,7 +642,25 @@ export function PublishedArticlesPage() {
                           color: '#1A1C1C',
                         }}
                       >
-                        {(article.views ?? 0).toLocaleString()}
+                        <div className="flex items-center justify-center gap-2.5">
+                          <span>{(article.views ?? 0).toLocaleString()}</span>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              try {
+                                const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(article))));
+                                window.open(`http://localhost:4200/articles/${article.slug || article.id}?sync_article=${encodeURIComponent(encoded)}`, '_blank');
+                              } catch {
+                                window.open(`http://localhost:4200/articles/${article.slug || article.id}`, '_blank');
+                              }
+                            }}
+                            className="p-1 rounded hover:bg-pink-100 text-[#DE5D8F] transition-colors border-none bg-transparent cursor-pointer shrink-0"
+                            title="เปิดดูบทความในหน้าบ้าน (localhost:4200)"
+                          >
+                            <ExternalLink size={16} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))

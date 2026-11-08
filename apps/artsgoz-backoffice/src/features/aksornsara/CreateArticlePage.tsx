@@ -10,6 +10,8 @@ import {
   Bookmark,
   Share2,
   Calendar,
+  Clock,
+  ExternalLink,
 } from 'lucide-react';
 import { AksornsaraLayout } from './AksornsaraLayout';
 import { TiptapEditor } from './components/TiptapEditor';
@@ -457,11 +459,11 @@ export function CreateArticlePage() {
 
       {mode === 'preview' ? (
         /* ══════════════════════════════════════════════════════════════════════
-            MODE: PREVIEW
+            MODE: PREVIEW (Matches Frontend Article Detail Page 100%)
             ══════════════════════════════════════════════════════════════════════ */
-        <div className="w-full flex flex-col gap-6" style={{ maxWidth: 960 }}>
-          {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-[#DFDFE0] pb-4 flex-wrap gap-4">
+        <div className="w-full flex flex-col gap-6" style={{ maxWidth: 1080 }}>
+          {/* Header Action Bar */}
+          <div className="flex items-center justify-between border-b border-[#DFDFE0] pb-4 flex-wrap gap-4 bg-white p-4 rounded-[12px] shadow-xs">
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -472,9 +474,59 @@ export function CreateArticlePage() {
                 <ArrowLeft size={18} />
                 <span>กลับไปหน้าแก้ไข</span>
               </button>
+              <span className="text-gray-300">|</span>
+              <span className="text-gray-500 font-serif text-[14px]">
+                ตัวอย่างหน้าแสดงบทความบนหน้าบ้าน (Frontend Preview)
+              </span>
             </div>
 
             <div className="flex items-center gap-3">
+              {/* Open in real frontend button */}
+              <button
+                type="button"
+                onClick={() => {
+                  const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
+                  const previewArticle = {
+                    id: editId || `art-${Date.now()}`,
+                    title: title.trim() || 'บทความตัวอย่าง',
+                    author: author.trim() || 'ชมรมสาราณียกร',
+                    proofreader,
+                    illustrator,
+                    excerpt: content.replace(/<[^>]+>/g, '').slice(0, 180) + '...',
+                    category: selectedCats[0] || 'ทั่วไป',
+                    categories: selectedCats.length > 0 ? selectedCats : ['ทั่วไป'],
+                    coverImage: coverImage || undefined,
+                    imageUrl: coverImage || undefined,
+                    contentHtml: content || '<p>ยังไม่มีเนื้อหา</p>',
+                    status: 'เผยแพร่แล้ว',
+                    year: '2026',
+                    date: publishDate,
+                    readTime: Math.max(1, Math.ceil(content.replace(/<[^>]+>/g, '').length / 500)) + ' นาที',
+                    slug: slug || editId || `art-${Date.now()}`,
+                  };
+                  try {
+                    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(previewArticle))));
+                    window.open(`http://localhost:4200/articles/${previewArticle.slug || previewArticle.id}?sync_article=${encodeURIComponent(encoded)}`, '_blank');
+                  } catch {
+                    window.open(`http://localhost:4200/articles/${previewArticle.slug || previewArticle.id}`, '_blank');
+                  }
+                }}
+                className="flex items-center gap-1.5 cursor-pointer bg-white transition-colors hover:bg-pink-50 active:scale-95 font-serif"
+                style={{
+                  border: '1.5px solid #E992B4',
+                  color: '#DE5D8F',
+                  borderRadius: 9999,
+                  height: 38,
+                  padding: '0 18px',
+                  fontSize: 14,
+                  fontWeight: 700,
+                }}
+                title="เปิดดูในแท็บใหม่ที่ localhost:4200"
+              >
+                <ExternalLink size={15} />
+                <span>ดูหน้าบ้านจริง (4200)</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => setMode('edit')}
@@ -510,64 +562,176 @@ export function CreateArticlePage() {
             </div>
           </div>
 
-          {/* Preview Container */}
-          <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-sm border border-[#DFDFE0] flex flex-col gap-8 max-w-[840px] mx-auto w-full">
-            {/* Category badges (Multi-category support) */}
-            <div className="flex items-center gap-2 flex-wrap">
-              {categories.filter((c) => c.checked).length > 0 ? (
-                categories
-                  .filter((c) => c.checked)
-                  .map((c) => (
-                    <span
-                      key={c.id}
-                      className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
-                      style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
-                    >
-                      {c.name.replace(/^ปี\s*/, '')}
-                    </span>
-                  ))
-              ) : (
-                <span
-                  className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
-                  style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
-                >
-                  ทั่วไป
+          {/* ── Main Public Article View Simulation (Matching ArticleDetailSection 100%) ── */}
+          <div className="bg-white rounded-[24px] p-6 sm:p-10 md:p-14 shadow-sm border border-gray-100 flex flex-col gap-10 max-w-[1080px] mx-auto w-full">
+            
+            {/* Top Hero Poster (Matching Frontend square poster) */}
+            <div className="w-full flex justify-center">
+              <div className="w-full max-w-[360px] sm:max-w-[440px] md:max-w-[500px] aspect-square rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50 flex items-center justify-center">
+                {coverImage ? (
+                  <img
+                    src={coverImage}
+                    alt={title || 'ภาพหน้าปก'}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center gap-3 p-6 text-center text-gray-400 font-serif">
+                    <UploadCloud size={48} className="text-[#DE5D8F]/60" />
+                    <span className="text-[16px]">ยังไม่ได้อัปโหลดภาพหน้าปก</span>
+                    <span className="text-[13px] text-gray-400">รูปภาพหน้าปกจะแสดงเป็นสี่เหลี่ยมจัตุรัสตรงนี้</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Article Header & Meta */}
+            <div className="flex flex-col gap-3 w-full border-b border-gray-100 pb-6">
+              {/* Title Row with Share + Bookmark Action Buttons */}
+              <div className="flex items-start justify-between gap-4 w-full">
+                <h1 className="font-serif text-[26px] sm:text-[32px] md:text-[38px] font-bold leading-tight text-[#2B2B2B] flex-1 break-words m-0">
+                  {title.trim() || 'ชื่อบทความของคุณจะปรากฏที่นี่'}
+                </h1>
+
+                <div className="flex items-center gap-2 shrink-0 pt-1">
+                  {/* Share Button */}
+                  <button
+                    type="button"
+                    onClick={() => showToast('จำลองการคัดลอกลิงก์แชร์')}
+                    className="h-9 sm:h-10 px-3.5 rounded-[8px] bg-white border border-[#DFDFE0] text-[#DE5D8F] hover:bg-[#FCEFF4] hover:border-[#DE5D8F] flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs font-serif font-bold text-[14px]"
+                  >
+                    <Share2 size={18} />
+                    <span className="hidden sm:inline">แชร์</span>
+                  </button>
+
+                  {/* Bookmark Button */}
+                  <button
+                    type="button"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] bg-[#F8C135] text-white flex items-center justify-center shrink-0 cursor-pointer border-none shadow-xs"
+                    title="บันทึกบทความ"
+                  >
+                    <Bookmark size={20} fill="#fff" stroke="#fff" strokeWidth={2} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Badges: Category & Read Time */}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                {categories.filter((c) => c.checked).length > 0 ? (
+                  categories
+                    .filter((c) => c.checked)
+                    .map((c) => (
+                      <span
+                        key={c.id}
+                        className="font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] rounded-[11px] px-3.5 py-1.5 w-fit"
+                        style={{
+                          backgroundColor: 'rgba(252, 239, 244, 0.85)',
+                          fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                        }}
+                      >
+                        {c.name.replace(/^ปี\s*/, '')}
+                      </span>
+                    ))
+                ) : (
+                  <span
+                    className="font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] rounded-[11px] px-3.5 py-1.5 w-fit"
+                    style={{
+                      backgroundColor: 'rgba(252, 239, 244, 0.85)',
+                      fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                    }}
+                  >
+                    ทั่วไป
+                  </span>
+                )}
+
+                <span className="flex items-center gap-1.5 font-serif text-[13px] font-bold text-gray-500 bg-gray-100 rounded-[11px] px-3 py-1.5">
+                  <Clock size={14} className="text-gray-400" />
+                  ใช้เวลาอ่านประมาณ {Math.max(1, Math.ceil(content.replace(/<[^>]+>/g, '').length / 500))} นาที
                 </span>
-              )}
-            </div>
+              </div>
 
-            {/* Title */}
-            <h1 className="font-serif font-bold text-[28px] sm:text-[36px] md:text-[42px] leading-tight text-[#1A1C1C] m-0">
-              {title}
-            </h1>
-
-            {/* Author / Date info */}
-            <div className="flex items-center justify-between border-y border-[#DFDFE0] py-4 text-[#6D6D6D] font-serif text-[14px]">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-bold text-black">{author}</span>
-                {proofreader && <span>• พิสูจน์อักษร: {proofreader}</span>}
-                {illustrator && <span>• ภาพ: {illustrator}</span>}
+              {/* Author and Published Info */}
+              <div className="text-[14px] sm:text-[15px] font-serif font-bold text-[#6D6D6D] flex flex-wrap items-center gap-2 pt-1">
+                <span>เขียนโดย: {author.trim() || 'ชมรมสาราณียกร'}</span>
+                {proofreader.trim() && (
+                  <>
+                    <span>•</span>
+                    <span>พิสูจน์อักษร: {proofreader}</span>
+                  </>
+                )}
+                {illustrator.trim() && (
+                  <>
+                    <span>•</span>
+                    <span>ภาพประกอบ: {illustrator}</span>
+                  </>
+                )}
                 <span>|</span>
-                <span>{publishDate}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Bookmark size={18} className="cursor-pointer text-[#F8C135]" />
-                <Share2 size={18} className="cursor-pointer text-gray-400 hover:text-black" />
+                <span className="text-[#99999A]">สาราณียกร ฉบับปี 2569</span>
               </div>
             </div>
 
-            {/* Cover Image */}
-            {coverImage && (
-              <div className="w-full aspect-[16/9] rounded-[16px] overflow-hidden bg-gray-100 shadow-xs">
-                <img src={coverImage} alt={title} className="w-full h-full object-cover" />
+            {/* Article Body Text */}
+            <article className="flex flex-col gap-6 w-full text-[16px] md:text-[18px] leading-[32px] text-[#2B2B2B] font-serif">
+              {content && content.replace(/<[^>]+>/g, '').trim() ? (
+                <div
+                  className="tiptap-content flex flex-col gap-4 font-serif"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              ) : (
+                <p className="text-gray-400 italic">
+                  ยังไม่ได้ใส่เนื้อหาบทความ คลิก &ldquo;แก้ไขต่อ&rdquo; เพื่อเขียนเนื้อหา
+                </p>
+              )}
+            </article>
+
+            {/* Tags preview */}
+            {tags.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap pt-4 border-t border-gray-100">
+                <span className="text-[14px] font-bold text-gray-400 font-serif">แท็ก:</span>
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-[13px] font-serif"
+                  >
+                    #{tag}
+                  </span>
+                ))}
               </div>
             )}
 
-            {/* TipTap Rich HTML Content */}
-            <div
-              className="tiptap-content font-serif text-[18px] leading-[32px] text-[#2B2B2B] flex flex-col gap-4"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
+            {/* "อ่านต่อ" (Read More) Preview Section */}
+            <div className="flex flex-col gap-6 w-full pt-8 border-t border-gray-200">
+              <h2 className="font-serif font-bold text-[22px] sm:text-[26px] md:text-[28px] text-black m-0">
+                อ่านต่อบทความอื่น ๆ
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
+                {['วรรณกรรม', 'ปรัชญา', 'ศิลปะ', 'วัฒนธรรม'].map((sampleCat, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#F7F8F9] rounded-[16px] p-3.5 flex flex-col gap-3 shadow-xs border border-gray-100"
+                  >
+                    <div className="w-full aspect-[16/10] rounded-[12px] bg-pink-100/40 flex items-center justify-center text-[#DE5D8F] font-serif font-bold text-[14px]">
+                      ตัวอย่างบทความอื่น
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="font-normal text-[11px] text-[#DE5D8F] rounded-[11px] px-2.5 py-1"
+                        style={{
+                          backgroundColor: 'rgba(252, 239, 244, 0.85)',
+                          fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                        }}
+                      >
+                        {sampleCat}
+                      </span>
+                      <Bookmark size={14} className="text-[#F8C135]" />
+                    </div>
+                    <h4 className="font-serif text-[15px] font-bold text-black m-0 line-clamp-1">
+                      ตัวอย่างบทความแนะนำ #{i + 1}
+                    </h4>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       ) : (

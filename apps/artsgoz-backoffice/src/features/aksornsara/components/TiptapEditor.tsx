@@ -59,10 +59,10 @@ export function TiptapEditor({ content, onChange }: TiptapEditorProps) {
     },
   });
 
-  // Sync external content update (e.g. when loading article to edit)
+  // Sync external content update (only when not actively typing/focused)
   useEffect(() => {
-    if (editor && content && editor.getHTML() !== content) {
-      editor.commands.setContent(content);
+    if (editor && !editor.isFocused && content !== editor.getHTML()) {
+      editor.commands.setContent(content || '');
     }
   }, [content, editor]);
 

@@ -47,7 +47,7 @@ export function Navbar() {
         </div>
 
         {/* Right actions: search + lang + login */}
-        <div className="hidden sm:flex items-center gap-3 lg:gap-4 xl:gap-6 shrink-0 lg:ml-auto">
+        <div className="hidden sm:flex items-center gap-3 lg:gap-4 xl:gap-6 shrink-0 sm:ml-auto">
           <NavActions
             isLoggedIn={isLoggedIn}
             onLogin={handleLogin}
@@ -56,7 +56,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile hamburger */}
-        <div className="lg:hidden ml-auto">
+        <div className="lg:hidden shrink-0 ml-auto sm:ml-0">
           <MobileMenuToggle
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
