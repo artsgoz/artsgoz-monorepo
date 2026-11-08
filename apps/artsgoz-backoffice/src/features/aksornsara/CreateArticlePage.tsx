@@ -45,6 +45,13 @@ export function CreateArticlePage() {
   const [author, setAuthor] = useState(() => initialArticle?.author || '');
   const [proofreader, setProofreader] = useState(() => initialArticle?.proofreader || '');
   const [illustrator, setIllustrator] = useState(() => initialArticle?.illustrator || '');
+  const [year, setYear] = useState(() => initialArticle?.year || '2569');
+
+  // References (รายการอ้างอิง)
+  const [references, setReferences] = useState<string[]>(
+    () => initialArticle?.references || []
+  );
+  const [referenceInput, setReferenceInput] = useState('');
 
   // Cover Image
   const [coverImage, setCoverImage] = useState<string | null>(
@@ -250,6 +257,16 @@ export function CreateArticlePage() {
     setTags((prev) => prev.filter((t) => t !== tagToRemove));
   };
 
+  const handleAddReference = () => {
+    if (!referenceInput.trim()) return;
+    setReferences((prev) => [...prev, referenceInput.trim()]);
+    setReferenceInput('');
+  };
+
+  const handleRemoveReference = (index: number) => {
+    setReferences((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const validateForPublish = (): boolean => {
     if (!title.trim()) {
       showToast('กรุณากรอกชื่อบทความก่อนเผยแพร่');
@@ -293,6 +310,8 @@ export function CreateArticlePage() {
         author: finalAuthor,
         proofreader,
         illustrator,
+        year,
+        references,
         category,
         categories: selectedCats.length > 0 ? selectedCats : [category],
         metaDescription: metaDesc,
@@ -311,6 +330,8 @@ export function CreateArticlePage() {
         author: finalAuthor,
         proofreader,
         illustrator,
+        year,
+        references,
         category,
         categories: selectedCats.length > 0 ? selectedCats : [category],
         metaDescription: metaDesc,
@@ -347,6 +368,8 @@ export function CreateArticlePage() {
         author: finalAuthor,
         proofreader,
         illustrator,
+        year,
+        references,
         category,
         categories: selectedCats.length > 0 ? selectedCats : [category],
         metaDescription: metaDesc,
@@ -365,6 +388,8 @@ export function CreateArticlePage() {
         author: finalAuthor,
         proofreader,
         illustrator,
+        year,
+        references,
         category,
         categories: selectedCats.length > 0 ? selectedCats : [category],
         metaDescription: metaDesc,
@@ -499,7 +524,8 @@ export function CreateArticlePage() {
                     imageUrl: coverImage || undefined,
                     contentHtml: content || '<p>ยังไม่มีเนื้อหา</p>',
                     status: 'เผยแพร่แล้ว',
-                    year: '2026',
+                    year: year || '2569',
+                    references: references.length > 0 ? references : undefined,
                     date: publishDate,
                     readTime: Math.max(1, Math.ceil(content.replace(/<[^>]+>/g, '').length / 500)) + ' นาที',
                     slug: slug || editId || `art-${Date.now()}`,
@@ -665,7 +691,7 @@ export function CreateArticlePage() {
                   </>
                 )}
                 <span>|</span>
-                <span className="text-[#99999A]">สาราณียกร ฉบับปี 2569</span>
+                <span className="text-[#99999A]">สาราณียกร ฉบับปี {year || '2569'}</span>
               </div>
             </div>
 
@@ -682,6 +708,22 @@ export function CreateArticlePage() {
                 </p>
               )}
             </article>
+
+            {/* References preview ("รายการอ้างอิง" - Matches Frontend) */}
+            {references.length > 0 && (
+              <div className="flex flex-col gap-4 w-full pt-6 border-t border-gray-200">
+                <h2 className="font-serif font-bold text-[22px] sm:text-[26px] md:text-[28px] text-black m-0">
+                  รายการอ้างอิง
+                </h2>
+                <div className="flex flex-col gap-2.5 font-serif text-[14px] sm:text-[15px] leading-[26px] text-[#4A4A4A] pl-4 border-l-2 border-[#DE5D8F]/30">
+                  {references.map((ref, idx) => (
+                    <p key={idx} className="break-words m-0">
+                      {ref}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Tags preview */}
             {tags.length > 0 && (
@@ -907,6 +949,70 @@ export function CreateArticlePage() {
                   </div>
                 )}
               </div>
+
+              {/* References (รายการอ้างอิง) Card */}
+              <div className="bg-white rounded-[16px] border border-[#DFDFE0] p-6 flex flex-col gap-4 shadow-xs">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-[#1A1C1C] m-0 text-[18px] font-serif">
+                    รายการอ้างอิง (References)
+                  </h3>
+                  <span className="text-[13px] text-gray-400 font-serif">
+                    {references.length} รายการ
+                  </span>
+                </div>
+                <p className="text-[13px] text-[#6D6D6D] m-0 font-serif">
+                  ระบุแหล่งที่มา หนังสือ บทความ หรือเว็บไซต์อ้างอิง (จะแสดงท้ายบทความเหมือนต้นฉบับ Aksornsara)
+                </p>
+
+                {references.length > 0 && (
+                  <div className="flex flex-col gap-2">
+                    {references.map((ref, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2 p-3 rounded-[8px] bg-[#FAFAFA] border border-[#DFDFE0]"
+                      >
+                        <span className="text-[14px] font-bold text-[#DE5D8F] pt-0.5 shrink-0">
+                          {idx + 1}.
+                        </span>
+                        <span className="flex-1 text-[14px] font-serif text-[#1A1C1C] break-words">
+                          {ref}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveReference(idx)}
+                          className="p-1 text-gray-400 hover:text-red-500 border-none bg-transparent cursor-pointer transition-colors shrink-0"
+                          title="ลบรายการนี้"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={referenceInput}
+                    onChange={(e) => setReferenceInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAddReference();
+                      }
+                    }}
+                    placeholder="พิมพ์รายการอ้างอิง เช่น ชื่องานเขียน, สำนักพิมพ์, ลิงก์..."
+                    className="flex-1 px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[14px] font-serif outline-none focus:border-[#DE5D8F]"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddReference}
+                    className="px-4 py-2 rounded-[8px] bg-[#E992B4] text-white border-none font-bold text-[14px] cursor-pointer font-serif transition-opacity hover:opacity-90 active:scale-95 shrink-0"
+                  >
+                    + เพิ่ม
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* ── RIGHT COLUMN (Sidebar Settings) ── */}
@@ -949,6 +1055,19 @@ export function CreateArticlePage() {
                     type="text"
                     value={illustrator}
                     onChange={(e) => setIllustrator(e.target.value)}
+                    className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F]"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[14px] text-[#6D6D6D] font-bold font-serif">
+                    ฉบับปีสาราณียกร (เช่น 2569 หรือ 2026)
+                  </label>
+                  <input
+                    type="text"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    placeholder="2569"
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F]"
                   />
                 </div>

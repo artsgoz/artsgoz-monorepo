@@ -18,6 +18,8 @@ export interface BackofficeArticle {
   readTime: string;
   coverImage?: string;
   imageUrl?: string;
+  bodyImages?: string[];
+  references?: string[];
   status: 'เผยแพร่แล้ว' | 'ร่างบทความ' | 'รออนุมัติ';
   views: number;
   contentHtml?: string;
@@ -303,6 +305,8 @@ export class ArticlesService {
       visibility: data.visibility || 'สาธารณะ',
       publishedAt,
       updatedAt: now.toISOString(),
+      references: data.references || [],
+      bodyImages: data.bodyImages || [],
       isNewlyCreated: true,
     };
 
