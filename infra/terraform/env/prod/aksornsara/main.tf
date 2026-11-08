@@ -12,7 +12,6 @@ locals {
     "cloudresourcemanager.googleapis.com",
     "developerconnect.googleapis.com",
     "firebase.googleapis.com",
-    "firebaseapphosting.googleapis.com",
     "firebasehosting.googleapis.com",
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
@@ -28,20 +27,6 @@ module "project_services" {
 
   project_id = local.project_id
   services   = local.required_services
-}
-
-resource "google_project_service_identity" "firebase_app_hosting" {
-  provider = google-beta
-  project  = local.project_id
-  service  = "firebaseapphosting.googleapis.com"
-
-  depends_on = [module.project_services]
-}
-
-resource "google_project_iam_member" "firebase_app_hosting_service_agent" {
-  project = local.project_id
-  role    = "roles/firebaseapphosting.serviceAgent"
-  member  = "serviceAccount:${google_project_service_identity.firebase_app_hosting.email}"
 }
 
 resource "google_firebase_project" "default" {
@@ -81,55 +66,12 @@ moved {
   to   = google_firebase_hosting_custom_domain.environment["aksornsara-frontend"]
 }
 
-resource "google_firebase_web_app" "api" {
-  provider     = google-beta
-  project      = local.project_id
-  display_name = "Aksornsara API"
-
-  depends_on = [google_firebase_project.default]
-}
-
 module "iam" {
   source = "../../../modules/iam"
 
-  project_id                     = local.project_id
-  api_runtime_service_account_id = "firebase-app-hosting-compute"
-  api_runtime_project_roles = [
-    "roles/developerconnect.readTokenAccessor",
-    "roles/firebase.sdkAdminServiceAgent",
-    "roles/firebaseapphosting.computeRunner",
-    "roles/secretmanager.secretAccessor",
-    "roles/storage.objectViewer",
-  ]
-  depends_on = [module.project_services]
-}
-
-resource "google_firebase_app_hosting_backend" "api" {
-  provider = google-beta
-
-  project          = local.project_id
-  location         = var.app_hosting_location
-  backend_id       = "aksornsara-api"
-  app_id           = google_firebase_web_app.api.app_id
-  serving_locality = "GLOBAL_ACCESS"
-  service_account  = module.iam.api_runtime_service_account_email
-  environment      = local.environment
-
-  depends_on = [
-    google_firebase_project.default,
-    google_project_iam_member.firebase_app_hosting_service_agent,
-    module.iam,
-  ]
-}
-
-resource "google_firebase_app_hosting_domain" "api" {
-  count    = var.api_custom_domain == null ? 0 : 1
-  provider = google-beta
-
-  project   = local.project_id
-  location  = google_firebase_app_hosting_backend.api.location
-  backend   = google_firebase_app_hosting_backend.api.backend_id
-  domain_id = var.api_custom_domain
+  project_id                         = local.project_id
+  create_api_runtime_service_account = false
+  depends_on                         = [module.project_services]
 }
 
 module "storage" {
@@ -173,17 +115,6 @@ output "firebase_hosting_custom_domains" {
       required_dns_updates = domain.required_dns_updates
     }
   }
-}
-
-output "firebase_app_hosting_backend" {
-  value = google_firebase_app_hosting_backend.api.backend_id
-}
-
-output "firebase_app_hosting_domain" {
-  value = try({
-    domain = google_firebase_app_hosting_domain.api[0].domain_id
-    status = google_firebase_app_hosting_domain.api[0].custom_domain_status
-  }, null)
 }
 
 output "storage_bucket_names" {

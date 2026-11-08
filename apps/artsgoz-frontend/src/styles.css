@@ -3,6 +3,7 @@
 @import '../../../libs/design-system/src/lib/design-system.css';
 
 /* nx-tailwind-sources:start */
+@source "../../../libs/base-components";
 @source "../../../libs/design-system";
 @source "../../../libs/yellow-card-shared";
 /* nx-tailwind-sources:end */

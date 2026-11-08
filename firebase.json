@@ -18,18 +18,5 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }
-  ],
-  "apphosting": [
-    {
-      "backendId": "aksornsara-api",
-      "rootDir": "apps/aksornsara-api",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "functions"
-      ]
-    }
   ]
 }

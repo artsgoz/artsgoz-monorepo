@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Chip, SearchInput, Button, AccordionItem } from '@artsgoz/design-system';
+import { contactApi } from '../../../api/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 
 import { LinktreeMiniScreen } from '../components/LinktreeMiniScreen';
@@ -48,21 +49,40 @@ export default function HelpPage() {
   const [email, setEmail]               = useState('');
   const [question, setQuestion]         = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting]   = useState(false);
+  const [errorMsg, setErrorMsg]           = useState<string | null>(null);
 
   const toggleAccordion = (id: string) =>
     setExpandedId(prev => (prev === id ? null : id));
 
-  const handleModalSubmit = (e: React.FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !question) return;
-    setSubmitSuccess(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setName('');
-      setEmail('');
-      setQuestion('');
-      setSubmitSuccess(false);
-    }, 2000);
+
+    setIsSubmitting(true);
+    setErrorMsg(null);
+
+    try {
+      await contactApi.submitContact({
+        name,
+        email,
+        category: 'General',
+        message: question,
+      });
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setName('');
+        setEmail('');
+        setQuestion('');
+        setSubmitSuccess(false);
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to submit question:', err);
+      setErrorMsg('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Filter by category and search — compare against translated text
@@ -255,12 +275,18 @@ export default function HelpPage() {
                       className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#DE5D8F]/30 focus:border-[#DE5D8F] transition-all text-[15px] resize-none font-[ChulaCharasNew]"
                     />
                   </div>
+                  {errorMsg && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm font-[ChulaCharasNew]">
+                      {errorMsg}
+                    </div>
+                  )}
                   <Button
                     type="submit"
                     variant="primary"
-                    className="w-full mt-2 font-serif shadow-md"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 font-serif shadow-md disabled:opacity-50"
                   >
-                    {t('modal.submit_btn')}
+                    {isSubmitting ? 'กำลังส่งข้อมูล...' : t('modal.submit_btn')}
                   </Button>
                 </form>
               )}
