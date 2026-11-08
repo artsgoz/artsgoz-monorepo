@@ -310,6 +310,9 @@ importers:
       '@artsgoz/yellow-card-shared':
         specifier: workspace:*
         version: link:../../libs/yellow-card-shared
+      firebase:
+        specifier: ^13.1.0
+        version: 13.1.0
 
   libs/base-components: {}
 
