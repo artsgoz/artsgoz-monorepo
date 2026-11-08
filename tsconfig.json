@@ -4,19 +4,16 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/backoffice"
+      "path": "./apps/artsgoz-frontend"
     },
     {
-      "path": "./apps/frontend"
+      "path": "./apps/aksornsara-frontend"
     },
     {
-      "path": "./apps/kb"
+      "path": "./libs/base-components"
     },
     {
-      "path": "./apps/kb-api-e2e"
-    },
-    {
-      "path": "./apps/kb-api"
+      "path": "./apps/artsgoz-backoffice"
     }
   ]
 }

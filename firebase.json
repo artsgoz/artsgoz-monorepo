@@ -1,38 +1,20 @@
 {
   "hosting": [
     {
-      "target": "frontend",
-      "public": "apps/frontend/dist",
+      "target": "artsgoz-frontend",
+      "public": "apps/artsgoz-frontend/dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
-      "target": "backoffice",
-      "public": "apps/backoffice/dist",
+      "target": "artsgoz-backoffice",
+      "public": "apps/artsgoz-backoffice/dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
-      "target": "frontend-staging",
-      "public": "apps/frontend/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [{ "source": "**", "destination": "/index.html" }]
-    },
-    {
-      "target": "backoffice-staging",
-      "public": "apps/backoffice/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [{ "source": "**", "destination": "/index.html" }]
-    },
-    {
-      "target": "kb",
-      "public": "apps/kb/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [{ "source": "**", "destination": "/index.html" }]
-    },
-    {
-      "target": "kb-staging",
-      "public": "apps/kb/dist",
+      "target": "aksornsara-frontend",
+      "public": "apps/aksornsara-frontend/dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }

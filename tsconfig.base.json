@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@base-components": ["libs/base-components"]
+    },
+    "ignoreDeprecations": "6.0",
     "composite": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
@@ -16,6 +21,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@org/source"]
+    "customConditions": ["@artsgoz/source"]
   }
 }

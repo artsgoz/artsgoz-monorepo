@@ -1,0 +1,10 @@
+{
+  "name": "@artsgoz/artsgoz-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@artsgoz/design-system": "workspace:*",
+    "@artsgoz/yellow-card-shared": "workspace:*",
+    "firebase": "^13.1.0"
+  }
+}
