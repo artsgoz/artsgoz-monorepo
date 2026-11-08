@@ -459,6 +459,11 @@ export default function ArticlesPage() {
                   type="text"
                   value={savedSearchQuery}
                   onChange={(e) => setSavedSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      (e.target as HTMLInputElement).blur();
+                    }
+                  }}
                   placeholder="ค้นหาสิ่งที่บันทึกไว้"
                   className="w-full bg-transparent border-none outline-none text-[18px] md:text-[20px] text-black placeholder-[#99999A]"
                   style={{ fontFamily: "'ChulaCharasNew', serif" }}
@@ -860,6 +865,11 @@ export default function ArticlesPage() {
                 placeholder={t('search_placeholder', { defaultValue: 'ค้นหาบทความ, ชื่อผู้เขียน, หรือเนื้อหา...' })}
                 value={searchQuery}
                 onChange={handleSearchChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    (e.target as HTMLInputElement).blur();
+                  }
+                }}
               />
             </div>
             <div className="relative shrink-0" ref={filterDropdownRef}>

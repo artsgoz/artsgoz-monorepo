@@ -83,7 +83,7 @@ export function ArticleCard({
           w-full flex flex-col p-3.5 gap-3
         "
       >
-        <div className="w-full h-[180px] sm:h-[200px] rounded-[12px] overflow-hidden bg-gray-100">
+        <div className="w-full aspect-[16/10] rounded-[12px] overflow-hidden bg-gray-100 shrink-0">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
@@ -92,7 +92,7 @@ export function ArticleCard({
             onError={(e) => {
               e.currentTarget.src = mockImage;
             }}
-            className="w-full h-full object-cover pointer-events-none"
+            className="w-full h-full object-cover object-center pointer-events-none"
           />
         </div>
 
@@ -141,8 +141,8 @@ export function ArticleCard({
     >
       {/* === MOBILE & TABLET LAYOUT (< xl) === */}
       <div className="flex flex-col p-4 w-full xl:hidden gap-3">
-        {/* Cover Image */}
-        <div className="w-full h-[220px] rounded-[12px] overflow-hidden bg-gray-100">
+        {/* Cover Image - responsive aspect ratio (F-LST-007) */}
+        <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-[12px] overflow-hidden bg-gray-100 shrink-0">
           <img
             src={imageUrl || mockImage}
             alt={translatedTitle}
@@ -151,7 +151,7 @@ export function ArticleCard({
             onError={(e) => {
               e.currentTarget.src = mockImage;
             }}
-            className="w-full h-full object-cover pointer-events-none"
+            className="w-full h-full object-cover object-center pointer-events-none"
           />
         </div>
 
@@ -203,12 +203,12 @@ export function ArticleCard({
             onError={(e) => {
               e.currentTarget.src = mockImage;
             }}
-            className="w-full h-full object-cover pointer-events-none"
+            className="w-full h-full object-cover object-center pointer-events-none"
           />
         </div>
 
         {/* Frame 6160: Category banner + Bookmark button (right: 22px, top: 22px, height: 40px, gap: 8px) */}
-        <div className="absolute right-[22px] top-[22px] h-[40px] flex items-center gap-[8px]">
+        <div className="absolute right-[22px] top-[22px] h-[40px] flex items-center gap-[8px] z-10">
           {/* System banner */}
           <span className="h-[40px] px-5 bg-[#FCEFF4] text-[#DE5D8F] rounded-[11px] font-sans font-normal text-[14px] flex items-center justify-center whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
             {translatedCategory}
@@ -230,7 +230,7 @@ export function ArticleCard({
         </div>
 
         {/* text container (left: 304px, top: 107px, width: 194px, gap: 17px) */}
-        <div className="absolute left-[304px] top-[107px] w-[194px] flex flex-col gap-[17px]">
+        <div className="absolute left-[304px] top-[107px] w-[194px] flex flex-col gap-[17px] z-10">
           {/* Title */}
           <h3 className="font-serif text-[20px] font-bold leading-[28px] text-black line-clamp-3 break-words m-0">
             {translatedTitle}

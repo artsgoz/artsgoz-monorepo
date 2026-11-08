@@ -42,6 +42,29 @@ export const AKSORNSARA_YEARS = [
   '2021',
 ] as const;
 
+/**
+ * Checks if an article is legitimately published for public viewing (F-DTL-024)
+ * Returns false if the article is a draft or scheduled in the future.
+ */
+export const isPubliclyPublished = (article: {
+  status?: string;
+  publishedAt?: string;
+  scheduledAt?: string;
+  date?: string;
+}): boolean => {
+  if (article.status && article.status !== 'เผยแพร่แล้ว') {
+    return false;
+  }
+  const dateStr = article.publishedAt || article.scheduledAt;
+  if (dateStr) {
+    const timestamp = new Date(dateStr).getTime();
+    if (!isNaN(timestamp) && timestamp > Date.now()) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export const getMockArticlesFromSession = (): ArticleDetail[] => {
   if (typeof window === 'undefined') return [];
   const articles: ArticleDetail[] = [];
@@ -54,7 +77,7 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (item && item.id && !seenIds.has(item.id)) {
+            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
               articles.push(item);
               seenIds.add(item.id);
             }
@@ -66,7 +89,7 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
     console.warn('Failed to parse mock articles from sessionStorage', e);
   }
 
-  // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008)
+  // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008, F-DTL-024)
   try {
     if (window.localStorage) {
       const sharedRaw = localStorage.getItem('aksornsara_backoffice_articles_shared');
@@ -74,21 +97,26 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
         const parsed = JSON.parse(sharedRaw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (item && item.id && !seenIds.has(item.id) && item.status === 'เผยแพร่แล้ว') {
+            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
               articles.push({
                 id: item.id,
                 title: item.title,
                 year: item.year || '2026',
                 date: item.date || 'ปี 2026',
                 author: item.author || 'ชมรมสาราณียกร',
+                proofreader: item.proofreader,
+                illustrator: item.illustrator,
                 excerpt: item.excerpt || '',
+                metaDescription: item.metaDescription || item.excerpt || '',
                 category: item.category || 'ทั่วไป',
                 tags: item.tags || [item.category || 'ทั่วไป', 'สาราณียกร'],
                 url: item.url || '',
                 readTime: item.readTime || '5 นาที',
                 imageUrl: item.coverImage || item.imageUrl || ArticleBannerMock,
                 contentHtml: item.contentHtml || `<p>${item.excerpt}</p>`,
+                references: item.references || [],
                 slug: item.slug,
+                publishedAt: item.publishedAt,
               } as any);
               seenIds.add(item.id);
             }
@@ -122,21 +150,23 @@ export const saveMockArticleToSession = (article: ArticleDetail): void => {
 };
 
 export const getArticlesSummaryList = (): ArticleSummary[] => {
-  const mocks = getMockArticlesFromSession().map((m) => ({
-    id: m.id,
-    title: m.title,
-    year: m.year || '2026',
-    date: m.date || 'ปี 2026',
-    author: m.author || 'ชมรมสาราณียกร',
-    excerpt: m.excerpt,
-    category: m.category || 'ทั่วไป',
-    tags: m.tags || ['ทั่วไป', 'สาราณียกร'],
-    url: m.url || '',
-    readTime: m.readTime || '5 นาที',
-    imageUrl: m.imageUrl || m.coverImage || ArticleBannerMock,
-    coverImage: m.coverImage || m.imageUrl || ArticleBannerMock,
-    href: `/articles/${(m as any).slug || m.id}`,
-  }));
+  const mocks = getMockArticlesFromSession()
+    .filter(isPubliclyPublished)
+    .map((m) => ({
+      id: m.id,
+      title: m.title,
+      year: m.year || '2026',
+      date: m.date || 'ปี 2026',
+      author: m.author || 'ชมรมสาราณียกร',
+      excerpt: m.excerpt,
+      category: m.category || 'ทั่วไป',
+      tags: m.tags || ['ทั่วไป', 'สาราณียกร'],
+      url: m.url || '',
+      readTime: m.readTime || '5 นาที',
+      imageUrl: m.imageUrl || m.coverImage || ArticleBannerMock,
+      coverImage: m.coverImage || m.imageUrl || ArticleBannerMock,
+      href: `/articles/${(m as any).slug || m.id}`,
+    }));
 
   const baseSummaries: ArticleSummary[] = (
     articlesSummaryData as ArticleSummary[]
@@ -164,6 +194,9 @@ export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined =>
       ((m as any).slug && String((m as any).slug).toLowerCase() === normalized)
   );
   if (foundMock) {
+    if (!isPubliclyPublished(foundMock)) {
+      return undefined; // Future scheduled article - hidden from public (F-DTL-024)
+    }
     return {
       ...foundMock,
       imageUrl: foundMock.imageUrl || foundMock.coverImage || ArticleBannerMock,
@@ -182,7 +215,7 @@ export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined =>
     );
   }
 
-  if (!article) return undefined;
+  if (!article || !isPubliclyPublished(article)) return undefined;
   return {
     ...article,
     imageUrl: article.imageUrl || ArticleBannerMock,

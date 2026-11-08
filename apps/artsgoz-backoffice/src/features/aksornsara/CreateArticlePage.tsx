@@ -52,6 +52,24 @@ export function CreateArticlePage() {
 
   // Sidebar Settings
   const [visibility, setVisibility] = useState(() => initialArticle?.visibility || 'สาธารณะ');
+  const [scheduleType, setScheduleType] = useState<'immediate' | 'scheduled'>(() => {
+    if (initialArticle?.publishedAt) {
+      const pubTime = new Date(initialArticle.publishedAt).getTime();
+      if (!isNaN(pubTime) && pubTime > Date.now()) return 'scheduled';
+    }
+    return 'immediate';
+  });
+  const [scheduledDateTime, setScheduledDateTime] = useState(() => {
+    if (initialArticle?.publishedAt) {
+      try {
+        const d = new Date(initialArticle.publishedAt);
+        if (!isNaN(d.getTime())) {
+          return d.toISOString().slice(0, 16);
+        }
+      } catch {}
+    }
+    return '';
+  });
   const [publishDate] = useState(() => {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
@@ -314,6 +332,10 @@ export function CreateArticlePage() {
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
     const finalTitle = title.trim();
     const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
+    const isFutureScheduled = scheduleType === 'scheduled' && !!scheduledDateTime;
+    const computedPublishedAt = isFutureScheduled
+      ? new Date(scheduledDateTime).toISOString()
+      : initialArticle?.publishedAt || new Date().toISOString();
 
     if (editId) {
       articlesService.update(editId, {
@@ -331,6 +353,7 @@ export function CreateArticlePage() {
         status: 'เผยแพร่แล้ว',
         tags,
         slug,
+        publishedAt: computedPublishedAt,
       });
     } else {
       articlesService.create({
@@ -348,6 +371,7 @@ export function CreateArticlePage() {
         status: 'เผยแพร่แล้ว',
         tags,
         slug,
+        publishedAt: computedPublishedAt,
       });
     }
 
@@ -786,14 +810,51 @@ export function CreateArticlePage() {
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-2">
                   <label className="text-[14px] text-[#6D6D6D] font-bold font-serif">
-                    วันที่เผยแพร่
+                    กำหนดเวลาเผยแพร่
                   </label>
-                  <div className="flex items-center justify-between px-3 py-2 rounded-[8px] border border-[#DFDFE0] bg-[#FAFAFA] text-[14px] text-[#404041] font-serif">
-                    <span>{publishDate}</span>
-                    <Calendar size={16} className="text-gray-400" />
+                  <div className="flex items-center gap-4 text-[14px] font-serif">
+                    <label className="flex items-center gap-2 cursor-pointer text-[#1A1C1C]">
+                      <input
+                        type="radio"
+                        name="scheduleType"
+                        value="immediate"
+                        checked={scheduleType === 'immediate'}
+                        onChange={() => setScheduleType('immediate')}
+                        className="accent-[#DE5D8F] cursor-pointer"
+                      />
+                      <span>เผยแพร่ทันที</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[#1A1C1C]">
+                      <input
+                        type="radio"
+                        name="scheduleType"
+                        value="scheduled"
+                        checked={scheduleType === 'scheduled'}
+                        onChange={() => setScheduleType('scheduled')}
+                        className="accent-[#DE5D8F] cursor-pointer"
+                      />
+                      <span>ตั้งเวลาล่วงหน้า</span>
+                    </label>
                   </div>
+
+                  {scheduleType === 'scheduled' ? (
+                    <div className="flex flex-col gap-1 mt-1">
+                      <span className="text-[12px] text-gray-500 font-serif">ระบุวันและเวลา (หน้าบ้านจะไม่แสดงก่อนถึงเวลานี้)</span>
+                      <input
+                        type="datetime-local"
+                        value={scheduledDateTime}
+                        onChange={(e) => setScheduledDateTime(e.target.value)}
+                        className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[14px] font-serif outline-none focus:border-[#DE5D8F] bg-white cursor-pointer"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between px-3 py-2 rounded-[8px] border border-[#DFDFE0] bg-[#FAFAFA] text-[14px] text-[#404041] font-serif">
+                      <span>{publishDate}</span>
+                      <Calendar size={16} className="text-gray-400" />
+                    </div>
+                  )}
                 </div>
               </div>
 
