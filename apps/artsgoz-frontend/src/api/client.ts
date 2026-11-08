@@ -1,8 +1,8 @@
 import axios, { type AxiosRequestConfig, isAxiosError } from 'axios';
-import { auth } from '../lib/firebase.js';
+import { auth, API_BASE_URL, apiErrorMessage } from '@base-components';
 import { ApiError } from './types.js';
 
-const BASE_URL = (import.meta.env.VITE_API_URL as string) || 'http://localhost:8080';
+const BASE_URL = API_BASE_URL;
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -11,19 +11,21 @@ export const apiClient = axios.create({
   },
 });
 
+apiClient.interceptors.request.use((config) => {
+  if (!API_BASE_URL) throw new Error('VITE_API_BASE_URL is not configured.');
+  return config;
+});
+
 export const handleApiError = (error: unknown): never => {
   if (isAxiosError(error)) {
     const status = error.response?.status;
     const responseData = error.response?.data as
-      | { message?: string; error?: string; detail?: string }
-      | undefined;
+      { message?: string; error?: string; detail?: string } | undefined;
 
-    const message =
-      responseData?.message ||
-      responseData?.error ||
-      responseData?.detail ||
-      error.message ||
-      'An unexpected error occurred';
+    const message = apiErrorMessage(
+      responseData,
+      error.message || 'An unexpected error occurred',
+    );
 
     throw new ApiError(message, status, responseData, responseData?.detail);
   }
@@ -39,7 +41,9 @@ export const handleApiError = (error: unknown): never => {
   throw new ApiError('An unknown error occurred', undefined, error);
 };
 
-export const getFirebaseIdToken = async (forceRefresh = false): Promise<string | null> => {
+export const getFirebaseIdToken = async (
+  forceRefresh = false,
+): Promise<string | null> => {
   const currentUser = auth.currentUser;
   if (!currentUser) return null;
   return currentUser.getIdToken(forceRefresh);
@@ -54,8 +58,8 @@ export const getAuthHeaders = (token?: string): AxiosRequestConfig => {
   };
 };
 
-export const getAuthHeadersWithCurrentFirebaseUser = async (): Promise<AxiosRequestConfig> => {
-  const token = await getFirebaseIdToken();
-  return getAuthHeaders(token || undefined);
-};
-
+export const getAuthHeadersWithCurrentFirebaseUser =
+  async (): Promise<AxiosRequestConfig> => {
+    const token = await getFirebaseIdToken();
+    return getAuthHeaders(token || undefined);
+  };

@@ -1,9 +1,16 @@
-import { useState } from 'react';
-import { Search, UserPlus, MoreHorizontal, ShieldCheck, User } from 'lucide-react';
+import { backendRequest, type BackendUser } from '@base-components';
+import { useState, useEffect } from 'react';
+import {
+  Search,
+  UserPlus,
+  MoreHorizontal,
+  ShieldCheck,
+  User,
+} from 'lucide-react';
 import { GozAdminLayout } from './GozAdminLayout';
 
 interface UserRecord {
-  id: number;
+  id: string;
   name: string;
   email: string;
   role: 'Admin' | 'Member' | 'Editor';
@@ -11,53 +18,54 @@ interface UserRecord {
   lastActive: string;
 }
 
-const INITIAL_USERS: UserRecord[] = [
-  {
-    id: 1,
-    name: 'Nanthanit Vareerak',
-    email: 'nanthanit@arts.chula.ac.th',
-    role: 'Admin',
-    status: 'Active',
-    lastActive: 'ออนไลน์เมื่อ 10 นาทีที่แล้ว',
-  },
-  {
-    id: 2,
-    name: 'Somchai Jaidee',
-    email: 'somchai@arts.chula.ac.th',
-    role: 'Editor',
-    status: 'Active',
-    lastActive: 'เมื่อวานนี้',
-  },
-  {
-    id: 3,
-    name: 'Kanda Woo',
-    email: 'kanda.woo@arts.chula.ac.th',
-    role: 'Member',
-    status: 'Active',
-    lastActive: '3 วันที่แล้ว',
-  },
-  {
-    id: 4,
-    name: 'Piti Suksabai',
-    email: 'piti.s@arts.chula.ac.th',
-    role: 'Member',
-    status: 'Inactive',
-    lastActive: '2 สัปดาห์ที่แล้ว',
-  },
-];
-
 export function AdminUsersPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [users] = useState<UserRecord[]>(INITIAL_USERS);
+  const [users, setUsers] = useState<UserRecord[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    let active = true;
+    void backendRequest<{ data: BackendUser[] }>('/admin/users', {}, true)
+      .then((response) => {
+        if (active)
+          setUsers(
+            response.data.map((user) => ({
+              id: user.id,
+              name: user.username,
+              email: user.email,
+              role: ['admin', 'superadmin'].includes(user.role)
+                ? 'Admin'
+                : user.role === 'editor'
+                  ? 'Editor'
+                  : 'Member',
+              status: 'Active',
+              lastActive: new Date(user.updated_at).toLocaleDateString(),
+            })),
+          );
+      })
+      .catch((cause) => {
+        if (active)
+          setError(
+            cause instanceof Error ? cause.message : 'Unable to load users.',
+          );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const filteredUsers = users.filter(
     (u) =>
       u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      u.email.toLowerCase().includes(searchTerm.toLowerCase())
+      u.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
     <GozAdminLayout showTopSearch={false}>
+      {error && (
+        <p role="alert" className="text-red-700">
+          {error}
+        </p>
+      )}
       <div className="w-full max-w-[1240px] mx-auto flex flex-col gap-5">
         <div className="flex items-center justify-between">
           <div>
@@ -107,7 +115,10 @@ export function AdminUsersPage() {
         <div className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#F7F8F9] border-b border-[#DFDFE0] text-[#1A1C1C] text-[15px] font-bold" style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}>
+              <tr
+                className="bg-[#F7F8F9] border-b border-[#DFDFE0] text-[#1A1C1C] text-[15px] font-bold"
+                style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+              >
                 <th className="py-3.5 px-5">ผู้ใช้งาน</th>
                 <th className="py-3.5 px-4">บทบาท (Role)</th>
                 <th className="py-3.5 px-4">สถานะ</th>
@@ -117,14 +128,20 @@ export function AdminUsersPage() {
             </thead>
             <tbody className="divide-y divide-[#F0F0F0]">
               {filteredUsers.map((u) => (
-                <tr key={u.id} className="hover:bg-[#FAFAFA] transition-colors text-[14px]">
+                <tr
+                  key={u.id}
+                  className="hover:bg-[#FAFAFA] transition-colors text-[14px]"
+                >
                   <td className="py-3.5 px-5">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-full bg-[#FCEFF4] flex items-center justify-center text-[#DE5D8F] font-bold">
                         <User size={18} />
                       </div>
                       <div>
-                        <p className="font-bold text-[#1A1C1C] m-0" style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}>
+                        <p
+                          className="font-bold text-[#1A1C1C] m-0"
+                          style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+                        >
                           {u.name}
                         </p>
                         <span className="text-[#8B8B8C] text-[12px] font-mono">
@@ -135,7 +152,9 @@ export function AdminUsersPage() {
                   </td>
                   <td className="py-3.5 px-4">
                     <span className="inline-flex items-center gap-1 font-bold text-[#545455]">
-                      {u.role === 'Admin' && <ShieldCheck size={15} color="#DE5D8F" />}
+                      {u.role === 'Admin' && (
+                        <ShieldCheck size={15} color="#DE5D8F" />
+                      )}
                       {u.role}
                     </span>
                   </td>
@@ -150,7 +169,10 @@ export function AdminUsersPage() {
                       {u.status}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-[#8B8B8C]" style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}>
+                  <td
+                    className="py-3.5 px-4 text-[#8B8B8C]"
+                    style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+                  >
                     {u.lastActive}
                   </td>
                   <td className="py-3.5 px-4 text-right">

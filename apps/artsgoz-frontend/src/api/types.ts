@@ -3,7 +3,7 @@ export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   message?: string;
-  error?: string;
+  error?: string | { code: string; message: string };
   detail?: string;
 }
 
@@ -12,7 +12,12 @@ export class ApiError extends Error {
   data?: unknown;
   detail?: string;
 
-  constructor(message: string, status?: number, data?: unknown, detail?: string) {
+  constructor(
+    message: string,
+    status?: number,
+    data?: unknown,
+    detail?: string,
+  ) {
     super(message);
     this.name = 'ApiError';
     this.status = status;
@@ -30,29 +35,32 @@ export interface LoginRequest {
   id_token: string;
 }
 
-export interface LoginResponse {
-  uid: string;
-  role: string;
-}
-
-export interface RegisterRequest {
-  email: string;
-  password: string;
-  role: string;
-}
-
 export interface User {
+  id: string;
   firebase_uid: string;
+  username: string;
   email: string;
   role: string;
+  avatar_url: string;
   created_at: string;
   updated_at: string;
 }
 
+export interface LoginResponse {
+  success: boolean;
+  token: string;
+  user: User;
+  data: { token: string; user: User };
+}
+
+export interface RegisterRequest extends LoginRequest {
+  username?: string;
+}
+
 export interface MeResponse {
-  uid: string;
-  role: string;
-  message: string;
+  success: boolean;
+  user: User;
+  data: User;
 }
 
 export interface AdminDashboardResponse {

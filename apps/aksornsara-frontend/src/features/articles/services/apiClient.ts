@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '@base-components';
 /**
  * Public Reader AksornSara API Client
  * Conforms to: AksornSara RESTful API Specification v1.0
@@ -34,9 +35,14 @@ export interface PublicComment {
   created_at: string;
 }
 
-const API_BASE = (import.meta.env.VITE_AKSORNSARA_API_URL as string) || 'http://localhost:3000/api/v1';
+const API_BASE =
+  (import.meta.env.VITE_AKSORNSARA_API_URL as string) || API_BASE_URL;
 
-async function publicRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+async function publicRequest<T>(
+  endpoint: string,
+  options: RequestInit = {},
+): Promise<T> {
+  if (!API_BASE) throw new Error('VITE_API_BASE_URL is not configured.');
   const url = `${API_BASE}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
   const response = await fetch(url, {
     ...options,
@@ -49,7 +55,9 @@ async function publicRequest<T>(endpoint: string, options: RequestInit = {}): Pr
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData?.error?.message || `API Error: ${response.status}`);
+    throw new Error(
+      errorData?.error?.message || `API Error: ${response.status}`,
+    );
   }
 
   return response.json() as Promise<T>;
@@ -66,39 +74,58 @@ export const publicArticlesApi = {
     const query = new URLSearchParams();
     if (params.page) query.append('page', String(params.page));
     if (params.limit) query.append('limit', String(params.limit));
-    if (params.category_slug) query.append('category_slug', params.category_slug);
+    if (params.category_slug)
+      query.append('category_slug', params.category_slug);
     if (params.tag_slug) query.append('tag_slug', params.tag_slug);
     if (params.search) query.append('search', params.search);
 
-    return publicRequest<{ success: boolean; data: PublicArticleItem[]; pagination: any }>(
-      `/articles?${query.toString()}`,
-    );
+    return publicRequest<{
+      success: boolean;
+      data: PublicArticleItem[];
+      pagination: any;
+    }>(`/articles?${query.toString()}`);
   },
 
   async getArticleBySlug(slug: string) {
-    return publicRequest<{ success: boolean; data: PublicArticleDetail }>(`/articles/${slug}`);
+    const response = await publicRequest<
+      PublicArticleDetail | { success: boolean; data: PublicArticleDetail }
+    >(`/articles/${encodeURIComponent(slug)}`);
+    return {
+      success: true,
+      data: 'data' in response ? response.data : response,
+    };
   },
 
   async recordView(slug: string) {
-    return publicRequest<{ success: boolean; data: { id: number | string; view_count: number } }>(
-      `/articles/${slug}/view`,
-      { method: 'POST' }
-    );
+    return publicRequest<{
+      success: boolean;
+      data: { id: number | string; view_count: number };
+    }>(`/articles/${encodeURIComponent(slug)}/views`, { method: 'POST' });
   },
 
   async getComments(slug: string) {
-    return publicRequest<{ success: boolean; data: PublicComment[] }>(`/articles/${slug}/comments`);
+    return publicRequest<{ success: boolean; data: PublicComment[] }>(
+      `/articles/${slug}/comments`,
+    );
   },
 
-  async postComment(slug: string, body: { author_name: string; author_email?: string; content: string }) {
-    return publicRequest<{ success: boolean; data: any; message: string }>(`/articles/${slug}/comments`, {
-      method: 'POST',
-      body: JSON.stringify(body),
-    });
+  async postComment(
+    slug: string,
+    body: { author_name: string; author_email?: string; content: string },
+  ) {
+    return publicRequest<{ success: boolean; data: any; message: string }>(
+      `/articles/${slug}/comments`,
+      {
+        method: 'POST',
+        body: JSON.stringify(body),
+      },
+    );
   },
 
   async getCategories() {
-    return publicRequest<{ success: boolean; data: { id: number; name: string; slug: string }[] }>('/categories');
+    return publicRequest<{
+      success: boolean;
+      data: { id: number; name: string; slug: string }[];
+    }>('/categories');
   },
 };
-

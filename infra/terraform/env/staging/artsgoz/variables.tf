@@ -41,3 +41,9 @@ variable "cloud_build_repository" {
   default  = null
   nullable = true
 }
+
+variable "api_base_url" {
+  description = "Backend URL including /api, supplied to frontend builds as VITE_API_BASE_URL."
+  type        = string
+  default     = ""
+}

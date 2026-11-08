@@ -4,6 +4,7 @@ locals {
       filename              = "apps/artsgoz-frontend/build/cloudbuild.yaml"
       service_account_email = module.iam.firebase_deployer_service_account_email
       substitutions = {
+        _API_BASE_URL     = var.api_base_url
         _MAINTENANCE_MODE = tostring(var.frontend_maintenance_mode)
       }
       included_files = [
@@ -22,6 +23,7 @@ locals {
       filename              = "apps/artsgoz-backoffice/build/cloudbuild.yaml"
       service_account_email = module.iam.firebase_deployer_service_account_email
       substitutions = {
+        _API_BASE_URL     = var.api_base_url
         _MAINTENANCE_MODE = tostring(var.backoffice_maintenance_mode)
       }
       included_files = [

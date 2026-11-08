@@ -25,9 +25,13 @@ export function ArticlesPage() {
   // Filter & Sort states
   const [titleSort, setTitleSort] = useState<'asc' | 'desc' | null>(null);
   const [authorSort, setAuthorSort] = useState<'asc' | 'desc' | null>(null);
-  const [statusFilter, setStatusFilter] = useState<'ทั้งหมด' | 'เผยแพร่แล้ว' | 'ร่างบทความ'>('ทั้งหมด');
+  const [statusFilter, setStatusFilter] = useState<
+    'ทั้งหมด' | 'เผยแพร่แล้ว' | 'ร่างบทความ'
+  >('ทั้งหมด');
   const [categoryFilter, setCategoryFilter] = useState<string>('ทั้งหมด');
-  const [dateSort, setDateSort] = useState<'newest' | 'oldest' | null>('newest');
+  const [dateSort, setDateSort] = useState<'newest' | 'oldest' | null>(
+    'newest',
+  );
   const [viewsSort, setViewsSort] = useState<'most' | 'least' | null>(null);
 
   // Pagination
@@ -35,10 +39,14 @@ export function ArticlesPage() {
   const ITEMS_PER_PAGE = 12;
 
   // Delete modal state
-  const [deleteTarget, setDeleteTarget] = useState<BackofficeArticle | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<BackofficeArticle | null>(
+    null,
+  );
 
   // Load articles from articlesService
-  const [articlesList, setArticlesList] = useState<BackofficeArticle[]>(() => articlesService.getAll());
+  const [articlesList, setArticlesList] = useState<BackofficeArticle[]>(() =>
+    articlesService.getAll(),
+  );
 
   useEffect(() => {
     articlesService.syncWithApi();
@@ -54,32 +62,44 @@ export function ArticlesPage() {
 
   // Filtered & Sorted Articles
   const filtered = useMemo(() => {
-    return articlesList.filter((item) => {
-      const matchSearch =
-        !search ||
-        item.title.toLowerCase().includes(search.toLowerCase()) ||
-        item.author.toLowerCase().includes(search.toLowerCase()) ||
-        item.category.toLowerCase().includes(search.toLowerCase());
+    return articlesList
+      .filter((item) => {
+        const matchSearch =
+          !search ||
+          item.title.toLowerCase().includes(search.toLowerCase()) ||
+          item.author.toLowerCase().includes(search.toLowerCase()) ||
+          item.category.toLowerCase().includes(search.toLowerCase());
 
-      const matchStatus =
-        statusFilter === 'ทั้งหมด' || item.status === statusFilter;
+        const matchStatus =
+          statusFilter === 'ทั้งหมด' || item.status === statusFilter;
 
-      const matchCategory =
-        categoryFilter === 'ทั้งหมด' || item.category === categoryFilter;
+        const matchCategory =
+          categoryFilter === 'ทั้งหมด' || item.category === categoryFilter;
 
-      return matchSearch && matchStatus && matchCategory;
-    }).sort((a, b) => {
-      if (titleSort === 'asc') return a.title.localeCompare(b.title, 'th');
-      if (titleSort === 'desc') return b.title.localeCompare(a.title, 'th');
-      if (authorSort === 'asc') return a.author.localeCompare(b.author, 'th');
-      if (authorSort === 'desc') return b.author.localeCompare(a.author, 'th');
-      if (viewsSort === 'most') return (b.views || 0) - (a.views || 0);
-      if (viewsSort === 'least') return (a.views || 0) - (b.views || 0);
-      if (dateSort === 'newest') return b.id.localeCompare(a.id);
-      if (dateSort === 'oldest') return a.id.localeCompare(b.id);
-      return 0;
-    });
-  }, [articlesList, search, statusFilter, categoryFilter, titleSort, authorSort, viewsSort, dateSort]);
+        return matchSearch && matchStatus && matchCategory;
+      })
+      .sort((a, b) => {
+        if (titleSort === 'asc') return a.title.localeCompare(b.title, 'th');
+        if (titleSort === 'desc') return b.title.localeCompare(a.title, 'th');
+        if (authorSort === 'asc') return a.author.localeCompare(b.author, 'th');
+        if (authorSort === 'desc')
+          return b.author.localeCompare(a.author, 'th');
+        if (viewsSort === 'most') return (b.views || 0) - (a.views || 0);
+        if (viewsSort === 'least') return (a.views || 0) - (b.views || 0);
+        if (dateSort === 'newest') return b.id.localeCompare(a.id);
+        if (dateSort === 'oldest') return a.id.localeCompare(b.id);
+        return 0;
+      });
+  }, [
+    articlesList,
+    search,
+    statusFilter,
+    categoryFilter,
+    titleSort,
+    authorSort,
+    viewsSort,
+    dateSort,
+  ]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paginatedArticles = useMemo(() => {
@@ -103,11 +123,18 @@ export function ArticlesPage() {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  const handleDeleteConfirm = () => {
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const handleDeleteConfirm = async () => {
     if (!deleteTarget) return;
-    articlesService.delete(deleteTarget.id);
-    setArticlesList(articlesService.getAll());
-    setDeleteTarget(null);
+    try {
+      await articlesService.delete(deleteTarget.id);
+      setArticlesList(articlesService.getAll());
+      setDeleteTarget(null);
+    } catch (cause) {
+      setDeleteError(
+        cause instanceof Error ? cause.message : 'Unable to delete article.',
+      );
+    }
   };
 
   const getArticleViewUrl = (item: BackofficeArticle) => {
@@ -136,13 +163,16 @@ export function ArticlesPage() {
       }}
       searchPlaceholder="ค้นหาบทความ, ชื่อผู้แต่ง..."
     >
+      {deleteError && (
+        <p role="alert" className="text-red-700">
+          {deleteError}
+        </p>
+      )}
       <div className="w-full flex flex-col gap-6" style={{ maxWidth: 1040 }}>
         {/* ── Page Title & Action Bar ── */}
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h1
-              className="font-bold text-[#1A1C1C] text-[32px] md:text-[44px] leading-tight m-0 font-serif"
-            >
+            <h1 className="font-bold text-[#1A1C1C] text-[32px] md:text-[44px] leading-tight m-0 font-serif">
               All Articles
             </h1>
           </div>
@@ -174,7 +204,10 @@ export function ArticlesPage() {
                 onClick={() => toggleDropdown('category')}
                 className="flex items-center justify-between gap-2 bg-white px-3.5 py-1.5 rounded-[8px] cursor-pointer transition-colors shadow-xs"
                 style={{
-                  border: categoryFilter !== 'ทั้งหมด' ? '1.5px solid #DE5D8F' : '1.5px solid #DFDFE0',
+                  border:
+                    categoryFilter !== 'ทั้งหมด'
+                      ? '1.5px solid #DE5D8F'
+                      : '1.5px solid #DFDFE0',
                   minWidth: 110,
                   height: 38,
                 }}
@@ -185,18 +218,22 @@ export function ArticlesPage() {
                 <ChevronDown size={16} color="#1A1C1C" />
               </button>
               {openDropdown === 'category' && (
-                <div
-                  className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[140px] max-h-[220px] overflow-y-auto"
-                >
+                <div className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[140px] max-h-[220px] overflow-y-auto">
                   {categories.map((cat) => (
                     <button
                       key={cat}
                       type="button"
-                      onClick={() => { setCategoryFilter(cat); setOpenDropdown(null); setCurrentPage(1); }}
+                      onClick={() => {
+                        setCategoryFilter(cat);
+                        setOpenDropdown(null);
+                        setCurrentPage(1);
+                      }}
                       className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
                     >
                       <span>{cat}</span>
-                      {categoryFilter === cat && <Check size={14} color="#DE5D8F" />}
+                      {categoryFilter === cat && (
+                        <Check size={14} color="#DE5D8F" />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -210,7 +247,10 @@ export function ArticlesPage() {
                 onClick={() => toggleDropdown('status')}
                 className="flex items-center justify-between gap-2 bg-white px-3.5 py-1.5 rounded-[8px] cursor-pointer transition-colors shadow-xs"
                 style={{
-                  border: statusFilter !== 'ทั้งหมด' ? '1.5px solid #DE5D8F' : '1.5px solid #DFDFE0',
+                  border:
+                    statusFilter !== 'ทั้งหมด'
+                      ? '1.5px solid #DE5D8F'
+                      : '1.5px solid #DFDFE0',
                   minWidth: 100,
                   height: 38,
                 }}
@@ -221,22 +261,36 @@ export function ArticlesPage() {
                 <ChevronDown size={16} color="#1A1C1C" />
               </button>
               {openDropdown === 'status' && (
-                <div
-                  className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[130px]"
-                >
-                  {(['ทั้งหมด', 'เผยแพร่แล้ว', 'ร่างบทความ'] as const).map((st) => (
-                    <button
-                      key={st}
-                      type="button"
-                      onClick={() => { setStatusFilter(st); setOpenDropdown(null); setCurrentPage(1); }}
-                      className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
-                    >
-                      <span className={st === 'เผยแพร่แล้ว' ? 'text-[#3D940B]' : st === 'ร่างบทความ' ? 'text-[#0165F8]' : ''}>
-                        {st}
-                      </span>
-                      {statusFilter === st && <Check size={14} color="#DE5D8F" />}
-                    </button>
-                  ))}
+                <div className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[130px]">
+                  {(['ทั้งหมด', 'เผยแพร่แล้ว', 'ร่างบทความ'] as const).map(
+                    (st) => (
+                      <button
+                        key={st}
+                        type="button"
+                        onClick={() => {
+                          setStatusFilter(st);
+                          setOpenDropdown(null);
+                          setCurrentPage(1);
+                        }}
+                        className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
+                      >
+                        <span
+                          className={
+                            st === 'เผยแพร่แล้ว'
+                              ? 'text-[#3D940B]'
+                              : st === 'ร่างบทความ'
+                                ? 'text-[#0165F8]'
+                                : ''
+                          }
+                        >
+                          {st}
+                        </span>
+                        {statusFilter === st && (
+                          <Check size={14} color="#DE5D8F" />
+                        )}
+                      </button>
+                    ),
+                  )}
                 </div>
               )}
             </div>
@@ -248,23 +302,30 @@ export function ArticlesPage() {
                 onClick={() => toggleDropdown('title')}
                 className="flex items-center justify-between gap-2 bg-white px-3.5 py-1.5 rounded-[8px] cursor-pointer transition-colors shadow-xs"
                 style={{
-                  border: titleSort ? '1.5px solid #DE5D8F' : '1.5px solid #DFDFE0',
+                  border: titleSort
+                    ? '1.5px solid #DE5D8F'
+                    : '1.5px solid #DFDFE0',
                   minWidth: 108,
                   height: 38,
                 }}
               >
                 <span className="font-bold text-[#1A1C1C] text-[14px] font-serif">
-                  {titleSort ? (titleSort === 'asc' ? 'ชื่อ (A-Z)' : 'ชื่อ (Z-A)') : 'ชื่อบทความ'}
+                  {titleSort
+                    ? titleSort === 'asc'
+                      ? 'ชื่อ (A-Z)'
+                      : 'ชื่อ (Z-A)'
+                    : 'ชื่อบทความ'}
                 </span>
                 <ChevronDown size={16} color="#1A1C1C" />
               </button>
               {openDropdown === 'title' && (
-                <div
-                  className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[130px]"
-                >
+                <div className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[130px]">
                   <button
                     type="button"
-                    onClick={() => { setTitleSort('asc'); setOpenDropdown(null); }}
+                    onClick={() => {
+                      setTitleSort('asc');
+                      setOpenDropdown(null);
+                    }}
                     className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
                   >
                     <span>เรียงจาก A-Z</span>
@@ -272,11 +333,16 @@ export function ArticlesPage() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => { setTitleSort('desc'); setOpenDropdown(null); }}
+                    onClick={() => {
+                      setTitleSort('desc');
+                      setOpenDropdown(null);
+                    }}
                     className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
                   >
                     <span>เรียงจาก Z-A</span>
-                    {titleSort === 'desc' && <Check size={14} color="#DE5D8F" />}
+                    {titleSort === 'desc' && (
+                      <Check size={14} color="#DE5D8F" />
+                    )}
                   </button>
                 </div>
               )}
@@ -289,35 +355,49 @@ export function ArticlesPage() {
                 onClick={() => toggleDropdown('views')}
                 className="flex items-center justify-between gap-2 bg-white px-3.5 py-1.5 rounded-[8px] cursor-pointer transition-colors shadow-xs"
                 style={{
-                  border: viewsSort ? '1.5px solid #DE5D8F' : '1.5px solid #DFDFE0',
+                  border: viewsSort
+                    ? '1.5px solid #DE5D8F'
+                    : '1.5px solid #DFDFE0',
                   minWidth: 108,
                   height: 38,
                 }}
               >
                 <span className="font-bold text-[#1A1C1C] text-[14px] font-serif">
-                  {viewsSort ? (viewsSort === 'most' ? 'ยอดชม (มากสุด)' : 'ยอดชม (น้อยสุด)') : 'ยอดเข้าชม'}
+                  {viewsSort
+                    ? viewsSort === 'most'
+                      ? 'ยอดชม (มากสุด)'
+                      : 'ยอดชม (น้อยสุด)'
+                    : 'ยอดเข้าชม'}
                 </span>
                 <ChevronDown size={16} color="#1A1C1C" />
               </button>
               {openDropdown === 'views' && (
-                <div
-                  className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[150px]"
-                >
+                <div className="absolute left-0 top-full mt-1.5 bg-white rounded-[10px] border border-[#DFDFE0] shadow-lg py-1.5 z-30 min-w-[150px]">
                   <button
                     type="button"
-                    onClick={() => { setViewsSort('most'); setOpenDropdown(null); }}
+                    onClick={() => {
+                      setViewsSort('most');
+                      setOpenDropdown(null);
+                    }}
                     className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
                   >
                     <span>ยอดเข้าชมมากสุด</span>
-                    {viewsSort === 'most' && <Check size={14} color="#DE5D8F" />}
+                    {viewsSort === 'most' && (
+                      <Check size={14} color="#DE5D8F" />
+                    )}
                   </button>
                   <button
                     type="button"
-                    onClick={() => { setViewsSort('least'); setOpenDropdown(null); }}
+                    onClick={() => {
+                      setViewsSort('least');
+                      setOpenDropdown(null);
+                    }}
                     className="w-full text-left px-3.5 py-2 hover:bg-[#FCEFF4] text-[13px] text-[#1A1C1C] flex items-center justify-between border-none bg-transparent cursor-pointer font-serif"
                   >
                     <span>ยอดเข้าชมน้อยสุด</span>
-                    {viewsSort === 'least' && <Check size={14} color="#DE5D8F" />}
+                    {viewsSort === 'least' && (
+                      <Check size={14} color="#DE5D8F" />
+                    )}
                   </button>
                 </div>
               )}
@@ -325,7 +405,12 @@ export function ArticlesPage() {
           </div>
 
           {/* ล้างตัวกรอง */}
-          {(categoryFilter !== 'ทั้งหมด' || statusFilter !== 'ทั้งหมด' || titleSort || authorSort || viewsSort || search) && (
+          {(categoryFilter !== 'ทั้งหมด' ||
+            statusFilter !== 'ทั้งหมด' ||
+            titleSort ||
+            authorSort ||
+            viewsSort ||
+            search) && (
             <button
               type="button"
               onClick={handleClearFilters}
@@ -337,11 +422,12 @@ export function ArticlesPage() {
         </div>
 
         {/* ── Table Card ── */}
-        <div
-          className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs relative"
-        >
+        <div className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs relative">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse" style={{ minWidth: 880 }}>
+            <table
+              className="w-full text-left border-collapse"
+              style={{ minWidth: 880 }}
+            >
               <thead>
                 <tr
                   style={{
@@ -383,7 +469,11 @@ export function ArticlesPage() {
                       <td className="py-3 px-6">
                         <div className="flex items-center gap-3">
                           <img
-                            src={item.coverImage || item.imageUrl || articleThumbFallback}
+                            src={
+                              item.coverImage ||
+                              item.imageUrl ||
+                              articleThumbFallback
+                            }
                             alt="thumbnail"
                             className="w-10 h-10 rounded-[6px] object-cover shrink-0 shadow-xs bg-gray-100 border border-gray-100"
                             onError={(e) => {
@@ -391,7 +481,9 @@ export function ArticlesPage() {
                             }}
                           />
                           <span
-                            onClick={() => navigate(`/aksornsara/create?id=${item.id}`)}
+                            onClick={() =>
+                              navigate(`/aksornsara/create?id=${item.id}`)
+                            }
                             className="font-bold text-[#1A1C1C] hover:text-[#DE5D8F] cursor-pointer transition-colors font-serif text-[15px] leading-[20px] line-clamp-2"
                             title={item.title}
                           >
@@ -411,7 +503,9 @@ export function ArticlesPage() {
                       <td className="py-3 px-4">
                         <span
                           className="inline-block px-2.5 py-1 rounded-[6px] font-sans font-normal text-[12px] text-[#DE5D8F] bg-[#FCEFF4] whitespace-nowrap"
-                          style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                          style={{
+                            fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                          }}
                         >
                           {item.category?.replace(/^ปี\s*/, '')}
                         </span>
@@ -450,7 +544,9 @@ export function ArticlesPage() {
                           {/* Edit button */}
                           <button
                             type="button"
-                            onClick={() => navigate(`/aksornsara/create?id=${item.id}`)}
+                            onClick={() =>
+                              navigate(`/aksornsara/create?id=${item.id}`)
+                            }
                             className="p-1.5 rounded-[6px] hover:bg-[#FCEFF4] text-gray-500 hover:text-[#DE5D8F] transition-colors border-none bg-transparent cursor-pointer"
                             title="แก้ไขบทความ"
                           >
@@ -483,7 +579,10 @@ export function ArticlesPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="py-12 text-center text-gray-400 font-serif text-[16px]">
+                    <td
+                      colSpan={7}
+                      className="py-12 text-center text-gray-400 font-serif text-[16px]"
+                    >
                       ไม่พบบทความที่ค้นหา
                     </td>
                   </tr>
@@ -494,11 +593,10 @@ export function ArticlesPage() {
         </div>
 
         {/* ── Table Footer & Pagination Bar ── */}
-        <div
-          className="bg-white rounded-[16px] border border-[#DFDFE0] py-3.5 px-6 flex flex-wrap justify-between items-center shadow-xs gap-4"
-        >
+        <div className="bg-white rounded-[16px] border border-[#DFDFE0] py-3.5 px-6 flex flex-wrap justify-between items-center shadow-xs gap-4">
           <span className="text-[#6D6D6D] text-[14px] font-bold font-serif">
-            แสดงทั้งหมด {filtered.length} บทความ (หน้า {currentPage} จาก {Math.max(1, totalPages)})
+            แสดงทั้งหมด {filtered.length} บทความ (หน้า {currentPage} จาก{' '}
+            {Math.max(1, totalPages)})
           </span>
 
           {totalPages > 1 && (
@@ -536,7 +634,9 @@ export function ArticlesPage() {
 
               <button
                 type="button"
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
                 disabled={currentPage === totalPages}
                 className="w-8 h-8 rounded-[6px] border border-[#DFDFE0] flex items-center justify-center text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer bg-white"
               >
@@ -566,7 +666,8 @@ export function ArticlesPage() {
                 ยืนยันการลบบทความ ?
               </h3>
               <p className="text-gray-500 font-serif text-[14px] m-0">
-                คุณแน่ใจหรือไม่ว่าต้องการลบบทความ "{deleteTarget.title}" การดำเนินการนี้ไม่สามารถย้อนกลับได้
+                คุณแน่ใจหรือไม่ว่าต้องการลบบทความ "{deleteTarget.title}"
+                การดำเนินการนี้ไม่สามารถย้อนกลับได้
               </p>
             </div>
 
