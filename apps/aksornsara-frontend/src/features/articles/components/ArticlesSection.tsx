@@ -3,42 +3,56 @@ import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { SectionHeading, Pagination, Button } from '@artsgoz/design-system';
 import { ArticleCard } from './ArticleCard.js';
-import { MOCK_ARTICLES } from '../constants.js';
+import { usePublicArticles } from '../hooks/usePublicArticles.js';
 import { PATHS } from '../../../routes/paths.js';
 
 const ITEMS_PER_PAGE = 2;
 
 export function ArticlesSection() {
+  const { articles, loading, error } = usePublicArticles();
   const { t } = useTranslation('articles');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(MOCK_ARTICLES.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
 
-  const paginatedArticles = MOCK_ARTICLES.slice(
+  const paginatedArticles = articles.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   return (
     <section className="w-full flex flex-col gap-8 lg:gap-10 relative select-none">
+      {loading && <p role="status">Loading articles…</p>}
+      {error && <p role="alert">{error}</p>}
+      {!loading && !error && articles.length === 0 && (
+        <p>No published articles yet.</p>
+      )}
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 w-full">
-        <SectionHeading title={t('section_title')} description={t('section_desc')} />
+        <SectionHeading
+          title={t('section_title')}
+          description={t('section_desc')}
+        />
         <Link to={PATHS.ARTICLES} className="shrink-0">
           <Button variant="outline">{t('view_all')}</Button>
         </Link>
       </div>
 
       {/* Mobile & Tablet (< xl / < 1244px): Horizontal Scroll Carousel */}
-      <div className="
+      <div
+        className="
         xl:hidden
         flex flex-row gap-4 sm:gap-6
         overflow-x-auto snap-x snap-mandatory
         pb-3 w-full
         [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
-      ">
-        {MOCK_ARTICLES.map((article) => (
-          <div key={article.id} className="w-[300px] sm:w-[380px] shrink-0 snap-start">
+      "
+      >
+        {articles.map((article) => (
+          <div
+            key={article.id}
+            className="w-[300px] sm:w-[380px] shrink-0 snap-start"
+          >
             <ArticleCard
               id={article.id}
               title={article.title}

@@ -1,3 +1,15 @@
+import {
+  logout,
+  auth,
+  backendRequest,
+  API_BASE_URL,
+  useAuth,
+} from '@base-components';
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from 'firebase/auth';
 import { useState, useRef, useMemo, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router';
 import {
@@ -18,13 +30,16 @@ import catAvatar from '../../assets/cat_avatar.png';
 import articleThumb from '../../assets/article_thumb.png';
 
 export function AccountSettingsPage() {
+  const { profile } = useAuth();
   const navigate = useNavigate();
 
   // Active Main Tab: 'profile' or 'articles' (Figma Nodes 6602:23073 vs 6602:23431/23831)
   const [activeTab, setActiveTab] = useState<'profile' | 'articles'>('profile');
 
   // Sub-filter inside My Articles: 'published' or 'draft' (Figma Nodes 6602:23431 vs 6602:23831)
-  const [articleSubTab, setArticleSubTab] = useState<'published' | 'draft'>('published');
+  const [articleSubTab, setArticleSubTab] = useState<'published' | 'draft'>(
+    'published',
+  );
   const [articlesPage, setArticlesPage] = useState(1);
   const ITEMS_PER_PAGE = 8;
 
@@ -39,14 +54,15 @@ export function AccountSettingsPage() {
   const allArticles = useMemo(() => articlesService.getAll(), [version]);
   const publishedArticles = useMemo(
     () => allArticles.filter((a) => a.status === 'เผยแพร่แล้ว'),
-    [allArticles]
+    [allArticles],
   );
   const draftArticles = useMemo(
     () => allArticles.filter((a) => a.status === 'ร่างบทความ'),
-    [allArticles]
+    [allArticles],
   );
 
-  const currentList = articleSubTab === 'published' ? publishedArticles : draftArticles;
+  const currentList =
+    articleSubTab === 'published' ? publishedArticles : draftArticles;
   const totalPages = Math.ceil(currentList.length / ITEMS_PER_PAGE) || 1;
   const paginatedList = useMemo(() => {
     const start = (articlesPage - 1) * ITEMS_PER_PAGE;
@@ -54,24 +70,12 @@ export function AccountSettingsPage() {
   }, [currentList, articlesPage]);
 
   // Profile states with persistence (ACC-002, ACC-004)
-  const [avatar, setAvatar] = useState<string>(() => {
-    try {
-      const saved = localStorage.getItem('aksornsara_user_avatar');
-      if (saved) return saved;
-    } catch {}
-    return catAvatar;
-  });
-  const [username, setUsername] = useState(() => {
-    try {
-      const saved = localStorage.getItem('aksornsara_user_name');
-      if (saved) return saved;
-    } catch {}
-    return 'Meowlnwza';
-  });
+  const [avatar, setAvatar] = useState(profile?.avatar_url || catAvatar);
+  const [username, setUsername] = useState(profile?.username || '');
   const [tempUsername, setTempUsername] = useState(username);
   const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [usernameError, setUsernameError] = useState<string | null>(null);
-  const [email] = useState('xxxxx@gmail.com');
+  const email = profile?.email || '';
 
   // Password fields
   const [currentPassword, setCurrentPassword] = useState('');
@@ -89,7 +93,7 @@ export function AccountSettingsPage() {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       if (!file.type.startsWith('image/')) {
@@ -100,17 +104,21 @@ export function AccountSettingsPage() {
         showToast('ขนาดไฟล์รูปภาพต้องไม่เกิน 2MB');
         return;
       }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (typeof event.target?.result === 'string') {
-          setAvatar(event.target.result);
-          try {
-            localStorage.setItem('aksornsara_user_avatar', event.target.result);
-          } catch {}
-          showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
-        }
-      };
-      reader.readAsDataURL(file);
+      try {
+        const body = new FormData();
+        body.append('file', file);
+        const response = await backendRequest<{ avatar_url: string }>(
+          '/me/avatar',
+          { method: 'POST', body },
+          true,
+        );
+        setAvatar(new URL(response.avatar_url, API_BASE_URL).href);
+        showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
+      } catch (cause) {
+        showToast(
+          cause instanceof Error ? cause.message : 'Unable to update avatar.',
+        );
+      }
     }
   };
 
@@ -120,7 +128,7 @@ export function AccountSettingsPage() {
     setIsEditingUsername(true);
   };
 
-  const handleSaveUsername = () => {
+  const handleSaveUsername = async () => {
     const trimmed = tempUsername.trim();
     if (!trimmed) {
       setUsernameError('ชื่อผู้ใช้ต้องไม่เป็นค่าว่าง');
@@ -134,13 +142,21 @@ export function AccountSettingsPage() {
       setUsernameError('ชื่อผู้ใช้ต้องไม่เกิน 30 ตัวอักษร');
       return;
     }
-    setUsername(trimmed);
     try {
-      localStorage.setItem('aksornsara_user_name', trimmed);
-    } catch {}
-    setIsEditingUsername(false);
-    setUsernameError(null);
-    showToast('บันทึกชื่อผู้ใช้เรียบร้อยแล้ว');
+      await backendRequest(
+        '/me',
+        { method: 'PUT', body: JSON.stringify({ username: trimmed }) },
+        true,
+      );
+      setUsername(trimmed);
+      setIsEditingUsername(false);
+      setUsernameError(null);
+      showToast('บันทึกชื่อผู้ใช้เรียบร้อยแล้ว');
+    } catch (cause) {
+      setUsernameError(
+        cause instanceof Error ? cause.message : 'Unable to update username.',
+      );
+    }
   };
 
   const handleCancelUsername = () => {
@@ -149,7 +165,7 @@ export function AccountSettingsPage() {
     setIsEditingUsername(false);
   };
 
-  const handleUpdatePassword = () => {
+  const handleUpdatePassword = async () => {
     if (!currentPassword) {
       showToast('กรุณากรอกรหัสผ่านปัจจุบัน');
       return;
@@ -158,13 +174,35 @@ export function AccountSettingsPage() {
       showToast('รหัสผ่านใหม่ต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
       return;
     }
-    setCurrentPassword('');
-    setNewPassword('');
-    showToast('เปลี่ยนรหัสผ่านสำเร็จแล้ว!');
+    try {
+      const user = auth.currentUser;
+      if (
+        !user?.email ||
+        !user.providerData.some(
+          (provider) => provider.providerId === 'password',
+        )
+      )
+        throw new Error(
+          'Use password reset to set an email/password login for this account.',
+        );
+      await reauthenticateWithCredential(
+        user,
+        EmailAuthProvider.credential(user.email, currentPassword),
+      );
+      await updatePassword(user, newPassword);
+      setCurrentPassword('');
+      setNewPassword('');
+      showToast('เปลี่ยนรหัสผ่านสำเร็จแล้ว!');
+    } catch (cause) {
+      showToast(
+        cause instanceof Error ? cause.message : 'Unable to update password.',
+      );
+    }
   };
 
   const handleSignOut = () => {
     try {
+      void logout();
       localStorage.removeItem('aksornsara_auth_token');
       sessionStorage.removeItem('aksornsara_auth_token');
     } catch {}
@@ -173,10 +211,7 @@ export function AccountSettingsPage() {
   };
 
   return (
-    <AksornsaraLayout
-      showBackButton={false}
-      showTopSearchBar={false}
-    >
+    <AksornsaraLayout showBackButton={false} showTopSearchBar={false}>
       {/* Toast Notification */}
       {toastMessage && (
         <div
@@ -219,9 +254,7 @@ export function AccountSettingsPage() {
 
         {/* ── Main Tab Bar (Pill Container) ── */}
         <div className="flex items-center w-full">
-          <div
-            className="p-1 rounded-[10px] bg-[#F7F8F9] border border-[#DFDFE0] flex items-center gap-1 shadow-xs w-full max-w-[480px]"
-          >
+          <div className="p-1 rounded-[10px] bg-[#F7F8F9] border border-[#DFDFE0] flex items-center gap-1 shadow-xs w-full max-w-[480px]">
             {/* Tab 1: Profile & Privacy (Figma Node 6602:23073) */}
             <button
               type="button"
@@ -231,9 +264,13 @@ export function AccountSettingsPage() {
               style={{
                 fontFamily: 'ChulaCharasNew, sans-serif',
                 padding: '8px 16px',
-                backgroundColor: activeTab === 'profile' ? '#E992B4' : 'transparent',
+                backgroundColor:
+                  activeTab === 'profile' ? '#E992B4' : 'transparent',
                 color: activeTab === 'profile' ? '#FFFFFF' : '#E992B4',
-                boxShadow: activeTab === 'profile' ? '0 2px 4px rgba(233,146,180,0.2)' : 'none',
+                boxShadow:
+                  activeTab === 'profile'
+                    ? '0 2px 4px rgba(233,146,180,0.2)'
+                    : 'none',
               }}
             >
               Profile & Privacy
@@ -248,9 +285,13 @@ export function AccountSettingsPage() {
               style={{
                 fontFamily: 'ChulaCharasNew, sans-serif',
                 padding: '8px 16px',
-                backgroundColor: activeTab === 'articles' ? '#E992B4' : 'transparent',
+                backgroundColor:
+                  activeTab === 'articles' ? '#E992B4' : 'transparent',
                 color: activeTab === 'articles' ? '#FFFFFF' : '#E992B4',
-                boxShadow: activeTab === 'articles' ? '0 2px 4px rgba(233,146,180,0.2)' : 'none',
+                boxShadow:
+                  activeTab === 'articles'
+                    ? '0 2px 4px rgba(233,146,180,0.2)'
+                    : 'none',
               }}
             >
               All Articles
@@ -264,9 +305,7 @@ export function AccountSettingsPage() {
         {activeTab === 'profile' ? (
           <div className="flex flex-col gap-6">
             {/* ── Section 1: Profile (ข้อมูลส่วนตัว) ── */}
-            <div
-              className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs"
-            >
+            <div className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs">
               {/* Header Banner */}
               <div
                 className="px-6 py-3.5 flex items-center gap-2.5 border-b border-[#F0BED2]"
@@ -318,7 +357,9 @@ export function AccountSettingsPage() {
                   </label>
                   <div
                     className={`flex items-center justify-between border rounded-[8px] px-4 py-2.5 bg-[#FAFAFA] transition-colors ${
-                      usernameError ? 'border-red-400 bg-red-50/30' : 'border-[#DFDFE0] focus-within:bg-white focus-within:border-[#DE5D8F]'
+                      usernameError
+                        ? 'border-red-400 bg-red-50/30'
+                        : 'border-[#DFDFE0] focus-within:bg-white focus-within:border-[#DE5D8F]'
                     }`}
                   >
                     {isEditingUsername ? (
@@ -387,9 +428,7 @@ export function AccountSettingsPage() {
             </div>
 
             {/* ── Section 2: Privacy (การตั้งค่าความปลอดภัย) ── */}
-            <div
-              className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs"
-            >
+            <div className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs">
               {/* Header Banner */}
               <div
                 className="px-6 py-3.5 flex items-center gap-2.5 border-b border-[#F0F0F0]"
@@ -414,9 +453,7 @@ export function AccountSettingsPage() {
                   >
                     EMAIL ADDRESS
                   </label>
-                  <div
-                    className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-[#FAFAFA]"
-                  >
+                  <div className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-[#FAFAFA]">
                     <span
                       className="text-[#545455] text-[15px]"
                       style={{ fontFamily: 'Inter, sans-serif' }}
@@ -456,9 +493,7 @@ export function AccountSettingsPage() {
                     >
                       CURRENT PASSWORD
                     </label>
-                    <div
-                      className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-white focus-within:border-[#DE5D8F]"
-                    >
+                    <div className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-white focus-within:border-[#DE5D8F]">
                       <input
                         type={showCurrentPw ? 'text' : 'password'}
                         value={currentPassword}
@@ -472,7 +507,11 @@ export function AccountSettingsPage() {
                         onClick={() => setShowCurrentPw((prev) => !prev)}
                         className="border-none bg-transparent cursor-pointer p-0 text-[#8B8B8C] hover:text-[#1A1C1C]"
                       >
-                        {showCurrentPw ? <EyeOff size={16} /> : <Eye size={16} />}
+                        {showCurrentPw ? (
+                          <EyeOff size={16} />
+                        ) : (
+                          <Eye size={16} />
+                        )}
                       </button>
                     </div>
                   </div>
@@ -485,9 +524,7 @@ export function AccountSettingsPage() {
                     >
                       NEW PASSWORD
                     </label>
-                    <div
-                      className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-white focus-within:border-[#DE5D8F]"
-                    >
+                    <div className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-white focus-within:border-[#DE5D8F]">
                       <input
                         type={showNewPw ? 'text' : 'password'}
                         value={newPassword}
@@ -559,9 +596,13 @@ export function AccountSettingsPage() {
                 style={{
                   fontFamily: 'ChulaCharasNew, sans-serif',
                   padding: '6px 18px',
-                  backgroundColor: articleSubTab === 'published' ? '#B08926' : '#FFFFFF',
+                  backgroundColor:
+                    articleSubTab === 'published' ? '#B08926' : '#FFFFFF',
                   color: articleSubTab === 'published' ? '#FFFFFF' : '#545455',
-                  border: articleSubTab === 'published' ? '1px solid #B08926' : '1px solid #DFDFE0',
+                  border:
+                    articleSubTab === 'published'
+                      ? '1px solid #B08926'
+                      : '1px solid #DFDFE0',
                 }}
               >
                 เผยแพร่แล้ว (12)
@@ -576,9 +617,13 @@ export function AccountSettingsPage() {
                 style={{
                   fontFamily: 'ChulaCharasNew, sans-serif',
                   padding: '6px 18px',
-                  backgroundColor: articleSubTab === 'draft' ? '#B08926' : '#FFFFFF',
+                  backgroundColor:
+                    articleSubTab === 'draft' ? '#B08926' : '#FFFFFF',
                   color: articleSubTab === 'draft' ? '#FFFFFF' : '#545455',
-                  border: articleSubTab === 'draft' ? '1px solid #B08926' : '1px solid #DFDFE0',
+                  border:
+                    articleSubTab === 'draft'
+                      ? '1px solid #B08926'
+                      : '1px solid #DFDFE0',
                 }}
               >
                 ร่างบทความ (2)
@@ -586,10 +631,11 @@ export function AccountSettingsPage() {
             </div>
 
             {/* Table Card (Figma Nodes 6602:23431 & 6602:23831) */}
-            <div
-              className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs"
-            >
-              <table className="w-full text-left border-collapse" style={{ minWidth: 680 }}>
+            <div className="bg-white rounded-[16px] border border-[#DFDFE0] overflow-hidden shadow-xs">
+              <table
+                className="w-full text-left border-collapse"
+                style={{ minWidth: 680 }}
+              >
                 <thead>
                   <tr
                     style={{
@@ -659,7 +705,9 @@ export function AccountSettingsPage() {
                     paginatedList.map((item, idx, arr) => (
                       <tr
                         key={item.id}
-                        onClick={() => navigate(`/aksornsara/create?id=${item.id}`)}
+                        onClick={() =>
+                          navigate(`/aksornsara/create?id=${item.id}`)
+                        }
                         className="hover:bg-[#FFF9FB] transition-colors cursor-pointer"
                         style={{
                           borderBottom:
@@ -670,7 +718,9 @@ export function AccountSettingsPage() {
                         <td className="py-3.5 px-6">
                           <div className="flex items-center gap-3">
                             <img
-                              src={item.coverImage || item.imageUrl || articleThumb}
+                              src={
+                                item.coverImage || item.imageUrl || articleThumb
+                              }
                               alt="thumb"
                               className="w-10 h-10 rounded-[6px] object-cover shrink-0 shadow-xs bg-gray-100 border border-gray-100"
                               onError={(e) => {
@@ -771,7 +821,10 @@ export function AccountSettingsPage() {
                               type="button"
                               onClick={() => navigate('/aksornsara/create')}
                               className="mt-2 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-white font-bold font-serif border-none cursor-pointer"
-                              style={{ backgroundColor: '#E992B4', fontSize: 13 }}
+                              style={{
+                                backgroundColor: '#E992B4',
+                                fontSize: 13,
+                              }}
                             >
                               <Plus size={14} />
                               <span>สร้างบทความใหม่</span>
@@ -788,7 +841,8 @@ export function AccountSettingsPage() {
               {totalPages > 1 && (
                 <div className="flex items-center justify-between px-6 py-3.5 border-t border-[#DFDFE0] bg-[#FAFAFA]">
                   <span className="text-[13px] text-gray-500 font-serif">
-                    แสดง {paginatedList.length} จากทั้งหมด {currentList.length} รายการ
+                    แสดง {paginatedList.length} จากทั้งหมด {currentList.length}{' '}
+                    รายการ
                   </span>
 
                   <div className="flex items-center gap-2">
@@ -806,7 +860,9 @@ export function AccountSettingsPage() {
                     <button
                       type="button"
                       disabled={articlesPage === totalPages}
-                      onClick={() => setArticlesPage((p) => Math.min(totalPages, p + 1))}
+                      onClick={() =>
+                        setArticlesPage((p) => Math.min(totalPages, p + 1))
+                      }
                       className="px-2.5 py-1 rounded-[6px] border border-[#DFDFE0] bg-white text-gray-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 cursor-pointer flex items-center"
                     >
                       <ChevronRight size={16} />

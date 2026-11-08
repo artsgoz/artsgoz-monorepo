@@ -11,3 +11,5 @@ cloud_build_repository = {
   connection_name = "artsgoz"
   repository_name = "artsgoz-artsgoz-monorepo"
 }
+
+api_base_url = "https://staging.api.artsgoz.com/api"

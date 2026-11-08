@@ -1,7 +1,7 @@
 import { StrictMode, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
-import { MaintenancePage } from '@base-components';
+import { MaintenancePage, AuthProvider } from '@base-components';
 // i18n bootstrap — must be imported before App renders
 import './i18n/index.js';
 
@@ -15,7 +15,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Suspense fallback={null}>
-      {IS_MAINTENANCE_MODE ? <MaintenancePage /> : <App />}
+      {IS_MAINTENANCE_MODE ? (
+        <MaintenancePage />
+      ) : (
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      )}
     </Suspense>
   </StrictMode>,
 );

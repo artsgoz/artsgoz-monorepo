@@ -1,11 +1,11 @@
-import { useState, useMemo } from 'react';
+import { backendRequest } from '@base-components';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Trash2, Link2, ExternalLink } from 'lucide-react';
 import { AksornsaraLayout } from './AksornsaraLayout';
-import { articlesService } from './services/articlesService';
 
 interface CommentItem {
-  id: number;
+  id: string;
   author: string;
   timeAgo: string;
   articleId: string;
@@ -15,87 +15,66 @@ interface CommentItem {
 
 export function CommentsPage() {
   const navigate = useNavigate();
-  const allArticles = useMemo(() => articlesService.getAll(), []);
-
-  // Construct realistic comments referencing actual real articles from the database
-  const initialCommentsList: CommentItem[] = useMemo(() => {
-    const a0 = allArticles[0] || { id: 'art-001', title: '“ที่ใดมีชีวิต ที่นั่นย่อมมีหวัง”' };
-    const a1 = allArticles[1] || { id: 'art-002', title: 'บัตรแมงมุม : วิบากกรรมผัดวันประกันพรุ่งของกทม.' };
-    const a2 = allArticles[2] || { id: 'art-003', title: '‘พารู้จัก Sharenting พ่อแม่สายแชร์ ที่อาจทำร้ายลูกน้อยโดยไม่รู้ตัว’' };
-    const a3 = allArticles[3] || { id: 'art-004', title: 'คำนี้มีที่มา' };
-    const a4 = allArticles[4] || { id: 'art-005', title: 'ดนตรีบำบัดกับการฟื้นฟูจิตใจ' };
-
-    return [
-      {
-        id: 1,
-        author: 'นิสิตคณะอักษรศาสตร์ จุฬาฯ',
-        timeAgo: '15 นาทีที่แล้ว',
-        articleId: a0.id,
-        articleTitle: a0.title,
-        content: 'บทความเขียนได้ลึกซึ้งมากครับ ให้กำลังใจในช่วงเวลาที่กำลังเตรียมสอบและหมดไฟได้ดีมากเลยครับ',
-      },
-      {
-        id: 2,
-        author: 'ภูวดล ชื่นจิตต์',
-        timeAgo: '45 นาทีที่แล้ว',
-        articleId: a1.id,
-        articleTitle: a1.title,
-        content: 'วิเคราะห์ระบบขนส่งสาธารณะในกรุงเทพฯ ได้ตรงจุดมากครับ เป็นปัญหาที่คนเมืองต้องเจอทุกวันจริง ๆ',
-      },
-      {
-        id: 3,
-        author: 'กานดา พินิจสาร',
-        timeAgo: '2 ชั่วโมงที่แล้ว',
-        articleId: a2.id,
-        articleTitle: a2.title,
-        content: 'ประเด็นเรื่อง Sharenting สำคัญมากในยุคนี้ค่ะ พ่อแม่ยุคใหม่ควรได้อ่านบทความนี้เพื่อเคารพสิทธิของเด็ก',
-      },
-      {
-        id: 4,
-        author: 'นักศึกษาปริญญาโท ภาควิชาภาษาศาสตร์',
-        timeAgo: 'เมื่อวานนี้',
-        articleId: a3.id,
-        articleTitle: a3.title,
-        content: 'ชอบการสืบค้นที่มาของคำศัพท์และสำนวนโบราณมากเลยครับ มีประโยชน์ต่อการศึกษาค้นคว้ามาก',
-      },
-      {
-        id: 5,
-        author: 'ชมรมดนตรีและศิลปะ',
-        timeAgo: '2 วันที่แล้ว',
-        articleId: a4.id,
-        articleTitle: a4.title,
-        content: 'ท่วงทำนองกับการบำบัดความเครียด ข้อมูลทางวิทยาศาสตร์และศิลปะเข้ากันได้ลงตัวมากครับ',
-      },
-    ];
-  }, [allArticles]);
-
   const [search, setSearch] = useState('');
-  const [comments, setComments] = useState<CommentItem[]>(initialCommentsList);
-  const [hasMore, setHasMore] = useState(true);
+  const [comments, setComments] = useState<CommentItem[]>([]);
+  const [hasMore, setHasMore] = useState(false);
 
   const filteredComments = comments.filter(
     (c) =>
       c.author.toLowerCase().includes(search.toLowerCase()) ||
       c.content.toLowerCase().includes(search.toLowerCase()) ||
-      c.articleTitle.toLowerCase().includes(search.toLowerCase())
+      c.articleTitle.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const handleDelete = (id: number) => {
-    setComments((prev) => prev.filter((c) => c.id !== id));
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    let active = true;
+    void backendRequest<{
+      data: {
+        id: string;
+        author_name: string;
+        content: string;
+        article_id: string;
+        article_title: string;
+        created_at: string;
+      }[];
+    }>('/admin/comments', {}, true)
+      .then((response) => {
+        if (active)
+          setComments(
+            response.data.map((comment) => ({
+              id: comment.id,
+              author: comment.author_name,
+              content: comment.content,
+              articleId: comment.article_id,
+              articleTitle: comment.article_title,
+              timeAgo: new Date(comment.created_at).toLocaleString(),
+            })),
+          );
+      })
+      .catch((cause) => {
+        if (active)
+          setError(
+            cause instanceof Error ? cause.message : 'Unable to load comments.',
+          );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+  const handleDelete = async (id: string) => {
+    try {
+      await backendRequest(`/admin/comments/${id}`, { method: 'DELETE' }, true);
+      setComments((previous) =>
+        previous.filter((comment) => comment.id !== id),
+      );
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : 'Unable to delete comment.',
+      );
+    }
   };
-
   const handleLoadMore = () => {
-    const extraArticles = allArticles.slice(5, 7);
-    const extraComments: CommentItem[] = extraArticles.map((art, idx) => ({
-      id: 10 + idx,
-      author: idx === 0 ? 'ศิษย์เก่าอักษรฯ' : 'ผู้ติดตามอ่านประจำ',
-      timeAgo: `${idx + 3} วันที่แล้ว`,
-      articleId: art.id,
-      articleTitle: art.title,
-      content: `บทความ "${art.title}" ถ่ายทอดมุมมองทางสังคมและวัฒนธรรมได้ประทับใจมากครับ`,
-    }));
-
-    setComments((prev) => [...prev, ...extraComments]);
     setHasMore(false);
   };
 
@@ -106,6 +85,11 @@ export function CommentsPage() {
       searchValue={search}
       onSearchChange={setSearch}
     >
+      {error && (
+        <p role="alert" className="text-red-700">
+          {error}
+        </p>
+      )}
       <div className="w-full flex flex-col gap-6" style={{ maxWidth: 956 }}>
         {/* ── Page Header ── */}
         <div>
@@ -142,7 +126,8 @@ export function CommentsPage() {
                 <div
                   className="absolute top-0 left-[1px] right-[1px] h-[4px]"
                   style={{
-                    background: 'linear-gradient(90deg, #E992B4 0%, #FFFFFF 100%)',
+                    background:
+                      'linear-gradient(90deg, #E992B4 0%, #FFFFFF 100%)',
                   }}
                 />
 
@@ -175,7 +160,9 @@ export function CommentsPage() {
                   {/* Article Badge Pill (Clickable) */}
                   <button
                     type="button"
-                    onClick={() => navigate(`/aksornsara/create?id=${comment.articleId}`)}
+                    onClick={() =>
+                      navigate(`/aksornsara/create?id=${comment.articleId}`)
+                    }
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-[#FCEFF4] hover:bg-[#F9DEE8] transition-colors border-none cursor-pointer text-left max-w-[420px]"
                     title="คลิกเพื่อเปิดบทความนี้"
                   >
@@ -190,7 +177,11 @@ export function CommentsPage() {
                     >
                       บทความ: {comment.articleTitle}
                     </span>
-                    <ExternalLink size={12} color="#DE5D8F" className="shrink-0 ml-0.5" />
+                    <ExternalLink
+                      size={12}
+                      color="#DE5D8F"
+                      className="shrink-0 ml-0.5"
+                    />
                   </button>
                 </div>
 

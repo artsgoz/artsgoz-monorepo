@@ -33,32 +33,40 @@ export function CreateArticlePage() {
   const initialArticle = editId ? articlesService.getById(editId) : undefined;
 
   // Form Fields initialized from article or blank
-  const [title, setTitle] = useState(
-    () => initialArticle?.title || ''
-  );
+  const [title, setTitle] = useState(() => initialArticle?.title || '');
   const [content, setContent] = useState(
-    () => initialArticle?.contentHtml || (initialArticle ? `<p>${initialArticle.excerpt}</p>` : '')
+    () =>
+      initialArticle?.contentHtml ||
+      (initialArticle ? `<p>${initialArticle.excerpt}</p>` : ''),
   );
 
   const [author, setAuthor] = useState(() => initialArticle?.author || '');
-  const [proofreader, setProofreader] = useState(() => initialArticle?.proofreader || '');
-  const [illustrator, setIllustrator] = useState(() => initialArticle?.illustrator || '');
+  const [proofreader, setProofreader] = useState(
+    () => initialArticle?.proofreader || '',
+  );
+  const [illustrator, setIllustrator] = useState(
+    () => initialArticle?.illustrator || '',
+  );
 
   // Cover Image
   const [coverImage, setCoverImage] = useState<string | null>(
-    () => initialArticle?.coverImage || initialArticle?.imageUrl || null
+    () => initialArticle?.coverImage || initialArticle?.imageUrl || null,
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Sidebar Settings
-  const [visibility, setVisibility] = useState(() => initialArticle?.visibility || 'สาธารณะ');
-  const [scheduleType, setScheduleType] = useState<'immediate' | 'scheduled'>(() => {
-    if (initialArticle?.publishedAt) {
-      const pubTime = new Date(initialArticle.publishedAt).getTime();
-      if (!isNaN(pubTime) && pubTime > Date.now()) return 'scheduled';
-    }
-    return 'immediate';
-  });
+  const [visibility, setVisibility] = useState(
+    () => initialArticle?.visibility || 'สาธารณะ',
+  );
+  const [scheduleType, setScheduleType] = useState<'immediate' | 'scheduled'>(
+    () => {
+      if (initialArticle?.publishedAt) {
+        const pubTime = new Date(initialArticle.publishedAt).getTime();
+        if (!isNaN(pubTime) && pubTime > Date.now()) return 'scheduled';
+      }
+      return 'immediate';
+    },
+  );
   const [scheduledDateTime, setScheduledDateTime] = useState(() => {
     if (initialArticle?.publishedAt) {
       try {
@@ -81,7 +89,9 @@ export function CreateArticlePage() {
   });
 
   // Categories (Blank when creating new, or loaded from initialArticle)
-  const [categories, setCategories] = useState<{ id: string; name: string; checked: boolean }[]>(() => {
+  const [categories, setCategories] = useState<
+    { id: string; name: string; checked: boolean }[]
+  >(() => {
     const base = [
       { id: '1', name: 'ศิลปะ', checked: false },
       { id: '2', name: 'วรรณกรรม', checked: false },
@@ -91,7 +101,9 @@ export function CreateArticlePage() {
       { id: '6', name: 'วิจารณ์', checked: false },
       { id: '7', name: 'ทั่วไป', checked: false },
     ];
-    const initialCats = initialArticle?.categories || (initialArticle?.category ? [initialArticle.category] : []);
+    const initialCats =
+      initialArticle?.categories ||
+      (initialArticle?.category ? [initialArticle.category] : []);
     if (initialCats.length > 0) {
       const set = new Set(initialCats);
       const mapped = base.map((c) => ({ ...c, checked: set.has(c.name) }));
@@ -106,14 +118,16 @@ export function CreateArticlePage() {
   const [showAddCatInput, setShowAddCatInput] = useState(false);
 
   // Tags
-  const [tags, setTags] = useState<string[]>(
-    () => initialArticle?.tags || []
-  );
+  const [tags, setTags] = useState<string[]>(() => initialArticle?.tags || []);
   const [tagInput, setTagInput] = useState('');
 
   // SEO Settings
-  const [slug, setSlug] = useState(() => initialArticle?.slug || initialArticle?.id || '');
-  const [metaDesc, setMetaDesc] = useState(() => initialArticle?.metaDescription || initialArticle?.excerpt || '');
+  const [slug, setSlug] = useState(
+    () => initialArticle?.slug || initialArticle?.id || '',
+  );
+  const [metaDesc, setMetaDesc] = useState(
+    () => initialArticle?.metaDescription || initialArticle?.excerpt || '',
+  );
 
   // Drag and Drop Cover Image State
   const [isDragging, setIsDragging] = useState(false);
@@ -148,7 +162,7 @@ export function CreateArticlePage() {
       }
       if (e.key === 'Tab' && modalRef.current) {
         const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
         );
         if (focusable.length === 0) return;
         const first = focusable[0];
@@ -178,13 +192,19 @@ export function CreateArticlePage() {
       reader.readAsDataURL(file);
 
       // Async upload to backend media API
-      aksornsaraApi.uploadMedia(file).then((res) => {
-        if (res?.success && res.data?.url) {
-          setCoverImage(res.data.url);
-        }
-      }).catch(() => {
-        // Fallback to base64 preview
-      });
+      aksornsaraApi
+        .uploadMedia(file)
+        .then((res) => {
+          if (res?.success && res.data?.url) {
+            setCoverImage(res.data.url);
+          }
+        })
+        .catch((cause) => {
+          setCoverImage(null);
+          showToast(
+            cause instanceof Error ? cause.message : 'Unable to upload image.',
+          );
+        });
     }
   };
 
@@ -214,17 +234,27 @@ export function CreateArticlePage() {
       };
       reader.readAsDataURL(file);
 
-      aksornsaraApi.uploadMedia(file).then((res) => {
-        if (res?.success && res.data?.url) {
-          setCoverImage(res.data.url);
-        }
-      }).catch(() => {});
+      aksornsaraApi
+        .uploadMedia(file)
+        .then((res) => {
+          if (res?.success && res.data?.url) {
+            setCoverImage(res.data.url);
+          }
+        })
+        .catch((cause) => {
+          setCoverImage(null);
+          showToast(
+            cause instanceof Error ? cause.message : 'Unable to upload image.',
+          );
+        });
     }
   };
 
   const toggleCategory = (id: string) => {
     setCategories((prev) =>
-      prev.map((cat) => (cat.id === id ? { ...cat, checked: !cat.checked } : cat))
+      prev.map((cat) =>
+        cat.id === id ? { ...cat, checked: !cat.checked } : cat,
+      ),
     );
   };
 
@@ -270,115 +300,146 @@ export function CreateArticlePage() {
     setShowPublishModal(true);
   };
 
-  const handleSaveDraft = () => {
-    const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
-    const category = selectedCats[0] || 'ทั่วไป';
+  const [saving, setSaving] = useState(false);
+  const handleSaveDraft = async () => {
+    if (saving) return;
+    setSaving(true);
+    try {
+      const selectedCats = categories
+        .filter((c) => c.checked)
+        .map((c) => c.name);
+      const category = selectedCats[0] || 'ทั่วไป';
 
-    if (slug.trim() && articlesService.isSlugTaken(slug, editId || undefined)) {
-      showToast('URL Slug นี้ถูกใช้งานแล้ว กรุณาเปลี่ยนเป็นชื่ออื่น');
-      return;
-    }
+      if (
+        slug.trim() &&
+        articlesService.isSlugTaken(slug, editId || undefined)
+      ) {
+        showToast('URL Slug นี้ถูกใช้งานแล้ว กรุณาเปลี่ยนเป็นชื่ออื่น');
+        return;
+      }
 
-    const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
-    const finalTitle = title.trim() || 'บทความฉบับร่าง';
-    const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
+      const cleanExcerpt =
+        content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
+      const finalTitle = title.trim() || 'บทความฉบับร่าง';
+      const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
 
-    if (editId) {
-      articlesService.update(editId, {
-        title: finalTitle,
-        contentHtml: content,
-        excerpt: cleanExcerpt,
-        author: finalAuthor,
-        proofreader,
-        illustrator,
-        category,
-        categories: selectedCats.length > 0 ? selectedCats : [category],
-        metaDescription: metaDesc,
-        coverImage: coverImage || undefined,
-        imageUrl: coverImage || undefined,
-        status: 'ร่างบทความ',
-        tags,
-        slug,
-      });
-      showToast('บันทึกร่างบทความเรียบร้อยแล้ว');
-    } else {
-      const created = articlesService.create({
-        title: finalTitle,
-        contentHtml: content,
-        excerpt: cleanExcerpt,
-        author: finalAuthor,
-        proofreader,
-        illustrator,
-        category,
-        categories: selectedCats.length > 0 ? selectedCats : [category],
-        metaDescription: metaDesc,
-        coverImage: coverImage || undefined,
-        imageUrl: coverImage || undefined,
-        status: 'ร่างบทความ',
-        tags,
-        slug,
-      });
-      showToast('บันทึกร่างบทความเรียบร้อยแล้ว');
-      navigate(`/aksornsara/create?id=${created.id}`, { replace: true });
+      if (editId) {
+        await articlesService.update(editId, {
+          title: finalTitle,
+          contentHtml: content,
+          excerpt: cleanExcerpt,
+          author: finalAuthor,
+          proofreader,
+          illustrator,
+          category,
+          categories: selectedCats.length > 0 ? selectedCats : [category],
+          metaDescription: metaDesc,
+          coverImage: coverImage || undefined,
+          imageUrl: coverImage || undefined,
+          status: 'ร่างบทความ',
+          tags,
+          slug,
+        });
+        showToast('บันทึกร่างบทความเรียบร้อยแล้ว');
+      } else {
+        const created = await articlesService.create({
+          title: finalTitle,
+          contentHtml: content,
+          excerpt: cleanExcerpt,
+          author: finalAuthor,
+          proofreader,
+          illustrator,
+          category,
+          categories: selectedCats.length > 0 ? selectedCats : [category],
+          metaDescription: metaDesc,
+          coverImage: coverImage || undefined,
+          imageUrl: coverImage || undefined,
+          status: 'ร่างบทความ',
+          tags,
+          slug,
+        });
+        showToast('บันทึกร่างบทความเรียบร้อยแล้ว');
+        navigate(`/aksornsara/create?id=${created.id}`, { replace: true });
+      }
+    } catch (cause) {
+      showToast(
+        cause instanceof Error ? cause.message : 'Unable to save article.',
+      );
+    } finally {
+      setSaving(false);
     }
   };
 
-  const handleConfirmPublish = () => {
-    if (!validateForPublish()) return;
-    setShowPublishModal(false);
-    const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
-    const category = selectedCats[0] || 'ทั่วไป';
+  const handleConfirmPublish = async () => {
+    if (saving) return;
+    setSaving(true);
+    try {
+      if (!validateForPublish()) return;
+      setShowPublishModal(false);
+      const selectedCats = categories
+        .filter((c) => c.checked)
+        .map((c) => c.name);
+      const category = selectedCats[0] || 'ทั่วไป';
 
-    const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
-    const finalTitle = title.trim();
-    const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
-    const isFutureScheduled = scheduleType === 'scheduled' && !!scheduledDateTime;
-    const computedPublishedAt = isFutureScheduled
-      ? new Date(scheduledDateTime).toISOString()
-      : initialArticle?.publishedAt || new Date().toISOString();
+      const cleanExcerpt =
+        content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
+      const finalTitle = title.trim();
+      const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
+      const isFutureScheduled =
+        scheduleType === 'scheduled' && !!scheduledDateTime;
+      const computedPublishedAt = isFutureScheduled
+        ? new Date(scheduledDateTime).toISOString()
+        : initialArticle?.publishedAt || new Date().toISOString();
 
-    if (editId) {
-      articlesService.update(editId, {
-        title: finalTitle,
-        contentHtml: content,
-        excerpt: cleanExcerpt,
-        author: finalAuthor,
-        proofreader,
-        illustrator,
-        category,
-        categories: selectedCats.length > 0 ? selectedCats : [category],
-        metaDescription: metaDesc,
-        coverImage: coverImage || undefined,
-        imageUrl: coverImage || undefined,
-        status: 'เผยแพร่แล้ว',
-        tags,
-        slug,
-        publishedAt: computedPublishedAt,
-      });
-    } else {
-      articlesService.create({
-        title: finalTitle,
-        contentHtml: content,
-        excerpt: cleanExcerpt,
-        author: finalAuthor,
-        proofreader,
-        illustrator,
-        category,
-        categories: selectedCats.length > 0 ? selectedCats : [category],
-        metaDescription: metaDesc,
-        coverImage: coverImage || undefined,
-        imageUrl: coverImage || undefined,
-        status: 'เผยแพร่แล้ว',
-        tags,
-        slug,
-        publishedAt: computedPublishedAt,
-      });
+      if (editId) {
+        await articlesService.update(editId, {
+          title: finalTitle,
+          contentHtml: content,
+          excerpt: cleanExcerpt,
+          author: finalAuthor,
+          proofreader,
+          illustrator,
+          category,
+          categories: selectedCats.length > 0 ? selectedCats : [category],
+          metaDescription: metaDesc,
+          coverImage: coverImage || undefined,
+          imageUrl: coverImage || undefined,
+          status: 'เผยแพร่แล้ว',
+          tags,
+          slug,
+          publishedAt: computedPublishedAt,
+        });
+      } else {
+        await articlesService.create({
+          title: finalTitle,
+          contentHtml: content,
+          excerpt: cleanExcerpt,
+          author: finalAuthor,
+          proofreader,
+          illustrator,
+          category,
+          categories: selectedCats.length > 0 ? selectedCats : [category],
+          metaDescription: metaDesc,
+          coverImage: coverImage || undefined,
+          imageUrl: coverImage || undefined,
+          status: 'เผยแพร่แล้ว',
+          tags,
+          slug,
+          publishedAt: computedPublishedAt,
+        });
+      }
+
+      showToast('เผยแพร่บทความสำเร็จแล้ว!');
+      setTimeout(() => {
+        navigate('/aksornsara/published-articles');
+      }, 1200);
+    } catch (cause) {
+      showToast(
+        cause instanceof Error ? cause.message : 'Unable to publish article.',
+      );
+    } finally {
+      setSaving(false);
     }
-
-    showToast('เผยแพร่บทความสำเร็จแล้ว!');
-    setTimeout(() => {
-      navigate('/aksornsara/published-articles');
-    }, 1200);
   };
 
   return (
@@ -438,6 +499,7 @@ export function CreateArticlePage() {
 
               <button
                 type="button"
+                disabled={saving}
                 onClick={handleConfirmPublish}
                 className="cursor-pointer border-none font-bold text-white transition-opacity hover:opacity-90 active:scale-95 flex items-center justify-center shadow-sm font-serif"
                 style={{
@@ -521,7 +583,9 @@ export function CreateArticlePage() {
                     <span
                       key={c.id}
                       className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
-                      style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                      style={{
+                        fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                      }}
                     >
                       {c.name.replace(/^ปี\s*/, '')}
                     </span>
@@ -529,7 +593,9 @@ export function CreateArticlePage() {
               ) : (
                 <span
                   className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
-                  style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                  style={{
+                    fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                  }}
                 >
                   ทั่วไป
                 </span>
@@ -552,14 +618,21 @@ export function CreateArticlePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Bookmark size={18} className="cursor-pointer text-[#F8C135]" />
-                <Share2 size={18} className="cursor-pointer text-gray-400 hover:text-black" />
+                <Share2
+                  size={18}
+                  className="cursor-pointer text-gray-400 hover:text-black"
+                />
               </div>
             </div>
 
             {/* Cover Image */}
             {coverImage && (
               <div className="w-full aspect-[16/9] rounded-[16px] overflow-hidden bg-gray-100 shadow-xs">
-                <img src={coverImage} alt={title} className="w-full h-full object-cover" />
+                <img
+                  src={coverImage}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
 
@@ -619,6 +692,7 @@ export function CreateArticlePage() {
               {/* Save Draft */}
               <button
                 type="button"
+                disabled={saving}
                 onClick={handleSaveDraft}
                 className="flex items-center gap-1.5 cursor-pointer bg-white transition-colors hover:bg-[#FCEFF4] active:scale-95 shadow-xs font-serif"
                 style={{
@@ -660,9 +734,7 @@ export function CreateArticlePage() {
             <div className="lg:col-span-2 flex flex-col gap-6">
               {/* Title Input Card */}
               <div className="bg-white rounded-[16px] border border-[#DFDFE0] p-6 flex flex-col gap-2 shadow-xs">
-                <label
-                  className="font-bold text-[#1A1C1C] text-[18px] font-serif"
-                >
+                <label className="font-bold text-[#1A1C1C] text-[18px] font-serif">
                   ชื่อบทความ *
                 </label>
                 <input
@@ -676,15 +748,10 @@ export function CreateArticlePage() {
 
               {/* TipTap Rich Text Editor Card */}
               <div className="flex flex-col gap-2">
-                <label
-                  className="font-bold text-[#1A1C1C] text-[18px] font-serif"
-                >
+                <label className="font-bold text-[#1A1C1C] text-[18px] font-serif">
                   เนื้อหาบทความ (TipTap Rich Text Editor) *
                 </label>
-                <TiptapEditor
-                  content={content}
-                  onChange={setContent}
-                />
+                <TiptapEditor content={content} onChange={setContent} />
               </div>
 
               {/* Cover Image Upload Card */}
@@ -734,7 +801,9 @@ export function CreateArticlePage() {
                     </div>
                     <div>
                       <p className="font-bold text-[#DE5D8F] m-0 font-serif text-[16px]">
-                        {isDragging ? 'วางรูปภาพที่นี่' : 'คลิกหรือลากรูปภาพมาวางที่นี่'}
+                        {isDragging
+                          ? 'วางรูปภาพที่นี่'
+                          : 'คลิกหรือลากรูปภาพมาวางที่นี่'}
                       </p>
                       <p className="text-[#6D6D6D] m-0 text-[13px] mt-1 font-serif">
                         SVG, PNG, JPG หรือ GIF (แนะนำขนาด 800x800 หรือ 16:9)
@@ -802,7 +871,9 @@ export function CreateArticlePage() {
                   </label>
                   <select
                     value={visibility}
-                    onChange={(e) => setVisibility(e.target.value as 'สาธารณะ' | 'ส่วนตัว')}
+                    onChange={(e) =>
+                      setVisibility(e.target.value as 'สาธารณะ' | 'ส่วนตัว')
+                    }
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F] bg-white cursor-pointer"
                   >
                     <option value="สาธารณะ">สาธารณะ</option>
@@ -841,7 +912,9 @@ export function CreateArticlePage() {
 
                   {scheduleType === 'scheduled' ? (
                     <div className="flex flex-col gap-1 mt-1">
-                      <span className="text-[12px] text-gray-500 font-serif">ระบุวันและเวลา (หน้าบ้านจะไม่แสดงก่อนถึงเวลานี้)</span>
+                      <span className="text-[12px] text-gray-500 font-serif">
+                        ระบุวันและเวลา (หน้าบ้านจะไม่แสดงก่อนถึงเวลานี้)
+                      </span>
                       <input
                         type="datetime-local"
                         value={scheduledDateTime}
@@ -989,7 +1062,9 @@ export function CreateArticlePage() {
                     </label>
                     <span
                       className={`text-[11px] font-mono ${
-                        metaDesc.length > 160 ? 'text-red-500 font-bold' : 'text-[#8B8B8C]'
+                        metaDesc.length > 160
+                          ? 'text-red-500 font-bold'
+                          : 'text-[#8B8B8C]'
                       }`}
                     >
                       {metaDesc.length}/160 ตัวอักษร

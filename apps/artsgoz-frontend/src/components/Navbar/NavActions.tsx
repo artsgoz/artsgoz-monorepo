@@ -1,10 +1,9 @@
+import { useAuth } from '@base-components';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import {
-  CULoginButton,
   SearchInput,
-  LoginDropdown,
   StudentProfileCard,
   ManageAccountCard,
 } from '@artsgoz/design-system';
@@ -18,22 +17,22 @@ interface NavActionsProps {
 }
 
 export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
+  const { profile } = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation('common');
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [profileView, setProfileView] = useState<'profile' | 'manage'>('profile');
+  const [profileView, setProfileView] = useState<'profile' | 'manage'>(
+    'profile',
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(containerRef, () => {
-    setIsLoginOpen(false);
     setIsProfileOpen(false);
     setProfileView('profile');
   });
 
   const handleLoginClick = () => {
     onLogin();
-    setIsLoginOpen(false);
   };
 
   const handleLogoutClick = () => {
@@ -62,48 +61,46 @@ export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
               <div className="w-[30px] h-[30px] rounded-full border border-[#D0D0D1]/60" />
             </button>
 
-            {isProfileOpen && (
-              <>
-                {profileView === 'profile' ? (
-                  <StudentProfileCard
-                    onLogout={handleLogoutClick}
-                    onManageClick={() => setProfileView('manage')}
-                    onSavedClick={() => {
-                      navigate('/articles?tab=saved');
-                      setIsProfileOpen(false);
-                    }}
-                    onHistoryClick={() => {
-                      console.log('เมนูประวัติการวางแผนหน่วยกิตถูกคลิก');
-                      setIsProfileOpen(false);
-                    }}
-                    style={{ left: 'auto', right: 0, top: 'calc(100% + 12px)' }}
-                    className="shadow-[4px_8px_10.2px_rgba(0,0,0,0.25)] z-50"
-                  />
-                ) : (
-                  <ManageAccountCard
-                    onBack={() => setProfileView('profile')}
-                    onEditClick={() => console.log('คลิกแก้ไขโปรไฟล์')}
-                    onAvatarUpload={() => console.log('คลิกอัปโหลดรูปโปรไฟล์')}
-                    style={{ left: 'auto', right: 0, top: 'calc(100% + 12px)' }}
-                    className="shadow-[4px_8px_10.2px_rgba(0,0,0,0.25)] z-50"
-                  />
-                )}
-              </>
-            )}
+            {isProfileOpen &&
+              (profileView === 'profile' ? (
+                <StudentProfileCard
+                  studentName={profile?.username || profile?.email}
+                  avatarUrl={profile?.avatar_url}
+                  studentId=""
+                  major=""
+                  minor=""
+                  onLogout={handleLogoutClick}
+                  onManageClick={() => setProfileView('manage')}
+                  onSavedClick={() => {
+                    navigate('/articles?tab=saved');
+                    setIsProfileOpen(false);
+                  }}
+                  onHistoryClick={() => {
+                    console.log('เมนูประวัติการวางแผนหน่วยกิตถูกคลิก');
+                    setIsProfileOpen(false);
+                  }}
+                  style={{ left: 'auto', right: 0, top: 'calc(100% + 12px)' }}
+                  className="shadow-[4px_8px_10.2px_rgba(0,0,0,0.25)] z-50"
+                />
+              ) : (
+                <ManageAccountCard
+                  onBack={() => setProfileView('profile')}
+                  onEditClick={() => console.log('คลิกแก้ไขโปรไฟล์')}
+                  onAvatarUpload={() => console.log('คลิกอัปโหลดรูปโปรไฟล์')}
+                  style={{ left: 'auto', right: 0, top: 'calc(100% + 12px)' }}
+                  className="shadow-[4px_8px_10.2px_rgba(0,0,0,0.25)] z-50"
+                />
+              ))}
           </>
         ) : (
-          <>
-            <CULoginButton onClick={() => setIsLoginOpen((prev) => !prev)} />
-            {isLoginOpen && (
-              <LoginDropdown
-                onClose={() => setIsLoginOpen(false)}
-                onLogin={handleLoginClick}
-              />
-            )}
-          </>
+          <button
+            className="rounded-lg px-4 py-2 hover:bg-gray-100"
+            onClick={handleLoginClick}
+          >
+            เข้าสู่ระบบ
+          </button>
         )}
       </div>
     </>
   );
 }
-

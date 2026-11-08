@@ -1,22 +1,24 @@
 steps:
   # Install monorepo dependencies
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     args: ['-c', 'corepack pnpm install --frozen-lockfile']
     dir: '.'
 
   # Build Artsgoz backoffice
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     env:
+      - 'VITE_API_BASE_URL=${_API_BASE_URL}'
       - 'VITE_MAINTENANCE_MODE=${_MAINTENANCE_MODE}'
     args:
       - '-c'
       - |
+        test -n "$$VITE_API_BASE_URL" || { echo "Set _API_BASE_URL in the build environment"; exit 1; }
         corepack pnpm exec nx build @artsgoz/artsgoz-backoffice
 
   # Deploy Artsgoz backoffice
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -25,6 +27,9 @@ steps:
         firebase deploy \
           --only hosting:artsgoz-backoffice \
           --project "$PROJECT_ID"
+
+substitutions:
+  _API_BASE_URL: ''
 
 options:
   logging: CLOUD_LOGGING_ONLY

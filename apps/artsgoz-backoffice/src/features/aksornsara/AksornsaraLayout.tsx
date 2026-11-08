@@ -1,3 +1,4 @@
+import { logout } from '@base-components';
 /**
  * SaraniyakornLayout.tsx
  *
@@ -53,7 +54,8 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
       label: 'All Articles',
       path: '/aksornsara/articles',
       isActive: (pathname: string) =>
-        pathname === '/aksornsara/articles' || pathname === '/saraniyakorn/articles',
+        pathname === '/aksornsara/articles' ||
+        pathname === '/saraniyakorn/articles',
     },
     {
       id: 'create',
@@ -61,7 +63,8 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
       label: 'Create New',
       path: '/aksornsara/create',
       isActive: (pathname: string) =>
-        pathname === '/aksornsara/create' || pathname === '/saraniyakorn/create',
+        pathname === '/aksornsara/create' ||
+        pathname === '/saraniyakorn/create',
     },
     {
       id: 'settings',
@@ -69,12 +72,16 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
       label: 'Settings',
       path: '/aksornsara/settings',
       isActive: (pathname: string) =>
-        pathname === '/aksornsara/settings' || pathname === '/saraniyakorn/settings',
+        pathname === '/aksornsara/settings' ||
+        pathname === '/saraniyakorn/settings',
     },
   ];
 
   return (
-    <div className="flex flex-col h-full justify-between" style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}>
+    <div
+      className="flex flex-col h-full justify-between"
+      style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+    >
       <div className="flex flex-col" style={{ gap: 42 }}>
         {/* Brand — บทความสารา / ณียากร */}
         <div
@@ -157,6 +164,7 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
       <div
         onClick={() => {
           try {
+            void logout();
             localStorage.removeItem('aksornsara_auth_token');
             sessionStorage.removeItem('aksornsara_auth_token');
           } catch {}
@@ -169,7 +177,11 @@ function SidebarContent({ onItemClick }: SidebarContentProps) {
         <LogOut size={18} color="#545455" />
         <span
           className="font-bold"
-          style={{ fontFamily: 'ChulaCharasNew, sans-serif', fontSize: 18, color: '#545455' }}
+          style={{
+            fontFamily: 'ChulaCharasNew, sans-serif',
+            fontSize: 18,
+            color: '#545455',
+          }}
         >
           Sign out
         </span>
@@ -186,7 +198,11 @@ interface TopSearchBarProps {
   placeholder?: string;
 }
 
-function TopSearchBar({ value, onChange, placeholder = 'ค้นหา...' }: TopSearchBarProps) {
+function TopSearchBar({
+  value,
+  onChange,
+  placeholder = 'ค้นหา...',
+}: TopSearchBarProps) {
   return (
     <div
       className="flex items-center w-full max-w-[601px]"
@@ -213,7 +229,12 @@ function TopSearchBar({ value, onChange, placeholder = 'ค้นหา...' }: T
         value={value ?? ''}
         onChange={(e) => onChange?.(e.target.value)}
       />
-      <Search size={18} color="#33363F" strokeWidth={2} style={{ flexShrink: 0 }} />
+      <Search
+        size={18}
+        color="#33363F"
+        strokeWidth={2}
+        style={{ flexShrink: 0 }}
+      />
     </div>
   );
 }
@@ -305,9 +326,7 @@ export function AksornsaraLayout({
           />
 
           {/* Drawer Content */}
-          <div
-            className="relative z-10 w-[270px] h-full bg-[#FCEFF4] shadow-2xl flex flex-col pt-4 pb-6 overflow-y-auto"
-          >
+          <div className="relative z-10 w-[270px] h-full bg-[#FCEFF4] shadow-2xl flex flex-col pt-4 pb-6 overflow-y-auto">
             <div className="flex justify-end px-4 mb-2">
               <button
                 type="button"
@@ -326,9 +345,7 @@ export function AksornsaraLayout({
       <div className="flex-1 overflow-y-auto min-w-0 bg-white">
         {/* Topbar: Return Button + Search Bar + Profile */}
         {(showBackButton || showTopSearchBar) && (
-          <div
-            className="flex items-center justify-between gap-3 md:gap-4 px-4 md:px-10 pt-4 md:pt-6"
-          >
+          <div className="flex items-center justify-between gap-3 md:gap-4 px-4 md:px-10 pt-4 md:pt-6">
             <div className="flex items-center gap-3 md:gap-4 flex-1 max-w-[645px]">
               {showBackButton && (
                 <button
@@ -365,17 +382,13 @@ export function AksornsaraLayout({
                 backgroundColor: '#FFFFFF',
               }}
             >
-              <div
-                className="w-[28px] h-[28px] rounded-[10px] bg-[#F5CDDC] flex items-center justify-center"
-              />
+              <div className="w-[28px] h-[28px] rounded-[10px] bg-[#F5CDDC] flex items-center justify-center" />
             </div>
           </div>
         )}
 
         {/* Page children */}
-        <div className="p-4 md:p-10">
-          {children}
-        </div>
+        <div className="p-4 md:p-10">{children}</div>
       </div>
     </div>
   );

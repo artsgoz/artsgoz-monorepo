@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { backendRequest } from '@base-components';
+import { useState, useEffect } from 'react';
 import {
   Search,
   ChevronDown,
@@ -10,7 +11,7 @@ import {
 import { GozAdminLayout } from './GozAdminLayout';
 
 interface InternshipReview {
-  id: number;
+  id: string;
   tag: 'รีวิว' | 'รอการแก้ไข' | 'รอตรวจสอบ';
   company: string;
   role: string;
@@ -19,108 +20,132 @@ interface InternshipReview {
   timestamp: string;
 }
 
-const INITIAL_REVIEWS: InternshipReview[] = [
-  {
-    id: 1,
-    tag: 'รีวิว',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-  {
-    id: 2,
-    tag: 'รอการแก้ไข',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-  {
-    id: 3,
-    tag: 'รอการแก้ไข',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-  {
-    id: 4,
-    tag: 'รอการแก้ไข',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-  {
-    id: 5,
-    tag: 'รอการแก้ไข',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-  {
-    id: 6,
-    tag: 'รอการแก้ไข',
-    company: 'SCG Internship Program(idk)',
-    role: 'UX/UI Designer',
-    description: 'บรรยากาศดีมากๆครับ พี่เลี้ยงดูแลดีม ให้เล่นเกมทุกวัน ตอนนี้ไม่อยากออกครับ ดูเพิ่มเติม',
-    reviewerName: 'Nanthanit Vareerak',
-    timestamp: '21/6/26 07:52',
-  },
-];
-
 export function AdminReviewsPage() {
-  const [reviews, setReviews] = useState<InternshipReview[]>(INITIAL_REVIEWS);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [reviews, setReviews] = useState<InternshipReview[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('ล่าสุด');
   const [authorFilter, setAuthorFilter] = useState('โดยทุกคน');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  useEffect(() => {
+    let active = true;
+    void backendRequest<{
+      data: {
+        id: string;
+        company: string;
+        role: string;
+        content: string;
+        author: string;
+        status: string;
+        created_at: string;
+      }[];
+    }>('/admin/reviews', {}, true)
+      .then((response) => {
+        if (active)
+          setReviews(
+            response.data.map((review) => ({
+              id: review.id,
+              company: review.company,
+              role: review.role,
+              description: review.content,
+              reviewerName: review.author,
+              timestamp: new Date(review.created_at).toLocaleString(),
+              tag: review.status === 'approved' ? 'รีวิว' : 'รอตรวจสอบ',
+            })),
+          );
+      })
+      .catch((cause) => {
+        if (active)
+          setError(
+            cause instanceof Error ? cause.message : 'Unable to load reviews.',
+          );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const toggleSelect = (id: number) => {
+  const toggleSelect = (id: string) => {
     setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
-  const handleApprove = () => {
+  const handleApprove = async () => {
+    if (saving) return;
     if (selectedIds.length === 0) {
       showToast('กรุณาเลือกรายการที่ต้องการอนุมัติ');
       return;
     }
-    setReviews((prev) =>
-      prev.map((r) =>
-        selectedIds.includes(r.id) ? { ...r, tag: 'รีวิว' as const } : r
-      )
-    );
-    setSelectedIds([]);
-    showToast('อนุมัติรีวิวที่เลือกเรียบร้อยแล้ว');
+    setSaving(true);
+    setError(null);
+    try {
+      await Promise.all(
+        selectedIds.map((id) =>
+          backendRequest(
+            `/admin/reviews/${id}/approve`,
+            { method: 'PUT' },
+            true,
+          ),
+        ),
+      );
+      setReviews((prev) =>
+        prev.map((r) =>
+          selectedIds.includes(r.id) ? { ...r, tag: 'รีวิว' as const } : r,
+        ),
+      );
+      setSelectedIds([]);
+      showToast('อนุมัติรีวิวที่เลือกเรียบร้อยแล้ว');
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : 'Unable to update reviews.',
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    if (saving) return;
     if (selectedIds.length === 0) {
       showToast('กรุณาเลือกรายการที่ต้องการลบ');
       return;
     }
-    setReviews((prev) => prev.filter((r) => !selectedIds.includes(r.id)));
-    setSelectedIds([]);
-    showToast('ลบรายการที่เลือกเรียบร้อยแล้ว');
+    setSaving(true);
+    setError(null);
+    try {
+      await Promise.all(
+        selectedIds.map((id) =>
+          backendRequest(`/admin/reviews/${id}`, { method: 'DELETE' }, true),
+        ),
+      );
+      setReviews((prev) => prev.filter((r) => !selectedIds.includes(r.id)));
+      setSelectedIds([]);
+      showToast('ลบรายการที่เลือกเรียบร้อยแล้ว');
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : 'Unable to update reviews.',
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
     <GozAdminLayout showTopSearch={false}>
+      {error && (
+        <p role="alert" className="text-red-700">
+          {error}
+        </p>
+      )}
       {/* Toast Notification */}
       {toastMessage && (
         <div
@@ -203,6 +228,7 @@ export function AdminReviewsPage() {
               <button
                 type="button"
                 id="btn-delete-reviews"
+                disabled={saving}
                 onClick={handleDelete}
                 className="px-5 py-2 rounded-[8px] bg-[#F5CDDC] hover:bg-[#F0BED2] text-[#DE5D8F] font-bold text-[14px] border-none cursor-pointer transition-colors shadow-xs active:scale-95"
                 style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
@@ -212,6 +238,7 @@ export function AdminReviewsPage() {
               <button
                 type="button"
                 id="btn-approve-reviews"
+                disabled={saving}
                 onClick={handleApprove}
                 className="px-5 py-2 rounded-[8px] bg-[#DE5D8F] hover:bg-[#CA5582] text-white font-bold text-[14px] border-none cursor-pointer transition-colors shadow-xs active:scale-95"
                 style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
@@ -228,7 +255,7 @@ export function AdminReviewsPage() {
             className="text-[#8B8B8C] text-[13px]"
             style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
           >
-            แสดงทั้งหมด {reviews.length} จาก 67 รายการ
+            แสดงทั้งหมด {reviews.length} รายการ
           </span>
         </div>
 

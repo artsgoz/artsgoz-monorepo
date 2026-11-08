@@ -301,6 +301,9 @@ importers:
       recharts:
         specifier: ^3.10.1
         version: 3.10.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)(redux@5.0.1)
+      firebase:
+        specifier: ^13.1.0
+        version: 13.1.0
 
   apps/artsgoz-frontend:
     dependencies:
@@ -314,7 +317,11 @@ importers:
         specifier: ^13.1.0
         version: 13.1.0
 
-  libs/base-components: {}
+  libs/base-components:
+    dependencies:
+      firebase:
+        specifier: ^13.1.0
+        version: 13.1.0
 
   libs/design-system:
     dependencies:

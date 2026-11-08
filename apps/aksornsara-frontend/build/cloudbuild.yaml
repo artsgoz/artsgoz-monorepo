@@ -1,12 +1,12 @@
 steps:
   # Install monorepo dependencies
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     args: ['-c', 'corepack pnpm install --frozen-lockfile']
     dir: '.'
 
   # Build Aksornsara frontend
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     env:
       - 'VITE_API_BASE_URL=${_API_BASE_URL}'
@@ -21,7 +21,7 @@ steps:
         corepack pnpm exec nx build @artsgoz/aksornsara-frontend
 
   # Deploy Aksornsara frontend
-  - name: 'node:22'
+  - name: 'node:24'
     entrypoint: 'bash'
     args:
       - '-c'

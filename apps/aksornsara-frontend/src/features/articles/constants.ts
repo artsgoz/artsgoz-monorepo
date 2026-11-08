@@ -77,7 +77,12 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
+            if (
+              item &&
+              item.id &&
+              !seenIds.has(item.id) &&
+              isPubliclyPublished(item)
+            ) {
               articles.push(item);
               seenIds.add(item.id);
             }
@@ -92,12 +97,19 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
   // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008, F-DTL-024)
   try {
     if (window.localStorage) {
-      const sharedRaw = localStorage.getItem('aksornsara_backoffice_articles_shared');
+      const sharedRaw = localStorage.getItem(
+        'aksornsara_backoffice_articles_shared',
+      );
       if (sharedRaw) {
         const parsed = JSON.parse(sharedRaw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
+            if (
+              item &&
+              item.id &&
+              !seenIds.has(item.id) &&
+              isPubliclyPublished(item)
+            ) {
               articles.push({
                 id: item.id,
                 title: item.title,
@@ -182,7 +194,9 @@ export const getArticlesSummaryList = (): ArticleSummary[] => {
 export const ARTICLES_SUMMARY: ArticleSummary[] = getArticlesSummaryList();
 export const MOCK_ARTICLES = ARTICLES_SUMMARY;
 
-export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined => {
+export const getArticleDetail = (
+  idOrSlug: string,
+): ArticleDetail | undefined => {
   if (!idOrSlug) return undefined;
   const normalized = idOrSlug.trim().toLowerCase();
 
@@ -191,7 +205,7 @@ export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined =>
   const foundMock = mocks.find(
     (m) =>
       m.id.toLowerCase() === normalized ||
-      ((m as any).slug && String((m as any).slug).toLowerCase() === normalized)
+      ((m as any).slug && String((m as any).slug).toLowerCase() === normalized),
   );
   if (foundMock) {
     if (!isPubliclyPublished(foundMock)) {
@@ -206,12 +220,13 @@ export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined =>
 
   // 2. Check static JSON archive data (match by id or slug)
   const details = articlesDetailData as Record<string, ArticleDetail>;
-  let article = details[idOrSlug];
+  let article: ArticleDetail | undefined = details[idOrSlug];
   if (!article) {
     article = Object.values(details).find(
       (a) =>
         a.id.toLowerCase() === normalized ||
-        ((a as any).slug && String((a as any).slug).toLowerCase() === normalized)
+        ((a as any).slug &&
+          String((a as any).slug).toLowerCase() === normalized),
     );
   }
 

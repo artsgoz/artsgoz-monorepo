@@ -1,3 +1,5 @@
+import type { ArticleSummary } from '../../../features/articles/types.js';
+import { usePublicArticles } from '../../../features/articles/hooks/usePublicArticles.js';
 import { useMemo, useState, useRef } from 'react';
 import { useSearchParams, useNavigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
@@ -16,9 +18,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArticleCard,
   CategoryFilterBar,
-  MOCK_ARTICLES,
   AKSORNSARA_CATEGORIES,
-  getArticlesSummaryList,
   ArticleBannerMock,
 } from '../../../features/articles/index.js';
 import { Footer } from '../../../components/Footer/index.js';
@@ -84,7 +84,14 @@ const parseDateToTimestamp = (dateStr: string) => {
     const parts = cleanStr.split('/');
     if (parts.length === 3) {
       const [day, month, year] = parts.map(Number);
-      const fullYear = year < 100 ? (year > 40 ? 2500 + year - 543 : 2000 + year) : (year > 2400 ? year - 543 : year);
+      const fullYear =
+        year < 100
+          ? year > 40
+            ? 2500 + year - 543
+            : 2000 + year
+          : year > 2400
+            ? year - 543
+            : year;
       return new Date(fullYear, month - 1, day).getTime();
     }
     const parsed = Date.parse(dateStr);
@@ -99,17 +106,21 @@ function SavedArticleCard({
   article,
   onUnbookmark,
 }: {
-  article: typeof MOCK_ARTICLES[0];
+  article: ArticleSummary;
   onUnbookmark: () => void;
 }) {
   const { t } = useTranslation('articles');
   const navigate = useNavigate();
 
-  const title = article.title.startsWith('mock.') ? t(article.title) : article.title;
+  const title = article.title.startsWith('mock.')
+    ? t(article.title)
+    : article.title;
   const category = article.category.startsWith('categories.')
     ? t(article.category)
-    : (article.category || 'หมวดหมู่');
-  const author = article.author.startsWith('mock.') ? t(article.author) : (article.author || 'ชมรมสาราณียกร');
+    : article.category || 'หมวดหมู่';
+  const author = article.author.startsWith('mock.')
+    ? t(article.author)
+    : article.author || 'ชมรมสาราณียกร';
   const dateStr = article.date || 'วว/ดด/ปป';
 
   return (
@@ -229,6 +240,7 @@ function SavedArticleCard({
 }
 
 export default function ArticlesPage() {
+  const { articles, loading, error } = usePublicArticles();
   const { t } = useTranslation('articles');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -240,11 +252,14 @@ export default function ArticlesPage() {
   const searchQuery = searchParams.get('search') || '';
   const selectedCategory = searchParams.get('category') || 'all';
   const currentPage = Number(searchParams.get('page')) || 1;
-  const isSavedTab = searchParams.get('tab') === 'saved' || location.pathname === '/saved';
+  const isSavedTab =
+    searchParams.get('tab') === 'saved' || location.pathname === '/saved';
 
   // State for Saved Items page
   const [savedSearchQuery, setSavedSearchQuery] = useState('');
-  const [savedTab, setSavedTab] = useState<'articles' | 'internships' | 'reviews'>('articles');
+  const [savedTab, setSavedTab] = useState<
+    'articles' | 'internships' | 'reviews'
+  >('articles');
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('bookmarked_articles');
@@ -269,7 +284,9 @@ export default function ArticlesPage() {
   >('saved_newest');
 
   // Filter & Sort order for main articles view ('newest' = ใหม่ไปเก่า, 'oldest' = เก่าไปใหม่)
-  const [articlesSortOrder, setArticlesSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [articlesSortOrder, setArticlesSortOrder] = useState<
+    'newest' | 'oldest'
+  >('newest');
   const [isArticlesFilterOpen, setIsArticlesFilterOpen] = useState(false);
   const filterDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -287,7 +304,7 @@ export default function ArticlesPage() {
 
   // Filter and Sort Saved Articles
   const savedArticles = useMemo(() => {
-    let list = MOCK_ARTICLES.filter((article) => bookmarkedIds.includes(article.id));
+    let list = articles.filter((article) => bookmarkedIds.includes(article.id));
 
     if (savedSearchQuery.trim() !== '') {
       const query = savedSearchQuery.trim().toLowerCase();
@@ -296,26 +313,30 @@ export default function ArticlesPage() {
           article.title.toLowerCase().includes(query) ||
           article.excerpt.toLowerCase().includes(query) ||
           article.author.toLowerCase().includes(query) ||
-          article.category.toLowerCase().includes(query)
+          article.category.toLowerCase().includes(query),
       );
     }
 
     if (savedSortBy === 'saved_newest') {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id)
+        (a, b) => bookmarkedIds.indexOf(b.id) - bookmarkedIds.indexOf(a.id),
       );
     } else if (savedSortBy === 'saved_oldest') {
       list = [...list].sort(
-        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id)
+        (a, b) => bookmarkedIds.indexOf(a.id) - bookmarkedIds.indexOf(b.id),
       );
     } else if (savedSortBy === 'post_newest') {
-      list = [...list].sort((a, b) => parseDateToTimestamp(b.date) - parseDateToTimestamp(a.date));
+      list = [...list].sort(
+        (a, b) => parseDateToTimestamp(b.date) - parseDateToTimestamp(a.date),
+      );
     } else if (savedSortBy === 'post_oldest') {
-      list = [...list].sort((a, b) => parseDateToTimestamp(a.date) - parseDateToTimestamp(b.date));
+      list = [...list].sort(
+        (a, b) => parseDateToTimestamp(a.date) - parseDateToTimestamp(b.date),
+      );
     }
 
     return list;
-  }, [bookmarkedIds, savedSearchQuery, savedSortBy]);
+  }, [articles, bookmarkedIds, savedSearchQuery, savedSortBy]);
 
   // Handler helpers to update URL params for main tab
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,7 +351,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -345,7 +366,7 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -355,7 +376,7 @@ export default function ArticlesPage() {
         prev.set('page', String(page));
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -368,13 +389,13 @@ export default function ArticlesPage() {
         prev.set('page', '1');
         return prev;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
   // Filter articles by category (year) + search query, and sort by date/year ('newest' or 'oldest')
   const filteredArticles = useMemo(() => {
-    const allArticles = getArticlesSummaryList();
+    const allArticles = articles;
     const list = allArticles.filter((article) => {
       const matchesCategory =
         selectedCategory === 'all' ||
@@ -404,14 +425,14 @@ export default function ArticlesPage() {
         return a.id.localeCompare(b.id);
       }
     });
-  }, [searchQuery, selectedCategory, articlesSortOrder]);
+  }, [articles, searchQuery, selectedCategory, articlesSortOrder]);
 
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
 
   const currentArticles = useMemo(() => {
     return filteredArticles.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
-      currentPage * ITEMS_PER_PAGE
+      currentPage * ITEMS_PER_PAGE,
     );
   }, [filteredArticles, currentPage]);
 
@@ -468,7 +489,11 @@ export default function ArticlesPage() {
                   className="w-full bg-transparent border-none outline-none text-[18px] md:text-[20px] text-black placeholder-[#99999A]"
                   style={{ fontFamily: "'ChulaCharasNew', serif" }}
                 />
-                <Search size={20} className="text-[#33363F] shrink-0 ml-2" strokeWidth={2} />
+                <Search
+                  size={20}
+                  className="text-[#33363F] shrink-0 ml-2"
+                  strokeWidth={2}
+                />
               </div>
 
               {/* Frame 6310: Tabs (บทความ, ฝึกงาน, รีวิวฝึกงาน) */}
@@ -483,7 +508,9 @@ export default function ArticlesPage() {
                 >
                   <span
                     className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'articles' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
+                      savedTab === 'articles'
+                        ? 'text-black'
+                        : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
                   >
@@ -498,7 +525,9 @@ export default function ArticlesPage() {
                 >
                   <span
                     className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'internships' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
+                      savedTab === 'internships'
+                        ? 'text-black'
+                        : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
                   >
@@ -513,7 +542,9 @@ export default function ArticlesPage() {
                 >
                   <span
                     className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'reviews' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
+                      savedTab === 'reviews'
+                        ? 'text-black'
+                        : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
                   >
@@ -661,8 +692,8 @@ export default function ArticlesPage() {
 
           {/* Cards List: Frame blog banner (1056px wide, 44px gap) */}
           <div className="w-full flex flex-col gap-[44px] items-center">
-            {savedTab === 'articles' && (
-              savedArticles.length > 0 ? (
+            {savedTab === 'articles' &&
+              (savedArticles.length > 0 ? (
                 <div className="w-full flex flex-col gap-[44px] items-center">
                   {savedArticles.map((article) => (
                     <SavedArticleCard
@@ -704,8 +735,7 @@ export default function ArticlesPage() {
                     สำรวจบทความ
                   </button>
                 </div>
-              )
-            )}
+              ))}
 
             {savedTab === 'internships' && (
               <div className="w-full flex flex-col gap-[24px] items-center">
@@ -734,20 +764,30 @@ export default function ArticlesPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
+                        <span
+                          className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap"
+                          style={{
+                            fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                          }}
+                        >
                           {t(intern.categoryKey)}
                         </span>
                         <button
                           type="button"
                           className="w-[36px] h-[36px] rounded-[8px] bg-[#F8C135] flex items-center justify-center border-none cursor-pointer"
                         >
-                          <Bookmark size={16} className="text-white fill-white" />
+                          <Bookmark
+                            size={16}
+                            className="text-white fill-white"
+                          />
                         </button>
                       </div>
                     </div>
                     <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif">
                       <div className="flex items-center gap-4">
-                        <span>{t('period_label', { period: t(intern.periodKey) })}</span>
+                        <span>
+                          {t('period_label', { period: t(intern.periodKey) })}
+                        </span>
                       </div>
                       <button
                         type="button"
@@ -780,20 +820,30 @@ export default function ArticlesPage() {
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
+                        <span
+                          className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap"
+                          style={{
+                            fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+                          }}
+                        >
                           {t(rev.categoryKey)}
                         </span>
                         <button
                           type="button"
                           className="w-[36px] h-[36px] rounded-[8px] bg-[#F8C135] flex items-center justify-center border-none cursor-pointer"
                         >
-                          <Bookmark size={16} className="text-white fill-white" />
+                          <Bookmark
+                            size={16}
+                            className="text-white fill-white"
+                          />
                         </button>
                       </div>
                     </div>
                     <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span>{t('written_by_author', { author: t(rev.authorKey) })}</span>
+                        <span>
+                          {t('written_by_author', { author: t(rev.authorKey) })}
+                        </span>
                         <span>•</span>
                         <span>{t('published_at', { date: rev.date })}</span>
                       </div>
@@ -834,12 +884,25 @@ export default function ArticlesPage() {
               >
                 ไปที่หน้าบทความ
               </span>
-              <ArrowRight size={24} className="text-white group-hover:translate-x-1 transition-transform" />
+              <ArrowRight
+                size={24}
+                className="text-white group-hover:translate-x-1 transition-transform"
+              />
             </button>
           </div>
         </div>
 
         {/* Footer */}
+        {loading && (
+          <p role="status" className="p-4">
+            Loading articles…
+          </p>
+        )}
+        {error && (
+          <p role="alert" className="p-4 text-red-700">
+            {error}
+          </p>
+        )}
         <Footer />
       </div>
     );
@@ -852,7 +915,9 @@ export default function ArticlesPage() {
         {/* Page Title */}
         <div className="flex flex-col gap-2">
           <h1 className="text-[28px] sm:text-[34px] md:text-[36px] font-bold text-black font-serif leading-tight">
-            {t('section_title', { defaultValue: 'บทความสาราณียกร (Aksornsara Archive)' })}
+            {t('section_title', {
+              defaultValue: 'บทความสาราณียกร (Aksornsara Archive)',
+            })}
           </h1>
         </div>
 
@@ -862,7 +927,9 @@ export default function ArticlesPage() {
             <div className="flex-1">
               <SearchInput
                 size="lg"
-                placeholder={t('search_placeholder', { defaultValue: 'ค้นหาบทความ, ชื่อผู้เขียน, หรือเนื้อหา...' })}
+                placeholder={t('search_placeholder', {
+                  defaultValue: 'ค้นหาบทความ, ชื่อผู้เขียน, หรือเนื้อหา...',
+                })}
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onKeyDown={(e) => {
@@ -878,8 +945,12 @@ export default function ArticlesPage() {
                 onClick={() => setIsArticlesFilterOpen((prev) => !prev)}
                 className="w-[52px] md:w-[55px] h-[52px] md:h-[55px] rounded-[14px] text-white hover:opacity-90 active:scale-95 transition-all flex items-center justify-center shrink-0 cursor-pointer shadow-sm border-none"
                 style={{ backgroundColor: '#E992B4' }}
-                aria-label={t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
-                title={t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
+                aria-label={t('filter_and_sort', {
+                  defaultValue: 'ตัวเลือกการกรองและจัดเรียง',
+                })}
+                title={t('filter_and_sort', {
+                  defaultValue: 'ตัวเลือกการกรองและจัดเรียง',
+                })}
               >
                 <SlidersHorizontal size={20} />
               </button>
@@ -893,11 +964,14 @@ export default function ArticlesPage() {
                     transition={{ duration: 0.15 }}
                     className="absolute right-0 top-[60px] w-[260px] sm:w-[280px] p-5 bg-white border border-gray-100 rounded-[16px] shadow-xl z-50 flex flex-col gap-4 font-serif"
                     style={{
-                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                      boxShadow:
+                        '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
                     }}
                   >
                     <h4 className="font-bold text-[16px] sm:text-[17px] text-[#404041] border-b border-gray-100 pb-2">
-                      {t('filter_and_sort', { defaultValue: 'ตัวเลือกการกรองและจัดเรียง' })}
+                      {t('filter_and_sort', {
+                        defaultValue: 'ตัวเลือกการกรองและจัดเรียง',
+                      })}
                     </h4>
 
                     {/* Date Posted Sort */}
@@ -915,7 +989,9 @@ export default function ArticlesPage() {
                             className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                           />
                           <span className="text-[14px] font-bold">
-                            {t('sort_newest', { defaultValue: 'เรียงจากใหม่ที่สุด' })}
+                            {t('sort_newest', {
+                              defaultValue: 'เรียงจากใหม่ที่สุด',
+                            })}
                           </span>
                         </label>
                         <label className="flex items-center gap-2.5 cursor-pointer group text-gray-700 hover:text-[#DE5D8F] transition-colors p-1.5 rounded-lg hover:bg-pink-50/50">
@@ -927,7 +1003,9 @@ export default function ArticlesPage() {
                             className="w-4 h-4 accent-[#DE5D8F] border-gray-300 cursor-pointer"
                           />
                           <span className="text-[14px] font-bold">
-                            {t('sort_oldest', { defaultValue: 'เรียงจากเก่าที่สุด' })}
+                            {t('sort_oldest', {
+                              defaultValue: 'เรียงจากเก่าที่สุด',
+                            })}
                           </span>
                         </label>
                       </div>
@@ -960,10 +1038,15 @@ export default function ArticlesPage() {
                 onBookmarkChange={(id, bookmarked) => {
                   setBookmarkedIds((prev) => {
                     const updated = bookmarked
-                      ? (prev.includes(id) ? prev : [...prev, id])
+                      ? prev.includes(id)
+                        ? prev
+                        : [...prev, id]
                       : prev.filter((bid) => bid !== id);
                     try {
-                      localStorage.setItem('bookmarked_articles', JSON.stringify(updated));
+                      localStorage.setItem(
+                        'bookmarked_articles',
+                        JSON.stringify(updated),
+                      );
                     } catch {}
                     return updated;
                   });
@@ -978,7 +1061,9 @@ export default function ArticlesPage() {
               {t('no_results_title', { defaultValue: 'ไม่พบบทความ' })}
             </h3>
             <p className="text-gray-500 max-w-md text-[16px] font-serif break-words">
-              {t('no_results_desc', { defaultValue: 'ลองค้นหาด้วยคำอื่น หรือเลือกหมวดหมู่อื่น' })}
+              {t('no_results_desc', {
+                defaultValue: 'ลองค้นหาด้วยคำอื่น หรือเลือกหมวดหมู่อื่น',
+              })}
             </p>
             {(searchQuery || selectedCategory !== 'all') && (
               <button
@@ -1004,6 +1089,16 @@ export default function ArticlesPage() {
         )}
       </div>
 
+      {loading && (
+        <p role="status" className="p-4">
+          Loading articles…
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="p-4 text-red-700">
+          {error}
+        </p>
+      )}
       <Footer />
     </div>
   );

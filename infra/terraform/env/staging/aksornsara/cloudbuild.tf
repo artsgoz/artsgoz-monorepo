@@ -1,5 +1,5 @@
 locals {
-  api_base_url = var.api_custom_domain == null ? "" : "https://${var.api_custom_domain}"
+  api_base_url = var.api_base_url
 
   application_triggers = {
     aksornsara-frontend = {
