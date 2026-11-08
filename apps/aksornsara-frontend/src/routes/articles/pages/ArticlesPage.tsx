@@ -26,53 +26,6 @@ import { useClickOutside } from '../../../components/Navbar/useClickOutside.js';
 
 const ITEMS_PER_PAGE = 8;
 
-// Mock Saved Data for Internships & Reviews with i18n keys
-const MOCK_SAVED_INTERNSHIPS = [
-  {
-    id: 'intern-01',
-    company: 'LINE Man Wongnai',
-    roleKey: 'articles.saved_internships.intern1.role',
-    periodKey: 'articles.saved_internships.intern1.period',
-    categoryKey: 'articles.saved_internships.intern1.category',
-    authorKey: 'articles.saved_internships.intern1.author',
-    date: '28/05/69',
-    tagsKeys: ['articles.tags.wfh', 'articles.tags.allowance'],
-  },
-  {
-    id: 'intern-02',
-    company: 'Shopee Thailand',
-    roleKey: 'articles.saved_internships.intern2.role',
-    periodKey: 'articles.saved_internships.intern2.period',
-    categoryKey: 'articles.saved_internships.intern2.category',
-    authorKey: 'articles.saved_internships.intern2.author',
-    date: '15/05/69',
-    tagsKeys: ['articles.tags.hybrid', 'articles.tags.allowance'],
-  },
-];
-
-const MOCK_SAVED_REVIEWS = [
-  {
-    id: 'rev-01',
-    company: 'Agoda',
-    roleKey: 'articles.saved_reviews.review1.role',
-    rating: 5,
-    excerptKey: 'articles.saved_reviews.review1.excerpt',
-    categoryKey: 'articles.saved_reviews.review1.category',
-    authorKey: 'articles.saved_reviews.review1.author',
-    date: '10/05/69',
-  },
-  {
-    id: 'rev-02',
-    company: 'True Digital Group',
-    roleKey: 'articles.saved_reviews.review2.role',
-    rating: 4.5,
-    excerptKey: 'articles.saved_reviews.review2.excerpt',
-    categoryKey: 'articles.saved_reviews.review2.category',
-    authorKey: 'articles.saved_reviews.review2.author',
-    date: '02/05/69',
-  },
-];
-
 // Helper to parse Thai date or year (e.g. '28/05/69' or '2026')
 const parseDateToTimestamp = (dateStr: string) => {
   try {
@@ -141,10 +94,16 @@ function SavedArticleCard({
       <div className="absolute top-[14px] right-[24px] z-10 flex items-center gap-[8px]">
         {/* System banner chip */}
         <div
-          className="h-[40px] px-6 rounded-[11px] bg-[#FCEFF4] flex items-center justify-center shadow-xs"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="h-[40px] px-6 rounded-[11px] flex items-center justify-center shadow-xs"
+          style={{
+            backgroundColor: 'rgba(252, 239, 244, 0.85)',
+            fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+          }}
         >
-          <span className="text-[16px] font-normal text-[#DE5D8F] whitespace-nowrap leading-none">
+          <span
+            className="text-[16px] font-normal text-[#DE5D8F] whitespace-nowrap leading-none"
+            style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+          >
             {category}
           </span>
         </div>
@@ -244,7 +203,6 @@ export default function ArticlesPage() {
 
   // State for Saved Items page
   const [savedSearchQuery, setSavedSearchQuery] = useState('');
-  const [savedTab, setSavedTab] = useState<'articles' | 'internships' | 'reviews'>('articles');
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('bookmarked_articles');
@@ -471,55 +429,17 @@ export default function ArticlesPage() {
                 <Search size={20} className="text-[#33363F] shrink-0 ml-2" strokeWidth={2} />
               </div>
 
-              {/* Frame 6310: Tabs (บทความ, ฝึกงาน, รีวิวฝึกงาน) */}
+              {/* Frame 6310: Title (บทความ) */}
               <div
-                className="flex items-center gap-6 sm:gap-10 lg:gap-[110px] w-full"
+                className="flex items-center w-full"
                 style={{ height: '36px' }}
               >
-                <button
-                  type="button"
-                  onClick={() => setSavedTab('articles')}
-                  className="bg-transparent border-none p-0 cursor-pointer transition-colors"
+                <span
+                  className="text-[18px] md:text-[20px] font-bold leading-[28px] text-black"
+                  style={{ fontFamily: "'ChulaCharasNew', serif" }}
                 >
-                  <span
-                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'articles' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
-                    }`}
-                    style={{ fontFamily: "'ChulaCharasNew', serif" }}
-                  >
-                    บทความ
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSavedTab('internships')}
-                  className="bg-transparent border-none p-0 cursor-pointer transition-colors"
-                >
-                  <span
-                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'internships' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
-                    }`}
-                    style={{ fontFamily: "'ChulaCharasNew', serif" }}
-                  >
-                    ฝึกงาน
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSavedTab('reviews')}
-                  className="bg-transparent border-none p-0 cursor-pointer transition-colors"
-                >
-                  <span
-                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
-                      savedTab === 'reviews' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
-                    }`}
-                    style={{ fontFamily: "'ChulaCharasNew', serif" }}
-                  >
-                    รีวิวฝึกงาน
-                  </span>
-                </button>
+                  บทความ
+                </span>
               </div>
             </div>
 
@@ -661,18 +581,17 @@ export default function ArticlesPage() {
 
           {/* Cards List: Frame blog banner (1056px wide, 44px gap) */}
           <div className="w-full flex flex-col gap-[44px] items-center">
-            {savedTab === 'articles' && (
-              savedArticles.length > 0 ? (
-                <div className="w-full flex flex-col gap-[44px] items-center">
-                  {savedArticles.map((article) => (
-                    <SavedArticleCard
-                      key={article.id}
-                      article={article}
-                      onUnbookmark={() => handleUnbookmark(article.id)}
-                    />
-                  ))}
-                </div>
-              ) : (
+            {savedArticles.length > 0 ? (
+              <div className="w-full flex flex-col gap-[44px] items-center">
+                {savedArticles.map((article) => (
+                  <SavedArticleCard
+                    key={article.id}
+                    article={article}
+                    onUnbookmark={() => handleUnbookmark(article.id)}
+                  />
+                ))}
+              </div>
+            ) : (
                 <div className="flex flex-col items-center justify-center py-20 text-center bg-[#FDF8FA]/30 border border-dashed border-pink-200 rounded-[24px] w-full max-w-[1056px] px-4">
                   <BookmarkX size={64} className="text-pink-300 mb-4" />
                   <h3
@@ -704,113 +623,8 @@ export default function ArticlesPage() {
                     สำรวจบทความ
                   </button>
                 </div>
-              )
-            )}
-
-            {savedTab === 'internships' && (
-              <div className="w-full flex flex-col gap-[24px] items-center">
-                {MOCK_SAVED_INTERNSHIPS.map((intern) => (
-                  <div
-                    key={intern.id}
-                    className="w-full max-w-[1056px] rounded-2xl border border-gray-200 bg-white p-6 flex flex-col justify-between gap-4 shadow-xs"
-                  >
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex flex-col gap-1.5 min-w-0">
-                        <span className="text-[13px] font-bold text-[#DE5D8F] font-serif truncate">
-                          {intern.company}
-                        </span>
-                        <h3 className="text-[20px] md:text-[22px] font-bold text-[#404041] font-serif leading-tight truncate">
-                          {t(intern.roleKey)}
-                        </h3>
-                        <div className="flex flex-wrap gap-2 mt-1">
-                          {intern.tagsKeys.map((tagKey, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-0.5 text-[11px] font-bold text-gray-500 bg-gray-100 rounded-sm font-sans"
-                            >
-                              {t(tagKey)}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-                          {t(intern.categoryKey)}
-                        </span>
-                        <button
-                          type="button"
-                          className="w-[36px] h-[36px] rounded-[8px] bg-[#F8C135] flex items-center justify-center border-none cursor-pointer"
-                        >
-                          <Bookmark size={16} className="text-white fill-white" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif">
-                      <div className="flex items-center gap-4">
-                        <span>{t('period_label', { period: t(intern.periodKey) })}</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => navigate('/internships')}
-                        className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0 bg-transparent border-none cursor-pointer"
-                      >
-                        {t('more_details')}
-                        <ArrowRight size={14} />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {savedTab === 'reviews' && (
-              <div className="w-full flex flex-col gap-[24px] items-center">
-                {MOCK_SAVED_REVIEWS.map((rev) => (
-                  <div
-                    key={rev.id}
-                    className="w-full max-w-[1056px] rounded-2xl border border-gray-200 bg-white p-6 flex flex-col justify-between gap-4 shadow-xs"
-                  >
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex flex-col gap-1.5 min-w-0">
-                        <span className="text-[13px] font-bold text-gray-400 font-serif truncate">
-                          {rev.company} • {t(rev.roleKey)}
-                        </span>
-                        <p className="text-[15px] text-[#404041] font-serif leading-relaxed line-clamp-2 mt-1 break-words">
-                          &ldquo;{t(rev.excerptKey)}&rdquo;
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 text-[12px] font-bold text-[#DE5D8F] bg-[#FCEFF4] rounded-full font-sans shrink-0 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-                          {t(rev.categoryKey)}
-                        </span>
-                        <button
-                          type="button"
-                          className="w-[36px] h-[36px] rounded-[8px] bg-[#F8C135] flex items-center justify-center border-none cursor-pointer"
-                        >
-                          <Bookmark size={16} className="text-white fill-white" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-[13px] text-gray-400 font-serif flex-wrap gap-2">
-                      <div className="flex items-center gap-3 flex-wrap">
-                        <span>{t('written_by_author', { author: t(rev.authorKey) })}</span>
-                        <span>•</span>
-                        <span>{t('published_at', { date: rev.date })}</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => navigate('/internships/review')}
-                        className="text-[#DE5D8F] font-bold flex items-center gap-1 shrink-0 bg-transparent border-none cursor-pointer"
-                      >
-                        {t('read_full_review')}
-                        <ArrowRight size={14} />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
           {/* Bottom Action Button: ไปที่หน้าบทความ (Frame button matching Figma) */}
           <div className="w-full max-w-[1056px] mx-auto flex justify-end mt-[20px]">

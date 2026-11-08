@@ -33,6 +33,16 @@ textarea {
   font-family: 'Inter', 'Noto Sans Thai', sans-serif;
 }
 
+.font-sans-thai {
+  font-family: 'Inter', 'Noto Sans Thai', sans-serif !important;
+}
+
+.category-tag {
+  font-family: 'Inter', 'Noto Sans Thai', sans-serif !important;
+  background-color: rgba(252, 239, 244, 0.85) !important;
+  color: #DE5D8F !important;
+}
+
 /* TipTap rich text styles (ART-004, ART-007, F-DTL-005) */
 .tiptap-content h1 {
   font-size: 2rem;
