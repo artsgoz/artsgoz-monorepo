@@ -994,7 +994,7 @@ export default function ArticlesPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center pt-8 border-t border-gray-150">
+          <div className="flex justify-center pt-8">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
