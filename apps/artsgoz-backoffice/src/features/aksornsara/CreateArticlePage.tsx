@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, useRef, useEffect, ChangeEvent, DragEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import {
   ChevronLeft,
@@ -52,6 +52,24 @@ export function CreateArticlePage() {
 
   // Sidebar Settings
   const [visibility, setVisibility] = useState(() => initialArticle?.visibility || 'สาธารณะ');
+  const [scheduleType, setScheduleType] = useState<'immediate' | 'scheduled'>(() => {
+    if (initialArticle?.publishedAt) {
+      const pubTime = new Date(initialArticle.publishedAt).getTime();
+      if (!isNaN(pubTime) && pubTime > Date.now()) return 'scheduled';
+    }
+    return 'immediate';
+  });
+  const [scheduledDateTime, setScheduledDateTime] = useState(() => {
+    if (initialArticle?.publishedAt) {
+      try {
+        const d = new Date(initialArticle.publishedAt);
+        if (!isNaN(d.getTime())) {
+          return d.toISOString().slice(0, 16);
+        }
+      } catch {}
+    }
+    return '';
+  });
   const [publishDate] = useState(() => {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
@@ -62,7 +80,7 @@ export function CreateArticlePage() {
     return `${day}/${month}/${yr} , ${hours}:${mins}`;
   });
 
-  // Categories (Blank when creating new)
+  // Categories (Blank when creating new, or loaded from initialArticle)
   const [categories, setCategories] = useState<{ id: string; name: string; checked: boolean }[]>(() => {
     const base = [
       { id: '1', name: 'ศิลปะ', checked: false },
@@ -73,12 +91,14 @@ export function CreateArticlePage() {
       { id: '6', name: 'วิจารณ์', checked: false },
       { id: '7', name: 'ทั่วไป', checked: false },
     ];
-    if (initialArticle?.category) {
-      const match = base.find((c) => c.name === initialArticle.category);
-      if (match) {
-        return base.map((c) => ({ ...c, checked: c.name === initialArticle.category }));
-      }
-      return [...base, { id: 'custom', name: initialArticle.category, checked: true }];
+    const initialCats = initialArticle?.categories || (initialArticle?.category ? [initialArticle.category] : []);
+    if (initialCats.length > 0) {
+      const set = new Set(initialCats);
+      const mapped = base.map((c) => ({ ...c, checked: set.has(c.name) }));
+      const customCats = initialCats
+        .filter((c) => !base.some((b) => b.name === c))
+        .map((c) => ({ id: `cat-${c}`, name: c, checked: true }));
+      return [...mapped, ...customCats];
     }
     return base;
   });
@@ -93,12 +113,58 @@ export function CreateArticlePage() {
 
   // SEO Settings
   const [slug, setSlug] = useState(() => initialArticle?.slug || initialArticle?.id || '');
-  const [metaDesc, setMetaDesc] = useState(() => initialArticle?.excerpt || '');
+  const [metaDesc, setMetaDesc] = useState(() => initialArticle?.metaDescription || initialArticle?.excerpt || '');
+
+  // Drag and Drop Cover Image State
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Focus trap ref for publish modal
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
   };
+
+  // Prevent accidental leave when form is dirty
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (title.trim() || content.trim()) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [title, content]);
+
+  // Modal focus trap & Escape key handler (E2E-007)
+  useEffect(() => {
+    if (!showPublishModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowPublishModal(false);
+        return;
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showPublishModal]);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -119,6 +185,40 @@ export function CreateArticlePage() {
       }).catch(() => {
         // Fallback to base64 preview
       });
+    }
+  };
+
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (typeof event.target?.result === 'string') {
+          setCoverImage(event.target.result);
+        }
+      };
+      reader.readAsDataURL(file);
+
+      aksornsaraApi.uploadMedia(file).then((res) => {
+        if (res?.success && res.data?.url) {
+          setCoverImage(res.data.url);
+        }
+      }).catch(() => {});
     }
   };
 
@@ -148,9 +248,36 @@ export function CreateArticlePage() {
     setTags((prev) => prev.filter((t) => t !== tagToRemove));
   };
 
+  const validateForPublish = (): boolean => {
+    if (!title.trim()) {
+      showToast('กรุณากรอกชื่อบทความก่อนเผยแพร่');
+      return false;
+    }
+    const cleanContent = content.replace(/<[^>]+>/g, '').trim();
+    if (!cleanContent) {
+      showToast('กรุณากรอกเนื้อหาบทความก่อนเผยแพร่');
+      return false;
+    }
+    if (slug.trim() && articlesService.isSlugTaken(slug, editId || undefined)) {
+      showToast('URL Slug นี้ถูกใช้งานแล้ว กรุณาเปลี่ยนเป็นชื่ออื่น');
+      return false;
+    }
+    return true;
+  };
+
+  const handleOpenPublishModal = () => {
+    if (!validateForPublish()) return;
+    setShowPublishModal(true);
+  };
+
   const handleSaveDraft = () => {
     const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
     const category = selectedCats[0] || 'ทั่วไป';
+
+    if (slug.trim() && articlesService.isSlugTaken(slug, editId || undefined)) {
+      showToast('URL Slug นี้ถูกใช้งานแล้ว กรุณาเปลี่ยนเป็นชื่ออื่น');
+      return;
+    }
 
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
     const finalTitle = title.trim() || 'บทความฉบับร่าง';
@@ -165,6 +292,8 @@ export function CreateArticlePage() {
         proofreader,
         illustrator,
         category,
+        categories: selectedCats.length > 0 ? selectedCats : [category],
+        metaDescription: metaDesc,
         coverImage: coverImage || undefined,
         imageUrl: coverImage || undefined,
         status: 'ร่างบทความ',
@@ -181,6 +310,8 @@ export function CreateArticlePage() {
         proofreader,
         illustrator,
         category,
+        categories: selectedCats.length > 0 ? selectedCats : [category],
+        metaDescription: metaDesc,
         coverImage: coverImage || undefined,
         imageUrl: coverImage || undefined,
         status: 'ร่างบทความ',
@@ -193,13 +324,18 @@ export function CreateArticlePage() {
   };
 
   const handleConfirmPublish = () => {
+    if (!validateForPublish()) return;
     setShowPublishModal(false);
     const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
     const category = selectedCats[0] || 'ทั่วไป';
 
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
-    const finalTitle = title.trim() || 'บทความใหม่ไม่มีชื่อ';
+    const finalTitle = title.trim();
     const finalAuthor = author.trim() || 'ชมรมสาราณียกร';
+    const isFutureScheduled = scheduleType === 'scheduled' && !!scheduledDateTime;
+    const computedPublishedAt = isFutureScheduled
+      ? new Date(scheduledDateTime).toISOString()
+      : initialArticle?.publishedAt || new Date().toISOString();
 
     if (editId) {
       articlesService.update(editId, {
@@ -210,11 +346,14 @@ export function CreateArticlePage() {
         proofreader,
         illustrator,
         category,
+        categories: selectedCats.length > 0 ? selectedCats : [category],
+        metaDescription: metaDesc,
         coverImage: coverImage || undefined,
         imageUrl: coverImage || undefined,
         status: 'เผยแพร่แล้ว',
         tags,
         slug,
+        publishedAt: computedPublishedAt,
       });
     } else {
       articlesService.create({
@@ -225,11 +364,14 @@ export function CreateArticlePage() {
         proofreader,
         illustrator,
         category,
+        categories: selectedCats.length > 0 ? selectedCats : [category],
+        metaDescription: metaDesc,
         coverImage: coverImage || undefined,
         imageUrl: coverImage || undefined,
         status: 'เผยแพร่แล้ว',
         tags,
         slug,
+        publishedAt: computedPublishedAt,
       });
     }
 
@@ -257,8 +399,11 @@ export function CreateArticlePage() {
         <div
           className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4 backdrop-blur-xs"
           onClick={() => setShowPublishModal(false)}
+          role="dialog"
+          aria-modal="true"
         >
           <div
+            ref={modalRef}
             className="bg-white rounded-[24px] p-8 md:p-10 shadow-2xl flex flex-col items-center justify-center gap-8 relative"
             style={{
               width: 600,
@@ -349,7 +494,7 @@ export function CreateArticlePage() {
 
               <button
                 type="button"
-                onClick={() => setShowPublishModal(true)}
+                onClick={handleOpenPublishModal}
                 className="cursor-pointer border-none text-white transition-opacity hover:opacity-90 active:scale-95 shadow-sm font-serif"
                 style={{
                   backgroundColor: '#E992B4',
@@ -367,14 +512,28 @@ export function CreateArticlePage() {
 
           {/* Preview Container */}
           <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-sm border border-[#DFDFE0] flex flex-col gap-8 max-w-[840px] mx-auto w-full">
-            {/* Category badge */}
-            <div className="flex items-center gap-2">
-              <span
-                className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
-                style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
-              >
-                {(categories.find((c) => c.checked)?.name || 'ทั่วไป').replace(/^ปี\s*/, '')}
-              </span>
+            {/* Category badges (Multi-category support) */}
+            <div className="flex items-center gap-2 flex-wrap">
+              {categories.filter((c) => c.checked).length > 0 ? (
+                categories
+                  .filter((c) => c.checked)
+                  .map((c) => (
+                    <span
+                      key={c.id}
+                      className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
+                      style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                    >
+                      {c.name.replace(/^ปี\s*/, '')}
+                    </span>
+                  ))
+              ) : (
+                <span
+                  className="font-sans font-normal text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5"
+                  style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+                >
+                  ทั่วไป
+                </span>
+              )}
             </div>
 
             {/* Title */}
@@ -479,7 +638,7 @@ export function CreateArticlePage() {
               <button
                 id="btn-publish-open"
                 type="button"
-                onClick={() => setShowPublishModal(true)}
+                onClick={handleOpenPublishModal}
                 className="flex items-center gap-1.5 cursor-pointer border-none text-white transition-opacity hover:opacity-90 active:scale-95 shadow-sm font-serif"
                 style={{
                   backgroundColor: '#E992B4',
@@ -561,14 +720,21 @@ export function CreateArticlePage() {
                 ) : (
                   <div
                     onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-[#DFDFE0] rounded-[12px] p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-[#DE5D8F] hover:bg-[#FDF8FA] transition-all text-center"
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    className={`border-2 border-dashed rounded-[12px] p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all text-center ${
+                      isDragging
+                        ? 'border-[#DE5D8F] bg-[#FCEFF4]'
+                        : 'border-[#DFDFE0] hover:border-[#DE5D8F] hover:bg-[#FDF8FA]'
+                    }`}
                   >
                     <div className="w-12 h-12 rounded-full bg-[#FCEFF4] flex items-center justify-center text-[#DE5D8F]">
                       <UploadCloud size={24} />
                     </div>
                     <div>
                       <p className="font-bold text-[#DE5D8F] m-0 font-serif text-[16px]">
-                        คลิกเพื่ออัปโหลดรูปภาพ
+                        {isDragging ? 'วางรูปภาพที่นี่' : 'คลิกหรือลากรูปภาพมาวางที่นี่'}
                       </p>
                       <p className="text-[#6D6D6D] m-0 text-[13px] mt-1 font-serif">
                         SVG, PNG, JPG หรือ GIF (แนะนำขนาด 800x800 หรือ 16:9)
@@ -644,14 +810,51 @@ export function CreateArticlePage() {
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-2">
                   <label className="text-[14px] text-[#6D6D6D] font-bold font-serif">
-                    วันที่เผยแพร่
+                    กำหนดเวลาเผยแพร่
                   </label>
-                  <div className="flex items-center justify-between px-3 py-2 rounded-[8px] border border-[#DFDFE0] bg-[#FAFAFA] text-[14px] text-[#404041] font-serif">
-                    <span>{publishDate}</span>
-                    <Calendar size={16} className="text-gray-400" />
+                  <div className="flex items-center gap-4 text-[14px] font-serif">
+                    <label className="flex items-center gap-2 cursor-pointer text-[#1A1C1C]">
+                      <input
+                        type="radio"
+                        name="scheduleType"
+                        value="immediate"
+                        checked={scheduleType === 'immediate'}
+                        onChange={() => setScheduleType('immediate')}
+                        className="accent-[#DE5D8F] cursor-pointer"
+                      />
+                      <span>เผยแพร่ทันที</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[#1A1C1C]">
+                      <input
+                        type="radio"
+                        name="scheduleType"
+                        value="scheduled"
+                        checked={scheduleType === 'scheduled'}
+                        onChange={() => setScheduleType('scheduled')}
+                        className="accent-[#DE5D8F] cursor-pointer"
+                      />
+                      <span>ตั้งเวลาล่วงหน้า</span>
+                    </label>
                   </div>
+
+                  {scheduleType === 'scheduled' ? (
+                    <div className="flex flex-col gap-1 mt-1">
+                      <span className="text-[12px] text-gray-500 font-serif">ระบุวันและเวลา (หน้าบ้านจะไม่แสดงก่อนถึงเวลานี้)</span>
+                      <input
+                        type="datetime-local"
+                        value={scheduledDateTime}
+                        onChange={(e) => setScheduledDateTime(e.target.value)}
+                        className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[14px] font-serif outline-none focus:border-[#DE5D8F] bg-white cursor-pointer"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between px-3 py-2 rounded-[8px] border border-[#DFDFE0] bg-[#FAFAFA] text-[14px] text-[#404041] font-serif">
+                      <span>{publishDate}</span>
+                      <Calendar size={16} className="text-gray-400" />
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -780,14 +983,29 @@ export function CreateArticlePage() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="text-[13px] text-[#6D6D6D] font-bold font-serif">
-                    คำอธิบายสั้น (Meta Description)
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-[13px] text-[#6D6D6D] font-bold font-serif">
+                      คำอธิบายสั้น (Meta Description)
+                    </label>
+                    <span
+                      className={`text-[11px] font-mono ${
+                        metaDesc.length > 160 ? 'text-red-500 font-bold' : 'text-[#8B8B8C]'
+                      }`}
+                    >
+                      {metaDesc.length}/160 ตัวอักษร
+                    </span>
+                  </div>
                   <textarea
                     rows={3}
                     value={metaDesc}
                     onChange={(e) => setMetaDesc(e.target.value)}
-                    className="w-full px-3 py-1.5 rounded-[8px] border border-[#DFDFE0] text-[14px] font-serif outline-none focus:border-[#DE5D8F] resize-none"
+                    maxLength={160}
+                    placeholder="เขียนสรุปเนื้อหาบทความสั้นๆ ไม่เกิน 160 ตัวอักษร..."
+                    className={`w-full px-3 py-1.5 rounded-[8px] border text-[14px] font-serif outline-none resize-none transition-colors ${
+                      metaDesc.length > 160
+                        ? 'border-red-400 focus:border-red-500'
+                        : 'border-[#DFDFE0] focus:border-[#DE5D8F]'
+                    }`}
                   />
                 </div>
               </div>

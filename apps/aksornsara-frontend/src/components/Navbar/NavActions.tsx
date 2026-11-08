@@ -20,6 +20,7 @@ interface NavActionsProps {
 export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
   const navigate = useNavigate();
   const { t } = useTranslation('common');
+  const [navSearch, setNavSearch] = useState('');
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [profileView, setProfileView] = useState<'profile' | 'manage'>('profile');
@@ -30,6 +31,17 @@ export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
     setIsProfileOpen(false);
     setProfileView('profile');
   });
+
+  const handleNavSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const trimmed = navSearch.trim();
+      if (trimmed) {
+        navigate(`/articles?search=${encodeURIComponent(trimmed)}`);
+      } else {
+        navigate('/articles');
+      }
+    }
+  };
 
   const handleLoginClick = () => {
     onLogin();
@@ -45,7 +57,12 @@ export function NavActions({ isLoggedIn, onLogin, onLogout }: NavActionsProps) {
   return (
     <>
       <div className="hidden md:block">
-        <SearchInput placeholder={t('navbar.search_placeholder')} />
+        <SearchInput
+          placeholder={t('navbar.search_placeholder')}
+          value={navSearch}
+          onChange={(e) => setNavSearch(e.target.value)}
+          onKeyDown={handleNavSearchKeyDown}
+        />
       </div>
       <div className="hidden md:block">
         <LanguageSwitcher />

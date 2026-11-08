@@ -6,6 +6,7 @@ import {
   Shield,
   Pencil,
   Check,
+  X,
   Eye,
   EyeOff,
   ChevronRight,
@@ -52,10 +53,24 @@ export function AccountSettingsPage() {
     return currentList.slice(start, start + ITEMS_PER_PAGE);
   }, [currentList, articlesPage]);
 
-  // Profile states
-  const [avatar, setAvatar] = useState<string>(catAvatar);
-  const [username, setUsername] = useState('Meowlnwza');
+  // Profile states with persistence (ACC-002, ACC-004)
+  const [avatar, setAvatar] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('aksornsara_user_avatar');
+      if (saved) return saved;
+    } catch {}
+    return catAvatar;
+  });
+  const [username, setUsername] = useState(() => {
+    try {
+      const saved = localStorage.getItem('aksornsara_user_name');
+      if (saved) return saved;
+    } catch {}
+    return 'Meowlnwza';
+  });
+  const [tempUsername, setTempUsername] = useState(username);
   const [isEditingUsername, setIsEditingUsername] = useState(false);
+  const [usernameError, setUsernameError] = useState<string | null>(null);
   const [email] = useState('xxxxx@gmail.com');
 
   // Password fields
@@ -77,9 +92,61 @@ export function AccountSettingsPage() {
   const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setAvatar(URL.createObjectURL(file));
-      showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
+      if (!file.type.startsWith('image/')) {
+        showToast('กรุณาเลือกไฟล์รูปภาพเท่านั้น (JPG, PNG, WebP)');
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        showToast('ขนาดไฟล์รูปภาพต้องไม่เกิน 2MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (typeof event.target?.result === 'string') {
+          setAvatar(event.target.result);
+          try {
+            localStorage.setItem('aksornsara_user_avatar', event.target.result);
+          } catch {}
+          showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
+        }
+      };
+      reader.readAsDataURL(file);
     }
+  };
+
+  const handleStartEditUsername = () => {
+    setTempUsername(username);
+    setUsernameError(null);
+    setIsEditingUsername(true);
+  };
+
+  const handleSaveUsername = () => {
+    const trimmed = tempUsername.trim();
+    if (!trimmed) {
+      setUsernameError('ชื่อผู้ใช้ต้องไม่เป็นค่าว่าง');
+      return;
+    }
+    if (trimmed.length < 3) {
+      setUsernameError('ชื่อผู้ใช้ต้องมีความยาวอย่างน้อย 3 ตัวอักษร');
+      return;
+    }
+    if (trimmed.length > 30) {
+      setUsernameError('ชื่อผู้ใช้ต้องไม่เกิน 30 ตัวอักษร');
+      return;
+    }
+    setUsername(trimmed);
+    try {
+      localStorage.setItem('aksornsara_user_name', trimmed);
+    } catch {}
+    setIsEditingUsername(false);
+    setUsernameError(null);
+    showToast('บันทึกชื่อผู้ใช้เรียบร้อยแล้ว');
+  };
+
+  const handleCancelUsername = () => {
+    setTempUsername(username);
+    setUsernameError(null);
+    setIsEditingUsername(false);
   };
 
   const handleUpdatePassword = () => {
@@ -97,7 +164,12 @@ export function AccountSettingsPage() {
   };
 
   const handleSignOut = () => {
-    navigate('/yellow-card/backoffice');
+    try {
+      localStorage.removeItem('aksornsara_auth_token');
+      sessionStorage.removeItem('aksornsara_auth_token');
+    } catch {}
+    showToast('ออกจากระบบเรียบร้อยแล้ว');
+    navigate('/aksornsara');
   };
 
   return (
@@ -117,11 +189,17 @@ export function AccountSettingsPage() {
       )}
 
       <div className="w-full flex flex-col gap-6" style={{ maxWidth: 840 }}>
-        {/* ── Header: Back button + Title ── */}
+        {/* ── Header: Back button + Title (NAV-004) ── */}
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => navigate('/aksornsara')}
+            onClick={() => {
+              if (activeTab === 'articles') {
+                setActiveTab('profile');
+              } else {
+                navigate('/aksornsara');
+              }
+            }}
             className="w-9 h-9 rounded-full bg-white border border-[#DFDFE0] flex items-center justify-center cursor-pointer hover:bg-[#FCEFF4] transition-colors"
             title="ย้อนกลับ"
           >
@@ -230,7 +308,7 @@ export function AccountSettingsPage() {
                   </button>
                 </div>
 
-                {/* Username Input Field */}
+                {/* Username Input Field (ACC-002, ACC-003) */}
                 <div className="flex flex-col gap-1.5 flex-1 max-w-[460px]">
                   <label
                     className="text-[#8B8B8C] text-[12px] font-bold tracking-wide"
@@ -239,35 +317,71 @@ export function AccountSettingsPage() {
                     Username
                   </label>
                   <div
-                    className="flex items-center justify-between border border-[#DFDFE0] rounded-[8px] px-4 py-2.5 bg-[#FAFAFA] focus-within:bg-white focus-within:border-[#DE5D8F] transition-colors"
+                    className={`flex items-center justify-between border rounded-[8px] px-4 py-2.5 bg-[#FAFAFA] transition-colors ${
+                      usernameError ? 'border-red-400 bg-red-50/30' : 'border-[#DFDFE0] focus-within:bg-white focus-within:border-[#DE5D8F]'
+                    }`}
                   >
                     {isEditingUsername ? (
-                      <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        onBlur={() => setIsEditingUsername(false)}
-                        autoFocus
-                        className="w-full bg-transparent outline-none font-bold text-[#1A1C1C] text-[15px]"
-                        style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
-                      />
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <input
+                          type="text"
+                          value={tempUsername}
+                          onChange={(e) => {
+                            setTempUsername(e.target.value);
+                            if (usernameError) setUsernameError(null);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleSaveUsername();
+                            if (e.key === 'Escape') handleCancelUsername();
+                          }}
+                          autoFocus
+                          placeholder="กรอกชื่อผู้ใช้..."
+                          className="w-full bg-transparent outline-none font-bold text-[#1A1C1C] text-[15px]"
+                          style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+                        />
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            type="button"
+                            onClick={handleSaveUsername}
+                            className="p-1 rounded-[6px] bg-[#E992B4] text-white hover:opacity-90 border-none cursor-pointer flex items-center justify-center shadow-xs"
+                            title="บันทึกชื่อใหม่"
+                          >
+                            <Check size={16} strokeWidth={2.5} />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleCancelUsername}
+                            className="p-1 rounded-[6px] bg-gray-200 text-gray-600 hover:bg-gray-300 border-none cursor-pointer flex items-center justify-center"
+                            title="ยกเลิก"
+                          >
+                            <X size={16} strokeWidth={2.5} />
+                          </button>
+                        </div>
+                      </div>
                     ) : (
-                      <span
-                        className="font-bold text-[#1A1C1C] text-[15px]"
-                        style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
-                      >
-                        {username}
-                      </span>
+                      <>
+                        <span
+                          className="font-bold text-[#1A1C1C] text-[15px]"
+                          style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
+                        >
+                          {username}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleStartEditUsername}
+                          className="border-none bg-transparent cursor-pointer p-0 text-[#6D6D6D] hover:text-[#DE5D8F] transition-colors"
+                          title="แก้ไขชื่อผู้ใช้"
+                        >
+                          <Pencil size={16} />
+                        </button>
+                      </>
                     )}
-                    <button
-                      type="button"
-                      onClick={() => setIsEditingUsername((prev) => !prev)}
-                      className="border-none bg-transparent cursor-pointer p-0 text-[#6D6D6D] hover:text-[#DE5D8F] transition-colors"
-                      title="แก้ไขชื่อผู้ใช้"
-                    >
-                      <Pencil size={16} />
-                    </button>
                   </div>
+                  {usernameError && (
+                    <span className="text-red-500 text-[12px] font-sans">
+                      {usernameError}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

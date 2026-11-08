@@ -605,10 +605,15 @@ export function PublishedArticlesPage() {
                           fontWeight: 400,
                           fontSize: 18,
                           lineHeight: '24px',
-                          color: '#64A93C',
+                          color:
+                            article.publishedAt && new Date(article.publishedAt).getTime() > Date.now()
+                              ? '#D97706'
+                              : '#64A93C',
                         }}
                       >
-                        {article.status || 'เผยแพร่แล้ว'}
+                        {article.publishedAt && new Date(article.publishedAt).getTime() > Date.now()
+                          ? 'ตั้งเวลาเผยแพร่'
+                          : article.status || 'เผยแพร่แล้ว'}
                       </td>
 
                       {/* Date */}

@@ -179,7 +179,7 @@ function SavedArticleCard({
       <div className="absolute left-[24px] sm:left-[36px] md:left-[49px] bottom-[20px] md:bottom-[28px] z-10 flex flex-col items-start gap-[14px] md:gap-[17px] max-w-[90%] sm:max-w-[75%] md:max-w-[620px]">
         {/* ชื่อบทความ */}
         <h2
-          className="text-[24px] sm:text-[30px] md:text-[36px] font-bold text-white leading-[32px] sm:leading-[40px] md:leading-[48px] line-clamp-2 m-0"
+          className="text-[20px] sm:text-[22px] md:text-[24px] font-bold text-white leading-[28px] sm:leading-[32px] line-clamp-2 m-0"
           style={{
             fontFamily: "'ChulaCharasNew', serif",
             textShadow: '0 2px 6px rgba(0, 0, 0, 0.5)',
@@ -425,12 +425,12 @@ export default function ArticlesPage() {
             {/* Left Column: Frame 6311 */}
             <div className="flex flex-col items-start gap-[24px] md:gap-[27px] w-full max-w-[485px]">
               {/* Frame 6307: Bookmark Ribbon Icon + Title */}
-              <div className="flex items-center gap-[24px] h-[64px]">
+              <div className="flex items-center gap-[16px] h-auto py-1">
                 {/* Pink Bookmark ribbon icon matching Figma Vector */}
-                <div className="w-[46px] h-[46px] flex items-center justify-center shrink-0">
+                <div className="w-[34px] h-[34px] flex items-center justify-center shrink-0">
                   <svg
-                    width="46"
-                    height="46"
+                    width="34"
+                    height="34"
                     viewBox="0 0 46 46"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -443,7 +443,7 @@ export default function ArticlesPage() {
                 </div>
                 {/* ที่บันทึกไว้ */}
                 <h1
-                  className="text-[40px] md:text-[48px] font-bold text-black leading-[64px] tracking-tight m-0"
+                  className="text-[26px] sm:text-[28px] md:text-[32px] font-bold text-black leading-tight tracking-tight m-0"
                   style={{ fontFamily: "'ChulaCharasNew', serif" }}
                 >
                   ที่บันทึกไว้
@@ -459,6 +459,11 @@ export default function ArticlesPage() {
                   type="text"
                   value={savedSearchQuery}
                   onChange={(e) => setSavedSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      (e.target as HTMLInputElement).blur();
+                    }
+                  }}
                   placeholder="ค้นหาสิ่งที่บันทึกไว้"
                   className="w-full bg-transparent border-none outline-none text-[18px] md:text-[20px] text-black placeholder-[#99999A]"
                   style={{ fontFamily: "'ChulaCharasNew', serif" }}
@@ -477,7 +482,7 @@ export default function ArticlesPage() {
                   className="bg-transparent border-none p-0 cursor-pointer transition-colors"
                 >
                   <span
-                    className={`text-[24px] md:text-[28px] font-bold leading-[36px] ${
+                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
                       savedTab === 'articles' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
@@ -492,7 +497,7 @@ export default function ArticlesPage() {
                   className="bg-transparent border-none p-0 cursor-pointer transition-colors"
                 >
                   <span
-                    className={`text-[24px] md:text-[28px] font-bold leading-[36px] ${
+                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
                       savedTab === 'internships' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
@@ -507,7 +512,7 @@ export default function ArticlesPage() {
                   className="bg-transparent border-none p-0 cursor-pointer transition-colors"
                 >
                   <span
-                    className={`text-[24px] md:text-[28px] font-bold leading-[36px] ${
+                    className={`text-[18px] md:text-[20px] font-bold leading-[28px] ${
                       savedTab === 'reviews' ? 'text-black' : 'text-[#AEAEAE] hover:text-[#555]'
                     }`}
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
@@ -527,7 +532,7 @@ export default function ArticlesPage() {
             >
               {/* Title: ตัวกรอง */}
               <h3
-                className="text-[24px] font-bold text-black text-center leading-[30px] m-0"
+                className="text-[18px] font-bold text-black text-center leading-[24px] m-0"
                 style={{ fontFamily: "'ChulaCharasNew', serif" }}
               >
                 ตัวกรอง
@@ -538,7 +543,7 @@ export default function ArticlesPage() {
                 {/* Col 1: วันที่บันทึก */}
                 <div className="flex flex-col items-start gap-[9px] min-w-[126px]">
                   <span
-                    className="text-[20px] font-bold text-black text-center w-full leading-[28px]"
+                    className="text-[15px] font-bold text-black text-center w-full leading-[22px]"
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
                   >
                     วันที่บันทึก
@@ -561,7 +566,7 @@ export default function ArticlesPage() {
                       )}
                     </div>
                     <span
-                      className="text-[16px] text-black leading-[24px]"
+                      className="text-[14px] text-black leading-[20px]"
                       style={{ fontFamily: "'ChulaCharasNew', serif" }}
                     >
                       เรียงจากใหม่ที่สุด
@@ -585,7 +590,7 @@ export default function ArticlesPage() {
                       )}
                     </div>
                     <span
-                      className="text-[16px] text-black leading-[24px]"
+                      className="text-[14px] text-black leading-[20px]"
                       style={{ fontFamily: "'ChulaCharasNew', serif" }}
                     >
                       เรียงจากเก่าที่สุด
@@ -596,7 +601,7 @@ export default function ArticlesPage() {
                 {/* Col 2: วันที่โพสต์ */}
                 <div className="flex flex-col items-start gap-[9px] min-w-[126px]">
                   <span
-                    className="text-[20px] font-bold text-black text-center w-full leading-[28px]"
+                    className="text-[15px] font-bold text-black text-center w-full leading-[22px]"
                     style={{ fontFamily: "'ChulaCharasNew', serif" }}
                   >
                     วันที่โพสต์
@@ -619,7 +624,7 @@ export default function ArticlesPage() {
                       )}
                     </div>
                     <span
-                      className="text-[16px] text-black leading-[24px]"
+                      className="text-[14px] text-black leading-[20px]"
                       style={{ fontFamily: "'ChulaCharasNew', serif" }}
                     >
                       เรียงจากใหม่ที่สุด
@@ -643,7 +648,7 @@ export default function ArticlesPage() {
                       )}
                     </div>
                     <span
-                      className="text-[16px] text-black leading-[24px]"
+                      className="text-[14px] text-black leading-[20px]"
                       style={{ fontFamily: "'ChulaCharasNew', serif" }}
                     >
                       เรียงจากเก่าที่สุด
@@ -824,7 +829,7 @@ export default function ArticlesPage() {
               className="w-[253px] min-w-[158px] h-[58px] rounded-[8px] bg-[#DE5D8F] hover:bg-[#d44d80] active:scale-98 transition-all flex items-center justify-center gap-[8px] cursor-pointer border-none shadow-sm group"
             >
               <span
-                className="text-[28px] font-bold text-white leading-[36px]"
+                className="text-[18px] md:text-[20px] font-bold text-white leading-[26px]"
                 style={{ fontFamily: "'ChulaCharasNew', serif" }}
               >
                 ไปที่หน้าบทความ
@@ -860,6 +865,11 @@ export default function ArticlesPage() {
                 placeholder={t('search_placeholder', { defaultValue: 'ค้นหาบทความ, ชื่อผู้เขียน, หรือเนื้อหา...' })}
                 value={searchQuery}
                 onChange={handleSearchChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    (e.target as HTMLInputElement).blur();
+                  }
+                }}
               />
             </div>
             <div className="relative shrink-0" ref={filterDropdownRef}>

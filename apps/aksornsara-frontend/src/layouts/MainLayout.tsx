@@ -1,8 +1,16 @@
-import { Outlet } from 'react-router';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router';
 import { Navbar } from '../components/Navbar/index.js';
 import { ScrollToTopButton } from '../components/ScrollToTopButton/index.js';
 
 export default function MainLayout() {
+  const { pathname } = useLocation();
+
+  // Scroll to top on every route change (F-DTL-002, F-NAV-003)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
