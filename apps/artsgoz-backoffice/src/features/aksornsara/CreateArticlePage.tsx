@@ -659,20 +659,20 @@ export function CreateArticlePage() {
           {/* ── Main Public Article View Simulation (Matching ArticleDetailSection 100%) ── */}
           <div className="bg-white rounded-[24px] p-6 sm:p-10 md:p-14 shadow-sm border border-gray-100 flex flex-col gap-10 max-w-[1080px] mx-auto w-full">
             
-            {/* Top Hero Poster (Matching Frontend square poster) */}
+            {/* Top Hero Poster (Showing full uncropped cover image) */}
             <div className="w-full flex justify-center">
-              <div className="w-full max-w-[360px] sm:max-w-[440px] md:max-w-[500px] aspect-square rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50 flex items-center justify-center">
+              <div className="max-w-full rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50 flex items-center justify-center">
                 {coverImage ? (
                   <img
                     src={coverImage}
                     alt={title || 'ภาพหน้าปก'}
-                    className="w-full h-full object-cover"
+                    className="w-auto max-w-full max-h-[600px] sm:max-h-[700px] md:max-h-[800px] h-auto object-contain block rounded-[20px]"
                   />
                 ) : (
-                  <div className="flex flex-col items-center justify-center gap-3 p-6 text-center text-gray-400 font-serif">
+                  <div className="w-[360px] sm:w-[440px] md:w-[500px] aspect-[4/5] flex flex-col items-center justify-center gap-3 p-6 text-center text-gray-400 font-serif">
                     <UploadCloud size={48} className="text-[#DE5D8F]/60" />
                     <span className="text-[16px]">ยังไม่ได้อัปโหลดภาพหน้าปก</span>
-                    <span className="text-[13px] text-gray-400">รูปภาพหน้าปกจะแสดงเป็นสี่เหลี่ยมจัตุรัสตรงนี้</span>
+                    <span className="text-[13px] text-gray-400">รูปภาพหน้าปกจะแสดงขนาดจริงแบบเต็มที่นี่</span>
                   </div>
                 )}
               </div>

@@ -270,9 +270,9 @@ export function ArticleDetailSection() {
           <span>{t('detail.back_to_articles', { defaultValue: 'กลับไปหน้ารวมบทความ' })}</span>
         </button>
 
-        {/* ── Top Hero Poster ── */}
+        {/* ── Top Hero Poster (Full uncropped cover image) ── */}
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-[360px] sm:max-w-[440px] md:max-w-[500px] aspect-square rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50">
+          <div className="max-w-full rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50 flex items-center justify-center">
             <img
               src={article.imageUrl || ArticleBannerMock}
               alt={article.title}
@@ -281,7 +281,7 @@ export function ArticleDetailSection() {
               onError={(e) => {
                 e.currentTarget.src = ArticleBannerMock;
               }}
-              className="w-full h-full object-cover"
+              className="w-auto max-w-full max-h-[600px] sm:max-h-[700px] md:max-h-[800px] h-auto object-contain block rounded-[20px]"
             />
           </div>
         </div>
