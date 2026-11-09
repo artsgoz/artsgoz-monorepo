@@ -73,3 +73,6 @@ tfplan
 # Standard node/pnpm fields
 node_modules/
 .pnpm-store/
+# AksornSara article image backups and backoffice duplicates (frontend has canonical copy)
+apps/artsgoz-backoffice/public/article-images/
+exports/aksornsara-database-export/downloaded-images/
