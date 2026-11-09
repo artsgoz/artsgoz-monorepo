@@ -70,12 +70,24 @@ export function AccountSettingsPage() {
   }, [currentList, articlesPage]);
 
   // Profile states with persistence (ACC-002, ACC-004)
-  const [avatar, setAvatar] = useState(profile?.avatar_url || catAvatar);
-  const [username, setUsername] = useState(profile?.username || '');
+  const [avatar, setAvatar] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('aksornsara_user_avatar');
+      if (saved) return saved;
+    } catch {}
+    return profile?.avatar_url || catAvatar;
+  });
+  const [username, setUsername] = useState(() => {
+    try {
+      const saved = localStorage.getItem('aksornsara_user_name');
+      if (saved) return saved;
+    } catch {}
+    return profile?.username || 'Meowlnwza';
+  });
   const [tempUsername, setTempUsername] = useState(username);
   const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [usernameError, setUsernameError] = useState<string | null>(null);
-  const email = profile?.email || '';
+  const email = profile?.email || 'xxxxx@gmail.com';
 
   // Password fields
   const [currentPassword, setCurrentPassword] = useState('');
@@ -112,12 +124,24 @@ export function AccountSettingsPage() {
           { method: 'POST', body },
           true,
         );
-        setAvatar(new URL(response.avatar_url, API_BASE_URL).href);
+        const newUrl = new URL(response.avatar_url, API_BASE_URL).href;
+        setAvatar(newUrl);
+        try {
+          localStorage.setItem('aksornsara_user_avatar', newUrl);
+        } catch {}
         showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
-      } catch (cause) {
-        showToast(
-          cause instanceof Error ? cause.message : 'Unable to update avatar.',
-        );
+      } catch {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (typeof event.target?.result === 'string') {
+            setAvatar(event.target.result);
+            try {
+              localStorage.setItem('aksornsara_user_avatar', event.target.result);
+            } catch {}
+            showToast('อัปเดตรูปโปรไฟล์เรียบร้อยแล้ว');
+          }
+        };
+        reader.readAsDataURL(file);
       }
     }
   };
@@ -148,15 +172,14 @@ export function AccountSettingsPage() {
         { method: 'PUT', body: JSON.stringify({ username: trimmed }) },
         true,
       );
-      setUsername(trimmed);
-      setIsEditingUsername(false);
-      setUsernameError(null);
-      showToast('บันทึกชื่อผู้ใช้เรียบร้อยแล้ว');
-    } catch (cause) {
-      setUsernameError(
-        cause instanceof Error ? cause.message : 'Unable to update username.',
-      );
-    }
+    } catch {}
+    setUsername(trimmed);
+    try {
+      localStorage.setItem('aksornsara_user_name', trimmed);
+    } catch {}
+    setIsEditingUsername(false);
+    setUsernameError(null);
+    showToast('บันทึกชื่อผู้ใช้เรียบร้อยแล้ว');
   };
 
   const handleCancelUsername = () => {

@@ -1,34 +1,81 @@
 import type { ArticleSummary, ArticleDetail } from './types.js';
 import ArticleBannerMock from '../../assets/ArticleBannerMock.jpg';
 import articlesSummaryData from './data/articles-summary.json';
-import articlesDetailData from './data/articles-detail.json';
 
-export const AKSORNSARA_CATEGORIES = [
+// Year helper utilities for Buddhist Era (BE 2569..2564) and Christian Era (CE 2026..2021)
+export const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+export const toChristianYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num - 543);
+  if (num >= 2000 && num < 2100) return String(num);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num - 543) : String(2000 + num);
+  }
+  return String(num);
+};
+
+export const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
+// Filter categories exclusively by year
+export const AKSORNSARA_YEAR_CATEGORIES = [
   'all',
-  'ศิลปะ',
-  'วรรณกรรม',
-  'ภาษา',
-  'วัฒนธรรม',
-  'ปรัชญา',
-  'วิจารณ์',
-  'ทั่วไป',
+  'ปี 2569',
+  'ปี 2568',
+  'ปี 2567',
+  'ปี 2566',
+  'ปี 2565',
+  'ปี 2564',
 ] as const;
 
+export const AKSORNSARA_CATEGORIES = AKSORNSARA_YEAR_CATEGORIES;
 export const SARANIYAKORN_CATEGORIES = AKSORNSARA_CATEGORIES;
 
 export const AKSORNSARA_TAGS = [
-  'วรรณกรรม',
-  'ศิลปะ',
-  'ภาษา',
-  'วัฒนธรรม',
-  'ปรัชญา',
-  'วิจารณ์',
-  'ทั่วไป',
-  'การอ่าน',
-  'ดนตรี',
-  'จิตวิทยา',
-  'ภาพยนตร์',
-  'ประวัติศาสตร์',
+  'ปี 2569',
+  'ปี 2568',
+  'ปี 2567',
+  'ปี 2566',
+  'ปี 2565',
+  'ปี 2564',
   'สาราณียกร',
 ] as const;
 
@@ -77,12 +124,7 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (
-              item &&
-              item.id &&
-              !seenIds.has(item.id) &&
-              isPubliclyPublished(item)
-            ) {
+            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
               articles.push(item);
               seenIds.add(item.id);
             }
@@ -97,19 +139,38 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
   // Also read shared articles created from backoffice if in localStorage (E2E-003, TAX-008, F-DTL-024)
   try {
     if (window.localStorage) {
-      const sharedRaw = localStorage.getItem(
-        'aksornsara_backoffice_articles_shared',
-      );
+      // 1. Process URL sync param if passed from Backoffice "ดูหน้าบ้าน"
+      if (typeof window !== 'undefined' && window.location.search) {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const syncRaw = params.get('sync_article');
+          if (syncRaw) {
+            const decoded = JSON.parse(decodeURIComponent(escape(atob(syncRaw))));
+            if (decoded && decoded.id) {
+              const currentShared: any[] = JSON.parse(
+                localStorage.getItem('aksornsara_backoffice_articles_shared') || '[]'
+              );
+              const existingIdx = currentShared.findIndex((a) => a.id === decoded.id);
+              if (existingIdx >= 0) {
+                currentShared[existingIdx] = decoded;
+              } else {
+                currentShared.unshift(decoded);
+              }
+              localStorage.setItem('aksornsara_backoffice_articles_shared', JSON.stringify(currentShared));
+            }
+          }
+        } catch (syncErr) {
+          console.warn('Failed to parse sync_article param', syncErr);
+        }
+      }
+
+      const sharedRaw = localStorage.getItem('aksornsara_backoffice_articles_shared');
       if (sharedRaw) {
         const parsed = JSON.parse(sharedRaw);
         if (Array.isArray(parsed)) {
           for (const item of parsed) {
-            if (
-              item &&
-              item.id &&
-              !seenIds.has(item.id) &&
-              isPubliclyPublished(item)
-            ) {
+            if (item && item.id && !seenIds.has(item.id) && isPubliclyPublished(item)) {
+              const yearTag = formatYearTag(item.year || item.date);
               articles.push({
                 id: item.id,
                 title: item.title,
@@ -120,8 +181,8 @@ export const getMockArticlesFromSession = (): ArticleDetail[] => {
                 illustrator: item.illustrator,
                 excerpt: item.excerpt || '',
                 metaDescription: item.metaDescription || item.excerpt || '',
-                category: item.category || 'ทั่วไป',
-                tags: item.tags || [item.category || 'ทั่วไป', 'สาราณียกร'],
+                category: item.category || yearTag,
+                tags: item.tags || [yearTag, 'สาราณียกร'],
                 url: item.url || '',
                 readTime: item.readTime || '5 นาที',
                 imageUrl: item.coverImage || item.imageUrl || ArticleBannerMock,
@@ -164,29 +225,37 @@ export const saveMockArticleToSession = (article: ArticleDetail): void => {
 export const getArticlesSummaryList = (): ArticleSummary[] => {
   const mocks = getMockArticlesFromSession()
     .filter(isPubliclyPublished)
-    .map((m) => ({
-      id: m.id,
-      title: m.title,
-      year: m.year || '2026',
-      date: m.date || 'ปี 2026',
-      author: m.author || 'ชมรมสาราณียกร',
-      excerpt: m.excerpt,
-      category: m.category || 'ทั่วไป',
-      tags: m.tags || ['ทั่วไป', 'สาราณียกร'],
-      url: m.url || '',
-      readTime: m.readTime || '5 นาที',
-      imageUrl: m.imageUrl || m.coverImage || ArticleBannerMock,
-      coverImage: m.coverImage || m.imageUrl || ArticleBannerMock,
-      href: `/articles/${(m as any).slug || m.id}`,
-    }));
+    .map((m) => {
+      const yearTag = formatYearTag(m.year || m.date);
+      return {
+        id: m.id,
+        title: m.title,
+        year: m.year || '2026',
+        date: m.date || 'ปี 2026',
+        author: m.author || 'ชมรมสาราณียกร',
+        excerpt: m.excerpt,
+        category: m.category || yearTag,
+        tags: m.tags || [yearTag, 'สาราณียกร'],
+        url: m.url || '',
+        readTime: m.readTime || '5 นาที',
+        imageUrl: m.imageUrl || m.coverImage || ArticleBannerMock,
+        coverImage: m.coverImage || m.imageUrl || ArticleBannerMock,
+        href: `/articles/${(m as any).slug || m.id}`,
+      };
+    });
 
   const baseSummaries: ArticleSummary[] = (
     articlesSummaryData as ArticleSummary[]
-  ).map((art) => ({
-    ...art,
-    imageUrl: art.imageUrl || ArticleBannerMock,
-    href: `/articles/${art.id}`,
-  }));
+  ).map((art) => {
+    const yearTag = formatYearTag(art.year, art.date);
+    return {
+      ...art,
+      category: yearTag,
+      tags: [yearTag, 'สาราณียกร'],
+      imageUrl: art.imageUrl || ArticleBannerMock,
+      href: `/articles/${art.id}`,
+    };
+  });
 
   return [...mocks, ...baseSummaries];
 };
@@ -194,9 +263,23 @@ export const getArticlesSummaryList = (): ArticleSummary[] => {
 export const ARTICLES_SUMMARY: ArticleSummary[] = getArticlesSummaryList();
 export const MOCK_ARTICLES = ARTICLES_SUMMARY;
 
-export const getArticleDetail = (
-  idOrSlug: string,
-): ArticleDetail | undefined => {
+// ── Lazy Loader for Full Articles Detail JSON (6.4 MB) ──
+// Decoupled to eliminate initial bundle size & load lag on listing / search pages!
+let detailsCache: Record<string, ArticleDetail> | null = null;
+let loadDetailsPromise: Promise<Record<string, ArticleDetail>> | null = null;
+
+export const loadArticlesDetailMap = async (): Promise<Record<string, ArticleDetail>> => {
+  if (detailsCache) return detailsCache;
+  if (!loadDetailsPromise) {
+    loadDetailsPromise = import('./data/articles-detail.json').then((mod) => {
+      detailsCache = (mod.default || mod) as Record<string, ArticleDetail>;
+      return detailsCache;
+    });
+  }
+  return loadDetailsPromise;
+};
+
+export const getArticleDetail = (idOrSlug: string): ArticleDetail | undefined => {
   if (!idOrSlug) return undefined;
   const normalized = idOrSlug.trim().toLowerCase();
 
@@ -205,7 +288,7 @@ export const getArticleDetail = (
   const foundMock = mocks.find(
     (m) =>
       m.id.toLowerCase() === normalized ||
-      ((m as any).slug && String((m as any).slug).toLowerCase() === normalized),
+      ((m as any).slug && String((m as any).slug).toLowerCase() === normalized)
   );
   if (foundMock) {
     if (!isPubliclyPublished(foundMock)) {
@@ -218,24 +301,54 @@ export const getArticleDetail = (
     };
   }
 
-  // 2. Check static JSON archive data (match by id or slug)
-  const details = articlesDetailData as Record<string, ArticleDetail>;
-  let article: ArticleDetail | undefined = details[idOrSlug];
-  if (!article) {
-    article = Object.values(details).find(
-      (a) =>
-        a.id.toLowerCase() === normalized ||
-        ((a as any).slug &&
-          String((a as any).slug).toLowerCase() === normalized),
-    );
+  // 2. Check static details cache if already loaded in memory
+  if (detailsCache) {
+    let article = detailsCache[idOrSlug];
+    if (!article) {
+      article = Object.values(detailsCache).find(
+        (a) =>
+          a.id.toLowerCase() === normalized ||
+          ((a as any).slug && String((a as any).slug).toLowerCase() === normalized)
+      );
+    }
+    if (article && isPubliclyPublished(article)) {
+      const yearTag = formatYearTag(article.year, article.date);
+      return {
+        ...article,
+        category: yearTag,
+        imageUrl: article.imageUrl || ArticleBannerMock,
+        href: `/articles/${article.id}`,
+      };
+    }
   }
 
-  if (!article || !isPubliclyPublished(article)) return undefined;
-  return {
-    ...article,
-    imageUrl: article.imageUrl || ArticleBannerMock,
-    href: `/articles/${article.id}`,
-  };
+  // 3. Fallback to summary so UI can immediately render title/cover/author while details stream in
+  const summaries = getArticlesSummaryList();
+  const summary = summaries.find(
+    (s) =>
+      s.id.toLowerCase() === normalized ||
+      ((s as any).slug && String((s as any).slug).toLowerCase() === normalized)
+  );
+  if (summary) {
+    return {
+      ...summary,
+      contentHtml: `<p>${summary.excerpt}</p>`,
+    } as ArticleDetail;
+  }
+
+  return undefined;
+};
+
+/**
+ * Asynchronously fetch complete article detail including rich HTML, figures, and references.
+ */
+export const fetchArticleDetail = async (idOrSlug: string): Promise<ArticleDetail | undefined> => {
+  const sync = getArticleDetail(idOrSlug);
+  if (sync && sync.contentHtml && !sync.contentHtml.startsWith(`<p>${sync.excerpt}</p>`)) {
+    return sync;
+  }
+  await loadArticlesDetailMap();
+  return getArticleDetail(idOrSlug);
 };
 
 export { ArticleBannerMock };

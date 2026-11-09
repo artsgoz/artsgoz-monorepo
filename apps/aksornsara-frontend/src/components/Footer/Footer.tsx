@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { logoImg, legacyLogo } from '@artsgoz/design-system';
 import { SOCIAL_LINKS } from './footerData.js';
+import { FooterSocialLink } from './FooterSocialLink.js';
 
 export function Footer() {
   const { t } = useTranslation('common');
@@ -26,49 +27,65 @@ export function Footer() {
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 w-full max-w-[1282px] mx-auto px-4 sm:px-6 pt-10 sm:pt-12 pb-8 flex flex-col gap-8 sm:gap-10">
-        {/* Top Section: Left Branding & Social Links (F-NAV-008: keep only functional left part) */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-300/60 pb-8">
-          {/* Logo + Address */}
-          <div className="w-full max-w-[560px] flex flex-col items-start">
+      <div className="relative z-10 w-full max-w-[1282px] mx-auto px-4 sm:px-6 pt-10 sm:pt-12 pb-8 flex flex-col gap-8 sm:gap-12">
+        {/* Left Column: Logo + Address + Social Links (original design, links columns removed) */}
+        <div className="w-full flex flex-col items-start">
+          <div className="w-full max-w-[420px] flex flex-col items-start shrink-0">
             <img
               src={logoImg}
               alt="Arts GOZ Logo"
-              className="w-[200px] sm:w-[240px] h-[44px] sm:h-[52px] object-contain mb-4"
+              className="w-[200px] sm:w-[240px] h-[44px] sm:h-[52px] object-contain mb-4 sm:mb-6"
             />
-            <p className="font-serif text-[15px] sm:text-[16px] leading-[22px] sm:leading-[24px] text-black whitespace-pre-line m-0">
+            <p className="font-serif text-[15px] sm:text-[16px] leading-[22px] sm:leading-[24px] text-black mb-6 whitespace-pre-line m-0">
               {t('footer.address')}
             </p>
-          </div>
 
-          {/* Social Links List */}
-          <div className="flex flex-col gap-3 shrink-0">
-            <span className="font-serif text-[15px] font-bold text-[#D23976]">ช่องทางการติดต่อ</span>
-            <div className="flex flex-wrap items-center gap-3">
+            {/* Desktop Social Links List (Original Design) */}
+            <div className="hidden sm:flex flex-col gap-3.5 w-full">
+              {SOCIAL_LINKS.map((link) => (
+                <FooterSocialLink key={link.label} link={link} />
+              ))}
+            </div>
+
+            {/* Mobile Social Links: Horizontal Icons Row (Original Design) */}
+            <div className="flex sm:hidden items-center gap-3 w-full">
               {SOCIAL_LINKS.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target={link.isExternal ? '_blank' : undefined}
                   rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#E992B4]/40 text-[#DE5D8F] hover:bg-[#DE5D8F] hover:text-white transition-all shadow-2xs text-[14px] font-serif no-underline"
-                  title={t(link.label)}
+                  className="w-10 h-10 rounded-full bg-white border border-[#E992B4]/40 flex items-center justify-center text-[#DE5D8F] hover:bg-[#DE5D8F] hover:text-white transition-all shadow-2xs"
+                  aria-label={t(link.label)}
                 >
                   {link.icon}
-                  <span className="text-black hover:text-inherit font-bold">{t(link.label)}</span>
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar & Copyright Row */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 font-serif text-[13px] sm:text-[14px] text-black">
+        {/* Bottom Bar & Copyright Row (Original Design) */}
+        <div className="w-full pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 font-serif text-[13px] sm:text-[14px] text-black">
           <span className="text-center sm:text-left no-underline border-none">
             @All Right Reserved, Arts Chula Student Committee 2026
           </span>
           <div className="flex items-center gap-4 sm:gap-6">
-            <span className="text-gray-600">ชมรมอักษรสาราณียกร คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</span>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="hover:text-[#D23976] transition-colors no-underline text-black"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-gray-400">|</span>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="hover:text-[#D23976] transition-colors no-underline text-black"
+            >
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>

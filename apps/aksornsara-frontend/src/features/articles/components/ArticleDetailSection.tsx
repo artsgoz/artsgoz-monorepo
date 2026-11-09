@@ -1,30 +1,23 @@
-import { toArticle, usePublicArticles } from '../hooks/usePublicArticles.js';
-import type { ArticleDetail } from '../types.js';
-import { useState, useEffect, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router';
-import {
-  ArrowLeft,
-  Bookmark,
-  ExternalLink,
-  Clock,
-  Share2,
-  Check,
-} from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router';
+import { ArrowLeft, Bookmark, ExternalLink, Clock, Share2, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '@artsgoz/design-system';
-import { ArticleBannerMock } from '../constants.js';
+import {
+  getArticleDetail,
+  fetchArticleDetail,
+  formatYearTag,
+  ARTICLES_SUMMARY,
+  ArticleBannerMock,
+  saveMockArticleToSession,
+  isPubliclyPublished,
+} from '../constants.js';
 import { ArticleCard } from './ArticleCard.js';
 import { publicArticlesApi } from '../services/apiClient.js';
 
-function setOrCreateMetaTag(
-  attributeName: 'name' | 'property',
-  attributeValue: string,
-  content: string,
-) {
+function setOrCreateMetaTag(attributeName: 'name' | 'property', attributeValue: string, content: string) {
   if (typeof document === 'undefined') return;
-  let element = document.head.querySelector(
-    `meta[${attributeName}="${attributeValue}"]`,
-  ) as HTMLMetaElement | null;
+  let element = document.head.querySelector(`meta[${attributeName}="${attributeValue}"]`) as HTMLMetaElement | null;
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute(attributeName, attributeValue);
@@ -35,9 +28,7 @@ function setOrCreateMetaTag(
 
 function setOrCreateCanonicalLink(href: string) {
   if (typeof document === 'undefined') return;
-  let link = document.head.querySelector(
-    'link[rel="canonical"]',
-  ) as HTMLLinkElement | null;
+  let link = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
   if (!link) {
     link = document.createElement('link');
     link.setAttribute('rel', 'canonical');
@@ -47,9 +38,9 @@ function setOrCreateCanonicalLink(href: string) {
 }
 
 export function ArticleDetailSection() {
-  const { articles } = usePublicArticles();
   const { t } = useTranslation('articles');
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   // Scroll to top on id change / mount (F-DTL-002, F-NAV-003)
@@ -57,34 +48,42 @@ export function ArticleDetailSection() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [id]);
 
-  const [article, setArticle] = useState<ArticleDetail | undefined>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    let active = true;
-    setArticle(undefined);
-    setError(null);
-    setLoading(true);
-    if (!id) {
-      setLoading(false);
-      return;
+  const [article, setArticle] = useState(() => {
+    // If mock data is passed in URL query param from backoffice, ingest and return
+    const mockDataStr = searchParams.get('mock');
+    if (mockDataStr) {
+      try {
+        const parsed = JSON.parse(decodeURIComponent(mockDataStr));
+        if (parsed && parsed.id) {
+          if (!isPubliclyPublished(parsed)) {
+            return undefined; // Scheduled in future (F-DTL-024)
+          }
+          saveMockArticleToSession(parsed);
+          return {
+            ...parsed,
+            imageUrl: parsed.imageUrl || parsed.coverImage || ArticleBannerMock,
+            href: `/articles/${parsed.slug || parsed.id}`,
+          };
+        }
+      } catch (err) {
+        console.warn('Failed to parse mock article from URL', err);
+      }
     }
-    void publicArticlesApi
-      .getArticleBySlug(id)
-      .then((response) => {
-        if (active) setArticle(toArticle(response.data));
-      })
-      .catch((cause) => {
-        if (active)
-          setError(
-            cause instanceof Error ? cause.message : 'Unable to load article.',
-          );
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+    const targetId = id || 'art-001';
+    return getArticleDetail(targetId);
+  });
+
+  // Fetch full rich content asynchronously if lazy-loaded
+  useEffect(() => {
+    let cancelled = false;
+    const targetId = id || 'art-001';
+    fetchArticleDetail(targetId).then((full) => {
+      if (!cancelled && full) {
+        setArticle(full);
+      }
+    });
     return () => {
-      active = false;
+      cancelled = true;
     };
   }, [id]);
 
@@ -98,23 +97,15 @@ export function ArticleDetailSection() {
     const fullTitle = `${article.title} | Aksorn Sara – ชมรมอักษรสาราณียกร`;
     document.title = fullTitle;
 
-    const description =
-      (article as any).metaDescription || article.excerpt || '';
+    const description = (article as any).metaDescription || article.excerpt || '';
     if (description) {
       setOrCreateMetaTag('name', 'description', description);
     }
 
-    const currentUrl =
-      typeof window !== 'undefined' ? window.location.href : '';
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
     const imageUrl = article.imageUrl
-      ? article.imageUrl.startsWith('http')
-        ? article.imageUrl
-        : typeof window !== 'undefined'
-          ? window.location.origin + article.imageUrl
-          : article.imageUrl
-      : typeof window !== 'undefined'
-        ? window.location.origin + ArticleBannerMock
-        : ArticleBannerMock;
+      ? (article.imageUrl.startsWith('http') ? article.imageUrl : (typeof window !== 'undefined' ? window.location.origin + article.imageUrl : article.imageUrl))
+      : (typeof window !== 'undefined' ? window.location.origin + ArticleBannerMock : ArticleBannerMock);
 
     // OpenGraph Tags (F-SEO-005)
     setOrCreateMetaTag('property', 'og:title', fullTitle);
@@ -131,22 +122,19 @@ export function ArticleDetailSection() {
 
     // Canonical Link (F-SEO-007, F-SEO-012)
     const canonicalSlug = (article as any).slug || article.id;
-    const canonicalUrl =
-      typeof window !== 'undefined'
-        ? `${window.location.origin}/articles/${encodeURIComponent(canonicalSlug)}`
-        : `/articles/${encodeURIComponent(canonicalSlug)}`;
+    const canonicalUrl = typeof window !== 'undefined'
+      ? `${window.location.origin}/articles/${encodeURIComponent(canonicalSlug)}`
+      : `/articles/${encodeURIComponent(canonicalSlug)}`;
     setOrCreateCanonicalLink(canonicalUrl);
 
     return () => {
       document.title = 'Aksorn Sara – ชมรมอักษรสาราณียกร';
-      const canonicalLink = document.head.querySelector(
-        'link[rel="canonical"]',
-      );
+      const canonicalLink = document.head.querySelector('link[rel="canonical"]');
       if (canonicalLink) {
         canonicalLink.remove();
       }
     };
-  }, [article, articles]);
+  }, [article]);
 
   const [isBookmarked, setIsBookmarked] = useState(() => {
     try {
@@ -176,22 +164,20 @@ export function ArticleDetailSection() {
   // Other articles for "อ่านต่อ" (prefer articles from the same year)
   const otherArticles = useMemo(() => {
     if (!article) return [];
-    const sameYear = articles.filter(
-      (a) => a.id !== article.id && a.year === article.year,
+    const sameYear = ARTICLES_SUMMARY.filter(
+      (a) => a.id !== article.id && a.year === article.year
     );
-    const diffYear = articles.filter(
-      (a) => a.id !== article.id && a.year !== article.year,
+    const diffYear = ARTICLES_SUMMARY.filter(
+      (a) => a.id !== article.id && a.year !== article.year
     );
     return [...sameYear, ...diffYear];
-  }, [article, articles]);
+  }, [article]);
 
   const READ_MORE_PER_PAGE = 4;
-  const totalReadMorePages = Math.ceil(
-    otherArticles.length / READ_MORE_PER_PAGE,
-  );
+  const totalReadMorePages = Math.ceil(otherArticles.length / READ_MORE_PER_PAGE);
   const currentReadMoreArticles = otherArticles.slice(
     (readMorePage - 1) * READ_MORE_PER_PAGE,
-    readMorePage * READ_MORE_PER_PAGE,
+    readMorePage * READ_MORE_PER_PAGE
   );
 
   const handleBookmarkToggle = () => {
@@ -248,9 +234,7 @@ export function ArticleDetailSection() {
         className="w-full bg-white min-h-[60vh] flex flex-col items-center justify-center p-8 text-center"
         style={{ fontFamily: 'ChulaCharasNew, sans-serif' }}
       >
-        <h2 className="text-[28px] font-bold text-[#1A1C1C] m-0">
-          {loading ? 'Loading article…' : error || 'ไม่พบบทความที่คุณค้นหา'}
-        </h2>
+        <h2 className="text-[28px] font-bold text-[#1A1C1C] m-0">ไม่พบบทความที่คุณค้นหา</h2>
         <p className="text-[#6D6D6D] text-[16px] mt-2 mb-6 max-w-[420px]">
           บทความนี้อาจยังไม่ได้รับการเผยแพร่ หรือ URL อาจไม่ถูกต้อง
         </p>
@@ -259,9 +243,7 @@ export function ArticleDetailSection() {
           onClick={() => navigate('/articles')}
           className="px-6 py-2.5 rounded-full bg-[#E992B4] hover:bg-[#DE5D8F] text-white font-bold cursor-pointer transition-all border-none shadow-xs text-[16px]"
         >
-          {t('detail.back_to_articles', {
-            defaultValue: 'กลับไปหน้ารวมบทความ',
-          })}
+          {t('detail.back_to_articles', { defaultValue: 'กลับไปหน้ารวมบทความ' })}
         </button>
       </div>
     );
@@ -278,25 +260,19 @@ export function ArticleDetailSection() {
       )}
 
       <div className="max-w-[1080px] mx-auto px-4 sm:px-6 py-8 md:py-14 flex flex-col gap-10">
+
         {/* Back navigation */}
         <button
           onClick={() => navigate('/articles')}
           className="group flex items-center gap-2 text-[#DE5D8F] hover:text-[#CA5582] font-serif font-bold text-[16px] transition-colors cursor-pointer w-fit border-none bg-transparent"
         >
-          <ArrowLeft
-            size={18}
-            className="group-hover:-translate-x-1 transition-transform"
-          />
-          <span>
-            {t('detail.back_to_articles', {
-              defaultValue: 'กลับไปหน้ารวมบทความ',
-            })}
-          </span>
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span>{t('detail.back_to_articles', { defaultValue: 'กลับไปหน้ารวมบทความ' })}</span>
         </button>
 
-        {/* ── Top Hero Poster ── */}
+        {/* ── Top Hero Poster (Full uncropped cover image) ── */}
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-[360px] sm:max-w-[440px] md:max-w-[500px] aspect-square rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50">
+          <div className="max-w-full rounded-[20px] overflow-hidden shadow-md border border-gray-100 bg-gray-50 flex items-center justify-center">
             <img
               src={article.imageUrl || ArticleBannerMock}
               alt={article.title}
@@ -305,7 +281,7 @@ export function ArticleDetailSection() {
               onError={(e) => {
                 e.currentTarget.src = ArticleBannerMock;
               }}
-              className="w-full h-full object-cover"
+              className="w-auto max-w-full max-h-[600px] sm:max-h-[700px] md:max-h-[800px] h-auto object-contain block rounded-[20px]"
             />
           </div>
         </div>
@@ -349,13 +325,16 @@ export function ArticleDetailSection() {
             </div>
           </div>
 
-          {/* Badges: Category & Read Time */}
+          {/* Badges: Category (Year) & Read Time */}
           <div className="flex items-center gap-2.5 flex-wrap">
             <span
-              className="font-sans font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 w-fit"
-              style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
+              className="font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] rounded-[11px] px-3.5 py-1.5 w-fit"
+              style={{
+                backgroundColor: 'rgba(252, 239, 244, 0.85)',
+                fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+              }}
             >
-              {article.category || 'ทั่วไป'}
+              {formatYearTag(article.year, article.date)}
             </span>
             {article.readTime && (
               <span className="flex items-center gap-1.5 font-serif text-[13px] font-bold text-gray-500 bg-gray-100 rounded-[11px] px-3 py-1.5">
@@ -381,9 +360,7 @@ export function ArticleDetailSection() {
               </>
             )}
             <span>|</span>
-            <span className="text-[#99999A]">
-              สาราณียกร ฉบับปี {article.year}
-            </span>
+            <span className="text-[#99999A]">สาราณียกร ฉบับปี {article.year}</span>
           </div>
         </div>
 
@@ -417,10 +394,7 @@ export function ArticleDetailSection() {
               className="group inline-flex items-center gap-1.5 text-[14px] sm:text-[15px] font-serif font-bold text-[#DE5D8F] hover:text-[#CA5582] hover:underline transition-colors"
             >
               <span>อ่านบทความต้นฉบับบน Aksornsara.com</span>
-              <ExternalLink
-                size={16}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              />
+              <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
         )}
@@ -456,6 +430,7 @@ export function ArticleDetailSection() {
                 title={a.title}
                 author={a.author}
                 date={a.date}
+                year={a.year}
                 category={a.category}
                 imageUrl={a.imageUrl}
                 compact={true}
@@ -474,6 +449,7 @@ export function ArticleDetailSection() {
             </div>
           )}
         </div>
+
       </div>
     </div>
   );

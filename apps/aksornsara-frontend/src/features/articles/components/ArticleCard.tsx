@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Bookmark } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import mockImage from '../../../assets/ArticleBannerMock.jpg';
+import { formatYearTag } from '../constants.js';
 
 interface ArticleCardProps {
   id: string;
@@ -10,6 +11,7 @@ interface ArticleCardProps {
   author: string;
   date: string;
   category: string;
+  year?: string;
   imageUrl?: string;
   compact?: boolean;
   onBookmarkChange?: (id: string, bookmarked: boolean) => void;
@@ -21,6 +23,7 @@ export function ArticleCard({
   author,
   date,
   category,
+  year,
   imageUrl,
   compact = false,
   onBookmarkChange,
@@ -66,9 +69,7 @@ export function ArticleCard({
 
   const translatedTitle = title.startsWith('mock.') ? t(title) : title;
   const translatedAuthor = author.startsWith('mock.') ? t(author) : author;
-  const translatedCategory = category.startsWith('categories.')
-    ? t(category)
-    : category;
+  const yearTag = formatYearTag(year, date);
 
   // Compact variant for "อ่านต่อ" (Read More) 4-column row
   if (compact) {
@@ -97,8 +98,14 @@ export function ArticleCard({
         </div>
 
         <div className="flex items-center justify-between gap-2">
-          <span className="font-sans font-normal text-[11px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-2.5 py-1 whitespace-nowrap truncate" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-            {translatedCategory}
+          <span
+            className="font-normal text-[11px] text-[#DE5D8F] rounded-[11px] px-2.5 py-1 whitespace-nowrap truncate"
+            style={{
+              backgroundColor: 'rgba(252, 239, 244, 0.85)',
+              fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+            }}
+          >
+            {yearTag}
           </span>
           <button
             type="button"
@@ -157,8 +164,14 @@ export function ArticleCard({
 
         {/* Category badge + Bookmark row */}
         <div className="flex items-center justify-between gap-2">
-          <span className="font-sans font-normal text-[12px] text-[#DE5D8F] bg-[#FCEFF4] rounded-[11px] px-3.5 py-1.5 whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-            {translatedCategory}
+          <span
+            className="font-normal text-[12px] text-[#DE5D8F] rounded-[11px] px-3.5 py-1.5 whitespace-nowrap"
+            style={{
+              backgroundColor: 'rgba(252, 239, 244, 0.85)',
+              fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+            }}
+          >
+            {yearTag}
           </span>
           <button
             type="button"
@@ -210,8 +223,14 @@ export function ArticleCard({
         {/* Frame 6160: Category banner + Bookmark button (right: 22px, top: 22px, height: 40px, gap: 8px) */}
         <div className="absolute right-[22px] top-[22px] h-[40px] flex items-center gap-[8px] z-10">
           {/* System banner */}
-          <span className="h-[40px] px-5 bg-[#FCEFF4] text-[#DE5D8F] rounded-[11px] font-sans font-normal text-[14px] flex items-center justify-center whitespace-nowrap" style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}>
-            {translatedCategory}
+          <span
+            className="h-[40px] px-5 text-[#DE5D8F] rounded-[11px] font-normal text-[14px] flex items-center justify-center whitespace-nowrap"
+            style={{
+              backgroundColor: 'rgba(252, 239, 244, 0.85)',
+              fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
+            }}
+          >
+            {yearTag}
           </span>
           {/* icon button */}
           <button

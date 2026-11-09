@@ -33,6 +33,16 @@ textarea {
   font-family: 'Inter', 'Noto Sans Thai', sans-serif;
 }
 
+.font-sans-thai {
+  font-family: 'Inter', 'Noto Sans Thai', sans-serif !important;
+}
+
+.category-tag {
+  font-family: 'Inter', 'Noto Sans Thai', sans-serif !important;
+  background-color: rgba(252, 239, 244, 0.85) !important;
+  color: #DE5D8F !important;
+}
+
 /* TipTap rich text styles (ART-004, ART-007, F-DTL-005) */
 .tiptap-content h1 {
   font-size: 2rem;
@@ -124,4 +134,19 @@ textarea {
 
 .tiptap-content a:hover {
   color: #CA5582;
+}
+
+.tiptap-content figure {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tiptap-content figcaption {
+  font-size: 0.875rem;
+  color: #6D6D6D;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
 }

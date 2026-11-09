@@ -15,6 +15,38 @@ import { AksornsaraLayout } from './AksornsaraLayout';
 import { articlesService, BackofficeArticle } from './services/articlesService';
 import articleThumbFallback from '../../assets/article_thumb.png';
 
+const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
 export function ArticlesPage() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
@@ -56,25 +88,37 @@ export function ArticlesPage() {
   }, []);
 
   const categories = useMemo(() => {
-    const set = new Set(articlesList.map((a) => a.category).filter(Boolean));
-    return ['ทั้งหมด', ...Array.from(set)];
-  }, [articlesList]);
+    return [
+      'ทั้งหมด',
+      'ปี 2569',
+      'ปี 2568',
+      'ปี 2567',
+      'ปี 2566',
+      'ปี 2565',
+      'ปี 2564',
+    ];
+  }, []);
 
   // Filtered & Sorted Articles
   const filtered = useMemo(() => {
     return articlesList
       .filter((item) => {
+        const itemYearTag = formatYearTag(item.year, item.date || item.publishedAt);
+        const matchCategory =
+          categoryFilter === 'ทั้งหมด' ||
+          itemYearTag === categoryFilter ||
+          item.category === categoryFilter ||
+          toBuddhistYear(item.year) === toBuddhistYear(categoryFilter);
+
         const matchSearch =
           !search ||
           item.title.toLowerCase().includes(search.toLowerCase()) ||
           item.author.toLowerCase().includes(search.toLowerCase()) ||
-          item.category.toLowerCase().includes(search.toLowerCase());
+          item.category.toLowerCase().includes(search.toLowerCase()) ||
+          itemYearTag.toLowerCase().includes(search.toLowerCase());
 
         const matchStatus =
           statusFilter === 'ทั้งหมด' || item.status === statusFilter;
-
-        const matchCategory =
-          categoryFilter === 'ทั้งหมด' || item.category === categoryFilter;
 
         return matchSearch && matchStatus && matchCategory;
       })
@@ -146,10 +190,7 @@ export function ArticlesPage() {
     }
     if (typeof window !== 'undefined') {
       if (window.location.hostname.includes('backoffice')) {
-        const feHost = window.location.hostname.replace(
-          'backoffice',
-          'aksornsara',
-        );
+        const feHost = window.location.hostname.replace('backoffice', 'aksornsara');
         return `${window.location.protocol}//${feHost}/articles/${slugOrId}`;
       }
     }
@@ -510,7 +551,7 @@ export function ArticlesPage() {
                             fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
                           }}
                         >
-                          {item.category?.replace(/^ปี\s*/, '')}
+                          {formatYearTag(item.year, item.date || item.publishedAt)}
                         </span>
                       </td>
 
