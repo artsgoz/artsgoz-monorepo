@@ -69,15 +69,46 @@ function formatThaiShortDate(dateStr?: string): string {
   return `${day} ${month} ${year}`;
 }
 
+const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
 const CATEGORY_OPTIONS = [
   'ทั้งหมด',
-  'ศิลปะ',
-  'วรรณกรรม',
-  'ภาษา',
-  'วัฒนธรรม',
-  'ปรัชญา',
-  'วิจารณ์',
-  'ทั่วไป',
+  'ปี 2569',
+  'ปี 2568',
+  'ปี 2567',
+  'ปี 2566',
+  'ปี 2565',
+  'ปี 2564',
 ];
 
 const SORT_OPTIONS: { id: string; label: string }[] = [
@@ -132,28 +163,28 @@ export function PublishedArticlesPage() {
   // Combined search term
   const effectiveSearch = (localSearch || topSearch).trim().toLowerCase();
 
-  const displayCategory = (cat?: string) => {
-    if (!cat) return 'ทั่วไป';
-    return cat.replace(/^ปี\s*/, '');
+  const displayCategory = (art: { year?: string; date?: string; publishedAt?: string }) => {
+    return formatYearTag(art.year, art.date || art.publishedAt);
   };
 
   // Filter & Sort
   const filtered = useMemo(() => {
     return articlesList
       .filter((article) => {
-        // Category check
-        const cleanCat = displayCategory(article.category);
+        // Category check (Year)
+        const yearTag = displayCategory(article);
         const matchesCategory =
           selectedCategory === 'ทั้งหมด' ||
-          cleanCat === selectedCategory ||
-          article.category === selectedCategory;
+          yearTag === selectedCategory ||
+          article.category === selectedCategory ||
+          toBuddhistYear(article.year) === toBuddhistYear(selectedCategory);
 
         // Search check
         const matchesSearch =
           !effectiveSearch ||
           article.title.toLowerCase().includes(effectiveSearch) ||
           article.author.toLowerCase().includes(effectiveSearch) ||
-          cleanCat.toLowerCase().includes(effectiveSearch);
+          yearTag.toLowerCase().includes(effectiveSearch);
 
         return matchesCategory && matchesSearch;
       })
@@ -595,7 +626,7 @@ export function PublishedArticlesPage() {
                           color: '#1A1C1C',
                         }}
                       >
-                        {displayCategory(article.category)}
+                        {displayCategory(article)}
                       </td>
 
                       {/* Status */}

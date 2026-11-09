@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Pagination } from '@artsgoz/design-system';
 import {
   getArticleDetail,
+  fetchArticleDetail,
+  formatYearTag,
   ARTICLES_SUMMARY,
   ArticleBannerMock,
   saveMockArticleToSession,
@@ -46,7 +48,7 @@ export function ArticleDetailSection() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [id]);
 
-  const article = useMemo(() => {
+  const [article, setArticle] = useState(() => {
     // If mock data is passed in URL query param from backoffice, ingest and return
     const mockDataStr = searchParams.get('mock');
     if (mockDataStr) {
@@ -67,11 +69,23 @@ export function ArticleDetailSection() {
         console.warn('Failed to parse mock article from URL', err);
       }
     }
-    if (id) {
-      return getArticleDetail(id);
-    }
-    return getArticleDetail('art-001');
-  }, [id, searchParams]);
+    const targetId = id || 'art-001';
+    return getArticleDetail(targetId);
+  });
+
+  // Fetch full rich content asynchronously if lazy-loaded
+  useEffect(() => {
+    let cancelled = false;
+    const targetId = id || 'art-001';
+    fetchArticleDetail(targetId).then((full) => {
+      if (!cancelled && full) {
+        setArticle(full);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
 
   // Dynamic SEO & Head Tags Updater (F-SEO-003..007, F-SEO-012)
   useEffect(() => {
@@ -311,7 +325,7 @@ export function ArticleDetailSection() {
             </div>
           </div>
 
-          {/* Badges: Category & Read Time */}
+          {/* Badges: Category (Year) & Read Time */}
           <div className="flex items-center gap-2.5 flex-wrap">
             <span
               className="font-normal text-[13px] sm:text-[14px] text-[#DE5D8F] rounded-[11px] px-3.5 py-1.5 w-fit"
@@ -320,7 +334,7 @@ export function ArticleDetailSection() {
                 fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
               }}
             >
-              {article.category || 'ทั่วไป'}
+              {formatYearTag(article.year, article.date)}
             </span>
             {article.readTime && (
               <span className="flex items-center gap-1.5 font-serif text-[13px] font-bold text-gray-500 bg-gray-100 rounded-[11px] px-3 py-1.5">
@@ -416,6 +430,7 @@ export function ArticleDetailSection() {
                 title={a.title}
                 author={a.author}
                 date={a.date}
+                year={a.year}
                 category={a.category}
                 imageUrl={a.imageUrl}
                 compact={true}

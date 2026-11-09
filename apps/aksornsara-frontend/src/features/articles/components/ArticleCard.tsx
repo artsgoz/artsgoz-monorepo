@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Bookmark } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import mockImage from '../../../assets/ArticleBannerMock.jpg';
+import { formatYearTag } from '../constants.js';
 
 interface ArticleCardProps {
   id: string;
@@ -10,6 +11,7 @@ interface ArticleCardProps {
   author: string;
   date: string;
   category: string;
+  year?: string;
   imageUrl?: string;
   compact?: boolean;
   onBookmarkChange?: (id: string, bookmarked: boolean) => void;
@@ -21,6 +23,7 @@ export function ArticleCard({
   author,
   date,
   category,
+  year,
   imageUrl,
   compact = false,
   onBookmarkChange,
@@ -66,9 +69,7 @@ export function ArticleCard({
 
   const translatedTitle = title.startsWith('mock.') ? t(title) : title;
   const translatedAuthor = author.startsWith('mock.') ? t(author) : author;
-  const translatedCategory = category.startsWith('categories.')
-    ? t(category)
-    : category;
+  const yearTag = formatYearTag(year, date);
 
   // Compact variant for "อ่านต่อ" (Read More) 4-column row
   if (compact) {
@@ -104,7 +105,7 @@ export function ArticleCard({
               fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
             }}
           >
-            {translatedCategory}
+            {yearTag}
           </span>
           <button
             type="button"
@@ -170,7 +171,7 @@ export function ArticleCard({
               fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
             }}
           >
-            {translatedCategory}
+            {yearTag}
           </span>
           <button
             type="button"
@@ -229,7 +230,7 @@ export function ArticleCard({
               fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
             }}
           >
-            {translatedCategory}
+            {yearTag}
           </span>
           {/* icon button */}
           <button

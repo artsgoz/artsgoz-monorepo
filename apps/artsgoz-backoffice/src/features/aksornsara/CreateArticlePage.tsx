@@ -18,6 +18,38 @@ import { TiptapEditor } from './components/TiptapEditor';
 import { articlesService } from './services/articlesService';
 import { aksornsaraApi } from './services/apiClient';
 
+const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
 export function CreateArticlePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -89,22 +121,24 @@ export function CreateArticlePage() {
     return `${day}/${month}/${yr} , ${hours}:${mins}`;
   });
 
-  // Categories (Blank when creating new, or loaded from initialArticle)
+  // Categories (Initialized with publication years)
   const [categories, setCategories] = useState<{ id: string; name: string; checked: boolean }[]>(() => {
     const base = [
-      { id: '1', name: 'ศิลปะ', checked: false },
-      { id: '2', name: 'วรรณกรรม', checked: false },
-      { id: '3', name: 'ภาษา', checked: false },
-      { id: '4', name: 'วัฒนธรรม', checked: false },
-      { id: '5', name: 'ปรัชญา', checked: false },
-      { id: '6', name: 'วิจารณ์', checked: false },
-      { id: '7', name: 'ทั่วไป', checked: false },
+      { id: '2569', name: 'ปี 2569', checked: false },
+      { id: '2568', name: 'ปี 2568', checked: false },
+      { id: '2567', name: 'ปี 2567', checked: false },
+      { id: '2566', name: 'ปี 2566', checked: false },
+      { id: '2565', name: 'ปี 2565', checked: false },
+      { id: '2564', name: 'ปี 2564', checked: false },
     ];
+    const initialYear = initialArticle?.year ? formatYearTag(initialArticle.year) : null;
     const initialCats = initialArticle?.categories || (initialArticle?.category ? [initialArticle.category] : []);
-    if (initialCats.length > 0) {
-      const set = new Set(initialCats);
+    const set = new Set(initialCats.map((c) => formatYearTag(c)));
+    if (initialYear) set.add(initialYear);
+
+    if (set.size > 0) {
       const mapped = base.map((c) => ({ ...c, checked: set.has(c.name) }));
-      const customCats = initialCats
+      const customCats = Array.from(set)
         .filter((c) => !base.some((b) => b.name === c))
         .map((c) => ({ id: `cat-${c}`, name: c, checked: true }));
       return [...mapped, ...customCats];
@@ -232,9 +266,41 @@ export function CreateArticlePage() {
   };
 
   const toggleCategory = (id: string) => {
-    setCategories((prev) =>
-      prev.map((cat) => (cat.id === id ? { ...cat, checked: !cat.checked } : cat))
-    );
+    setCategories((prev) => {
+      const target = prev.find((c) => c.id === id);
+      const willBeChecked = target ? !target.checked : false;
+      const updated = prev.map((cat) => (cat.id === id ? { ...cat, checked: !cat.checked } : cat));
+      if (target && willBeChecked) {
+        const be = toBuddhistYear(target.name);
+        if (be) {
+          setYear(be);
+        }
+      }
+      return updated;
+    });
+  };
+
+  const handleYearChange = (newYear: string) => {
+    setYear(newYear);
+    const be = toBuddhistYear(newYear);
+    if (be) {
+      const yearName = `ปี ${be}`;
+      setCategories((prev) => {
+        const exists = prev.some((c) => c.name === yearName);
+        if (exists) {
+          return prev.map((c) => ({
+            ...c,
+            checked: c.name === yearName,
+          }));
+        } else if (be.length === 4) {
+          return [
+            { id: be, name: yearName, checked: true },
+            ...prev.map((c) => ({ ...c, checked: false })),
+          ];
+        }
+        return prev;
+      });
+    }
   };
 
   const handleAddCategory = () => {
@@ -291,7 +357,8 @@ export function CreateArticlePage() {
 
   const handleSaveDraft = () => {
     const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
-    const category = selectedCats[0] || 'ทั่วไป';
+    const primaryYear = formatYearTag(year || initialArticle?.year);
+    const category = selectedCats[0] || primaryYear;
 
     if (slug.trim() && articlesService.isSlugTaken(slug, editId || undefined)) {
       showToast('URL Slug นี้ถูกใช้งานแล้ว กรุณาเปลี่ยนเป็นชื่ออื่น');
@@ -350,7 +417,8 @@ export function CreateArticlePage() {
     if (!validateForPublish()) return;
     setShowPublishModal(false);
     const selectedCats = categories.filter((c) => c.checked).map((c) => c.name);
-    const category = selectedCats[0] || 'ทั่วไป';
+    const primaryYear = formatYearTag(year || initialArticle?.year);
+    const category = selectedCats[0] || primaryYear;
 
     const cleanExcerpt = content.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
     const finalTitle = title.trim();
@@ -654,7 +722,7 @@ export function CreateArticlePage() {
                           fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
                         }}
                       >
-                        {c.name.replace(/^ปี\s*/, '')}
+                        {c.name}
                       </span>
                     ))
                 ) : (
@@ -665,7 +733,7 @@ export function CreateArticlePage() {
                       fontFamily: "'Inter', 'Noto Sans Thai', sans-serif",
                     }}
                   >
-                    ทั่วไป
+                    {formatYearTag(year)}
                   </span>
                 )}
 
@@ -746,7 +814,7 @@ export function CreateArticlePage() {
                 อ่านต่อบทความอื่น ๆ
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
-                {['วรรณกรรม', 'ปรัชญา', 'ศิลปะ', 'วัฒนธรรม'].map((sampleCat, i) => (
+                {['ปี 2569', 'ปี 2568', 'ปี 2567', 'ปี 2566'].map((sampleCat, i) => (
                   <div
                     key={i}
                     className="bg-[#F7F8F9] rounded-[16px] p-3.5 flex flex-col gap-3 shadow-xs border border-gray-100"
@@ -1066,7 +1134,7 @@ export function CreateArticlePage() {
                   <input
                     type="text"
                     value={year}
-                    onChange={(e) => setYear(e.target.value)}
+                    onChange={(e) => handleYearChange(e.target.value)}
                     placeholder="2569"
                     className="w-full px-3 py-2 rounded-[8px] border border-[#DFDFE0] text-[15px] font-serif outline-none focus:border-[#DE5D8F]"
                   />

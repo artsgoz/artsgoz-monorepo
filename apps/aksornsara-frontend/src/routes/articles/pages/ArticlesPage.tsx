@@ -20,6 +20,8 @@ import {
   AKSORNSARA_CATEGORIES,
   getArticlesSummaryList,
   ArticleBannerMock,
+  formatYearTag,
+  toBuddhistYear,
 } from '../../../features/articles/index.js';
 import { Footer } from '../../../components/Footer/index.js';
 import { useClickOutside } from '../../../components/Navbar/useClickOutside.js';
@@ -59,9 +61,7 @@ function SavedArticleCard({
   const navigate = useNavigate();
 
   const title = article.title.startsWith('mock.') ? t(article.title) : article.title;
-  const category = article.category.startsWith('categories.')
-    ? t(article.category)
-    : (article.category || 'หมวดหมู่');
+  const yearTag = formatYearTag(article.year, article.date);
   const author = article.author.startsWith('mock.') ? t(article.author) : (article.author || 'ชมรมสาราณียกร');
   const dateStr = article.date || 'วว/ดด/ปป';
 
@@ -104,7 +104,7 @@ function SavedArticleCard({
             className="text-[16px] font-normal text-[#DE5D8F] whitespace-nowrap leading-none"
             style={{ fontFamily: "'Inter', 'Noto Sans Thai', sans-serif" }}
           >
-            {category}
+            {yearTag}
           </span>
         </div>
 
@@ -334,10 +334,14 @@ export default function ArticlesPage() {
   const filteredArticles = useMemo(() => {
     const allArticles = getArticlesSummaryList();
     const list = allArticles.filter((article) => {
+      const yearTag = formatYearTag(article.year, article.date);
       const matchesCategory =
         selectedCategory === 'all' ||
         selectedCategory === 'categories.all' ||
         selectedCategory === 'ทั้งหมด' ||
+        yearTag === selectedCategory ||
+        article.year === selectedCategory ||
+        toBuddhistYear(article.year) === toBuddhistYear(selectedCategory) ||
         article.category === selectedCategory ||
         (article.tags && article.tags.includes(selectedCategory));
 
@@ -346,7 +350,8 @@ export default function ArticlesPage() {
         query === '' ||
         article.title.toLowerCase().includes(query) ||
         article.excerpt.toLowerCase().includes(query) ||
-        article.author.toLowerCase().includes(query);
+        article.author.toLowerCase().includes(query) ||
+        yearTag.toLowerCase().includes(query);
 
       return matchesCategory && matchesSearch;
     });
@@ -769,6 +774,7 @@ export default function ArticlesPage() {
                 title={article.title}
                 author={article.author}
                 date={article.date}
+                year={article.year}
                 category={article.category}
                 imageUrl={article.imageUrl}
                 onBookmarkChange={(id, bookmarked) => {

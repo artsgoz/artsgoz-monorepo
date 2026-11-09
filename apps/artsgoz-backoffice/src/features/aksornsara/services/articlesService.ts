@@ -31,7 +31,39 @@ export interface BackofficeArticle {
   isNewlyCreated?: boolean;
 }
 
-const STORAGE_KEY = 'aksornsara_backoffice_session_articles_v5';
+const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
+const STORAGE_KEY = 'aksornsara_backoffice_session_articles_v6';
 
 export class ArticlesService {
   private static instance: ArticlesService;
@@ -85,6 +117,7 @@ export class ArticlesService {
         sessionStorage.removeItem('aksornsara_backoffice_session_articles');
         sessionStorage.removeItem('aksornsara_backoffice_session_articles_v3');
         sessionStorage.removeItem('aksornsara_backoffice_session_articles_v4');
+        sessionStorage.removeItem('aksornsara_backoffice_session_articles_v5');
       }
 
       if (typeof window !== 'undefined' && window.sessionStorage) {
@@ -117,6 +150,7 @@ export class ArticlesService {
       imageUrl?: string;
       views?: number;
     }>).map((item) => {
+      const yearTag = formatYearTag(item.year, item.date);
       return {
         id: item.id,
         title: item.title,
@@ -124,7 +158,7 @@ export class ArticlesService {
         date: item.date || `ปี ${item.year}`,
         author: item.author || 'ชมรมสาราณียกร',
         excerpt: item.excerpt,
-        category: item.category || 'ทั่วไป',
+        category: yearTag,
         url: item.url,
         readTime: item.readTime || '5 นาที',
         coverImage: item.coverImage || item.imageUrl,
@@ -132,7 +166,7 @@ export class ArticlesService {
         status: 'เผยแพร่แล้ว',
         views: typeof item.views === 'number' ? item.views : 0,
         publishedAt: item.date || `ปี ${item.year}`,
-        tags: item.tags || [item.category || 'ทั่วไป', 'สาราณียกร'],
+        tags: item.tags || [yearTag, 'สาราณียกร'],
         visibility: 'สาธารณะ',
         contentHtml: `<p>${item.excerpt}</p>`,
         isNewlyCreated: false,
