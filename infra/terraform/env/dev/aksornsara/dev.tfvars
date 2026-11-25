@@ -4,10 +4,10 @@ hosting_custom_domains = {
 }
 api_custom_domain         = "dev.api.aksornsara.artsgoz.com"
 frontend_maintenance_mode = false
-firebase_api_key          = "AIzaSyAS-GTc1ZsZ4XZSLmFFqwU1oxdU1DUYnf0"
-firebase_auth_domain      = "artsgoz-aksornsara-web-develop.firebaseapp.com"
-firebase_project_id       = "artsgoz-aksornsara-web-develop"
-firebase_app_id           = "1:680736603215:web:7a64136ab7daf188153e3a"
+firebase_api_key          = "AIzaSyA7KlwZjN8qMUsP3vlKBVYPPgEAOcK_V8c"
+firebase_auth_domain      = "artsgoz-artsgoz-web-develop.firebaseapp.com"
+firebase_project_id       = "artsgoz-artsgoz-web-develop"
+firebase_app_id           = "1:78095182747:web:36aa85a087341efc194f3e"
 
 # Enable after this repository is linked through Cloud Build v2 in this project.
 cloud_build_repository = {
