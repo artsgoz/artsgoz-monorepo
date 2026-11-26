@@ -1,3 +1,4 @@
+import rawArticles from '../data/articles.json';
 import { aksornsaraApi, ArticleDto } from './apiClient';
 
 export interface BackofficeArticle {
@@ -17,6 +18,8 @@ export interface BackofficeArticle {
   readTime: string;
   coverImage?: string;
   imageUrl?: string;
+  bodyImages?: string[];
+  references?: string[];
   status: 'เผยแพร่แล้ว' | 'ร่างบทความ' | 'รออนุมัติ';
   views: number;
   contentHtml?: string;
@@ -28,7 +31,39 @@ export interface BackofficeArticle {
   isNewlyCreated?: boolean;
 }
 
-const STORAGE_KEY = 'aksornsara_backoffice_session_articles_v5';
+const toBuddhistYear = (yearStr?: string | number): string => {
+  if (!yearStr) return '';
+  const str = String(yearStr).trim();
+  let candidate = str;
+  if (str.includes('/')) {
+    const parts = str.split('/');
+    candidate = parts[parts.length - 1];
+  }
+  const match = candidate.match(/\d+/);
+  if (!match) return '';
+  const num = parseInt(match[0], 10);
+  if (isNaN(num)) return '';
+  if (num >= 2500) return String(num);
+  if (num >= 2000 && num < 2100) return String(num + 543);
+  if (num < 100) {
+    return num > 40 ? String(2500 + num) : String(2000 + num + 543);
+  }
+  return String(num);
+};
+
+const formatYearTag = (year?: string | number, fallbackDate?: string): string => {
+  if (year) {
+    const be = toBuddhistYear(year);
+    if (be) return `ปี ${be}`;
+  }
+  if (fallbackDate) {
+    const be = toBuddhistYear(fallbackDate);
+    if (be) return `ปี ${be}`;
+  }
+  return 'ปี 2569';
+};
+
+const STORAGE_KEY = 'aksornsara_backoffice_session_articles_v6';
 
 export class ArticlesService {
   private static instance: ArticlesService;
@@ -75,7 +110,70 @@ export class ArticlesService {
   }
 
   private load(): void {
-    this.articles = [];
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('aksornsara_backoffice_articles');
+        localStorage.removeItem('aksornsara_backoffice_articles_v3');
+        sessionStorage.removeItem('aksornsara_backoffice_session_articles');
+        sessionStorage.removeItem('aksornsara_backoffice_session_articles_v3');
+        sessionStorage.removeItem('aksornsara_backoffice_session_articles_v4');
+        sessionStorage.removeItem('aksornsara_backoffice_session_articles_v5');
+      }
+
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        const stored = sessionStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as BackofficeArticle[];
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            this.articles = parsed;
+            return;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to load articles from sessionStorage, using defaults', e);
+    }
+
+    // Initialize from rawArticles with strict initial view count = 0
+    this.articles = (rawArticles as Array<{
+      id: string;
+      title: string;
+      year: string;
+      date: string;
+      author: string;
+      excerpt: string;
+      category: string;
+      tags?: string[];
+      url?: string;
+      readTime: string;
+      coverImage?: string;
+      imageUrl?: string;
+      views?: number;
+    }>).map((item) => {
+      const yearTag = formatYearTag(item.year, item.date);
+      return {
+        id: item.id,
+        title: item.title,
+        year: item.year,
+        date: item.date || `ปี ${item.year}`,
+        author: item.author || 'ชมรมสาราณียกร',
+        excerpt: item.excerpt,
+        category: yearTag,
+        url: item.url,
+        readTime: item.readTime || '5 นาที',
+        coverImage: item.coverImage || item.imageUrl,
+        imageUrl: item.imageUrl || item.coverImage,
+        status: 'เผยแพร่แล้ว',
+        views: typeof item.views === 'number' ? item.views : 0,
+        publishedAt: item.date || `ปี ${item.year}`,
+        tags: item.tags || [yearTag, 'สาราณียกร'],
+        visibility: 'สาธารณะ',
+        contentHtml: `<p>${item.excerpt}</p>`,
+        isNewlyCreated: false,
+      };
+    });
+
+    this.save();
   }
 
   private save(): void {
@@ -85,10 +183,7 @@ export class ArticlesService {
           sessionStorage.setItem(STORAGE_KEY, JSON.stringify(this.articles));
         }
         if (window.localStorage) {
-          localStorage.setItem(
-            'aksornsara_backoffice_articles_shared',
-            JSON.stringify(this.articles),
-          );
+          localStorage.setItem('aksornsara_backoffice_articles_shared', JSON.stringify(this.articles));
         }
       }
     } catch (e) {
@@ -102,60 +197,84 @@ export class ArticlesService {
     try {
       const res = await aksornsaraApi.getArticles({ limit: 1000 });
       const items = res.data || [];
-      if (Array.isArray(items)) {
+      if (Array.isArray(items) && items.length > 0) {
         this.isApiConnected = true;
 
-        const backendArticles: BackofficeArticle[] = items.map(
-          (dto: ArticleDto) => {
-            const yr = dto.published_at
-              ? String(new Date(dto.published_at).getFullYear())
-              : '2026';
-            const catName =
-              dto.category_name || (dto as any).category || 'ทั่วไป';
-            const author =
-              dto.author_name || dto.writer_credit || 'ชมรมสาราณียกร';
-            let formattedDate = `ปี ${yr}`;
-            if (dto.published_at) {
-              try {
-                const d = new Date(dto.published_at);
-                formattedDate = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear() + 543}`;
-              } catch {
-                formattedDate = `ปี ${yr}`;
-              }
+        const backendArticles: BackofficeArticle[] = items.map((dto: ArticleDto) => {
+          const yr = dto.published_at ? String(new Date(dto.published_at).getFullYear()) : '2026';
+          const catName = dto.category_name || (dto as any).category || 'ทั่วไป';
+          const author = dto.author_name || dto.writer_credit || 'ชมรมสาราณียกร';
+          let formattedDate = `ปี ${yr}`;
+          if (dto.published_at) {
+            try {
+              const d = new Date(dto.published_at);
+              formattedDate = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear() + 543}`;
+            } catch {
+              formattedDate = `ปี ${yr}`;
             }
+          }
 
+          return {
+            id: String(dto.slug || dto.id),
+            backendId: String(dto.id),
+            title: dto.title,
+            year: yr,
+            date: formattedDate,
+            author,
+            proofreader: dto.proofreader_credit || '',
+            illustrator: dto.illustrator_credit || '',
+            excerpt: dto.excerpt || '',
+            category: catName,
+            url: (dto as any).legacy_url || '',
+            readTime: '5 นาที',
+            coverImage: dto.cover_image_url || (dto as any).image_url,
+            imageUrl: dto.cover_image_url || (dto as any).image_url,
+            status: dto.status === 'published' ? 'เผยแพร่แล้ว' : 'ร่างบทความ',
+            views: dto.view_count || 0,
+            contentHtml: dto.content || `<p>${dto.excerpt || ''}</p>`,
+            tags: Array.isArray(dto.tags)
+              ? dto.tags.map((t: any) => (typeof t === 'string' ? t : t.name))
+              : [catName, 'สาราณียกร'],
+            slug: dto.slug,
+            visibility: (dto as any).visibility === 'private' ? 'ส่วนตัว' : 'สาธารณะ',
+            publishedAt: dto.published_at || formattedDate,
+            updatedAt: dto.updated_at,
+            isNewlyCreated: false,
+          };
+        });
+
+        // Smart merge backend articles with local state
+        const backendIdMap = new Map<string, BackofficeArticle>();
+        for (const b of backendArticles) {
+          backendIdMap.set(b.id, b);
+          if (b.backendId) backendIdMap.set(b.backendId, b);
+          if (b.slug) backendIdMap.set(b.slug, b);
+        }
+
+        this.articles = this.articles.map((local) => {
+          const found =
+            backendIdMap.get(local.id) ||
+            (local.backendId ? backendIdMap.get(local.backendId) : undefined) ||
+            (local.slug ? backendIdMap.get(local.slug) : undefined);
+
+          if (found) {
             return {
-              id: String(dto.slug || dto.id),
-              backendId: String(dto.id),
-              title: dto.title,
-              year: yr,
-              date: formattedDate,
-              author,
-              proofreader: dto.proofreader_credit || '',
-              illustrator: dto.illustrator_credit || '',
-              excerpt: dto.excerpt || '',
-              category: catName,
-              url: (dto as any).legacy_url || '',
-              readTime: '5 นาที',
-              coverImage: dto.cover_image_url || (dto as any).image_url,
-              imageUrl: dto.cover_image_url || (dto as any).image_url,
-              status: dto.status === 'published' ? 'เผยแพร่แล้ว' : 'ร่างบทความ',
-              views: dto.view_count || 0,
-              contentHtml: dto.content || `<p>${dto.excerpt || ''}</p>`,
-              tags: Array.isArray(dto.tags)
-                ? dto.tags.map((t: any) => (typeof t === 'string' ? t : t.name))
-                : [catName, 'สาราณียกร'],
-              slug: dto.slug,
-              visibility:
-                (dto as any).visibility === 'private' ? 'ส่วนตัว' : 'สาธารณะ',
-              publishedAt: dto.published_at || formattedDate,
-              updatedAt: dto.updated_at,
-              isNewlyCreated: false,
+              ...local,
+              ...found,
+              // Keep highest live view count recorded
+              views: Math.max(local.views || 0, found.views || 0),
             };
-          },
-        );
+          }
+          return local;
+        });
 
-        this.articles = backendArticles;
+        const localIds = new Set(this.articles.map((a) => a.id));
+        const localBackendIds = new Set(this.articles.map((a) => a.backendId).filter(Boolean));
+        for (const b of backendArticles) {
+          if (!localIds.has(b.id) && (!b.backendId || !localBackendIds.has(b.backendId))) {
+            this.articles.unshift(b);
+          }
+        }
 
         this.save();
         this.notify();
@@ -176,41 +295,23 @@ export class ArticlesService {
   }
 
   public getById(id: string): BackofficeArticle | undefined {
-    return this.articles.find(
-      (a) => a.id === id || a.backendId === id || a.slug === id,
-    );
+    return this.articles.find((a) => a.id === id || a.backendId === id || a.slug === id);
   }
 
   public isSlugTaken(slug: string, excludeId?: string): boolean {
     const normalized = slug.trim().toLowerCase();
     if (!normalized) return false;
     return this.articles.some((a) => {
-      if (excludeId && (a.id === excludeId || a.backendId === excludeId))
-        return false;
+      if (excludeId && (a.id === excludeId || a.backendId === excludeId)) return false;
       return a.slug?.trim().toLowerCase() === normalized;
     });
   }
 
-  public async create(
-    data: Partial<BackofficeArticle>,
-  ): Promise<BackofficeArticle> {
+  public create(data: Partial<BackofficeArticle>): BackofficeArticle {
     const nextNumber = this.articles.length + 1;
     const newId = `art-${String(nextNumber).padStart(3, '0')}`;
     const now = new Date();
-    const months = [
-      'ม.ค.',
-      'ก.พ.',
-      'มี.ค.',
-      'เม.ย.',
-      'พ.ค.',
-      'มิ.ย.',
-      'ก.ค.',
-      'ส.ค.',
-      'ก.ย.',
-      'ต.ค.',
-      'พ.ย.',
-      'ธ.ค.',
-    ];
+    const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
     const yrShort = String(now.getFullYear() + 543).slice(-2);
     const publishedAt = `${now.getDate()} ${months[now.getMonth()]} ${yrShort}`;
 
@@ -222,26 +323,14 @@ export class ArticlesService {
       author: data.author?.trim() || 'ชมรมสาราณียกร',
       proofreader: data.proofreader?.trim() || '',
       illustrator: data.illustrator?.trim() || '',
-      excerpt:
-        data.excerpt ||
-        (data.contentHtml
-          ? data.contentHtml.replace(/<[^>]+>/g, '').slice(0, 150) + '...'
-          : ''),
-      category: data.category || data.categories?.[0] || 'ทั่วไป',
-      categories:
-        data.categories && data.categories.length > 0
-          ? data.categories
-          : [data.category || 'ทั่วไป'],
+      excerpt: data.excerpt || (data.contentHtml ? data.contentHtml.replace(/<[^>]+>/g, '').slice(0, 150) + '...' : ''),
+      category: data.category || (data.categories?.[0]) || 'ทั่วไป',
+      categories: data.categories && data.categories.length > 0 ? data.categories : [data.category || 'ทั่วไป'],
       metaDescription: data.metaDescription || '',
       url: data.url || '',
       readTime: data.readTime || '5 นาที',
-      coverImage:
-        data.coverImage ||
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
-      imageUrl:
-        data.imageUrl ||
-        data.coverImage ||
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
+      coverImage: data.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
+      imageUrl: data.imageUrl || data.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000',
       status: data.status || 'เผยแพร่แล้ว',
       views: data.views ?? 0,
       contentHtml: data.contentHtml || '',
@@ -250,110 +339,112 @@ export class ArticlesService {
       visibility: data.visibility || 'สาธารณะ',
       publishedAt,
       updatedAt: now.toISOString(),
+      references: data.references || [],
+      bodyImages: data.bodyImages || [],
       isNewlyCreated: true,
     };
 
-    const response = await aksornsaraApi.createArticle({
-      title: newArticle.title,
-      slug: data.slug || undefined,
-      content: newArticle.contentHtml || '<p></p>',
-      excerpt: newArticle.excerpt,
-      cover_image_url: newArticle.coverImage,
-      status: newArticle.status === 'เผยแพร่แล้ว' ? 'published' : 'draft',
-      author_name: newArticle.author,
-      writer_credit: newArticle.author,
-      proofreader_credit: newArticle.proofreader,
-      illustrator_credit: newArticle.illustrator,
-      category: newArticle.category,
-      categories: data.categories,
-      tags: newArticle.tags,
-      published_at: data.publishedAt,
-      meta_description: data.metaDescription,
-      visibility: data.visibility === 'ส่วนตัว' ? 'private' : 'public',
-    } as any);
-    const item = response.data;
-    newArticle.id = String(item.id);
-    newArticle.backendId = String(item.id);
-    newArticle.slug = item.slug;
+    // Prepend locally & notify
     this.articles = [newArticle, ...this.articles];
     this.save();
     this.notify();
 
+    // Async write-through to backend
+    aksornsaraApi.createArticle({
+      title: newArticle.title,
+      slug: newArticle.slug,
+      content: newArticle.contentHtml,
+      excerpt: newArticle.excerpt,
+      cover_image_url: newArticle.coverImage,
+      status: newArticle.status === 'เผยแพร่แล้ว' ? 'published' : 'draft',
+      writer_credit: newArticle.author,
+      author_name: newArticle.author,
+      proofreader_credit: newArticle.proofreader,
+      illustrator_credit: newArticle.illustrator,
+      category_name: newArticle.category,
+    } as any).then((res) => {
+      const item = res.data || (res as any);
+      if (item && item.id) {
+        const idx = this.articles.findIndex((a) => a.id === newArticle.id);
+        if (idx !== -1) {
+          this.articles[idx].backendId = String(item.id);
+          if (item.slug) this.articles[idx].slug = item.slug;
+          this.save();
+          this.notify();
+        }
+      }
+    }).catch((err) => {
+      console.warn('Backend create article fallback to local session:', err);
+    });
+
     return newArticle;
   }
 
-  public async update(
-    id: string,
-    updates: Partial<BackofficeArticle>,
-  ): Promise<BackofficeArticle> {
-    const index = this.articles.findIndex(
-      (a) => a.id === id || a.backendId === id || a.slug === id,
-    );
-    if (index === -1) throw new Error('Article not found.');
+  public update(id: string, updates: Partial<BackofficeArticle>): BackofficeArticle | undefined {
+    const index = this.articles.findIndex((a) => a.id === id || a.backendId === id || a.slug === id);
+    if (index === -1) return undefined;
 
-    const previous = this.articles[index];
-    await aksornsaraApi.updateArticle(previous.backendId || previous.id, {
-      title: updates.title,
-      slug: updates.slug,
-      content: updates.contentHtml,
-      excerpt: updates.excerpt,
-      cover_image_url: updates.coverImage || updates.imageUrl,
-      author_name: updates.author,
-      writer_credit: updates.author,
-      proofreader_credit: updates.proofreader,
-      illustrator_credit: updates.illustrator,
-      category: updates.category,
-      categories: updates.categories,
-      tags: updates.tags,
-      meta_description: updates.metaDescription,
-      published_at: updates.publishedAt,
-      status: updates.status
-        ? updates.status === 'ร่างบทความ'
-          ? 'draft'
-          : 'published'
-        : undefined,
-    } as any);
     this.articles[index] = {
-      ...previous,
+      ...this.articles[index],
       ...updates,
       updatedAt: new Date().toISOString(),
     };
+    if (updates.categories && updates.categories.length > 0) {
+      this.articles[index].categories = updates.categories;
+      this.articles[index].category = updates.categories[0];
+    }
+    if (updates.metaDescription !== undefined) {
+      this.articles[index].metaDescription = updates.metaDescription;
+    }
     this.save();
     this.notify();
+
+    const target = this.articles[index];
+    const targetId = target.backendId || target.id;
+
+    // Background update to API
+    aksornsaraApi.updateArticle(targetId, {
+      title: updates.title,
+      content: updates.contentHtml,
+      excerpt: updates.excerpt,
+      cover_image_url: updates.coverImage || updates.imageUrl,
+      writer_credit: updates.author,
+      author_name: updates.author,
+      proofreader_credit: updates.proofreader,
+      illustrator_credit: updates.illustrator,
+      category_name: updates.category,
+      status: updates.status === 'ร่างบทความ' ? 'draft' : 'published',
+    } as any).catch((err) => {
+      console.warn('Backend update article fallback to local session:', err);
+    });
 
     return this.articles[index];
   }
 
-  public async delete(id: string): Promise<boolean> {
-    const target = this.articles.find(
-      (a) => a.id === id || a.backendId === id || a.slug === id,
-    );
-    const targetId = target ? target.backendId || target.id : id;
+  public delete(id: string): boolean {
+    const target = this.articles.find((a) => a.id === id || a.backendId === id || a.slug === id);
+    const targetId = target ? (target.backendId || target.id) : id;
 
-    if (!target) return false;
-    await aksornsaraApi.deleteArticle(targetId);
-    this.articles = this.articles.filter((article) => article !== target);
-    this.save();
-    this.notify();
-    return true;
+    const prevLen = this.articles.length;
+    this.articles = this.articles.filter((a) => a.id !== id && a.backendId !== id && a.slug !== id);
+    if (this.articles.length !== prevLen) {
+      this.save();
+      this.notify();
+      aksornsaraApi.deleteArticle(targetId).catch((err) => {
+        console.warn('Backend delete article fallback to local session:', err);
+      });
+      return true;
+    }
+    return false;
   }
 
   public getMetrics() {
     const totalArticles = this.articles.length;
-    const publishedArticles = this.articles.filter(
-      (a) => a.status === 'เผยแพร่แล้ว',
-    );
-    const draftArticles = this.articles.filter(
-      (a) => a.status === 'ร่างบทความ',
-    );
-    const totalViews = this.articles.reduce(
-      (sum, a) => sum + (a.views || 0),
-      0,
-    );
+    const publishedArticles = this.articles.filter((a) => a.status === 'เผยแพร่แล้ว');
+    const draftArticles = this.articles.filter((a) => a.status === 'ร่างบทความ');
+    const totalViews = this.articles.reduce((sum, a) => sum + (a.views || 0), 0);
 
-    const categoriesSet = new Set(
-      this.articles.map((a) => a.category).filter(Boolean),
-    );
+    const categoriesSet = new Set(this.articles.map((a) => a.category).filter(Boolean));
     const totalCategories = categoriesSet.size;
 
     const topArticles = [...this.articles]
@@ -433,11 +524,7 @@ export class ArticlesService {
       const matched = this.articles.filter((a) => {
         // Year filter
         if (targetYear !== 'all') {
-          const yr =
-            a.year ||
-            (a.publishedAt
-              ? String(new Date(a.publishedAt).getFullYear())
-              : '2026');
+          const yr = a.year || (a.publishedAt ? String(new Date(a.publishedAt).getFullYear()) : '2026');
           if (String(yr) !== String(targetYear)) return false;
         }
 

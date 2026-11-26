@@ -73,3 +73,8 @@ tfplan
 # Standard node/pnpm fields
 node_modules/
 .pnpm-store/
+# AksornSara article images and database exports (handled by backend storage)
+apps/aksornsara-frontend/public/article-images/
+apps/artsgoz-backoffice/public/article-images/
+apps/aksornsara-frontend/src/features/articles/data/local-images-map.json
+exports/
